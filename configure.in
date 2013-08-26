@@ -1,0 +1,160 @@
+###################################################################
+#
+# uHTTP for C++
+#
+# Copyright (C) Satoshi Konno 2002-2012
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+###################################################################
+
+AC_INIT(include/uhttp/http/HTTP.h)
+AC_CONFIG_AUX_DIR(config)
+
+AM_INIT_AUTOMAKE(uhttpcc, 1.0)
+AM_CONFIG_HEADER(config.h)
+
+##############################
+# Checks for programs.
+##############################
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_AWK
+AC_PROG_RANLIB
+AC_LANG_CPLUSPLUS
+
+##############################
+# Checks for header files.
+##############################
+
+AC_HEADER_STDC
+AC_CHECK_HEADERS([arpa/inet.h limits.h netdb.h netinet/in.h stdlib.h string.h sys/param.h sys/socket.h unistd.h])
+
+##############################
+# Checks for iconv
+##############################
+
+AC_CHECK_FUNCS([iconv])
+AC_CHECK_HEADERS([iconv.h])
+AC_CHECK_LIB([iconv],[main])
+
+##############################
+# Checks for pthread
+##############################
+
+AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(CyberLink needs POSIX thread library)])
+AC_CHECK_LIB([pthread],[main])
+
+##############################
+# Checks for typedefs, structures, and compiler characteristics.
+##############################
+
+#AC_HEADER_STDBOOL
+AC_C_CONST
+AC_C_INLINE
+AC_STRUCT_TM
+
+##############################
+# Checks for Network functions
+##############################
+
+AC_CHECK_FUNCS([socket])
+AC_CHECK_FUNCS([inet_ntoa])
+AC_CHECK_HEADERS([ifaddrs.h])
+AC_CHECK_FUNCS([getifaddrs])
+
+AC_MSG_CHECKING(for socklen_t)
+AC_TRY_COMPILE([
+#include <sys/types.h>
+#include <sys/socket.h>
+socklen_t foosocket;
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SOCKLEN_T],1,[SOCKLEN_T])],
+[AC_MSG_RESULT(no)]
+)
+
+AC_MSG_CHECKING(for SO_NOSIGPIPE)
+AC_TRY_COMPILE([
+#include <sys/types.h>
+#include <sys/socket.h>
+int sockOpt = SO_NOSIGPIPE;
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPE])],
+[AC_MSG_RESULT(no)]
+)
+
+AC_CHECK_DECL()
+
+##############################
+# Checks for C++ stream.
+##############################
+
+AC_CHECK_HEADERS([sstream])
+
+AC_MSG_CHECKING(for std::cout)
+AC_TRY_COMPILE([
+#include <iostream>
+void testFunc(){
+std::cout << "" << std::endl;
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_STD_COUT],1,[STD_COUT])],
+[AC_MSG_RESULT(no)]
+)
+
+##############################
+# Checks for other functions.
+##############################
+
+AC_CHECK_FUNCS([fopen])
+AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([realpath])
+AC_CHECK_FUNCS([localtime_r])
+AC_CHECK_FUNCS([gmtime_r])
+AC_CHECK_FUNCS([snprintf])
+AC_CHECK_FUNCS([strchr])
+AC_CHECK_FUNCS([uname])
+
+##############################
+# Checks for enable options.
+##############################
+
+#AC_ARG_ENABLE([examples], AC_HELP_STRING([--enable-examples], [ builds examples (default = no) ]), [build_examples="yes"], [])
+#AM_CONDITIONAL(EXAMPLES,test "$build_examples" = yes)
+#if [ test "$build_examples" = yes ]; then
+#fi
+
+AC_ARG_ENABLE([unittests], AC_HELP_STRING([--enable-unittests], [ builds unittests (default = no) ]), [build_unittests="yes"], [])
+AM_CONDITIONAL(UNITTESTS,test "$build_unittests" = yes)
+if [ test "$build_unittests" = yes ]; then
+	AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::unit_test_framework)])
+	AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::system)])
+	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::filesystem)])
+fi
+
+##############################
+# Makefiles
+##############################
+
+AC_OUTPUT([
+Makefile
+include/Makefile
+lib/Makefile
+lib/unix/Makefile
+examples/Makefile
+examples/httpget/Makefile
+examples/httpget/unix/Makefile
+examples/fsserver/Makefile
+examples/fsserver/unix/Makefile
+unittest/Makefile
+unittest/unix/Makefile
+])

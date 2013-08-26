@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */; };
+		214CE3851564E32800115E8A /* uHTTPThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */; };
+		214CE3871564E51C00115E8A /* uHTTPMutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */; };
+		214CE38E1564E66C00115E8A /* uHTTDateTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */; };
+		214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */; };
+		214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */; };
+		214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */; };
+		214CE3951564EDDA00115E8A /* uHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */; };
+		21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */; };
+		21AE154A153C2A4600F47C5C /* liblibuhttp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* liblibuhttp.a */; };
+		21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */; };
+		21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */; };
+		21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497E71536AC270035F09A /* uHTTPGetTests.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21AE1548153C2A4000F47C5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21E1EB1B1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+		21F497E51536ABB50035F09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
+			remoteInfo = libuhttp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21998CD21536A96A00F9454F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPStringTests.cpp; path = ../../uHTTPStringTests.cpp; sourceTree = "<group>"; };
+		214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPThreadTests.cpp; path = ../../uHTTPThreadTests.cpp; sourceTree = "<group>"; };
+		214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPMutexTests.cpp; path = ../../uHTTPMutexTests.cpp; sourceTree = "<group>"; };
+		214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTDateTests.cpp; path = ../../uHTTDateTests.cpp; sourceTree = "<group>"; };
+		214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPNetworkInterfaceTests.cpp; path = ../../uHTTPNetworkInterfaceTests.cpp; sourceTree = "<group>"; };
+		214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPSocketTests.cpp; path = ../../uHTTPSocketTests.cpp; sourceTree = "<group>"; };
+		214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPPacketTests.cpp; path = ../../uHTTPPacketTests.cpp; sourceTree = "<group>"; };
+		214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRequest.cpp; path = ../../uHTTPRequest.cpp; sourceTree = "<group>"; };
+		21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPServerTests.cpp; path = ../../uHTTPServerTests.cpp; sourceTree = "<group>"; };
+		21998CD41536A96A00F9454F /* uHttpUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uHttpUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPUriTests.cpp; path = ../../uHTTPUriTests.cpp; sourceTree = "<group>"; };
+		21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPTestMain.cpp; path = ../../uHTTPTestMain.cpp; sourceTree = "<group>"; };
+		21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21F497E71536AC270035F09A /* uHTTPGetTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPGetTests.cpp; path = ../../uHTTPGetTests.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21998CD11536A96A00F9454F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21AE154A153C2A4600F47C5C /* liblibuhttp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21998CC91536A96A00F9454F = {
+			isa = PBXGroup;
+			children = (
+				21F497DA1536AAFF0035F09A /* Sources */,
+				21F497DB1536AB0E0035F09A /* Frameworks */,
+				21998CD51536A96A00F9454F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21998CD51536A96A00F9454F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21998CD41536A96A00F9454F /* uHttpUnitTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21F497DA1536AAFF0035F09A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */,
+				214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */,
+				214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */,
+				214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */,
+				214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */,
+				214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */,
+				214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */,
+				214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */,
+				21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */,
+				21F497E71536AC270035F09A /* uHTTPGetTests.cpp */,
+				21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */,
+				21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		21F497DB1536AB0E0035F09A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21F497DF1536ABB40035F09A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21F497E61536ABB50035F09A /* liblibuhttp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21998CD31536A96A00F9454F /* uHttpUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21998CDE1536A96A00F9454F /* Build configuration list for PBXNativeTarget "uHttpUnitTest" */;
+			buildPhases = (
+				21998CD01536A96A00F9454F /* Sources */,
+				21998CD11536A96A00F9454F /* Frameworks */,
+				21998CD21536A96A00F9454F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21AE1549153C2A4000F47C5C /* PBXTargetDependency */,
+			);
+			name = uHttpUnitTest;
+			productName = uHttpUnitTest;
+			productReference = 21998CD41536A96A00F9454F /* uHttpUnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21998CCB1536A96A00F9454F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 21998CCE1536A96A00F9454F /* Build configuration list for PBXProject "uHttpUnitTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21998CC91536A96A00F9454F;
+			productRefGroup = 21998CD51536A96A00F9454F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21F497DF1536ABB40035F09A /* Products */;
+					ProjectRef = 21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				21998CD31536A96A00F9454F /* uHttpUnitTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21F497E61536ABB50035F09A /* liblibuhttp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibuhttp.a;
+			remoteRef = 21F497E51536ABB50035F09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21998CD01536A96A00F9454F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */,
+				21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */,
+				21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */,
+				21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */,
+				214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */,
+				214CE3851564E32800115E8A /* uHTTPThreadTests.cpp in Sources */,
+				214CE3871564E51C00115E8A /* uHTTPMutexTests.cpp in Sources */,
+				214CE38E1564E66C00115E8A /* uHTTDateTests.cpp in Sources */,
+				214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */,
+				214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */,
+				214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */,
+				214CE3951564EDDA00115E8A /* uHTTPRequest.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21AE1549153C2A4000F47C5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuhttp;
+			targetProxy = 21AE1548153C2A4000F47C5C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21998CDC1536A96A00F9454F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					../../../include/,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21998CDD1536A96A00F9454F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					../../../include/,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		21998CDF1536A96A00F9454F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = (
+					"-lboost_unit_test_framework",
+					"-lboost_thread-mt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21998CE01536A96A00F9454F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = (
+					"-lboost_unit_test_framework",
+					"-lboost_thread-mt",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21998CCE1536A96A00F9454F /* Build configuration list for PBXProject "uHttpUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21998CDC1536A96A00F9454F /* Debug */,
+				21998CDD1536A96A00F9454F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21998CDE1536A96A00F9454F /* Build configuration list for PBXNativeTarget "uHttpUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21998CDF1536A96A00F9454F /* Debug */,
+				21998CE01536A96A00F9454F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21998CCB1536A96A00F9454F /* Project object */;
+}
