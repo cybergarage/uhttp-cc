@@ -16,7 +16,7 @@
 		214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */; };
 		214CE3951564EDDA00115E8A /* uHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */; };
 		21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */; };
-		21AE154A153C2A4600F47C5C /* liblibuhttp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* liblibuhttp.a */; };
+		21AE154A153C2A4600F47C5C /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* libuhttp++.a */; };
 		21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */; };
 		21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */; };
 		21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497E71536AC270035F09A /* uHTTPGetTests.cpp */; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21AE154A153C2A4600F47C5C /* liblibuhttp.a in Frameworks */,
+				21AE154A153C2A4600F47C5C /* libuhttp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 		21F497DF1536ABB40035F09A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21F497E61536ABB50035F09A /* liblibuhttp.a */,
+				21F497E61536ABB50035F09A /* libuhttp++.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,10 +185,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		21F497E61536ABB50035F09A /* liblibuhttp.a */ = {
+		21F497E61536ABB50035F09A /* libuhttp++.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibuhttp.a;
+			path = "libuhttp++.a";
 			remoteRef = 21F497E51536ABB50035F09A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

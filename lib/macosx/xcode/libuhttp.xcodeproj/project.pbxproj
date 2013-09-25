@@ -178,7 +178,7 @@
 		2176F42E1535D2E400DE85B9 /* Thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		2176F42F1535D2E400DE85B9 /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeUtil.cpp; sourceTree = "<group>"; };
 		21AE1545153C042500F47C5C /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
-		21E1EB1C1535D1E0005AA247 /* liblibuhttp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuhttp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21E1EB1C1535D1E0005AA247 /* libuhttp++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuhttp++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,7 +384,7 @@
 		21E1EB1D1535D1E0005AA247 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21E1EB1C1535D1E0005AA247 /* liblibuhttp.a */,
+				21E1EB1C1535D1E0005AA247 /* libuhttp++.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 			);
 			name = libuhttp;
 			productName = libuhttp;
-			productReference = 21E1EB1C1535D1E0005AA247 /* liblibuhttp.a */;
+			productReference = 21E1EB1C1535D1E0005AA247 /* libuhttp++.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -592,7 +592,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "uhttp++";
 			};
 			name = Debug;
 		};
@@ -600,7 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "uhttp++";
 			};
 			name = Release;
 		};
