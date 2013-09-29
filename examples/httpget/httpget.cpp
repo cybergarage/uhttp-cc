@@ -26,15 +26,28 @@ void usage(const string &programName)
 
 int main(int argc, char *argv[]) 
 {
-    if (argc <= 1) {
-        usage(argv[0]);
+	if (argc <= 1) {
+		usage(argv[0]);
         return EXIT_FAILURE;
-    }
+	}
     
-    URL uri(argv[1]);
+	URL uri(argv[1]);
     
-    HTTPRequest httpReq;
-    
-    
+	HTTPRequest httpReq;
+	httpReq.setMethod(HTTP::GET);
+	httpReq.setURL(&uri);
+ 
+	HTTPResponse *httpRes = httpReq.post();
+
+	cout << httpRes->getStatusCode() << endl;
+
+	if (!httpRes->isSuccessful()) {
+		return EXIT_FAILURE;
+	}
+
+	string httpContent = httpRes->getContent();
+
+	cout << httpContent << endl;
+	
 	return EXIT_SUCCESS;
 }
