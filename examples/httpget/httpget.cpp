@@ -65,11 +65,11 @@ int main(int argc, char *argv[])
 	httpReq.setURL(&uri);
 
     if (verboseMode) {
-        string outputBuffer;
-        cout << "> " << endl;
-//        	string header;
-//	sock->send(httpRes->getHeader(header));
-
+        string firstHeader;
+        cout << "> " << httpReq.getRequestLine(firstHeader) <<  endl;
+        for (HTTPHeaderList::iterator header = httpReq.getHeaders().begin(); header != httpReq.getHeaders().end(); header++) {
+            cout << "> " << (*header)->getName() << " : " << (*header)->getValue() << endl;
+        }
     }
     
 	HTTPResponse *httpRes = httpReq.post();

@@ -234,6 +234,7 @@ private:
 
 public:
 
+    const char *getRequestLine(std::string &requestLineBuf);
 	const char *getHeader(std::string &headerBuf);
 
 	////////////////////////////////////////////////

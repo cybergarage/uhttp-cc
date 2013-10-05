@@ -157,16 +157,23 @@ const char *HTTPRequest::getHTTPVersion(std::string &verBuf)
 	return verBuf.c_str();
 }
 
-const char *HTTPRequest::getHeader(std::string &headerBuf)
+const char *HTTPRequest::getRequestLine(std::string &requestLineBuf)
 {
 	std::string buf;
-	headerBuf = "";
-	headerBuf += getMethod(buf);
-	headerBuf += " ";
-	headerBuf += getURI(buf);
-	headerBuf += " ";
-	headerBuf += getHTTPVersion(buf);
+	requestLineBuf = "";
+	requestLineBuf += getMethod(buf);
+	requestLineBuf += " ";
+	requestLineBuf += getURI(buf);
+	requestLineBuf += " ";
+	requestLineBuf += getHTTPVersion(buf);
+	return requestLineBuf.c_str();
+}
+
+const char *HTTPRequest::getHeader(std::string &headerBuf)
+{
+    getRequestLine(headerBuf);
 	headerBuf += HTTP::CRLF;
+	std::string buf;
 	headerBuf += getHeaderString(buf);
 	return headerBuf.c_str();
 }
