@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		212BF53217F30E92009374DC /* httpget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212BF53117F30E92009374DC /* httpget.cpp */; };
 		21E83B9817F3104200B21F40 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E83B9717F3103C00B21F40 /* libuhttp++.a */; };
+		21EB617717FFED4200B2D179 /* httpget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EB617617FFED4200B2D179 /* httpget.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +35,8 @@
 
 /* Begin PBXFileReference section */
 		2113429317F30E01002B97AF /* httpget */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = httpget; sourceTree = BUILT_PRODUCTS_DIR; };
-		212BF53117F30E92009374DC /* httpget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = httpget.cpp; path = ../../../httpget.cpp; sourceTree = "<group>"; };
 		21E83B9217F3103C00B21F40 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21EB617617FFED4200B2D179 /* httpget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = httpget.cpp; path = ../../httpget.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 		2113428A17F30E01002B97AF = {
 			isa = PBXGroup;
 			children = (
-				2113429517F30E01002B97AF /* httpget */,
+				21EB617417FFED1F00B2D179 /* Sources */,
 				212BF53017F30E56009374DC /* Frameworks */,
 				2113429417F30E01002B97AF /* Products */,
 			);
@@ -66,14 +66,6 @@
 				2113429317F30E01002B97AF /* httpget */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2113429517F30E01002B97AF /* httpget */ = {
-			isa = PBXGroup;
-			children = (
-				212BF53117F30E92009374DC /* httpget.cpp */,
-			);
-			path = httpget;
 			sourceTree = "<group>";
 		};
 		212BF53017F30E56009374DC /* Frameworks */ = {
@@ -90,6 +82,14 @@
 				21E83B9717F3103C00B21F40 /* libuhttp++.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		21EB617417FFED1F00B2D179 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21EB617617FFED4200B2D179 /* httpget.cpp */,
+			);
+			name = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212BF53217F30E92009374DC /* httpget.cpp in Sources */,
+				21EB617717FFED4200B2D179 /* httpget.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,27 +19,68 @@
 using namespace std;
 using namespace uHTTP;
 
-void usage(const string &programName)
+void usage(char *argv[])
 {
+    std::string programName = argv[0];
+    size_t lastPathIndex = programName.find_last_of("/");
+    if (lastPathIndex != std::string::npos)
+        programName = programName.substr((lastPathIndex + 1));
+
     cout << "Usage: " << programName << " <url>" << endl;
 }
 
 int main(int argc, char *argv[]) 
 {
-	if (argc <= 1) {
-		usage(argv[0]);
+    bool verboseMode = false;
+    
+    int ch;
+    while ((ch = getopt(argc, argv, "vh")) != -1) {
+        switch (ch) {
+        case 'v':
+            {
+                verboseMode = true;
+            }
+            break;
+        case 'h':
+        default:
+            {
+                usage(argv);
+                exit(EXIT_SUCCESS);
+            }
+        }
+    }
+    
+    argc -= optind;
+    argv += optind;
+
+	if (argc < 1) {
+		usage((argv-optind));
         return EXIT_FAILURE;
 	}
     
-	URL uri(argv[1]);
+	URL uri(argv[0]);
     
 	HTTPRequest httpReq;
 	httpReq.setMethod(HTTP::GET);
 	httpReq.setURL(&uri);
- 
+
+    if (verboseMode) {
+        string outputBuffer;
+        cout << "> " << endl;
+//        	string header;
+//	sock->send(httpRes->getHeader(header));
+
+    }
+    
 	HTTPResponse *httpRes = httpReq.post();
 
-	cout << httpRes->getStatusCode() << endl;
+    if (verboseMode) {
+        cout << "< " << httpRes->getFirstLine() << endl;
+        for (HTTPHeaderList::iterator header = httpRes->getHeaders().begin(); header != httpRes->getHeaders().end(); header++) {
+            cout << "< " << (*header)->getName() << " : " << (*header)->getValue() << endl;
+        }
+    }
+    
 
 	if (!httpRes->isSuccessful()) {
 		return EXIT_FAILURE;

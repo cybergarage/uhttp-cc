@@ -27,7 +27,7 @@ namespace uHTTP {
 
 class HTTPPacket 
 {
-	std::vector<HTTPHeader *> httpHeaderList;
+    HTTPHeaderList httpHeaderList;
 
 	std::string firstLine;
 	std::string content;
@@ -140,9 +140,13 @@ public:
 	HTTPHeader *getHeader(int n)
 	{
 		return (HTTPHeader *)httpHeaderList[n];
-		//return (HTTPHeader *)httpHeaderList.at(n);
 	}
 
+	HTTPHeaderList &getHeaders()
+	{
+		return httpHeaderList;
+	}
+    
 	HTTPHeader *getHeader(const std::string &name);
 
 	void clearHeaders();

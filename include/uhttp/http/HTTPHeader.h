@@ -13,6 +13,7 @@
 
 #include <string>
 #include <stdio.h>
+#include <vector>
 
 #include <uhttp/io/LineNumberReader.h>
 
@@ -57,6 +58,15 @@ public:
 	{
 		return value.c_str();
 	}
+};
+
+class HTTPHeaderList : public std::vector<HTTPHeader *>
+{
+
+public:
+	HTTPHeaderList()
+    {
+    }
 };
 
 const char *HTTPHeaderGetValue(uHTTP::LineNumberReader *reader, const std::string &name, std::string &buf);

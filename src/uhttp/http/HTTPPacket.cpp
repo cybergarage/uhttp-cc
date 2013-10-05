@@ -231,7 +231,7 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders)
 		long readCnt = 0;		
 		while (readCnt < contentLen) {
 			long noReadLen = contentLen - readCnt;
-			int readLen = (noReadLen < chunkSize) ? noReadLen : chunkSize; 
+			int readLen = (noReadLen < chunkSize) ? noReadLen : chunkSize;
 			int len = bufReader.read(content, readLen);
 			if (len < 0)
 				break;

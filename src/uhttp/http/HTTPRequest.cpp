@@ -23,7 +23,7 @@
 using namespace std;
 using namespace uHTTP;
 
- ////////////////////////////////////////////////
+////////////////////////////////////////////////
 //	Constructor
 ////////////////////////////////////////////////
 
@@ -255,7 +255,7 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
 	bool isChunkedRequest = isChunked();
 
 	const char *content = getContent();
-	int contentLength = 0;
+	size_t contentLength = 0;
 	if (content != NULL)
 		contentLength = strlen(content);
 
