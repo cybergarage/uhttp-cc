@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		214CA3BB17F31A7C00D9FEF6 /* fsserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CA3BA17F31A7C00D9FEF6 /* fsserver.cpp */; };
 		214CA3BC17F31A9000D9FEF6 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214CA3B517F31A2200D9FEF6 /* libuhttp++.a */; };
+		21ED1DD21802973C009D22D5 /* fsserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ED1DD11802973C009D22D5 /* fsserver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		213B356F17F319E800D39CC8 /* fsserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fsserver; sourceTree = BUILT_PRODUCTS_DIR; };
 		214CA3B017F31A2100D9FEF6 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
-		214CA3BA17F31A7C00D9FEF6 /* fsserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsserver.cpp; path = ../../../fsserver.cpp; sourceTree = "<group>"; };
+		21ED1DD11802973C009D22D5 /* fsserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsserver.cpp; path = ../../fsserver.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 		213B356617F319E800D39CC8 = {
 			isa = PBXGroup;
 			children = (
-				213B357117F319E800D39CC8 /* fsserver */,
+				21ED1DCF18029725009D22D5 /* Sources */,
 				213B357017F319E800D39CC8 /* Products */,
 				214CA3AF17F31A0100D9FEF6 /* Frameworks */,
 			);
@@ -66,14 +66,6 @@
 				213B356F17F319E800D39CC8 /* fsserver */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		213B357117F319E800D39CC8 /* fsserver */ = {
-			isa = PBXGroup;
-			children = (
-				214CA3BA17F31A7C00D9FEF6 /* fsserver.cpp */,
-			);
-			path = fsserver;
 			sourceTree = "<group>";
 		};
 		214CA3AF17F31A0100D9FEF6 /* Frameworks */ = {
@@ -90,6 +82,14 @@
 				214CA3B517F31A2200D9FEF6 /* libuhttp++.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		21ED1DCF18029725009D22D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21ED1DD11802973C009D22D5 /* fsserver.cpp */,
+			);
+			name = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				214CA3BB17F31A7C00D9FEF6 /* fsserver.cpp in Sources */,
+				21ED1DD21802973C009D22D5 /* fsserver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
