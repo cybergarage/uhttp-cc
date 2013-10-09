@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
 	URL uri(argv[0]);
     
 	HTTPRequest httpReq;
+	httpReq.setVersion(HTTP::VER_11);
 	httpReq.setMethod(HTTP::GET);
 	httpReq.setURL(&uri);
 

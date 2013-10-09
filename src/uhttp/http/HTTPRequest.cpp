@@ -33,7 +33,7 @@ HTTPRequest::HTTPRequest()
 	postSock = NULL;
 	requestPort = -1;
 
-	setVersion(HTTP::VER_10);
+	setVersion(HTTP::VER_11);
     
     ostringstream defaultUserAgent;
     defaultUserAgent << uHTTP::PRODUCT_NAME << "/" << uHTTP::VERSION << " " << uHTTP::LIBRARY_NAME << "/" << uHTTP::VERSION;

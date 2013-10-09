@@ -242,7 +242,7 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders)
 				long skipLen = 0;
 				do {
 					long skipCnt = bufReader.skip(HTTP::CRLF_LEN - skipLen);
-					if (skipCnt < 0) {
+					if (skipCnt <= 0) {
 						contentLen = 0;
 						break;
 					}
