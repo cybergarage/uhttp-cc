@@ -437,6 +437,38 @@ public:
 	}
 
 	////////////////////////////////////////////////
+	//	User-Agent
+	////////////////////////////////////////////////
+
+public:
+
+	void setUserAgent(const std::string &name)
+	{
+		setHeader(HTTP::USER_AGENT, name);
+	}
+
+	const char *getUserAgent()
+	{
+		return getHeaderValue(HTTP::USER_AGENT);
+	}
+
+	////////////////////////////////////////////////
+	//	Accept
+	////////////////////////////////////////////////
+
+public:
+
+	void setAccept(const std::string &name)
+	{
+		setHeader(HTTP::ACCEPT, name);
+	}
+
+	const char *getAccept()
+	{
+		return getHeaderValue(HTTP::ACCEPT);
+	}
+    
+	////////////////////////////////////////////////
 	//	Server
 	////////////////////////////////////////////////
 

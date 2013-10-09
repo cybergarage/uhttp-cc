@@ -34,6 +34,12 @@ HTTPRequest::HTTPRequest()
 	requestPort = -1;
 
 	setVersion(HTTP::VER_10);
+    
+    ostringstream defaultUserAgent;
+    defaultUserAgent << uHTTP::PRODUCT_NAME << "/" << uHTTP::VERSION << " " << uHTTP::LIBRARY_NAME << "/" << uHTTP::VERSION;
+    setUserAgent(defaultUserAgent.str());
+    
+    setAccept("*/*");
 }
 
 HTTPRequest::HTTPRequest(HTTPSocket *httpSock) : HTTPPacket(httpSock)

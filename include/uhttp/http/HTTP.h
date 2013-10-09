@@ -17,6 +17,10 @@
 
 namespace uHTTP {
 
+const char PRODUCT_NAME[] = "uhttp";
+const char LIBRARY_NAME[] = "libuhttp++";
+const char VERSION[] = "0.6";
+
 namespace HTTP {
 
 ////////////////////////////////////////////////
@@ -43,6 +47,8 @@ const char HEAD[] = "HEAD";
 const char SUBSCRIBE[] = "SUBSCRIBE";
 const char UNSUBSCRIBE[] = "UNSUBSCRIBE";	
 
+const char USER_AGENT[] = "User-Agent";
+const char ACCEPT[] = "Accept";
 const char DATE[] = "Date";
 const char CACHE_CONTROL[] = "Cache-Control";
 	const char NO_CACHE[] = "no-cache";
