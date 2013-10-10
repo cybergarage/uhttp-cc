@@ -57,13 +57,18 @@ public:
 
 	bool IsAbsoluteURI();
 
-	void setString(const std::string &uriStr);
+	void setString(const std::string &value);
 
 	const char *getSting()
 	{
 		return uriStr.c_str();
 	}
 
+	void setProtocol(const std::string &value)
+    {
+        protocol = value;
+    }
+    
 	const char *getProtocol()
 	{
 		return protocol.c_str();
@@ -89,41 +94,83 @@ public:
         return isProtocol(HTTPS);
     }
     
+	void setUser(const std::string &value)
+    {
+        user = value;
+    }
+    
 	const char *getUser()
 	{
 		return user.c_str();
 	}
 
+	void setPassword(const std::string &value)
+    {
+        password = value;
+    }
+    
 	const char *getPassword()
 	{
 		return password.c_str();
 	}
 
+	void setHost(const std::string &value)
+    {
+        host = value;
+    }
+    
 	const char *getHost()
 	{
 		return host.c_str();
 	}
+
+	void setPort(int value)
+    {
+        port = value;
+    }
 
 	int getPort()
 	{
 		return port;
 	}
 
+	void setPath(const std::string &value)
+    {
+        path = value;
+    }
+    
 	const char *getPath()
 	{
 		return path.c_str();
 	}
 
+    bool hasPath()
+    {
+        return (0 < path.length());
+    }
+    
+	void setQuery(const std::string &value)
+    {
+        query = value;
+    }
+    
 	const char *getQuery()
 	{
 		return query.c_str();
 	}
 
+	void setFragment(const std::string &value)
+    {
+        fragment = value;
+    }
+    
 	const char *getFragment()
 	{
 		return fragment.c_str();
 	}
 
+    bool isValid();
+    
 	void print();
 };
 

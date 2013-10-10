@@ -60,6 +60,16 @@ int main(int argc, char *argv[])
     
 	URL uri(argv[0]);
     
+    if (!uri.isValid()) {
+        if (!uri.hasPath()) {
+            uri.setPath("/");
+        }
+        if (!uri.isValid()) {
+            cout << "ERR : Invalid URL <" << argv[0] << ">";
+            return EXIT_FAILURE;
+        }
+    }
+    
 	HTTPRequest httpReq;
 	httpReq.setVersion(HTTP::VER_11);
 	httpReq.setMethod(HTTP::GET);

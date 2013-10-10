@@ -116,6 +116,19 @@ const char *uHTTP::URLGetAbsoluteURL(const std::string &baseURLStr, const std::s
 //	GetHostURL
 ////////////////////////////////////////////////
 
+bool uHTTP::URI::isValid()
+{
+    if (!hasProtocol())
+        return false;
+    if (!hasPath())
+        return false;
+    return true;
+}
+
+////////////////////////////////////////////////
+//	GetHostURL
+////////////////////////////////////////////////
+
 const char *uHTTP::GetHostURL(const std::string &host, int port, const std::string &uri, std::string &buf)
 {
 	std::string hostStr = host;
