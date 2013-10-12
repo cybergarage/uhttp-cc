@@ -26,16 +26,31 @@ void usage(char *argv[])
     if (lastPathIndex != std::string::npos)
         programName = programName.substr((lastPathIndex + 1));
 
-    cout << "Usage: " << programName << " <url>" << endl;
+    cout << "Usage: " << programName << " [options...] <url>" << endl;
+    cout << " -0, Use HTTP 1.0" << endl;
+    cout << " -1, Use HTTP 1.1" << endl;
+    cout << " -h, This help text" << endl;
+    cout << " -v, Enable verbose mode" << endl;
 }
 
 int main(int argc, char *argv[]) 
 {
+    const char *httpVersion = HTTP::VER_11;
     bool verboseMode = false;
     
     int ch;
-    while ((ch = getopt(argc, argv, "vh")) != -1) {
+    while ((ch = getopt(argc, argv, "01vh")) != -1) {
         switch (ch) {
+        case '0':
+            {
+                httpVersion = HTTP::VER_10;
+            }
+            break;
+        case '1':
+            {
+                httpVersion = HTTP::VER_11;
+            }
+            break;
         case 'v':
             {
                 verboseMode = true;
@@ -71,7 +86,7 @@ int main(int argc, char *argv[])
     }
     
 	HTTPRequest httpReq;
-	httpReq.setVersion(HTTP::VER_11);
+	httpReq.setVersion(httpVersion);
 	httpReq.setMethod(HTTP::GET);
 	httpReq.setURL(&uri);
 
@@ -91,7 +106,6 @@ int main(int argc, char *argv[])
             cout << "< " << (*header)->getName() << " : " << (*header)->getValue() << endl;
         }
     }
-    
 
 	if (!httpRes->isSuccessful()) {
 		return EXIT_FAILURE;
@@ -103,3 +117,4 @@ int main(int argc, char *argv[])
 	
 	return EXIT_SUCCESS;
 }
+
