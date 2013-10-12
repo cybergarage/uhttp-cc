@@ -591,7 +591,10 @@
 		21E1EB211535D1E0005AA247 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				EXECUTABLE_PREFIX = lib;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "uhttp++";
 			};
 			name = Debug;
@@ -599,7 +602,10 @@
 		21E1EB221535D1E0005AA247 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				EXECUTABLE_PREFIX = lib;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "uhttp++";
 			};
 			name = Release;

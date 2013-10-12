@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_UHTTP_H_
-#define _CHTTP_UHTTP_H_
+#ifndef _UHTTP_HTTP_H_
+#define _UHTTP_HTTP_H_
 
 #include <uhttp/io/BufferedReader.h>
 #include <uhttp/io/InputStream.h>
