@@ -16,6 +16,7 @@
 	
 FileServer::FileServer()
 {
+    setPort(uHTTP::HTTP::DEFAULT_PORT);
 }
 
 FileServer::~FileServer()
@@ -43,49 +44,11 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
 bool FileServer::start()
 {
 	stop();
-/*
-	////////////////////////////////////////
-	// HTTP Server
-	////////////////////////////////////////
-		
-	int retryCnt = 0;
-	int bindPort = getHTTPPort();
-	HTTPServerList *httpServerList = getHTTPServerList();
-	while (httpServerList->open(bindPort) == false) {
-		retryCnt++;
-		if (UPnP::SERVER_RETRY_COUNT < retryCnt)
-			return false;
-		setHTTPPort(bindPort + 1);
-		bindPort = getHTTPPort();
-	}
-	httpServerList->addRequestListener(this);
-	httpServerList->start();
 
-	////////////////////////////////////////
-	// SSDP Seach Socket
-	////////////////////////////////////////
-	
-	SSDPSearchSocketList *ssdpSearchSockList = getSSDPSearchSocketList();
-	if (ssdpSearchSockList->open() == false)
-		return false;
-	ssdpSearchSockList->addSearchListener(this);
-	ssdpSearchSockList->start();
-
-	////////////////////////////////////////
-	// Announce
-	////////////////////////////////////////
-
-	announce();
-
-	////////////////////////////////////////
-	// Advertiser
-	////////////////////////////////////////
-
-	Advertiser *adv = new Advertiser(this);
-	setAdvertiser(adv);
-	adv->start();
-*/
-	return true;
+    if (!open(getPort()))
+        return false;
+    
+    return HTTPServer::start();
 }
 
 ////////////////////////////////////////////////
@@ -94,25 +57,5 @@ bool FileServer::start()
 
 bool FileServer::stop()
 {
-/*
-	if (doByeBye == true)
-		byebye();
-		
-	HTTPServerList *httpServerList = getHTTPServerList();
-	httpServerList->stop();
-	httpServerList->close();
-	httpServerList->clear();
-
-	SSDPSearchSocketList *ssdpSearchSockList = getSSDPSearchSocketList();
-	ssdpSearchSockList->stop();
-	ssdpSearchSockList->close();
-	ssdpSearchSockList->clear();
-		
-	Advertiser *adv = getAdvertiser();
-	if (adv != NULL) {
-		adv->stop();
-		setAdvertiser(NULL);
-	}
-*/
-	return true;
+    return HTTPServer::stop();
 }

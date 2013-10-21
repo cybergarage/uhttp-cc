@@ -62,6 +62,11 @@ bool HTTPServer::bind(int port, const std::string &addr)
 	return true;
 }
 
+bool HTTPServer::open(int port, const std::string &addr)
+{
+    return bind(port, addr);
+}
+
 bool HTTPServer::close()
 {
 	if (serverSock == NULL)
@@ -110,6 +115,24 @@ void HTTPServer::run()
 		HTTPServerThread *httpServThread = new HTTPServerThread(this, sock);
 		httpServThread->start();
 	}
+}
+
+////////////////////////////////////////////////
+//  start
+////////////////////////////////////////////////
+
+bool HTTPServer::start()
+{
+    return Thread::start();
+}
+
+////////////////////////////////////////////////
+//  stop
+////////////////////////////////////////////////
+
+bool HTTPServer::stop()
+{
+    return Thread::stop();
 }
 
 ////////////////////////////////////////////////

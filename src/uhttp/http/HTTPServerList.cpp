@@ -67,7 +67,7 @@ bool HTTPServerList::open(int port)
 		const char *bindAddr = GetHostAddress(n, buf);
 		HTTPServer *httpServer = new HTTPServer();
 		// Thanks for Ilkka Poutanen and Stefano Lenzi (07/16/04)
-		if (httpServer->bind(port, bindAddr) == false) {
+		if (httpServer->open(port, bindAddr) == false) {
 			string msg;
 			string ibuf;
 			msg += "Couldn't bind to ";

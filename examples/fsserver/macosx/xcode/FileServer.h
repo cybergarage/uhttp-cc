@@ -16,11 +16,21 @@
 class FileServer : public uHTTP::HTTPServer
 {
 
+    int port;
+    
 public:
 	
 	FileServer();
 	~FileServer();
 
+    void setPort(int value) {
+        this->port = value;
+    }
+    
+    int getPort() {
+        return this->port;
+    }
+    
     bool start();
     bool stop();
 

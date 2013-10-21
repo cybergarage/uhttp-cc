@@ -102,8 +102,7 @@ int main(int argc, char *argv[])
     }
  
     FileServer fileServer;
-    fileServer.start();
-
+    fileServer.setPort(httpdPort);
     if (fileServer.start() == false) {
         exit(EXIT_FAILURE);
     }

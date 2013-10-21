@@ -12,10 +12,10 @@
 #define _CHTTP_HTTPSERVER_H_
 
 #include <uhttp/net/ServerSocket.h>
+#include <uhttp/util/Thread.h>
 #include <uhttp/util/ListenerList.h>
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/http/HTTPRequestListener.h>
-#include <uhttp/util/Thread.h>
 
 #include <string>
 
@@ -26,25 +26,27 @@ class HTTPServer : public uHTTP::Thread
 	uHTTP::ServerSocket *serverSock;
 	uHTTP::ListenerList httpRequestListenerList;
 
-public:
-	
-	HTTPServer();
-	~HTTPServer();
-
-	////////////////////////////////////////////////
-	//	ServerSocket
-	////////////////////////////////////////////////
+	bool bind(int port, const std::string &addr = "");
+	bool accept(uHTTP::Socket *socket);
+	bool isOpened();
 
 	uHTTP::ServerSocket *getServerSock()
 	{
 		return serverSock;
 	}
 
-	bool bind(int port, const std::string &addr = "");
-	bool close();
-	bool accept(uHTTP::Socket *socket);
-	bool isOpened();
+public:
+	
+	HTTPServer();
+	~HTTPServer();
 
+	////////////////////////////////////////////////
+	//	open/close
+	////////////////////////////////////////////////
+    
+	bool open(int port, const std::string &addr = "");
+	bool close();
+    
 	////////////////////////////////////////////////
 	//	httpRequest
 	////////////////////////////////////////////////
@@ -72,7 +74,9 @@ public:
 	//	run	
 	////////////////////////////////////////////////
 
+    bool start();
 	void run();
+    bool stop();
 
 };
 
