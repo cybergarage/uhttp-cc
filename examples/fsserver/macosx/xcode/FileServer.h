@@ -16,6 +16,7 @@
 class FileServer : public uHTTP::HTTPServer
 {
 
+    std::string rootDirectory;
     int port;
     
 public:
@@ -23,6 +24,14 @@ public:
 	FileServer();
 	~FileServer();
 
+    void setrootDirectory(const std::string &value) {
+        this->rootDirectory = value;
+    }
+    
+    const char *getRootDirectory() {
+        return this->rootDirectory.c_str();
+    }
+    
     void setPort(int value) {
         this->port = value;
     }

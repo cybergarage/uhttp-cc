@@ -10,6 +10,8 @@
 
 #include "FileServer.h"
 
+#include <uhttp/net/URI.h>
+
 ////////////////////////////////////////////////
 //	Constructor
 ////////////////////////////////////////////////
@@ -34,6 +36,10 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
 		return;
 	}
 
+    uHTTP::URI reqUri;
+    httpReq->getURI(reqUri);
+    
+    
 	httpReq->returnBadRequest();
 }
 

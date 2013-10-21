@@ -86,6 +86,13 @@ const char *uHTTP::HTTPRequest::getURI(std::string &uriBuf)
 	return uriBuf.c_str();
 }
 
+void uHTTP::HTTPRequest::getURI(URI &uri)
+{
+    std::string uriString;
+    getURI(uriString);
+    uri.setString(uriString);
+}
+
 ////////////////////////////////////////////////
 //	URI
 ////////////////////////////////////////////////

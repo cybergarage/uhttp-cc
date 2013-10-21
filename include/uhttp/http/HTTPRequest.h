@@ -120,7 +120,7 @@ public:
     
 	void setURI(const std::string &value);
 	const char *getURI(std::string &uriBuf);
-
+	void getURI(URI &uri);
     
 	////////////////////////////////////////////////
 	//	URL
