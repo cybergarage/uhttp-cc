@@ -79,7 +79,10 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
 	}
     
-    string roodDirectory =argv[0];
+    string roodDirectory = argv[0];
+    if (roodDirectory.at(roodDirectory.length()-1) == '/') {
+        roodDirectory = roodDirectory.substr(0, roodDirectory.length()-1);
+    }
     
     if (deamonMode) {
         int pid = fork();

@@ -314,7 +314,7 @@ ssize_t Socket::recv(char *buffer, int bufferLen)
 const int CG_NET_SOCKET_SEND_RETRY_CNT = 10;
 const int CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC = 1000;
 
-ssize_t Socket::send(const std::string &cmd, ssize_t cmdLen)
+ssize_t Socket::send(const char *cmd, ssize_t cmdLen)
 {
 	if (cmdLen <= 0)
 		return 0;
@@ -323,13 +323,13 @@ ssize_t Socket::send(const std::string &cmd, ssize_t cmdLen)
 	int retryCnt = 0;
 	do {
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
-		WERR nSent = so_send(sock, (B*)(cmd.c_str() + cmdPos), cmdLen, 0);
+		WERR nSent = so_send(sock, (B*)(cmd + cmdPos), cmdLen, 0);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
-		int nSent = ka_send(sock, (B*)(cmd.c_str() + cmdPos), cmdLen, 0);
+		int nSent = ka_send(sock, (B*)(cmd + cmdPos), cmdLen, 0);
 #elif defined(ITRON)
-		int nSent = tcp_snd_dat(sock, cmd.c_str() + cmdPos, cmdLen, TMO_FEVR);
+		int nSent = tcp_snd_dat(sock, cmd + cmdPos, cmdLen, TMO_FEVR);
 #else
-		ssize_t nSent = ::send(sock, cmd.c_str() + cmdPos, cmdLen, 0);
+		ssize_t nSent = ::send(sock, cmd + cmdPos, cmdLen, 0);
 #endif
 		// Thanks for Brent Hills (10/20/04)
 		if (nSent <= 0)  {
@@ -350,7 +350,12 @@ ssize_t Socket::send(const std::string &cmd, ssize_t cmdLen)
 
 ssize_t Socket::send(const std::string &cmd)
 {
-	return send(cmd, StringLength(cmd));
+	return send(cmd.c_str(), cmd.size());
+}
+
+ssize_t Socket::send(const char c)
+{
+    return send(&c, 1);
 }
 
 ////////////////////////////////////////////////

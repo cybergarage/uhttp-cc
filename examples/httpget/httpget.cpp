@@ -16,9 +16,6 @@
 
 #include <uhttp/HTTP.h>
 
-using namespace std;
-using namespace uHTTP;
-
 void usage(char *argv[])
 {
     std::string programName = argv[0];
@@ -26,16 +23,16 @@ void usage(char *argv[])
     if (lastPathIndex != std::string::npos)
         programName = programName.substr((lastPathIndex + 1));
 
-    cout << "Usage: " << programName << " [options...] <url>" << endl;
-    cout << " -0, Use HTTP 1.0" << endl;
-    cout << " -1, Use HTTP 1.1" << endl;
-    cout << " -h, This help text" << endl;
-    cout << " -v, Enable verbose mode" << endl;
+    std::cout << "Usage: " << programName << " [options...] <url>" << std::endl;
+    std::cout << " -0, Use HTTP 1.0" << std::endl;
+    std::cout << " -1, Use HTTP 1.1" << std::endl;
+    std::cout << " -h, This help text" << std::endl;
+    std::cout << " -v, Enable verbose mode" << std::endl;
 }
 
 int main(int argc, char *argv[]) 
 {
-    const char *httpVersion = HTTP::VER_11;
+    const char *httpVersion = uHTTP::HTTP::VER_11;
     bool verboseMode = false;
     
     int ch;
@@ -43,12 +40,12 @@ int main(int argc, char *argv[])
         switch (ch) {
         case '0':
             {
-                httpVersion = HTTP::VER_10;
+                httpVersion = uHTTP::HTTP::VER_10;
             }
             break;
         case '1':
             {
-                httpVersion = HTTP::VER_11;
+                httpVersion = uHTTP::HTTP::VER_11;
             }
             break;
         case 'v':
@@ -73,37 +70,37 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
 	}
     
-	URL uri(argv[0]);
+	uHTTP::URL uri(argv[0]);
     
     if (!uri.isValid()) {
         if (!uri.hasPath()) {
             uri.setPath("/");
         }
         if (!uri.isValid()) {
-            cout << "ERR : Invalid URL <" << argv[0] << ">";
+            std::cout << "ERR : Invalid URL <" << argv[0] << ">" << std::endl;
             return EXIT_FAILURE;
         }
     }
     
-	HTTPRequest httpReq;
+	uHTTP::HTTPRequest httpReq;
 	httpReq.setVersion(httpVersion);
-	httpReq.setMethod(HTTP::GET);
+	httpReq.setMethod(uHTTP::HTTP::GET);
 	httpReq.setURL(&uri);
 
     if (verboseMode) {
-        string firstHeader;
-        cout << "> " << httpReq.getRequestLine(firstHeader) <<  endl;
-        for (HTTPHeaderList::iterator header = httpReq.getHeaders().begin(); header != httpReq.getHeaders().end(); header++) {
-            cout << "> " << (*header)->getName() << " : " << (*header)->getValue() << endl;
+        std::string firstHeader;
+        std::cout << "> " << httpReq.getRequestLine(firstHeader) <<  std::endl;
+        for (uHTTP::HTTPHeaderList::iterator header = httpReq.getHeaders().begin(); header != httpReq.getHeaders().end(); header++) {
+            std::cout << "> " << (*header)->getName() << " : " << (*header)->getValue() << std::endl;
         }
     }
     
-	HTTPResponse *httpRes = httpReq.post();
+	uHTTP::HTTPResponse *httpRes = httpReq.post();
 
     if (verboseMode) {
-        cout << "< " << httpRes->getFirstLine() << endl;
-        for (HTTPHeaderList::iterator header = httpRes->getHeaders().begin(); header != httpRes->getHeaders().end(); header++) {
-            cout << "< " << (*header)->getName() << " : " << (*header)->getValue() << endl;
+        std::cout << "< " << httpRes->getFirstLine() << std::endl;
+        for (uHTTP::HTTPHeaderList::iterator header = httpRes->getHeaders().begin(); header != httpRes->getHeaders().end(); header++) {
+            std::cout << "< " << (*header)->getName() << " : " << (*header)->getValue() << std::endl;
         }
     }
 
@@ -111,9 +108,8 @@ int main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
-	string httpContent = httpRes->getContent();
-
-	cout << httpContent << endl;
+	std::string httpContent = httpRes->getContent();
+	std::cout << httpContent << std::endl;
 	
 	return EXIT_SUCCESS;
 }

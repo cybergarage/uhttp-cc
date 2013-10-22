@@ -321,6 +321,11 @@ public:
 		return returnResponse(HTTP::BAD_REQUEST);
 	}
 
+	bool returnNotFound()
+	{
+		return returnResponse(HTTP::NOT_FOUND);
+	}
+    
 	////////////////////////////////////////////////
 	//	toString
 	////////////////////////////////////////////////

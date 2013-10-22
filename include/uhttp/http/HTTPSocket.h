@@ -85,7 +85,9 @@ private:
 public:
 
 	bool post(HTTPResponse *httpRes, int contentOffset, int contentLength, bool isOnlyHeader, bool isChunked);
-
+	bool post(HTTPResponse *httpRes);
+	bool post(const std::string &content);
+	bool post(const char c);
 };
 
 }

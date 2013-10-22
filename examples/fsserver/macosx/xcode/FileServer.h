@@ -13,11 +13,12 @@
 
 #include <uhttp/HTTP.h>
 
-class FileServer : public uHTTP::HTTPServer
+class FileServer : public uHTTP::HTTPServer, public uHTTP::HTTPRequestListener
 {
 
     std::string rootDirectory;
     int port;
+    bool verboseMode;
     
 public:
 	
@@ -38,6 +39,14 @@ public:
     
     int getPort() {
         return this->port;
+    }
+    
+    void setVerbose(bool value) {
+        this->verboseMode = value;
+    }
+    
+    bool isVerbose() {
+        return this->verboseMode;
     }
     
     bool start();

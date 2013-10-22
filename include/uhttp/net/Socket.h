@@ -39,8 +39,9 @@ public:
 
 	bool connect(const std::string &addr, int port);
 
-	ssize_t send(const std::string &cmd, ssize_t cmdLen);
+	ssize_t send(const char *cmd, ssize_t cmdLen);
 	ssize_t send(const std::string &cmd);
+	ssize_t send(const char c);
 
 	ssize_t recv(char *buffer, int bufferLen);
 
