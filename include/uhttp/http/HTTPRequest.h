@@ -262,7 +262,7 @@ public:
 
 public:
 
-	bool post(HTTPResponse *httpRes);
+	bool post(HTTPResponse *httpRes, bool isOnlyHeader = false);
 
 	////////////////////////////////////////////////
 	//	POST (Request)

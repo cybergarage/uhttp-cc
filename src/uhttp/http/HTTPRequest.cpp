@@ -225,11 +225,11 @@ bool HTTPRequest::returnResponse(int statusCode)
 //	POST (Response)
 ////////////////////////////////////////////////
 
-bool HTTPRequest::post(HTTPResponse *httpRes)
+bool HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
 {
 	HTTPSocket *httpSock = getSocket();
-	long offset = 0;
-	long length = httpRes->getContentLength();
+	size_t offset = 0;
+	size_t length = httpRes->getContentLength();
 	if (hasContentRange() == true) {
 		long firstPos = getContentRangeFirstPosition();
 		long lastPos = getContentRangeLastPosition();
@@ -245,7 +245,7 @@ bool HTTPRequest::post(HTTPResponse *httpRes)
 		offset = firstPos;
 		length = lastPos - firstPos + 1;
 	}
-	return httpSock->post(httpRes, offset, length, isHeadRequest(), isChunked());
+	return httpSock->post(httpRes, offset, length, isOnlyHeader, isChunked());
 }
 
 ////////////////////////////////////////////////

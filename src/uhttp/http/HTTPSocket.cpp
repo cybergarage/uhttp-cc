@@ -74,7 +74,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes)
 	return sock->send(HTTP::CRLF);
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, int contentOffset, int contentLength, bool isOnlyHeader, bool isChunked)
+bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
 {
 	httpRes->setContentLength(contentLength);
     post(httpRes);
@@ -102,7 +102,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, int con
 	return true;
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, long contentOffset, long contentLength, bool isOnlyHeader, bool isChunked)
+bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
 {
 	HTTPDate now;
 	httpRes->setDate(&now);
@@ -155,7 +155,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, long contentOffset
 	return true;
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, int contentOffset, int contentLength, bool isOnlyHeader, bool isChunked)
+bool HTTPSocket::post(HTTPResponse *httpRes, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
 {
 	if (httpRes->hasContentInputStream() == true)
 		return post(httpRes,httpRes->getContentInputStream(), contentOffset, contentLength, isOnlyHeader, isChunked);

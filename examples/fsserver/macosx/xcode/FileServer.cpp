@@ -54,18 +54,17 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
     systemPath.append(getRootDirectory());
     systemPath.append(reqUri.getPath());
     
-    std::ifstream contentFs(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
+    std::ifstream contentFs;
+    contentFs.open(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
     if (!contentFs.is_open()) {
         httpReq->returnNotFound();
         return;
     }
-
     size_t fileSize = (size_t)contentFs.seekg(0, std::ios::end).tellg();
     contentFs.seekg(0, std::ios::beg);
-
     bool isBinary = false;
     while (contentFs.good()) {
-        char c = contentFs.get();
+        unsigned char c = contentFs.get();
         if (contentFs.good()) {
             if (c == 0) {
                 isBinary = true;
@@ -73,7 +72,7 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
             }
         }
     }
-    contentFs.seekg(0, std::ios::beg);
+    contentFs.close();
     
 	uHTTP::HTTPResponse httpRes;
 	httpRes.setStatusCode(uHTTP::HTTP::OK_REQUEST);
@@ -87,23 +86,25 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
         }
     }
     
-	httpReq->post(&httpRes);
+	httpReq->post(&httpRes, true);
 
     if (httpReq->isHeadRequest()) {
         return;
     }
     
     uHTTP::HTTPSocket *httpSocket = httpReq->getSocket();
-        
-    while (contentFs.good()) {
-        char c = contentFs.get();
-        if (contentFs.good()) {
-            httpSocket->post(c);
-            if (isVerbose())
-                std::cout << c;
+    
+    contentFs.open(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
+    if (contentFs.is_open()) {
+        while (contentFs.good()) {
+            unsigned char c = contentFs.get();
+            if (contentFs.good()) {
+                httpSocket->post(c);
+                if (isVerbose())
+                    std::cout << c;
+            }
         }
     }
-
     contentFs.close();
 }
 

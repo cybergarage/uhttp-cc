@@ -79,12 +79,12 @@ public:
 
 private:
 
-	bool post(HTTPResponse *httpRes, const std::string &content, int contentOffset, int contentLength, bool isOnlyHeader, bool isChunked);
-	bool post(HTTPResponse *httpRes, uHTTP::InputStream *in, long contentOffset, long contentLength, bool isOnlyHeader, bool isChunked);
+	bool post(HTTPResponse *httpRes, const std::string &content, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
+	bool post(HTTPResponse *httpRes, uHTTP::InputStream *in, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
 
 public:
 
-	bool post(HTTPResponse *httpRes, int contentOffset, int contentLength, bool isOnlyHeader, bool isChunked);
+	bool post(HTTPResponse *httpRes, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
 	bool post(HTTPResponse *httpRes);
 	bool post(const std::string &content);
 	bool post(const char c);
