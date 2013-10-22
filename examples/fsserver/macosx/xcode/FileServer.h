@@ -24,7 +24,7 @@ public:
 	FileServer();
 	~FileServer();
 
-    void setrootDirectory(const std::string &value) {
+    void setRootDirectory(const std::string &value) {
         this->rootDirectory = value;
     }
     

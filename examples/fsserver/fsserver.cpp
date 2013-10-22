@@ -31,12 +31,10 @@ void usage(char *argv[])
         programName = programName.substr((lastPathIndex + 1));
 
     cout << "Usage: " << programName << " <root directory>" << endl;
-/*
-    options["f"] = "Runs in foreground mode";
-    options["v"] = "Enables verbose output";
-    options["h"] = "Prints this help message";
-    options["p <port number>"] = "Runs HTTP server on given port";
-    */
+    cout << " -f, Enable foreground  mode" << endl;
+    cout << " -h, This help text" << endl;
+    cout << " -p <port number>, Port number" << endl;
+    cout << " -v, Enable verbose mode" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -102,6 +100,7 @@ int main(int argc, char *argv[])
     }
  
     FileServer fileServer;
+    fileServer.setRootDirectory(roodDirectory);
     fileServer.setPort(httpdPort);
     if (fileServer.start() == false) {
         exit(EXIT_FAILURE);
