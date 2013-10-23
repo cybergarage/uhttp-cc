@@ -87,7 +87,7 @@ void uHTTP::URI::setString(const std::string &value)
 		host = uriStr.substr(idx, uriStr.length() - idx);
 	size_t colonIdx = host.rfind(COLON_DELIM);
 	size_t eblacketIdx = host.rfind(EBLACET_DELIM);
-	if (colonIdx != std::string::npos && eblacketIdx < colonIdx) {
+	if (colonIdx != std::string::npos && ((eblacketIdx == std::string::npos) || (eblacketIdx < colonIdx))) {
 		std::string hostStr = host;
 		host = hostStr.substr(0, colonIdx);
 		if (0 < host.length()) {
