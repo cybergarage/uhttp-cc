@@ -86,7 +86,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, size_t 
 
 	if (isChunked == true) {
 		string chunSizeBuf;
-		Integer2HexString(contentLength, chunSizeBuf);
+		Size2HexString(contentLength, chunSizeBuf);
 		sock->send(chunSizeBuf.c_str());
 		sock->send(HTTP::CRLF);
 	}
@@ -131,7 +131,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffs
 	ssize_t readLen = in->read(chunkBuf, (int)readSize);
 	while (0 < readLen && readCnt < contentLength) {
 		if (isChunked == true) {
-			Integer2HexString(readLen, chunSizeBuf);
+			Size2HexString(readLen, chunSizeBuf);
 			sock->send(chunSizeBuf.c_str());
 			sock->send(HTTP::CRLF);
 		}
