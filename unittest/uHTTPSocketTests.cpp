@@ -36,8 +36,8 @@ BOOST_AUTO_TEST_CASE(SocketHTTPTests)
     const char *TEST_HTTP_METHOD = "GET /index.html HTTP/1.0";
 
 	Socket *sock;
-	int sentLen;
-	int readLen;
+	ssize_t sentLen;
+	ssize_t readLen;
 	const char *line;
     
 	sock = new Socket();

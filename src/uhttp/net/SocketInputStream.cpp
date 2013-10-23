@@ -38,27 +38,27 @@ SocketInputStream::~SocketInputStream()
 //	read
 ////////////////////////////////////////////////
 
-int SocketInputStream::read(std::string &b, int len)
+ssize_t SocketInputStream::read(std::string &b, size_t len)
 {
     if (!this->inBuf)
         return 0;
     
-	int readCnt = 0;
+	size_t readCnt = 0;
 	int retryCnt = 0;
 
-	int unputBufLen = unputBuf.length();
+	size_t unputBufLen = unputBuf.length();
 	if (0 < unputBufLen) {
-		int cpyCnt = (len < unputBufLen) ? len : unputBufLen;
+		size_t cpyCnt = (len < unputBufLen) ? len : unputBufLen;
 		readCnt = cpyCnt;
 		b.append(unputBuf, 0, cpyCnt);
 		unputBuf = unputBuf.substr(cpyCnt, unputBufLen - cpyCnt);
 	}
 
 	while (readCnt < len) {
-		int readSize = len - readCnt;
+		size_t readSize = len - readCnt;
 		if (SOCKET_INBUF_SIZE < readSize)
 			readSize = SOCKET_INBUF_SIZE;
-		int readLen = sock->recv(this->inBuf, readSize);
+		ssize_t readLen = sock->recv(this->inBuf, readSize);
 		if (readLen <= 0) {
 			Wait(SOCKET_RECV_WAIT_TIME);
 			retryCnt++;
@@ -77,17 +77,17 @@ int SocketInputStream::read(std::string &b, int len)
 //	read
 ////////////////////////////////////////////////
 
-int SocketInputStream::read(char *b, int len)
+ssize_t SocketInputStream::read(char *b, size_t len)
 {
     if (!this->inBuf)
         return 0;
     
-	int readCnt = 0;
+	size_t readCnt = 0;
 	int retryCnt = 0;
 
 	while (readCnt < len) {
-		int readSize = len - readCnt;
-		int readLen = sock->recv(b+readCnt, readSize);
+		size_t readSize = len - readCnt;
+		ssize_t readLen = sock->recv(b+readCnt, readSize);
 		if (readLen <= 0) {
 			Wait(SOCKET_RECV_WAIT_TIME);
 			retryCnt++;
@@ -103,7 +103,7 @@ int SocketInputStream::read(char *b, int len)
 //	unread
 ////////////////////////////////////////////////
 
-void SocketInputStream::unread(std::string &b, int off, int len)
+void SocketInputStream::unread(std::string &b, size_t off, size_t len)
 {
 	unputBuf.append(b.substr(off, len));
 }
@@ -123,7 +123,7 @@ long SocketInputStream::skip(long n)
 		long readByte = n - skippedByte;
 		if (SOCKET_INBUF_SIZE < readByte)
 			readByte = SOCKET_INBUF_SIZE;
-		int readLen = sock->recv(this->inBuf, (int)readByte);
+		ssize_t readLen = sock->recv(this->inBuf, (int)readByte);
 		if (readLen <= 0) {
 			Wait(SOCKET_RECV_WAIT_TIME);
 			retryCnt++; 

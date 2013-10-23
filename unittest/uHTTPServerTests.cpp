@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     HTTPSimpleRequestListener httpSimpleReqListener;
     httpServer.addRequestListener(&httpSimpleReqListener);
     
-    BOOST_CHECK(httpServer.bind(UHTTP_HTTP_SERVER_TEST_PORT));
+    BOOST_CHECK(httpServer.open(UHTTP_HTTP_SERVER_TEST_PORT));
     BOOST_CHECK(httpServer.start());
 
     HTTPRequest httpReq;

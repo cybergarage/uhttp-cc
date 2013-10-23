@@ -34,10 +34,10 @@ public:
 
 	virtual ~SocketInputStream();
 
-	int read(std::string &b, int len);  
-	int read(char *b, int len);  // Not support the unput buffer;
+	ssize_t read(std::string &b, size_t len);
+	ssize_t read(char *b, size_t len);  // Not support the unput buffer;
 
-	void unread(std::string &b, int off, int len);  
+	void unread(std::string &b, size_t off, size_t len);  
 
 	long skip(long n);
 

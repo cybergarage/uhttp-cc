@@ -26,13 +26,13 @@ public:
 	{
 	}
 
-	virtual int read(std::string &b, int len) = 0;
+	virtual ssize_t read(std::string &b, size_t len) = 0;
 
 	virtual long skip(long n) = 0;
 
-	virtual void unread(std::string &b, int off, int len) = 0;  
+	virtual void unread(std::string &b, size_t off, size_t len) = 0;
 
-	void unread(std::string &b, int len)
+	void unread(std::string &b, size_t len)
 	{
 		 unread(b, 0, len);  
 	}

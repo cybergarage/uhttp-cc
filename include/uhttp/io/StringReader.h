@@ -28,11 +28,11 @@ public:
 
 	StringReader(const std::string &str);
 	
-	int read(std::string &b, int len);
+	ssize_t read(std::string &b, size_t len);
 	
 	long skip(long n);
 
-	void unread(std::string &b, int off, int len)
+	void unread(std::string &b, size_t off, size_t len)
 	{
 		// Not Implemented yet.
 	}

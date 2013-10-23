@@ -18,6 +18,8 @@ using namespace uHTTP;
 
 BOOST_AUTO_TEST_CASE(StringUtilTests)
 {
+    std::string buf;
+    
 	BOOST_CHECK_EQUAL(HexString2Long("1"), 1);
 	BOOST_CHECK_EQUAL(HexString2Long("9"), 9);
 	BOOST_CHECK_EQUAL(HexString2Long("A"), 10);
@@ -27,12 +29,17 @@ BOOST_AUTO_TEST_CASE(StringUtilTests)
 	BOOST_CHECK_EQUAL(HexString2Long("f"), 15);
 	BOOST_CHECK_EQUAL(HexString2Long("ff"), 255);
     
-    std::string buf;
 	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(1, buf), "1"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(9, buf), "9"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(10, buf), "a"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(15, buf), "f"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(255, buf), "ff"), 0);
+
+	BOOST_CHECK_EQUAL(strcmp(Size2HexString(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Size2HexString(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Size2HexString(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Size2HexString(15, buf), "f"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Size2HexString(255, buf), "ff"), 0);
 }
 
 BOOST_AUTO_TEST_CASE(StringUtilParseTests)

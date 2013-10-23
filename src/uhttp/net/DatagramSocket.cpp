@@ -116,7 +116,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
 //	recv
 ////////////////////////////////////////////////
 
-int DatagramSocket::receive(DatagramPacket &dataPack)
+ssize_t DatagramSocket::receive(DatagramPacket &dataPack)
 {
 	dataPack.setAddress("");
 	dataPack.setPort(0);
@@ -177,9 +177,9 @@ int DatagramSocket::receive(DatagramPacket &dataPack)
 //	send
 ////////////////////////////////////////////////
 
-int DatagramSocket::send(const std::string &addr, int port, const std::string &data, int dataLen)
+ssize_t DatagramSocket::send(const std::string &addr, int port, const std::string &data, size_t dataLen)
 {
-	if (dataLen < 0)
+	if (dataLen <= 0)
 		dataLen = data.length();
     
 	if (dataLen <= 0)
@@ -198,7 +198,7 @@ int DatagramSocket::send(const std::string &addr, int port, const std::string &d
 	if (sock < 0)
 		return -1;
 
-	int sentLen = so_sendto(sock, (B*)data, dataLen, 0, (SOCKADDR*)&sockaddr, sizeof(sockaddr_in));
+	ssize_t sentLen = so_sendto(sock, (B*)data, dataLen, 0, (SOCKADDR*)&sockaddr, sizeof(sockaddr_in));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 	struct sockaddr_in sockaddr;
 	if (toSocketAddrIn(addr, port, &sockaddr, true) == false)
@@ -211,7 +211,7 @@ int DatagramSocket::send(const std::string &addr, int port, const std::string &d
 
 	if (sock < 0)
 		return -1;
-	int sentLen = ka_sendto(sock, (char *)data, dataLen, 0, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
+	ssize_t sentLen = ka_sendto(sock, (char *)data, dataLen, 0, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
 	if (isBoundFlag == FALSE) {
 		sock = GetAvailableSocketID(DGRAM);
@@ -224,7 +224,7 @@ int DatagramSocket::send(const std::string &addr, int port, const std::string &d
 	T_IPV4EP dstaddr;
 	dstaddr.ipaddr = ascii_to_ipaddr((B*)addr);
 	dstaddr.portno = htons(port);
-	int sentLen = udp_snd_dat(sock, &dstaddr, data, dataLen, TMO_FEVR);
+	ssize_t sentLen = udp_snd_dat(sock, &dstaddr, data, dataLen, TMO_FEVR);
 #else
 	struct addrinfo *addrInfo;
 	if (toSocketAddrInfo(SOCK_DGRAM, addr, port, &addrInfo, true) == false)
@@ -236,7 +236,7 @@ int DatagramSocket::send(const std::string &addr, int port, const std::string &d
 	if (sock < 0)
 		return -1;
 
-	int sentLen = ::sendto(sock, data.c_str(), dataLen, 0, addrInfo->ai_addr, addrInfo->ai_addrlen);
+	ssize_t sentLen = ::sendto(sock, data.c_str(), dataLen, 0, addrInfo->ai_addr, addrInfo->ai_addrlen);
 #endif
 
 	if (isBoundFlag == false)
@@ -245,7 +245,7 @@ int DatagramSocket::send(const std::string &addr, int port, const std::string &d
 	return sentLen;
 }
 
-int DatagramSocket::send(DatagramPacket *dataPack)
+ssize_t DatagramSocket::send(DatagramPacket *dataPack)
 {
 	InetSocketAddress *sockAddr = dataPack->getSocketAddress();
 	return send(sockAddr->getAddress(), sockAddr->getPort(), dataPack->getData());

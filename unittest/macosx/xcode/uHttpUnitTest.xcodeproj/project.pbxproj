@@ -284,8 +284,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework",
+					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
+					"-lboost_system-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -295,8 +296,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework",
+					"-lboost_unit_test_framework-mt",
 					"-lboost_thread-mt",
+					"-lboost_system-mt",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

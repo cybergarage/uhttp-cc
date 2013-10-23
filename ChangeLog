@@ -3,6 +3,6 @@
 	* v0.6
 	* Forked from CyberLink for C++ v1.7.1 except the source codes about UPnP.
 	* Fixed some warnings using LLVM 5.0.
+	* Changed some paremeters and return values to use size_t and ssize_t instead of int.
 	* Added two simple examples, httpget and fsserver.
-
-
+	* Fixed URI::setString() to parse the specified port number correctly.

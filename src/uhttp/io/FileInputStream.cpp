@@ -37,7 +37,7 @@ FileInputStream::~FileInputStream()
 //	read
 ////////////////////////////////////////////////
 
-int FileInputStream::read(std::string &b, int len)
+ssize_t FileInputStream::read(std::string &b, size_t len)
 {
 	if (fp == NULL)
 		return 0;
@@ -58,7 +58,7 @@ int FileInputStream::read(std::string &b, int len)
 	return readCnt;
 }
 
-int FileInputStream::read(char *b, int len)
+ssize_t FileInputStream::read(char *b, size_t len)
 {
 	if (fp == NULL)
 		return 0;
@@ -78,7 +78,7 @@ int FileInputStream::read(char *b, int len)
 //	unread
 ////////////////////////////////////////////////
 
-void FileInputStream::unread(std::string &b, int off, int len)
+void FileInputStream::unread(std::string &b, size_t off, size_t len)
 {
 	// Not Implemented
 }

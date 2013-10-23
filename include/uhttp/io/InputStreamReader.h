@@ -31,7 +31,7 @@ public:
 	{
 	}
 
-	int read(std::string &b, int len)
+	ssize_t read(std::string &b, size_t len)
 	{
 		return in->read(b, len);
 	}
@@ -41,12 +41,12 @@ public:
 		return in->skip(n);
 	}
 
-	void unread(std::string &b, int off, int len)
+	void unread(std::string &b, size_t off, size_t len)
 	{
 		in->unread(b, off, len);
 	}
 
-	void unread(std::string &b, int len)
+	void unread(std::string &b, size_t len)
 	{
 		in->unread(b, len);
 	}

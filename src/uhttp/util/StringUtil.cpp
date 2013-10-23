@@ -13,6 +13,8 @@
 #include <string.h>
 #include <string>
 
+#include <sstream>
+
 #include <uhttp/util/StringUtil.h>
 
 #ifdef HAVE_CONFIG_H
@@ -443,6 +445,14 @@ const char *uHTTP::LongLong2HexString(__int64 value, std::string &valueBuf)
 }
 
 #endif
+
+const char *uHTTP::Size2HexString(size_t value, std::string &valueBuf)
+{
+    std::stringstream strBuf;
+    strBuf << hex << value;
+    valueBuf = strBuf.str();
+	return valueBuf.c_str();
+}
 
 bool uHTTP::StringEquals(const std::string &value1, const std::string &value2)
 {

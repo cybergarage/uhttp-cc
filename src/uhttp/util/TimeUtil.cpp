@@ -56,7 +56,8 @@ void uHTTP::Wait(long mtime)
 #elif defined(TENGINE) && defined(PROCESS_BASE)
 	b_slp_tsk(mtime);
 #else
-	usleep(mtime*1000);
+    double utime = mtime * 1000.0;
+	usleep((int)utime);
 #endif
 }
 

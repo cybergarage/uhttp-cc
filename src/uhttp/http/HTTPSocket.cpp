@@ -128,7 +128,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffs
 	string chunSizeBuf;
 	long readCnt = 0;
 	long readSize = (chunkSize < contentLength) ? chunkSize : contentLength;
-	int readLen = in->read(chunkBuf, (int)readSize);
+	ssize_t readLen = in->read(chunkBuf, (int)readSize);
 	while (0 < readLen && readCnt < contentLength) {
 		if (isChunked == true) {
 			Integer2HexString(readLen, chunSizeBuf);

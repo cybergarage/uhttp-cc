@@ -272,7 +272,7 @@ bool Socket::connect(const std::string &addr, int port)
 	if (isBound() == false)
 		sock = socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0);
 
-#if defined(HAVE_SO_NOSIGPIPE)
+#if defined(HAVE_SO_NOSIGPIPE) || defined(__APPLE_CC__)
     int sockOpt = 1;
     setsockopt(sock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
 #endif
@@ -291,7 +291,7 @@ bool Socket::connect(const std::string &addr, int port)
 //	recv
 ////////////////////////////////////////////////
 
-ssize_t Socket::recv(char *buffer, int bufferLen)
+ssize_t Socket::recv(char *buffer, size_t bufferLen)
 {
 	ssize_t recvLen;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
@@ -314,7 +314,7 @@ ssize_t Socket::recv(char *buffer, int bufferLen)
 const int CG_NET_SOCKET_SEND_RETRY_CNT = 10;
 const int CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC = 1000;
 
-ssize_t Socket::send(const char *cmd, ssize_t cmdLen)
+ssize_t Socket::send(const char *cmd, size_t cmdLen)
 {
 	if (cmdLen <= 0)
 		return 0;

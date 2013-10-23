@@ -23,7 +23,7 @@ const char *BufferedReader::readLine()
 	lineStr = "";
 
 	// Read line until CR & LF
-	int readLen = reader->read(lineStr, 1);
+	ssize_t readLen = reader->read(lineStr, 1);
 	if (readLen <= 0)
 		return "";
 

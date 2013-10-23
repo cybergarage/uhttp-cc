@@ -19,7 +19,7 @@ StringBufferInputStream::StringBufferInputStream(const std::string &str)
 	pos = 0;
 }
 
-int StringBufferInputStream::read(std::string &b, int len)
+ssize_t StringBufferInputStream::read(std::string &b, size_t len)
 {
 	size_t bufLen = buf.length() - pos;
 	if (bufLen <= 0)
@@ -30,7 +30,7 @@ int StringBufferInputStream::read(std::string &b, int len)
 	return copyLen;
 }
 
-int StringBufferInputStream::read(char *b, int len)
+ssize_t StringBufferInputStream::read(char *b, size_t len)
 {
 	size_t bufLen = buf.length() - pos;
 	if (bufLen <= 0)

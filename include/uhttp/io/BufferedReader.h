@@ -29,7 +29,7 @@ public:
 		this->reader = reader;
 	}
 
-	int read(std::string &b, int len)
+	ssize_t read(std::string &b, size_t len)
 	{
 		return reader->read(b, len);
 	}
@@ -39,12 +39,12 @@ public:
 		return reader->skip(n);
 	}
 
-	void unread(std::string &b, int off, int len)
+	void unread(std::string &b, size_t off, size_t len)
 	{
 		reader->unread(b, off, len);
 	}
 
-	void unread(std::string &b, int len)
+	void unread(std::string &b, size_t len)
 	{
 		reader->unread(b, len);
 	}

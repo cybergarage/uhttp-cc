@@ -19,12 +19,12 @@ StringReader::StringReader(const std::string &str)
 	pos = 0;
 }
 
-int StringReader::read(std::string &b, int len)
+ssize_t StringReader::read(std::string &b, size_t len)
 {
-	int bufLen = buf.length() - pos;
+	size_t bufLen = buf.length() - pos;
 	if (bufLen <= 0)
 		return 0;
-	int copyLen = (len < bufLen) ? len : bufLen;
+	size_t copyLen = (len < bufLen) ? len : bufLen;
 	b.append(buf, pos, copyLen);
 	pos += copyLen;
 	return copyLen;

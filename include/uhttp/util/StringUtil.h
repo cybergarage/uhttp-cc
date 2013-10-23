@@ -139,6 +139,7 @@ const char *LongLong2HexString(long long value, std::string &valueBuf);
 const char *LongLong2String(__int64 value, std::string &valueBuf);
 const char *LongLong2HexString(__int64 value, std::string &valueBuf);
 #endif
+const char *Size2HexString(size_t value, std::string &valueBuf);
 
 const char *StringTrim(const std::string &value, const std::string &trimChars, std::string &buf);
 const char *StringTrim(const std::string &value, std::string &buf);
