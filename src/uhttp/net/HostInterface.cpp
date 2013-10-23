@@ -387,9 +387,9 @@ const char *uHTTP::StripIPv6ScopeID(const std::string &addr, std::string &buf)
 {
 	std::string addrStr = addr;
 	if (IsIPv6Address(addr) == true) {
-		unsigned int pos = addrStr.find("%");
+		size_t pos = addrStr.find("%");
 		if (pos != std::string::npos)
-				addrStr = addrStr.substr(0, pos);
+            addrStr = addrStr.substr(0, pos);
 	}
 	buf = addrStr;
 	return buf.c_str();
@@ -400,8 +400,8 @@ int uHTTP::GetIPv6ScopeID(const std::string &addr)
 	if (IsIPv6Address(addr) == false)
 		return 0;
 	std::string addrStr = addr;
-	int pos = addrStr.find("%");
-	if (pos == (int)std::string::npos)
+	size_t pos = addrStr.find("%");
+	if (pos == std::string::npos)
 		return 0;
 	std::string scopeStr = addrStr.substr(pos+1, addrStr.length());
 	return atoi(scopeStr.c_str());

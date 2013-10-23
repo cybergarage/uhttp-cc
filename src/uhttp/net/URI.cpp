@@ -56,8 +56,8 @@ void uHTTP::URI::setString(const std::string &value)
 
 	// Protocol
 	size_t idx = uriStr.find(PROTOCOL_DELIM);
-	if (idx != (int)std::string::npos) {
-		int protocolStrLen = strlen(PROTOCOL_DELIM);
+	if (idx != std::string::npos) {
+		size_t protocolStrLen = strlen(PROTOCOL_DELIM);
 		// Thanks for Jay Deen (03/26/04)
 		protocol = uriStr.substr(0, idx/* + protocolStrLen*/);
 		idx += protocolStrLen;
@@ -66,11 +66,11 @@ void uHTTP::URI::setString(const std::string &value)
 		idx = 0;
 
 	// User (Password)
-	int atIdx = uriStr.find(USER_DELIM, idx);
+	size_t atIdx = uriStr.find(USER_DELIM, idx);
 	if (atIdx != (int)std::string::npos) {
 		std::string userPassStr = uriStr.substr(idx, atIdx - idx);
-		int colonIdx = userPassStr.find(COLON_DELIM);
-		if (colonIdx != (int)std::string::npos) {
+		size_t colonIdx = userPassStr.find(COLON_DELIM);
+		if (colonIdx != std::string::npos) {
 			user = userPassStr.substr(0, colonIdx);
 			password = userPassStr.substr(colonIdx + 1, userPassStr.length() - colonIdx -1);
 		}
@@ -80,14 +80,14 @@ void uHTTP::URI::setString(const std::string &value)
 	}
 
 	// Host (Port)
-	int shashIdx = uriStr.find(SLASH_DELIM, idx);
-	if (shashIdx != (int)std::string::npos)
+	size_t shashIdx = uriStr.find(SLASH_DELIM, idx);
+	if (shashIdx != std::string::npos)
 		host = uriStr.substr(idx, shashIdx - idx);
 	else
 		host = uriStr.substr(idx, uriStr.length() - idx);
-	int colonIdx = host.rfind(COLON_DELIM);
-	int eblacketIdx = host.rfind(EBLACET_DELIM);
-	if (colonIdx != (int)std::string::npos && eblacketIdx < colonIdx) {
+	size_t colonIdx = host.rfind(COLON_DELIM);
+	size_t eblacketIdx = host.rfind(EBLACET_DELIM);
+	if (colonIdx != std::string::npos && eblacketIdx < colonIdx) {
 		std::string hostStr = host;
 		host = hostStr.substr(0, colonIdx);
 		if (0 < host.length()) {
@@ -111,14 +111,14 @@ void uHTTP::URI::setString(const std::string &value)
 
 	// Path (Query/Fragment)
 	path = uriStr.substr(idx, uriStr.length() - idx);
-	int sharpIdx = path.find(SHARP_DELIM);
-	if (sharpIdx != (int)std::string::npos) {
+	size_t sharpIdx = path.find(SHARP_DELIM);
+	if (sharpIdx != std::string::npos) {
 		std::string pathStr = path;
 		path = pathStr.substr(0, sharpIdx);
 		fragment = pathStr.substr(sharpIdx + 1, pathStr.length() - sharpIdx -1);
 	}
-	int questionIdx = path.find(QUESTION_DELIM);
-	if (questionIdx != (int)std::string::npos) {
+	size_t questionIdx = path.find(QUESTION_DELIM);
+	if (questionIdx != std::string::npos) {
 		std::string pathStr = path;
 		path = pathStr.substr(0, questionIdx);
 		query = pathStr.substr(questionIdx + 1, pathStr.length() - questionIdx -1);

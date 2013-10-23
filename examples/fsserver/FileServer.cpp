@@ -54,6 +54,7 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
     systemPath.append(getRootDirectory());
     systemPath.append(reqUri.getPath());
     
+    
     std::ifstream contentFs;
     contentFs.open(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
     if (!contentFs.is_open()) {

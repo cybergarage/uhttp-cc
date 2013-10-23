@@ -137,7 +137,7 @@ int DatagramSocket::receive(DatagramPacket &dataPack)
 #else
 	struct sockaddr_storage from;
 	socklen_t fromLen = sizeof(from);
-	int recvLen = ::recvfrom(sock, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
+	ssize_t recvLen = ::recvfrom(sock, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
 #endif
 
 	if (recvLen <= 0)
@@ -166,7 +166,7 @@ int DatagramSocket::receive(DatagramPacket &dataPack)
 	int ret = getnameinfo((struct sockaddr *)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV);
 	if (ret == 0) {
 		dataPack.setAddress(remoteAddr);
-		dataPack.setPort(atol(remotePort));
+		dataPack.setPort(atoi(remotePort));
 	}
 #endif
 

@@ -21,10 +21,10 @@ StringBufferInputStream::StringBufferInputStream(const std::string &str)
 
 int StringBufferInputStream::read(std::string &b, int len)
 {
-	int bufLen = buf.length() - pos;
+	size_t bufLen = buf.length() - pos;
 	if (bufLen <= 0)
 		return 0;
-	int copyLen = (len < bufLen) ? len : bufLen;
+	size_t copyLen = (len < bufLen) ? len : bufLen;
 	b.append(buf, pos, copyLen);
 	pos += copyLen;
 	return copyLen;
@@ -32,10 +32,10 @@ int StringBufferInputStream::read(std::string &b, int len)
 
 int StringBufferInputStream::read(char *b, int len)
 {
-	int bufLen = buf.length() - pos;
+	size_t bufLen = buf.length() - pos;
 	if (bufLen <= 0)
 		return 0;
-	int copyLen = (len < bufLen) ? len : bufLen;
+	size_t copyLen = (len < bufLen) ? len : bufLen;
 	strncpy(b, (buf.c_str() + pos), copyLen);
 	pos += copyLen;
 	return copyLen;

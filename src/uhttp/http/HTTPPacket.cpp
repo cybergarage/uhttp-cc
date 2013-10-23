@@ -215,7 +215,7 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders)
 
 	bool isChunkedStream = isChunked();
 
-	long contentLen = 0;
+	size_t contentLen = 0;
 	if (isChunkedStream == true) {
 		const char *chunkSize = bufReader.readLine();
 		// Thanks for Lee Peik Feng <pflee@users.sourceforge.net> (07/07/05)
@@ -228,10 +228,10 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders)
 
 	int chunkSize = HTTP::GetChunkSize();
 	while (0 < contentLen) {
-		long readCnt = 0;		
+		size_t readCnt = 0;
 		while (readCnt < contentLen) {
-			long noReadLen = contentLen - readCnt;
-			int readLen = (noReadLen < chunkSize) ? noReadLen : chunkSize;
+			size_t noReadLen = contentLen - readCnt;
+			int readLen = (noReadLen < ((size_t)chunkSize)) ? ((int)noReadLen) : chunkSize;
 			int len = bufReader.read(content, readLen);
 			if (len < 0)
 				break;

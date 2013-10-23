@@ -45,7 +45,7 @@ AC_CHECK_LIB([iconv],[main])
 # Checks for pthread
 ##############################
 
-AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(CyberLink needs POSIX thread library)])
+AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(uHTTP needs POSIX thread library)])
 AC_CHECK_LIB([pthread],[main])
 
 ##############################

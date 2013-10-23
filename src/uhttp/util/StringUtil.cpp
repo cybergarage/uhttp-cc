@@ -195,7 +195,7 @@ int String::regionMatchesIgnoreCase(int toffset, const std::string &other, int o
 	for (n=0; n<value1Len; n++)
 		value1[n] = (char)toupper(value1[n]);
 
-	int value2Len = strlen(other.c_str());
+	size_t value2Len = strlen(other.c_str());
 	char *value2 = new char[value2Len+1]; 
 	strcpy(value2, other.c_str());
 	for (n=0; n<value2Len; n++)

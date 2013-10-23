@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214C466918176CC500EEB97E /* FileServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214C466718176CC500EEB97E /* FileServer.cpp */; };
 		214CA3BC17F31A9000D9FEF6 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214CA3B517F31A2200D9FEF6 /* libuhttp++.a */; };
 		21ED1DD21802973C009D22D5 /* fsserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ED1DD11802973C009D22D5 /* fsserver.cpp */; };
-		21FDAD3218070089007C5103 /* FileServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FDAD3018070089007C5103 /* FileServer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +36,10 @@
 
 /* Begin PBXFileReference section */
 		213B356F17F319E800D39CC8 /* fsserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fsserver; sourceTree = BUILT_PRODUCTS_DIR; };
+		214C466718176CC500EEB97E /* FileServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileServer.cpp; path = ../../FileServer.cpp; sourceTree = "<group>"; };
+		214C466818176CC500EEB97E /* FileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileServer.h; path = ../../FileServer.h; sourceTree = "<group>"; };
 		214CA3B017F31A2100D9FEF6 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21ED1DD11802973C009D22D5 /* fsserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsserver.cpp; path = ../../fsserver.cpp; sourceTree = "<group>"; };
-		21FDAD3018070089007C5103 /* FileServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileServer.cpp; sourceTree = "<group>"; };
-		21FDAD3118070089007C5103 /* FileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileServer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +90,9 @@
 		21ED1DCF18029725009D22D5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				214C466718176CC500EEB97E /* FileServer.cpp */,
+				214C466818176CC500EEB97E /* FileServer.h */,
 				21ED1DD11802973C009D22D5 /* fsserver.cpp */,
-				21FDAD3018070089007C5103 /* FileServer.cpp */,
-				21FDAD3118070089007C5103 /* FileServer.h */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21FDAD3218070089007C5103 /* FileServer.cpp in Sources */,
+				214C466918176CC500EEB97E /* FileServer.cpp in Sources */,
 				21ED1DD21802973C009D22D5 /* fsserver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

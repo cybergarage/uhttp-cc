@@ -36,6 +36,7 @@
 	#include <time.h>
 #endif
 
+#include <limits.h>
 #include <stdlib.h>
 
 #include <uhttp/util/TimeUtil.h>
@@ -94,7 +95,7 @@ float uHTTP::Random()
 {
 	static bool seedDone = false;
 	if (seedDone == false) {
-		srand(time(NULL));
+		srand((time(NULL) % UINT_MAX));
 		seedDone = true;
 	}
 	return (float)rand() / (float)RAND_MAX;

@@ -36,7 +36,7 @@ HTTPRequest::HTTPRequest()
 	setVersion(HTTP::VER_11);
     
     ostringstream defaultUserAgent;
-    defaultUserAgent << uHTTP::PRODUCT_NAME << "/" << uHTTP::VERSION << " " << uHTTP::LIBRARY_NAME << "/" << uHTTP::VERSION;
+    defaultUserAgent << uHTTP::PRODUCT_NAME << "/" << uHTTP::LIBRARY_VERSION << " " << uHTTP::LIBRARY_NAME << "/" << uHTTP::LIBRARY_VERSION;
     setUserAgent(defaultUserAgent.str());
     
     setAccept("*/*");

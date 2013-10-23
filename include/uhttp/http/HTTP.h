@@ -19,7 +19,7 @@ namespace uHTTP {
 
 const char PRODUCT_NAME[] = "uhttp";
 const char LIBRARY_NAME[] = "libuhttp++";
-const char VERSION[] = "0.6";
+const char LIBRARY_VERSION[] = "0.6";
 
 namespace HTTP {
 

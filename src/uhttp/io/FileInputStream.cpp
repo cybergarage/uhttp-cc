@@ -44,10 +44,10 @@ int FileInputStream::read(std::string &b, int len)
 
 	int readCnt = 0;
 	while (readCnt < len) {
-		int readSize = len - readCnt;
+		size_t readSize = len - readCnt;
 		if (FILE_INBUF_SIZE < readSize)
 			readSize = FILE_INBUF_SIZE;
-		int readLen = fread(inBuf, sizeof(char), readSize, fp);
+		size_t readLen = fread(inBuf, sizeof(char), readSize, fp);
 		if (readLen <= 0)
 			break;
 		if (0 < readLen) {
@@ -65,8 +65,8 @@ int FileInputStream::read(char *b, int len)
 
 	int readCnt = 0;
 	while (readCnt < len) {
-		int readSize = len - readCnt;
-		int readLen = fread(b+readCnt, sizeof(char), readSize, fp);
+		size_t readSize = len - readCnt;
+		size_t readLen = fread(b+readCnt, sizeof(char), readSize, fp);
 		if (readLen <= 0)
 			break;
 		readCnt += readLen;

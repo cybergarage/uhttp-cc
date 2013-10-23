@@ -28,7 +28,7 @@ const char *BufferedReader::readLine()
 		return "";
 
 	while (0 < readLen) {
-		int lastPos = lineStr.size() - 1;
+		size_t lastPos = lineStr.size() - 1;
 		readChar = lineStr.at(lastPos);
 		if (readChar == CR || readChar == LF) {
 			lineStr = lineStr.substr(0, lastPos);

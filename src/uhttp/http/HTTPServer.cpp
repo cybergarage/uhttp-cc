@@ -179,6 +179,10 @@ const char *uHTTP::GetServerName(string &buf)
 	buf = osName;
 	buf += "/";
 	buf += osVer;
-
+    buf += " ";
+    buf += uHTTP::LIBRARY_NAME;
+    buf += "/";
+    buf += uHTTP::LIBRARY_VERSION;
+    
 	return buf.c_str();
 }
