@@ -149,7 +149,7 @@ m4trace:configure.in:11: -1- m4_pattern_allow([^target_alias$])
 m4trace:configure.in:12: -1- AC_CONFIG_AUX_DIR([config])
 m4trace:configure.in:14: -1- AM_INIT_AUTOMAKE([uhttpcc], [1.0])
 m4trace:configure.in:14: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
-m4trace:configure.in:14: -1- AM_AUTOMAKE_VERSION([1.11.1])
+m4trace:configure.in:14: -1- AM_AUTOMAKE_VERSION([1.11.3])
 m4trace:configure.in:14: -1- AC_REQUIRE_AUX_FILE([install-sh])
 m4trace:configure.in:14: -1- AC_SUBST([INSTALL_PROGRAM])
 m4trace:configure.in:14: -1- AC_SUBST_TRACE([INSTALL_PROGRAM])
@@ -222,7 +222,7 @@ m4trace:configure.in:14: -1- m4_pattern_allow([^SET_MAKE$])
 m4trace:configure.in:14: -1- AC_SUBST([am__leading_dot])
 m4trace:configure.in:14: -1- AC_SUBST_TRACE([am__leading_dot])
 m4trace:configure.in:14: -1- m4_pattern_allow([^am__leading_dot$])
-m4trace:configure.in:14: -1- AC_SUBST([AMTAR])
+m4trace:configure.in:14: -1- AC_SUBST([AMTAR], ['$${TAR-tar}'])
 m4trace:configure.in:14: -1- AC_SUBST_TRACE([AMTAR])
 m4trace:configure.in:14: -1- m4_pattern_allow([^AMTAR$])
 m4trace:configure.in:14: -1- AC_SUBST([am__tar])
@@ -232,7 +232,7 @@ m4trace:configure.in:14: -1- AC_SUBST([am__untar])
 m4trace:configure.in:14: -1- AC_SUBST_TRACE([am__untar])
 m4trace:configure.in:14: -1- m4_pattern_allow([^am__untar$])
 m4trace:configure.in:15: -1- _m4_warn([obsolete], [The macro `AM_CONFIG_HEADER' is obsolete.
-You should run autoupdate.], [aclocal.m4:419: AM_CONFIG_HEADER is expanded from...
+You should run autoupdate.], [aclocal.m4:429: AM_CONFIG_HEADER is expanded from...
 configure.in:15: the top level])
 m4trace:configure.in:15: -1- AC_CONFIG_HEADERS([config.h])
 m4trace:configure.in:21: -1- AC_SUBST([CC])
@@ -293,6 +293,10 @@ m4trace:configure.in:21: -1- AC_SUBST([AMDEPBACKSLASH])
 m4trace:configure.in:21: -1- AC_SUBST_TRACE([AMDEPBACKSLASH])
 m4trace:configure.in:21: -1- m4_pattern_allow([^AMDEPBACKSLASH$])
 m4trace:configure.in:21: -1- _AM_SUBST_NOTMAKE([AMDEPBACKSLASH])
+m4trace:configure.in:21: -1- AC_SUBST([am__nodep])
+m4trace:configure.in:21: -1- AC_SUBST_TRACE([am__nodep])
+m4trace:configure.in:21: -1- m4_pattern_allow([^am__nodep$])
+m4trace:configure.in:21: -1- _AM_SUBST_NOTMAKE([am__nodep])
 m4trace:configure.in:21: -1- AC_SUBST([CCDEPMODE], [depmode=$am_cv_CC_dependencies_compiler_type])
 m4trace:configure.in:21: -1- AC_SUBST_TRACE([CCDEPMODE])
 m4trace:configure.in:21: -1- m4_pattern_allow([^CCDEPMODE$])
@@ -465,14 +469,14 @@ m4trace:configure.in:67: -1- AH_OUTPUT([HAVE_GETIFADDRS], [/* Define to 1 if you
 m4trace:configure.in:67: -1- AC_DEFINE_TRACE_LITERAL([HAVE_GETIFADDRS])
 m4trace:configure.in:67: -1- m4_pattern_allow([^HAVE_GETIFADDRS$])
 m4trace:configure.in:70: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2581: AC_TRY_COMPILE is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2615: AC_TRY_COMPILE is expanded from...
 configure.in:70: the top level])
 m4trace:configure.in:70: -1- AC_DEFINE_TRACE_LITERAL([HAVE_SOCKLEN_T])
 m4trace:configure.in:70: -1- m4_pattern_allow([^HAVE_SOCKLEN_T$])
 m4trace:configure.in:70: -1- AH_OUTPUT([HAVE_SOCKLEN_T], [/* SOCKLEN_T */
 @%:@undef HAVE_SOCKLEN_T])
 m4trace:configure.in:82: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2581: AC_TRY_COMPILE is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2615: AC_TRY_COMPILE is expanded from...
 configure.in:82: the top level])
 m4trace:configure.in:82: -1- AC_DEFINE_TRACE_LITERAL([HAVE_SO_NOSIGPIPE])
 m4trace:configure.in:82: -1- m4_pattern_allow([^HAVE_SO_NOSIGPIPE$])
@@ -483,7 +487,7 @@ m4trace:configure.in:99: -1- AH_OUTPUT([HAVE_SSTREAM], [/* Define to 1 if you ha
 m4trace:configure.in:99: -1- AC_DEFINE_TRACE_LITERAL([HAVE_SSTREAM])
 m4trace:configure.in:99: -1- m4_pattern_allow([^HAVE_SSTREAM$])
 m4trace:configure.in:102: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:2581: AC_TRY_COMPILE is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:2615: AC_TRY_COMPILE is expanded from...
 configure.in:102: the top level])
 m4trace:configure.in:102: -1- AC_DEFINE_TRACE_LITERAL([HAVE_STD_COUT])
 m4trace:configure.in:102: -1- m4_pattern_allow([^HAVE_STD_COUT$])
