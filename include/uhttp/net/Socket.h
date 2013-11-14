@@ -20,51 +20,51 @@ class Socket : public SocketImp
 {
 public:
 
-    static int GetInstanceCount();
-    
+  static int GetInstanceCount();
+  
 public:
 
-	Socket();
-	~Socket();
+  Socket();
+  ~Socket();
 
-    int getErrorCode() const {
-        return this->errorCode;
-    }
-    
-	bool listen();
+  int getErrorCode() const {
+    return this->errorCode;
+  }
+  
+  bool listen();
 
-	bool bind(int port, const std::string &addr);
+  bool bind(int port, const std::string &addr);
 
-	bool accept(Socket *socket);
+  bool accept(Socket *socket);
 
-	bool connect(const std::string &addr, int port);
+  bool connect(const std::string &addr, int port);
 
-	ssize_t send(const char *cmd, size_t cmdLen);
-	ssize_t send(const std::string &cmd);
-	ssize_t send(const char c);
+  ssize_t send(const char *cmd, size_t cmdLen);
+  ssize_t send(const std::string &cmd);
+  ssize_t send(const char c);
 
-	ssize_t recv(char *buffer, size_t bufferLen);
-
-private:
-
-    void setErrorCode(int code) {
-        this->errorCode = code;
-    }
+  ssize_t recv(char *buffer, size_t bufferLen);
 
 private:
 
-    int errorCode;
-    
+  void setErrorCode(int code) {
+    this->errorCode = code;
+  }
+
+private:
+
+  int errorCode;
+  
 #if defined(ITRON)
-	static const int WINDOW_BUF_SIZE;
-	UH *sendWinBuf;
-	UH *recvWinBuf;
+  static const int WINDOW_BUF_SIZE;
+  UH *sendWinBuf;
+  UH *recvWinBuf;
 #endif
 
 #if defined(ITRON)
-	void initWindowBuffer();
+  void initWindowBuffer();
 #endif
-    
+  
 };
 
 }

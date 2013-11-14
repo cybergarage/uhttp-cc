@@ -18,63 +18,63 @@ namespace uHTTP {
 
 class NetworkInterface 
 {
-	std::string name;
-	std::string addr;
-	int index;
+  std::string name;
+  std::string addr;
+  int index;
 public:
 
-	////////////////////////////////////////////////
-	// Constructor
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  // Constructor
+  ////////////////////////////////////////////////
 
-	NetworkInterface(const std::string &addr = NULL, const std::string &name = NULL, int idx = 0)
-	{
-		setAddress(addr);
-		setName(name);
-		setIndex(idx);
-	}
-	
-	////////////////////////////////////////////////
-	// Address
-	////////////////////////////////////////////////
+  NetworkInterface(const std::string &addr = NULL, const std::string &name = NULL, int idx = 0)
+  {
+    setAddress(addr);
+    setName(name);
+    setIndex(idx);
+  }
+  
+  ////////////////////////////////////////////////
+  // Address
+  ////////////////////////////////////////////////
 
-	void setAddress(const std::string &value)
-	{
-		addr = value;
-	}
-		
-	const char *getAddress()
-	{
-		return addr.c_str();
-	}
-		
-	////////////////////////////////////////////////
-	// Name
-	////////////////////////////////////////////////
+  void setAddress(const std::string &value)
+  {
+    addr = value;
+  }
+    
+  const char *getAddress()
+  {
+    return addr.c_str();
+  }
+    
+  ////////////////////////////////////////////////
+  // Name
+  ////////////////////////////////////////////////
 
-	void setName(const std::string &value)
-	{
-		name = value;
-	}
-		
-	const char *getName()
-	{
-		return name.c_str();
-	}
+  void setName(const std::string &value)
+  {
+    name = value;
+  }
+    
+  const char *getName()
+  {
+    return name.c_str();
+  }
 
-	////////////////////////////////////////////////
-	// Index
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  // Index
+  ////////////////////////////////////////////////
 
-	void setIndex(int value)
-	{
-		index = value;
-	}
-		
-	int getIndex()
-	{
-		return index;
-	}
+  void setIndex(int value)
+  {
+    index = value;
+  }
+    
+  int getIndex()
+  {
+    return index;
+  }
 };
 
 }

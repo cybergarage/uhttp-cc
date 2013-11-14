@@ -20,26 +20,26 @@ namespace uHTTP {
 
 class StringBufferInputStream : public InputStream
 {
-	std::string buf;
-	long pos;
+  std::string buf;
+  long pos;
 
 public:
 
-	StringBufferInputStream(const std::string &str);
+  StringBufferInputStream(const std::string &str);
 
-	ssize_t read(std::string &b, size_t len);
-	ssize_t read(char *b, size_t len);
+  ssize_t read(std::string &b, size_t len);
+  ssize_t read(char *b, size_t len);
 
-	void unread(std::string &b, size_t off, size_t len)
-	{
-		// Not Implemented yet
-	}
+  void unread(std::string &b, size_t off, size_t len)
+  {
+    // Not Implemented yet
+  }
 
-	long skip(long n);
+  long skip(long n);
 
-	void close()
-	{
-	}
+  void close()
+  {
+  }
 };
 
 }

@@ -19,25 +19,25 @@ namespace uHTTP {
 
 class LineNumberReader : public BufferedReader
 {
-	int lineNum;
+  int lineNum;
 
 public:
 
-	LineNumberReader(Reader *reader) : BufferedReader(reader)
-	{
-		lineNum = -1;
-	}
+  LineNumberReader(Reader *reader) : BufferedReader(reader)
+  {
+    lineNum = -1;
+  }
 
-	int getLineNumber()
-	{
-		return lineNum;
-	}
+  int getLineNumber()
+  {
+    return lineNum;
+  }
 
-	const char *readLine()
-	{
-		lineNum++;
-		return BufferedReader::readLine();
-	}
+  const char *readLine()
+  {
+    lineNum++;
+    return BufferedReader::readLine();
+  }
 };
 
 }

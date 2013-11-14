@@ -32,9 +32,9 @@
 #include <string.h> //for mem___()
 #elif defined(ITRON)
 #include <kernel.h>
-	#if defined(NORTiAPI)
-	#include <nonet.h>
-	#endif
+  #if defined(NORTiAPI)
+  #include <nonet.h>
+  #endif
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 #include <tk/tkernel.h>
 #include <btron/kasago.h>

@@ -19,7 +19,7 @@ namespace uHTTP {
 class HTTPRequestListener
 {
 public:
-	virtual void httpRequestRecieved(HTTPRequest *httpReq) = 0;
+  virtual void httpRequestRecieved(HTTPRequest *httpReq) = 0;
 };
 
 }

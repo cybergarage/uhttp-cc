@@ -20,63 +20,63 @@ namespace uHTTP {
 
 class HTTPResponse : public HTTPPacket
 {
-	int statusCode;
+  int statusCode;
 
 public:
 
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
-	
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
+  
 public:
 
-	HTTPResponse();
+  HTTPResponse();
 
-	HTTPResponse(HTTPResponse *httpRes);
+  HTTPResponse(HTTPResponse *httpRes);
 
-	////////////////////////////////////////////////
-	//	Status Line
-	////////////////////////////////////////////////
-
-public:
-
-	void setStatusCode(int code)
-	{
-		statusCode = code;
-	}
-
-	int getStatusCode()
-	{
-		if (statusCode != 0)
-			return statusCode;
-		HTTPStatus httpStatus(getFirstLine());
-		return httpStatus.getStatusCode();
-	}
-	
-	bool isSuccessful()
-	{
-		return HTTPStatus::isSuccessful(getStatusCode());
-	}
-
-	const char *getStatusLineString(std::string &statusLineBuf);
-
-	////////////////////////////////////////////////
-	//	getHeader
-	////////////////////////////////////////////////
-	
-public:
-
-	const char *getHeader(std::string &headerBuf);
-
-	////////////////////////////////////////////////
-	//	toString
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Status Line
+  ////////////////////////////////////////////////
 
 public:
 
-	const char *toString(std::string &buf);
+  void setStatusCode(int code)
+  {
+    statusCode = code;
+  }
 
-	void print();
+  int getStatusCode()
+  {
+    if (statusCode != 0)
+      return statusCode;
+    HTTPStatus httpStatus(getFirstLine());
+    return httpStatus.getStatusCode();
+  }
+  
+  bool isSuccessful()
+  {
+    return HTTPStatus::isSuccessful(getStatusCode());
+  }
+
+  const char *getStatusLineString(std::string &statusLineBuf);
+
+  ////////////////////////////////////////////////
+  //  getHeader
+  ////////////////////////////////////////////////
+  
+public:
+
+  const char *getHeader(std::string &headerBuf);
+
+  ////////////////////////////////////////////////
+  //  toString
+  ////////////////////////////////////////////////
+
+public:
+
+  const char *toString(std::string &buf);
+
+  void print();
 
 };
 

@@ -17,19 +17,19 @@ namespace uHTTP {
 
 class HTTPDate : public uHTTP::Date
 {
-	char dateStr[64];
-	char timeStr[64];
+  char dateStr[64];
+  char timeStr[64];
 
 public:
 
-	HTTPDate();
-	HTTPDate(SysTime date);
+  HTTPDate();
+  HTTPDate(SysTime date);
 
-	////////////////////////////////////////////////
-	//	get*String
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  get*String
+  ////////////////////////////////////////////////
 
-	const char *getDateString();
+  const char *getDateString();
 };
 
 const char *toMonthString(int value);

@@ -13,95 +13,95 @@
 using namespace uHTTP;
 
 ////////////////////////////////////////////////
-//	Constructor
+//  Constructor
 ////////////////////////////////////////////////
 
 FileInputStream::FileInputStream(File *file, const std::string &mode)
 {
-	inBuf = new char[FILE_INBUF_SIZE];
-	fp = fopen(file->getName(), mode.c_str());
-	if (fp == NULL)
-		return;
+  inBuf = new char[FILE_INBUF_SIZE];
+  fp = fopen(file->getName(), mode.c_str());
+  if (fp == NULL)
+    return;
 }
 
 ////////////////////////////////////////////////
-//	Destructor
+//  Destructor
 ////////////////////////////////////////////////
 
 FileInputStream::~FileInputStream()
 {
-	delete[] inBuf;
+  delete[] inBuf;
 }
 
 ////////////////////////////////////////////////
-//	read
+//  read
 ////////////////////////////////////////////////
 
 ssize_t FileInputStream::read(std::string &b, size_t len)
 {
-	if (fp == NULL)
-		return 0;
+  if (fp == NULL)
+    return 0;
 
-	int readCnt = 0;
-	while (readCnt < len) {
-		size_t readSize = len - readCnt;
-		if (FILE_INBUF_SIZE < readSize)
-			readSize = FILE_INBUF_SIZE;
-		size_t readLen = fread(inBuf, sizeof(char), readSize, fp);
-		if (readLen <= 0)
-			break;
-		if (0 < readLen) {
-			b.append(inBuf, 0, readLen);
-			readCnt += readLen;
-		}
-	}
-	return readCnt;
+  int readCnt = 0;
+  while (readCnt < len) {
+    size_t readSize = len - readCnt;
+    if (FILE_INBUF_SIZE < readSize)
+      readSize = FILE_INBUF_SIZE;
+    size_t readLen = fread(inBuf, sizeof(char), readSize, fp);
+    if (readLen <= 0)
+      break;
+    if (0 < readLen) {
+      b.append(inBuf, 0, readLen);
+      readCnt += readLen;
+    }
+  }
+  return readCnt;
 }
 
 ssize_t FileInputStream::read(char *b, size_t len)
 {
-	if (fp == NULL)
-		return 0;
+  if (fp == NULL)
+    return 0;
 
-	int readCnt = 0;
-	while (readCnt < len) {
-		size_t readSize = len - readCnt;
-		size_t readLen = fread(b+readCnt, sizeof(char), readSize, fp);
-		if (readLen <= 0)
-			break;
-		readCnt += readLen;
-	}
-	return readCnt;
+  int readCnt = 0;
+  while (readCnt < len) {
+    size_t readSize = len - readCnt;
+    size_t readLen = fread(b+readCnt, sizeof(char), readSize, fp);
+    if (readLen <= 0)
+      break;
+    readCnt += readLen;
+  }
+  return readCnt;
 }
 
 ////////////////////////////////////////////////
-//	unread
+//  unread
 ////////////////////////////////////////////////
 
 void FileInputStream::unread(std::string &b, size_t off, size_t len)
 {
-	// Not Implemented
+  // Not Implemented
 }
 
 ////////////////////////////////////////////////
-//	skip
+//  skip
 ////////////////////////////////////////////////
 
 long FileInputStream::skip(long n)
 {
-	if (fp == NULL)
-		return 0;
-	int ret = fseek(fp, n, SEEK_CUR);
-	return (ret == 0) ? n : 0;
+  if (fp == NULL)
+    return 0;
+  int ret = fseek(fp, n, SEEK_CUR);
+  return (ret == 0) ? n : 0;
 }
 
 ////////////////////////////////////////////////
-//	close
+//  close
 ////////////////////////////////////////////////
 
 void FileInputStream::close()
 {
-	if (fp == NULL)
-		return;
-	fclose(fp);
+  if (fp == NULL)
+    return;
+  fclose(fp);
 }

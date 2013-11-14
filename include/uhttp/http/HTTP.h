@@ -45,28 +45,28 @@ const char DELETE[] = "DELETE";
 const char UPDATE[] = "UPDATE";
 const char HEAD[] = "HEAD";
 const char SUBSCRIBE[] = "SUBSCRIBE";
-const char UNSUBSCRIBE[] = "UNSUBSCRIBE";	
+const char UNSUBSCRIBE[] = "UNSUBSCRIBE";  
 
 const char USER_AGENT[] = "User-Agent";
 const char ACCEPT[] = "Accept";
 const char DATE[] = "Date";
 const char CACHE_CONTROL[] = "Cache-Control";
-	const char NO_CACHE[] = "no-cache";
-	const char MAX_AGE[] = "max-age";
+  const char NO_CACHE[] = "no-cache";
+  const char MAX_AGE[] = "max-age";
 const char CONNECTION[] = "Connection";
-	const char CLOSE[] = "close";
-	const char KEEP_ALIVE[] = "Keep-Alive";
+  const char CLOSE[] = "close";
+  const char KEEP_ALIVE[] = "Keep-Alive";
 const char CONTENT_TYPE[] = "Content-Type";
-	const char CHARSET[] = "charset";
+  const char CHARSET[] = "charset";
 const char CONTENT_LENGTH[] = "Content-Length";
 const char CONTENT_RANGE[] = "Content-Range";
-	const char CONTENT_RANGE_BYTES[] = "bytes"; 
+  const char CONTENT_RANGE_BYTES[] = "bytes"; 
 const char LOCATION[] = "Location";
 const char SERVER[] = "Server";
 // Thanks for Brent Hills (10/20/04)
 const char RANGE[] = "Range";
 const char TRANSFER_ENCODING[] = "Transfer-Encoding";
-	const char CHUNKED[] = "Chunked";
+  const char CHUNKED[] = "Chunked";
 
 const char ST[] = "ST";
 const char MX[] = "MX";
@@ -96,12 +96,12 @@ const int DEFAULT_TIMEOUT = 30;
 
 inline bool IsAbsoluteURL(const std::string &urlStr)
 {
-	return uHTTP::IsAbsoluteURL(urlStr);
+  return uHTTP::IsAbsoluteURL(urlStr);
 }
 
 inline const char *GetHost(const std::string &urlStr, std::string &buf)
 {
-	return uHTTP::URLGetHost(urlStr, buf);
+  return uHTTP::URLGetHost(urlStr, buf);
 }
 
 int GetPort(const std::string &urlStr);
@@ -110,7 +110,7 @@ const char *GetRequestHostURL(const std::string &host, int port, std::string &bu
 
 inline const char *GetRelativeURL(const std::string &urlStr, std::string &buf, bool withParam = true)
 {
-	return uHTTP::URLGetRelativeURL(urlStr, buf, withParam);
+  return uHTTP::URLGetRelativeURL(urlStr, buf, withParam);
 }
 
 const char *GetAbsoluteURL(const std::string &baseURLStr, const std::string &relURlStr, std::string &buf);
@@ -118,10 +118,10 @@ const char *GetAbsoluteURL(const std::string &baseURLStr, const std::string &rel
 ////////////////////////////////////////////////
 // Chunk Size
 ////////////////////////////////////////////////
-	
+  
 void SetChunkSize(int size);
 int GetChunkSize();
-	
+  
 }
 
 }

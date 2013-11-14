@@ -23,60 +23,60 @@ namespace uHTTP {
 
 class HTTPServer : public uHTTP::Thread
 {
-	uHTTP::ServerSocket *serverSock;
-	uHTTP::ListenerList httpRequestListenerList;
+  uHTTP::ServerSocket *serverSock;
+  uHTTP::ListenerList httpRequestListenerList;
 
-	bool bind(int port, const std::string &addr = "");
-	bool accept(uHTTP::Socket *socket);
-	bool isOpened();
+  bool bind(int port, const std::string &addr = "");
+  bool accept(uHTTP::Socket *socket);
+  bool isOpened();
 
-	uHTTP::ServerSocket *getServerSock()
-	{
-		return serverSock;
-	}
+  uHTTP::ServerSocket *getServerSock()
+  {
+    return serverSock;
+  }
 
 public:
-	
-	HTTPServer();
-	~HTTPServer();
+  
+  HTTPServer();
+  ~HTTPServer();
 
-	////////////////////////////////////////////////
-	//	open/close
-	////////////////////////////////////////////////
-    
-	bool open(int port, const std::string &addr = "");
-	bool close();
-    
-	////////////////////////////////////////////////
-	//	httpRequest
-	////////////////////////////////////////////////
-	 	
-	void addRequestListener(HTTPRequestListener *listener)
-	{
-		httpRequestListenerList.add(listener);
-	}		
+  ////////////////////////////////////////////////
+  //  open/close
+  ////////////////////////////////////////////////
+  
+  bool open(int port, const std::string &addr = "");
+  bool close();
+  
+  ////////////////////////////////////////////////
+  //  httpRequest
+  ////////////////////////////////////////////////
+     
+  void addRequestListener(HTTPRequestListener *listener)
+  {
+    httpRequestListenerList.add(listener);
+  }    
 
-	void removeRequestListener(HTTPRequestListener *listener)
-	{
-		httpRequestListenerList.remove(listener);
-	}		
+  void removeRequestListener(HTTPRequestListener *listener)
+  {
+    httpRequestListenerList.remove(listener);
+  }    
 
-	void performRequestListener(HTTPRequest *httpReq)
-	{
-		int listenerSize = httpRequestListenerList.size();
-		for (int n=0; n<listenerSize; n++) {
-			HTTPRequestListener *listener = (HTTPRequestListener *)httpRequestListenerList.get(n);
-			listener->httpRequestRecieved(httpReq);
-		}
-	}		
+  void performRequestListener(HTTPRequest *httpReq)
+  {
+    int listenerSize = httpRequestListenerList.size();
+    for (int n=0; n<listenerSize; n++) {
+      HTTPRequestListener *listener = (HTTPRequestListener *)httpRequestListenerList.get(n);
+      listener->httpRequestRecieved(httpReq);
+    }
+  }    
 
-	////////////////////////////////////////////////
-	//	run	
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  run  
+  ////////////////////////////////////////////////
 
-    bool start();
-	void run();
-    bool stop();
+  bool start();
+  void run();
+  bool stop();
 
 };
 

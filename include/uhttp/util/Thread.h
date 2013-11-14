@@ -34,41 +34,41 @@ namespace uHTTP {
 class Thread
 {
 #if defined(WIN32) && !defined(ITRON)
-	HANDLE	hThread;
-	DWORD	threadID;
+  HANDLE  hThread;
+  DWORD  threadID;
 #elif defined(BTRON)
-	W taskID;
+  W taskID;
 #elif defined(ITRON)
-	ER_ID	taskID;
+  ER_ID  taskID;
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-	ID taskID;
+  ID taskID;
 #elif defined(TENGINE) && defined(PROCESS_BASE)
-	WERR taskID;
+  WERR taskID;
 #else
-	pthread_t thread;
+  pthread_t thread;
 #endif
-	bool runnableFlag;
+  bool runnableFlag;
 
 private:
 
-	void setRunnableFlag(bool flag);
+  void setRunnableFlag(bool flag);
 
 public:
 
-	Thread();
-	virtual ~Thread();
+  Thread();
+  virtual ~Thread();
 
-	virtual bool start();
-	virtual void run() = 0;
-	bool isRunnable();
-	virtual bool stop();
+  virtual bool start();
+  virtual void run() = 0;
+  bool isRunnable();
+  virtual bool stop();
 
-	bool restart()
-	{
-		stop();
-		start();
-		return true;
-	}
+  bool restart()
+  {
+    stop();
+    start();
+    return true;
+  }
 };
 
 }

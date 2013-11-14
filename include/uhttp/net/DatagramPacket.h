@@ -20,88 +20,88 @@ namespace uHTTP {
 
 class DatagramPacket
 {
-	InetSocketAddress sockAddr;
-	std::string data;
+  InetSocketAddress sockAddr;
+  std::string data;
 
 public:
 
-	DatagramPacket()
-	{
-	}
+  DatagramPacket()
+  {
+  }
 
-	DatagramPacket(const std::string &msg, InetSocketAddress *addr)
-	{
-		setData(msg);
-		setSocketAddress(addr);
-	}
+  DatagramPacket(const std::string &msg, InetSocketAddress *addr)
+  {
+    setData(msg);
+    setSocketAddress(addr);
+  }
 
-	~DatagramPacket()
-	{
-	}
+  ~DatagramPacket()
+  {
+  }
 
-	////////////////////////////////////////////////
-	//	date
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  date
+  ////////////////////////////////////////////////
 
-	void setData(const std::string &value)
-	{
-		data = value;
-	}
+  void setData(const std::string &value)
+  {
+    data = value;
+  }
 
-	const char *getData()
-	{
-		return data.c_str();
-	}
+  const char *getData()
+  {
+    return data.c_str();
+  }
 
-	int getLength()
-	{
-		return (int)data.length();
-	}
+  int getLength()
+  {
+    return (int)data.length();
+  }
 
-	////////////////////////////////////////////////
-	//	address/port
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  address/port
+  ////////////////////////////////////////////////
 
-	void setSocketAddress(InetSocketAddress *addr)
-	{
-		sockAddr.set(addr);
-	}
+  void setSocketAddress(InetSocketAddress *addr)
+  {
+    sockAddr.set(addr);
+  }
 
-	InetSocketAddress *getSocketAddress()
-	{
-		return &sockAddr;
-	}
+  InetSocketAddress *getSocketAddress()
+  {
+    return &sockAddr;
+  }
 
-	void setAddress(const std::string &addr)
-	{
-		sockAddr.setAddress(addr);
-	}
+  void setAddress(const std::string &addr)
+  {
+    sockAddr.setAddress(addr);
+  }
 
-	void setPort(int port)
-	{
-		sockAddr.setPort(port);
-	}
+  void setPort(int port)
+  {
+    sockAddr.setPort(port);
+  }
 
-	const char *getAddress()
-	{
-		return sockAddr.getAddress();
-	}
+  const char *getAddress()
+  {
+    return sockAddr.getAddress();
+  }
 
-	int getPort()
-	{
-		return sockAddr.getPort();
-	}
+  int getPort()
+  {
+    return sockAddr.getPort();
+  }
 
-	void set(DatagramPacket *dgmPack)
-	{
-		if (dgmPack == NULL) {
-			setSocketAddress(NULL);
-			setData("");
-			return;
-		}
-		setSocketAddress(dgmPack->getSocketAddress());
-		setData(dgmPack->getData());
-	}
+  void set(DatagramPacket *dgmPack)
+  {
+    if (dgmPack == NULL) {
+      setSocketAddress(NULL);
+      setData("");
+      return;
+    }
+    setSocketAddress(dgmPack->getSocketAddress());
+    setData(dgmPack->getData());
+  }
 };
 
 }

@@ -24,24 +24,24 @@ const long SOCKET_INBUF_SIZE = 512*1024;
 
 class SocketInputStream : public uHTTP::InputStream
 {
-	Socket *sock;
-	std::string unputBuf;
-	char *inBuf;
+  Socket *sock;
+  std::string unputBuf;
+  char *inBuf;
 
 public:
 
-	SocketInputStream(Socket *sock);
+  SocketInputStream(Socket *sock);
 
-	virtual ~SocketInputStream();
+  virtual ~SocketInputStream();
 
-	ssize_t read(std::string &b, size_t len);
-	ssize_t read(char *b, size_t len);  // Not support the unput buffer;
+  ssize_t read(std::string &b, size_t len);
+  ssize_t read(char *b, size_t len);  // Not support the unput buffer;
 
-	void unread(std::string &b, size_t off, size_t len);  
+  void unread(std::string &b, size_t off, size_t len);  
 
-	long skip(long n);
+  long skip(long n);
 
-	void close();
+  void close();
 };
 
 }

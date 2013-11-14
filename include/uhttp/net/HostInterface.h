@@ -20,10 +20,10 @@ namespace uHTTP {
 
 class HostInterface {
 public:
-	static bool USE_LOOPBACK_ADDR;
-	static bool USE_ONLY_IPV4_ADDR;
-	static bool USE_ONLY_IPV6_ADDR;
-	const static char *DEFAULT_IFNAME;
+  static bool USE_LOOPBACK_ADDR;
+  static bool USE_ONLY_IPV4_ADDR;
+  static bool USE_ONLY_IPV6_ADDR;
+  const static char *DEFAULT_IFNAME;
 };
 
 int GetNHostAddresses();

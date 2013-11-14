@@ -46,117 +46,117 @@ class SocketImp
 {
 private:
 
-	int type;
-	std::string localAddr;
-	int localPort;
+  int type;
+  std::string localAddr;
+  int localPort;
 
 public:
 
-	SOCKET	sock;
+  SOCKET  sock;
 
 public:
 
-	SocketImp();
-	~SocketImp();
+  SocketImp();
+  ~SocketImp();
 
-	////////////////////////////////////////////////
-	//	Socket
-	////////////////////////////////////////////////
-
-public:
-
-	static const int STREAM;
-	static const int DGRAM;
-
-	////////////////////////////////////////////////
-	//	Socket
-	////////////////////////////////////////////////
-	
-public:
-
-	void setSocket(SOCKET value)
-	{
-		sock = value;
-	}
-
-	SOCKET getSocket()
-	{
-		return sock;
-	}
-
-	////////////////////////////////////////////////
-	// bind
-	////////////////////////////////////////////////
-	
-public:
-
-	bool isBound();
-	
-	////////////////////////////////////////////////
-	// close
-	////////////////////////////////////////////////
-
-public:
-	
-	bool close();
-	
-	////////////////////////////////////////////////
-	//	Local address/port
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Socket
+  ////////////////////////////////////////////////
 
 public:
 
-	void setLocalAddress(const std::string &addr)
-	{
-		localAddr = addr;
-		//StripIPv6ScopeID(addr, localAddr);
-	}
+  static const int STREAM;
+  static const int DGRAM;
 
-	const char *getLocalAddress()
-	{
-		return localAddr.c_str();
-	}
+  ////////////////////////////////////////////////
+  //  Socket
+  ////////////////////////////////////////////////
+  
+public:
 
-	void setLocalPort(int port)
-	{
-		localPort = port;
-	}
+  void setSocket(SOCKET value)
+  {
+    sock = value;
+  }
 
-	int getLocalPort()
-	{
-		return localPort;
-	}
+  SOCKET getSocket()
+  {
+    return sock;
+  }
 
-	////////////////////////////////////////////////
-	// Type
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  // bind
+  ////////////////////////////////////////////////
+  
+public:
+
+  bool isBound();
+  
+  ////////////////////////////////////////////////
+  // close
+  ////////////////////////////////////////////////
+
+public:
+  
+  bool close();
+  
+  ////////////////////////////////////////////////
+  //  Local address/port
+  ////////////////////////////////////////////////
+
+public:
+
+  void setLocalAddress(const std::string &addr)
+  {
+    localAddr = addr;
+    //StripIPv6ScopeID(addr, localAddr);
+  }
+
+  const char *getLocalAddress()
+  {
+    return localAddr.c_str();
+  }
+
+  void setLocalPort(int port)
+  {
+    localPort = port;
+  }
+
+  int getLocalPort()
+  {
+    return localPort;
+  }
+
+  ////////////////////////////////////////////////
+  // Type
+  ////////////////////////////////////////////////
 
 protected:
-	
-	void setType(int value)
-	{
-		type = value;
-	}
+  
+  void setType(int value)
+  {
+    type = value;
+  }
 
 public:
 
-	int getType()
-	{
-		return type;
-	}
+  int getType()
+  {
+    return type;
+  }
 
-	////////////////////////////////////////////////
-	//	Socket Option
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Socket Option
+  ////////////////////////////////////////////////
 
 public:
 
-	bool setReuseAddress(bool on);
-	void setTimeout(int timeout);
+  bool setReuseAddress(bool on);
+  void setTimeout(int timeout);
 
-	#if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
-	bool setMulticastInterface(const std::string &ifaddr);
-	#endif
+  #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
+  bool setMulticastInterface(const std::string &ifaddr);
+  #endif
 };
 
 void SocketStartup();

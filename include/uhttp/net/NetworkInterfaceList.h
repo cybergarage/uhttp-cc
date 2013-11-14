@@ -19,61 +19,61 @@ namespace uHTTP {
 
 class NetworkInterfaceList : public uHTTP::Vector 
 {
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
-	
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
+  
 public:
 
-	NetworkInterfaceList() 
-	{
-	}
-	
-	~NetworkInterfaceList() 
-	{
-		clear();
-	}
+  NetworkInterfaceList() 
+  {
+  }
+  
+  ~NetworkInterfaceList() 
+  {
+    clear();
+  }
 
-	////////////////////////////////////////////////
-	//	Methods
-	////////////////////////////////////////////////
-	
+  ////////////////////////////////////////////////
+  //  Methods
+  ////////////////////////////////////////////////
+  
 public:
 
-	NetworkInterface *getNetworkInterface(int n)
-	{
-		return (NetworkInterface *)get(n);
-	}
+  NetworkInterface *getNetworkInterface(int n)
+  {
+    return (NetworkInterface *)get(n);
+  }
 
-	void clear() 
-	{
-		int nNetIf = size();
-		for (int n=0; n<nNetIf; n++) {
-			NetworkInterface *netif = getNetworkInterface(n);
-			delete netif;
-		}
-		Vector::clear();
-	}
+  void clear() 
+  {
+    int nNetIf = size();
+    for (int n=0; n<nNetIf; n++) {
+      NetworkInterface *netif = getNetworkInterface(n);
+      delete netif;
+    }
+    Vector::clear();
+  }
 
-	void remove(NetworkInterface *netif)
-	{
-		if (netif == NULL)
-				return;
-		delete netif;
-		Vector::remove(netif);
-	}
+  void remove(NetworkInterface *netif)
+  {
+    if (netif == NULL)
+        return;
+    delete netif;
+    Vector::remove(netif);
+  }
 
-	void print()
-	{
-		int ifNum = size();
-		for (int n=0; n<ifNum; n++) {
-			NetworkInterface *netif = getNetworkInterface(n);
-			const char *addr = netif->getAddress();
-			const char *name = netif->getName();
-			int idx = netif->getIndex();
-			std::cout << "[" << n << "]" <<  addr << ", " << name << ", " << idx << std::endl;
-		}
-	}
+  void print()
+  {
+    int ifNum = size();
+    for (int n=0; n<ifNum; n++) {
+      NetworkInterface *netif = getNetworkInterface(n);
+      const char *addr = netif->getAddress();
+      const char *name = netif->getName();
+      int idx = netif->getIndex();
+      std::cout << "[" << n << "]" <<  addr << ", " << name << ", " << idx << std::endl;
+    }
+  }
 };
 
 }

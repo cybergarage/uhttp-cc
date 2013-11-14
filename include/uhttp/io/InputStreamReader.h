@@ -18,53 +18,53 @@ namespace uHTTP {
 
 class InputStreamReader : public Reader
 {
-	InputStream *in;
+  InputStream *in;
 
 public:
 
-	InputStreamReader(InputStream *in)
-	{
-		this->in = in;
-	}
+  InputStreamReader(InputStream *in)
+  {
+    this->in = in;
+  }
 
-	virtual ~InputStreamReader()
-	{
-	}
+  virtual ~InputStreamReader()
+  {
+  }
 
-	ssize_t read(std::string &b, size_t len)
-	{
-		return in->read(b, len);
-	}
+  ssize_t read(std::string &b, size_t len)
+  {
+    return in->read(b, len);
+  }
 
-	long skip(long n)
-	{
-		return in->skip(n);
-	}
+  long skip(long n)
+  {
+    return in->skip(n);
+  }
 
-	void unread(std::string &b, size_t off, size_t len)
-	{
-		in->unread(b, off, len);
-	}
+  void unread(std::string &b, size_t off, size_t len)
+  {
+    in->unread(b, off, len);
+  }
 
-	void unread(std::string &b, size_t len)
-	{
-		in->unread(b, len);
-	}
+  void unread(std::string &b, size_t len)
+  {
+    in->unread(b, len);
+  }
 
-	void unread(std::string &b)
-	{
-		in->unread(b);
-	}
+  void unread(std::string &b)
+  {
+    in->unread(b);
+  }
 
-	void unread(char c)
-	{
-		in->unread(c);
-	}
-	
-	void close()
-	{
-		in->close();
-	}
+  void unread(char c)
+  {
+    in->unread(c);
+  }
+  
+  void close()
+  {
+    in->close();
+  }
 };
 
 }

@@ -42,79 +42,79 @@ class Date
 
 protected:
 
-	SysTime sysTime;
+  SysTime sysTime;
 #if defined(TENGINE) 
-	DATE_TIM localDate;
+  DATE_TIM localDate;
 #elif defined(ITRON)
-	int year;
-	int month;
-	int day;
-	int hour;
-	int min;
-	int sec;
-	int week;
+  int year;
+  int month;
+  int day;
+  int hour;
+  int min;
+  int sec;
+  int week;
 #elif HAVE_LOCALTIME_R
-	struct tm localDate;
+  struct tm localDate;
 #else
-	struct tm *localDate;
+  struct tm *localDate;
 #endif
 
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
 
 public:
 
-	Date();
-	Date(SysTime value);
-	Date(
-		int year,
-		int month,
-		int day,
-		int hour = 0,
-		int min = 0,
-		int sec = 0);
+  Date();
+  Date(SysTime value);
+  Date(
+    int year,
+    int month,
+    int day,
+    int hour = 0,
+    int min = 0,
+    int sec = 0);
 
-	////////////////////////////////////////////////
-	//	get*
-	////////////////////////////////////////////////
-
-public:
-
-	SysTime getValue()
-	{
-		return sysTime;
-	}
-
-	////////////////////////////////////////////////
-	//	Date
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  get*
+  ////////////////////////////////////////////////
 
 public:
 
-	int getYear();
-	int getMonth();
-	int getDay();
-	int getWeekDay();
+  SysTime getValue()
+  {
+    return sysTime;
+  }
 
-	////////////////////////////////////////////////
-	//	Time
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Date
+  ////////////////////////////////////////////////
 
 public:
 
-	int getHour();
-	int getMinute();
-	int getSecond();
+  int getYear();
+  int getMonth();
+  int getDay();
+  int getWeekDay();
 
-	////////////////////////////////////////////////
-	//	Utility
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Time
+  ////////////////////////////////////////////////
+
+public:
+
+  int getHour();
+  int getMinute();
+  int getSecond();
+
+  ////////////////////////////////////////////////
+  //  Utility
+  ////////////////////////////////////////////////
 
 private:
 
 #if defined(ITRON)
-	bool time2LocalDate(SysTime sysTime);
+  bool time2LocalDate(SysTime sysTime);
 #endif
 
 };

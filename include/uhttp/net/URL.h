@@ -21,8 +21,8 @@ class URL : public URI
 
 public:
 
-	URL();
-	URL(const std::string &urlStr);
+  URL();
+  URL(const std::string &urlStr);
 };
 
 bool IsAbsoluteURL(const std::string &urlStr);

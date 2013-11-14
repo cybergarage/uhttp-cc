@@ -36,76 +36,76 @@ const char *StatusCode2String(int code);
 
 class HTTPStatus 
 {
-	std::string version;
-	int statusCode;
-	std::string reasonPhrase;
+  std::string version;
+  int statusCode;
+  std::string reasonPhrase;
 
 public:
 
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
 
-	HTTPStatus();
-	HTTPStatus(const std::string &lineStr);
-	HTTPStatus(const std::string &ver, int code, const std::string &reason);
-	
-	////////////////////////////////////////////////
-	//	Member
-	////////////////////////////////////////////////
-
-public:
-
-	void setVersion(const std::string &value)
-	{
-		this->version = value;
-	}
-		
-	void setStatusCode(int value)
-	{
-		this->statusCode = value;
-	}
-		
-	void setReasonPhrase(const std::string &value)
-	{
-		this->reasonPhrase = value;
-	}
-		
-	const char *getVersion()
-	{
-		return version.c_str();
-	}
-		
-	int getStatusCode()
-	{
-		return statusCode;
-	}
-		
-	const char *getReasonPhrase()
-	{
-		return reasonPhrase.c_str();
-	}
-
-	////////////////////////////////////////////////
-	//	Status
-	////////////////////////////////////////////////
-	
-public:
-
-	static bool isSuccessful(int statCode);
-
-	bool isSuccessful()
-	{
-		return isSuccessful(getStatusCode());
-	}
-
-	////////////////////////////////////////////////
-	//	set
-	////////////////////////////////////////////////
+  HTTPStatus();
+  HTTPStatus(const std::string &lineStr);
+  HTTPStatus(const std::string &ver, int code, const std::string &reason);
+  
+  ////////////////////////////////////////////////
+  //  Member
+  ////////////////////////////////////////////////
 
 public:
 
-	void set(const std::string &lineStr);
+  void setVersion(const std::string &value)
+  {
+    this->version = value;
+  }
+    
+  void setStatusCode(int value)
+  {
+    this->statusCode = value;
+  }
+    
+  void setReasonPhrase(const std::string &value)
+  {
+    this->reasonPhrase = value;
+  }
+    
+  const char *getVersion()
+  {
+    return version.c_str();
+  }
+    
+  int getStatusCode()
+  {
+    return statusCode;
+  }
+    
+  const char *getReasonPhrase()
+  {
+    return reasonPhrase.c_str();
+  }
+
+  ////////////////////////////////////////////////
+  //  Status
+  ////////////////////////////////////////////////
+  
+public:
+
+  static bool isSuccessful(int statCode);
+
+  bool isSuccessful()
+  {
+    return isSuccessful(getStatusCode());
+  }
+
+  ////////////////////////////////////////////////
+  //  set
+  ////////////////////////////////////////////////
+
+public:
+
+  void set(const std::string &lineStr);
 
 };
 

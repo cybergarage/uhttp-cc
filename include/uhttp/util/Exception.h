@@ -18,19 +18,19 @@ namespace uHTTP {
 
 class Exception
 {
-	std::string msg;
+  std::string msg;
 
 public:
 
-	Exception(const std::string &msg)
-	{
-		this->msg = msg;
-	}
+  Exception(const std::string &msg)
+  {
+    this->msg = msg;
+  }
 
-	const char *getMessage()
-	{
-		return msg.c_str();
-	}
+  const char *getMessage()
+  {
+    return msg.c_str();
+  }
 };
 
 }

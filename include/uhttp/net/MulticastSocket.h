@@ -23,19 +23,19 @@ class MulticastSocket : public DatagramSocket
 
 public:
 
-	MulticastSocket();
-	MulticastSocket(int port, const std::string &bindAddr);
-	~MulticastSocket();
+  MulticastSocket();
+  MulticastSocket(int port, const std::string &bindAddr);
+  ~MulticastSocket();
 
-	bool bind(int port, const std::string &addr);
-	
-	bool joinGroup(const std::string &mcastAddr, const std::string &ifAddr = NULL);
-	bool joinGroup(InetSocketAddress *mcastAddr, NetworkInterface *ifAddr)
-	{
-		return joinGroup(mcastAddr->getAddress(), ifAddr->getAddress());
-	}
+  bool bind(int port, const std::string &addr);
+  
+  bool joinGroup(const std::string &mcastAddr, const std::string &ifAddr = NULL);
+  bool joinGroup(InetSocketAddress *mcastAddr, NetworkInterface *ifAddr)
+  {
+    return joinGroup(mcastAddr->getAddress(), ifAddr->getAddress());
+  }
 
-	void setTimeToLive(int ttl);
+  void setTimeToLive(int ttl);
 };
 
 }

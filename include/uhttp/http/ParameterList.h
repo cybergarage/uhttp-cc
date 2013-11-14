@@ -22,48 +22,48 @@ class ParameterList : public uHTTP::Vector
 {
 
 public:
-	
-	ParameterList() 
-	{
-	}
-	
-	~ParameterList() 
-	{
-		int nLists = size(); 
-		for (int n=0; n<nLists; n++) {
-			Parameter *param = at(n);
-			delete param;
-		}
-	}
+  
+  ParameterList() 
+  {
+  }
+  
+  ~ParameterList() 
+  {
+    int nLists = size(); 
+    for (int n=0; n<nLists; n++) {
+      Parameter *param = at(n);
+      delete param;
+    }
+  }
 
-	Parameter *at(int n)
-	{
-		return (Parameter *)Vector::get(n);
-	}
+  Parameter *at(int n)
+  {
+    return (Parameter *)Vector::get(n);
+  }
 
-	Parameter *getParameter(int n)
-	{
-		return (Parameter *)Vector::get(n);
-	}
+  Parameter *getParameter(int n)
+  {
+    return (Parameter *)Vector::get(n);
+  }
 
-	Parameter *getParameter(const std::string &name) 
-	{
-		int nLists = size(); 
-		for (int n=0; n<nLists; n++) {
-			Parameter *param = at(n);
-			if (uHTTP::StringEquals(name, param->getName()) == true)
-				return param;
-		}
-		return NULL;
-	}
+  Parameter *getParameter(const std::string &name) 
+  {
+    int nLists = size(); 
+    for (int n=0; n<nLists; n++) {
+      Parameter *param = at(n);
+      if (uHTTP::StringEquals(name, param->getName()) == true)
+        return param;
+    }
+    return NULL;
+  }
 
-	const char *getValue(const std::string &name) 
-	{
-		Parameter *param = getParameter(name);
-		if (param == NULL)
-			return "";
-		return param->getValue();
-	}
+  const char *getValue(const std::string &name) 
+  {
+    Parameter *param = getParameter(name);
+    if (param == NULL)
+      return "";
+    return param->getValue();
+  }
 };
 
 }

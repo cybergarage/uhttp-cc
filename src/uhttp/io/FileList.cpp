@@ -14,17 +14,17 @@
 using namespace uHTTP;
 
 ////////////////////////////////////////////////
-//	Methods
+//  Methods
 ////////////////////////////////////////////////
 
 void FileList::clear() 
 {
-	int nNode = size();
-	for (int n=0; n<nNode; n++) {
-		File *file = getFile(n);
-		delete file;
-	}
-	Vector::clear();
+  int nNode = size();
+  for (int n=0; n<nNode; n++) {
+    File *file = getFile(n);
+    delete file;
+  }
+  Vector::clear();
 }
 
 

@@ -19,19 +19,19 @@ namespace uHTTP {
 
 class HTTPServerThread : public uHTTP::Thread
 {
-	uHTTP::Socket *clientSock;
-	uHTTP::HTTPServer *httpServer;
+  uHTTP::Socket *clientSock;
+  uHTTP::HTTPServer *httpServer;
 
 public:
-	
-	HTTPServerThread(uHTTP::HTTPServer *server, uHTTP::Socket *sock);
-	~HTTPServerThread();
+  
+  HTTPServerThread(uHTTP::HTTPServer *server, uHTTP::Socket *sock);
+  ~HTTPServerThread();
 
-	////////////////////////////////////////////////
-	//	run	
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  run  
+  ////////////////////////////////////////////////
 
-	void run();
+  void run();
 
 };
 

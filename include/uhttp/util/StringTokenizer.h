@@ -18,22 +18,22 @@ namespace uHTTP {
 
 class StringTokenizer
 {
-	std::string strBuf;
-	std::string strDelim;
-	std::string strCurrToken;
-	std::string strNextToken;
-	std::string::size_type lastDelimPos;
-	bool hasNextTokens;
+  std::string strBuf;
+  std::string strDelim;
+  std::string strCurrToken;
+  std::string strNextToken;
+  std::string::size_type lastDelimPos;
+  bool hasNextTokens;
 
 public:
 
-	StringTokenizer(const std::string &str, const std::string &delim);
-	~StringTokenizer();
+  StringTokenizer(const std::string &str, const std::string &delim);
+  ~StringTokenizer();
 
-	bool hasMoreTokens();
+  bool hasMoreTokens();
 
-	const char *nextToken();
-	const char *nextToken(const std::string &delim);
+  const char *nextToken();
+  const char *nextToken(const std::string &delim);
 };
 
 }

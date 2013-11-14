@@ -18,13 +18,13 @@ using namespace uHTTP;
 using namespace uHTTP;
 
 ////////////////////////////////////////////////
-//	Constructor
+//  Constructor
 ////////////////////////////////////////////////
-	
+  
 HTTPServerThread::HTTPServerThread(HTTPServer *server, Socket *sock)
 {
-	clientSock = sock;
-	httpServer = server;
+  clientSock = sock;
+  httpServer = server;
 }
 
 HTTPServerThread::~HTTPServerThread()
@@ -32,25 +32,25 @@ HTTPServerThread::~HTTPServerThread()
 }
 
 ////////////////////////////////////////////////
-//	run	
+//  run  
 ////////////////////////////////////////////////
 
 void HTTPServerThread::run()
 {
-	HTTPSocket httpSock(clientSock);
-	if (httpSock.open() == false) {
-		delete clientSock;
-		delete this;
-		return;
-	}
-	HTTPRequest httpReq;
-	httpReq.setSocket(&httpSock);
-	while (httpReq.read() == true) {
-		httpServer->performRequestListener(&httpReq);
-		if (httpReq.isKeepAlive() == false)
-			break;
-	}
-	httpSock.close();
-	delete clientSock;
-	delete this;
+  HTTPSocket httpSock(clientSock);
+  if (httpSock.open() == false) {
+    delete clientSock;
+    delete this;
+    return;
+  }
+  HTTPRequest httpReq;
+  httpReq.setSocket(&httpSock);
+  while (httpReq.read() == true) {
+    httpServer->performRequestListener(&httpReq);
+    if (httpReq.isKeepAlive() == false)
+      break;
+  }
+  httpSock.close();
+  delete clientSock;
+  delete this;
 }

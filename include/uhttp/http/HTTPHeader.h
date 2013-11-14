@@ -21,52 +21,52 @@ namespace uHTTP {
 
 class HTTPHeader 
 {
-	std::string name;
-	std::string value;
+  std::string name;
+  std::string value;
 
 public:
 
-	HTTPHeader(const std::string &lineStr);
-	HTTPHeader(const std::string &name, const std::string &value);
-	HTTPHeader(HTTPHeader *header);
+  HTTPHeader(const std::string &lineStr);
+  HTTPHeader(const std::string &name, const std::string &value);
+  HTTPHeader(HTTPHeader *header);
 
-	~HTTPHeader();
+  ~HTTPHeader();
 
-	void setName(const std::string &name)
-	{
-		this->name = name;
-	}
+  void setName(const std::string &name)
+  {
+    this->name = name;
+  }
 
-	const char *getName()
-	{
-		return name.c_str();
-	}
+  const char *getName()
+  {
+    return name.c_str();
+  }
 
-	bool hasName()
-	{
-		if (name.length() <= 0)
-			return false;
-		return true;
-	}
+  bool hasName()
+  {
+    if (name.length() <= 0)
+      return false;
+    return true;
+  }
 
-	void setValue(const std::string &value)
-	{
-		this->value = value;
-	}
+  void setValue(const std::string &value)
+  {
+    this->value = value;
+  }
 
-	const char *getValue()
-	{
-		return value.c_str();
-	}
+  const char *getValue()
+  {
+    return value.c_str();
+  }
 };
 
 class HTTPHeaderList : public std::vector<HTTPHeader *>
 {
 
 public:
-	HTTPHeaderList()
-    {
-    }
+  HTTPHeaderList()
+  {
+  }
 };
 
 const char *HTTPHeaderGetValue(uHTTP::LineNumberReader *reader, const std::string &name, std::string &buf);

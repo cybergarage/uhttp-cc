@@ -27,523 +27,523 @@ namespace uHTTP {
 
 class HTTPPacket 
 {
-    HTTPHeaderList httpHeaderList;
+  HTTPHeaderList httpHeaderList;
 
-	std::string firstLine;
-	std::string content;
-	std::string version;
-	
-	uHTTP::InputStream *contentInput;
-
-public:
-	
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
-
-	HTTPPacket();
-
-	HTTPPacket(HTTPPacket *httpPacket);
-
-	HTTPPacket(HTTPSocket *httpSock);
-
-	HTTPPacket(uHTTP::InputStream *in);
-
-	~HTTPPacket();
-
-	////////////////////////////////////////////////
-	//	init
-	////////////////////////////////////////////////
+  std::string firstLine;
+  std::string content;
+  std::string version;
+  
+  uHTTP::InputStream *contentInput;
 
 public:
-	
-	void init();
+  
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
 
-	////////////////////////////////////////////////
-	//	Version
-	////////////////////////////////////////////////
+  HTTPPacket();
+
+  HTTPPacket(HTTPPacket *httpPacket);
+
+  HTTPPacket(HTTPSocket *httpSock);
+
+  HTTPPacket(uHTTP::InputStream *in);
+
+  ~HTTPPacket();
+
+  ////////////////////////////////////////////////
+  //  init
+  ////////////////////////////////////////////////
+
+public:
+  
+  void init();
+
+  ////////////////////////////////////////////////
+  //  Version
+  ////////////////////////////////////////////////
 
 public:
 
-	void setVersion(const std::string &ver)
-	{
-		version = ver;
-	}
+  void setVersion(const std::string &ver)
+  {
+    version = ver;
+  }
 
-	const char *getVersion()
-	{
-		return version.c_str();
-	}
+  const char *getVersion()
+  {
+    return version.c_str();
+  }
 
-	////////////////////////////////////////////////
-	//	set
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  set
+  ////////////////////////////////////////////////
 
-	bool set(uHTTP::InputStream *in, bool onlyHeaders = false);
+  bool set(uHTTP::InputStream *in, bool onlyHeaders = false);
 
-	bool set(uHTTP::Socket *sock, bool onlyHeaders = false);
+  bool set(uHTTP::Socket *sock, bool onlyHeaders = false);
 
-	bool set(HTTPSocket *httpSock)
-	{
-		return set(httpSock->getSocket());
-	}
+  bool set(HTTPSocket *httpSock)
+  {
+    return set(httpSock->getSocket());
+  }
 
-	void set(HTTPPacket *httpPacket);
+  void set(HTTPPacket *httpPacket);
 
-	////////////////////////////////////////////////
-	//	read
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  read
+  ////////////////////////////////////////////////
 
-	bool read(HTTPSocket *httpSock);
+  bool read(HTTPSocket *httpSock);
 
-	////////////////////////////////////////////////
-	//	String
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  String
+  ////////////////////////////////////////////////
 
-	void setFirstLine(const std::string &value)
-	{
-		firstLine = value;
-	}
-	
-	const char *getFirstLine()
-	{
-		return firstLine.c_str();
-	}
+  void setFirstLine(const std::string &value)
+  {
+    firstLine = value;
+  }
+  
+  const char *getFirstLine()
+  {
+    return firstLine.c_str();
+  }
 
-	const char *getFirstLineToken(int num, std::string &tokenBuf);
+  const char *getFirstLineToken(int num, std::string &tokenBuf);
 
-	bool hasFirstLine()
-	{
-		return (0 < firstLine.length()) ? true : false;
-	}
+  bool hasFirstLine()
+  {
+    return (0 < firstLine.length()) ? true : false;
+  }
 
-	////////////////////////////////////////////////
-	//	Header
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Header
+  ////////////////////////////////////////////////
 
-	int getNHeaders()
-	{
-		return (int)httpHeaderList.size();
-	}
+  int getNHeaders()
+  {
+    return (int)httpHeaderList.size();
+  }
 
-	void addHeader(HTTPHeader *header)
-	{
-		httpHeaderList.push_back(header);
-	}
+  void addHeader(HTTPHeader *header)
+  {
+    httpHeaderList.push_back(header);
+  }
 
-	void addHeader(const std::string &name, const std::string &value)
-	{
-		HTTPHeader *header = new HTTPHeader(name, value);
-		httpHeaderList.push_back(header);
-	}
+  void addHeader(const std::string &name, const std::string &value)
+  {
+    HTTPHeader *header = new HTTPHeader(name, value);
+    httpHeaderList.push_back(header);
+  }
 
-	HTTPHeader *getHeader(int n)
-	{
-		return (HTTPHeader *)httpHeaderList[n];
-	}
+  HTTPHeader *getHeader(int n)
+  {
+    return (HTTPHeader *)httpHeaderList[n];
+  }
 
-	HTTPHeaderList &getHeaders()
-	{
-		return httpHeaderList;
-	}
-    
-	HTTPHeader *getHeader(const std::string &name);
+  HTTPHeaderList &getHeaders()
+  {
+    return httpHeaderList;
+  }
+  
+  HTTPHeader *getHeader(const std::string &name);
 
-	void clearHeaders();
+  void clearHeaders();
 
-	bool hasHeader(const std::string &name)
-	{
-		return (getHeader(name) != NULL) ? true : false;
-	}
+  bool hasHeader(const std::string &name)
+  {
+    return (getHeader(name) != NULL) ? true : false;
+  }
 
-	void setHeader(const std::string &name, const std::string &value);
-	void setHeader(const std::string &name, int value);
-	void setHeader(const std::string &name, long value);
+  void setHeader(const std::string &name, const std::string &value);
+  void setHeader(const std::string &name, int value);
+  void setHeader(const std::string &name, long value);
 #if defined(__USE_ISOC99)
-	void setHeader(const std::string &name, long long value);
+  void setHeader(const std::string &name, long long value);
 #elif defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
-	void setHeader(const std::string &name, __int64 value);
+  void setHeader(const std::string &name, __int64 value);
 #endif
 
-	void setHeader(HTTPHeader *header)
-	{
-		setHeader(header->getName(), header->getValue());
-	}
+  void setHeader(HTTPHeader *header)
+  {
+    setHeader(header->getName(), header->getValue());
+  }
 
-	const char *getHeaderValue(const std::string &name)
-	{
-		HTTPHeader *header = getHeader(name);
-		if (header == NULL)
-			return "";
-		return header->getValue();
-	}
+  const char *getHeaderValue(const std::string &name)
+  {
+    HTTPHeader *header = getHeader(name);
+    if (header == NULL)
+      return "";
+    return header->getValue();
+  }
 
-	////////////////////////////////////////////////
-	// set*Value
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  // set*Value
+  ////////////////////////////////////////////////
 
-	void setStringHeader(const std::string &name, const std::string &value, const char startWith, const char endWith);
+  void setStringHeader(const std::string &name, const std::string &value, const char startWith, const char endWith);
 
-	void setStringHeader(const std::string &name, const std::string &value)
-	{
-		setStringHeader(name, value, '\"', '\"');
-	}
+  void setStringHeader(const std::string &name, const std::string &value)
+  {
+    setStringHeader(name, value, '\"', '\"');
+  }
 
-	const char *getStringHeaderValue(const std::string &name, const char startWith, const char endWith, std::string &buf);
-	
-	const char *getStringHeaderValue(const std::string &name, std::string &buf)
-	{
-		return getStringHeaderValue(name, '\"', '\"', buf);
-	}
+  const char *getStringHeaderValue(const std::string &name, const char startWith, const char endWith, std::string &buf);
+  
+  const char *getStringHeaderValue(const std::string &name, std::string &buf)
+  {
+    return getStringHeaderValue(name, '\"', '\"', buf);
+  }
 
-	void setIntegerHeader(const std::string &name, int value)
-	{
-		setHeader(name, value);
-	}
+  void setIntegerHeader(const std::string &name, int value)
+  {
+    setHeader(name, value);
+  }
 
-	void setLongHeader(const std::string &name, long value)
-	{
-		setHeader(name, value);
-	}
+  void setLongHeader(const std::string &name, long value)
+  {
+    setHeader(name, value);
+  }
 
 #if defined(__USE_ISOC99) || (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-	#if defined(__USE_ISOC99)
-	void setLongLongHeader(const std::string &name, long long value)
-	#elif defined(WIN32)
-	void setLongLongHeader(const std::string &name, __int64 value)
-	#endif
-	{
-		setHeader(name, value);
-	}
+  #if defined(__USE_ISOC99)
+  void setLongLongHeader(const std::string &name, long long value)
+  #elif defined(WIN32)
+  void setLongLongHeader(const std::string &name, __int64 value)
+  #endif
+  {
+    setHeader(name, value);
+  }
 #endif
 
-	int getIntegerHeaderValue(const std::string &name)
-	{
-		HTTPHeader *header = getHeader(name);
-		if (header == NULL)
-			return 0;
-		return atoi(header->getValue()); 
-	}
+  int getIntegerHeaderValue(const std::string &name)
+  {
+    HTTPHeader *header = getHeader(name);
+    if (header == NULL)
+      return 0;
+    return atoi(header->getValue()); 
+  }
 
-	long getLongHeaderValue(const std::string &name)
-	{
-		HTTPHeader *header = getHeader(name);
-		if (header == NULL)
-			return 0;
-		return atol(header->getValue());
-	}
+  long getLongHeaderValue(const std::string &name)
+  {
+    HTTPHeader *header = getHeader(name);
+    if (header == NULL)
+      return 0;
+    return atol(header->getValue());
+  }
 
 #if defined(__USE_ISOC99) ||  (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-	#if defined(__USE_ISOC99)
-	long long getLongLongHeaderValue(const std::string &name)
-	#elif defined(WIN32)
-	__int64 getLongLongHeaderValue(const std::string &name)
-	#endif
-	{
-		HTTPHeader *header = getHeader(name);
-		if (header == NULL)
-			return 0;
-	#if defined(__USE_ISOC99)
-		return atoll(header->getValue());
-	#elif defined(WIN32)
-		return _atoi64(header->getValue());
-	#endif
-	}
+  #if defined(__USE_ISOC99)
+  long long getLongLongHeaderValue(const std::string &name)
+  #elif defined(WIN32)
+  __int64 getLongLongHeaderValue(const std::string &name)
+  #endif
+  {
+    HTTPHeader *header = getHeader(name);
+    if (header == NULL)
+      return 0;
+  #if defined(__USE_ISOC99)
+    return atoll(header->getValue());
+  #elif defined(WIN32)
+    return _atoi64(header->getValue());
+  #endif
+  }
 #endif
 
-	////////////////////////////////////////////////
-	//	getHeaderString
-	////////////////////////////////////////////////
-	
-	const char *getHeaderString(std::string &headerStr);
+  ////////////////////////////////////////////////
+  //  getHeaderString
+  ////////////////////////////////////////////////
+  
+  const char *getHeaderString(std::string &headerStr);
 
-	////////////////////////////////////////////////
-	//	Contents
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Contents
+  ////////////////////////////////////////////////
 
-	void setContent(const std::string &data, bool updateWithContentLength = true)
-	{
-		content = data;
-		if (updateWithContentLength == true)
-			setContentLength(content.length());
-	}
+  void setContent(const std::string &data, bool updateWithContentLength = true)
+  {
+    content = data;
+    if (updateWithContentLength == true)
+      setContentLength(content.length());
+  }
 
-	void setContent(std::string &data, bool updateWithContentLength = true)
-	{
-		setContent(data.c_str(), updateWithContentLength);
-	}
+  void setContent(std::string &data, bool updateWithContentLength = true)
+  {
+    setContent(data.c_str(), updateWithContentLength);
+  }
 
-	const char *getContent()
-	{
-		return content.c_str();
-	}
+  const char *getContent()
+  {
+    return content.c_str();
+  }
 
-	bool hasContent()
-	{
-		return (content.length() > 0) ? true : false;
-	}
+  bool hasContent()
+  {
+    return (content.length() > 0) ? true : false;
+  }
 
-	////////////////////////////////////////////////
-	//	Contents (InputStream)
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Contents (InputStream)
+  ////////////////////////////////////////////////
 
-	void setContentInputStream(uHTTP::InputStream *in)
-	{
-		contentInput = in;
-	}
+  void setContentInputStream(uHTTP::InputStream *in)
+  {
+    contentInput = in;
+  }
 
-	uHTTP::InputStream *getContentInputStream()
-	{
-		return contentInput;
-	}
+  uHTTP::InputStream *getContentInputStream()
+  {
+    return contentInput;
+  }
 
-	bool hasContentInputStream()
-	{
-		return (contentInput != NULL) ? true : false;
-	}
+  bool hasContentInputStream()
+  {
+    return (contentInput != NULL) ? true : false;
+  }
 
-	////////////////////////////////////////////////
-	//	ContentType
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  ContentType
+  ////////////////////////////////////////////////
 
-	void setContentType(const std::string &type)
-	{
-		setHeader(HTTP::CONTENT_TYPE, type);
-	}
+  void setContentType(const std::string &type)
+  {
+    setHeader(HTTP::CONTENT_TYPE, type);
+  }
 
-	const char *getContentType()
-	{
-		return getHeaderValue(HTTP::CONTENT_TYPE);
-	}
+  const char *getContentType()
+  {
+    return getHeaderValue(HTTP::CONTENT_TYPE);
+  }
 
-	const char *getCharSet(std::string &buf);
+  const char *getCharSet(std::string &buf);
 
-	////////////////////////////////////////////////
-	//	ContentLength
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  ContentLength
+  ////////////////////////////////////////////////
 
 #if defined(__USE_ISOC99) || (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-	#if defined(__USE_ISOC99)
-	void setContentLength(long long len)
-	#elif defined(WIN32)
-	void setContentLength(__int64 len)
-	#endif
-	{
-		setLongLongHeader(HTTP::CONTENT_LENGTH, len);
-	}
+  #if defined(__USE_ISOC99)
+  void setContentLength(long long len)
+  #elif defined(WIN32)
+  void setContentLength(__int64 len)
+  #endif
+  {
+    setLongLongHeader(HTTP::CONTENT_LENGTH, len);
+  }
 
-	#if defined(__USE_ISOC99)
-	long long getContentLength()
-	#elif defined(WIN32)
-	__int64 getContentLength()
-	#endif
-	{
-		return getLongLongHeaderValue(HTTP::CONTENT_LENGTH);
-	}
+  #if defined(__USE_ISOC99)
+  long long getContentLength()
+  #elif defined(WIN32)
+  __int64 getContentLength()
+  #endif
+  {
+    return getLongLongHeaderValue(HTTP::CONTENT_LENGTH);
+  }
 
 #else
 
-	void setContentLength(long len)
-	{
-		setLongHeader(HTTP::CONTENT_LENGTH, len);
-	}
+  void setContentLength(long len)
+  {
+    setLongHeader(HTTP::CONTENT_LENGTH, len);
+  }
 
-	long getContentLength()
-	{
-		return getLongHeaderValue(HTTP::CONTENT_LENGTH);
-	}
+  long getContentLength()
+  {
+    return getLongHeaderValue(HTTP::CONTENT_LENGTH);
+  }
 
 #endif
 
-	////////////////////////////////////////////////
-	//	Connection
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Connection
+  ////////////////////////////////////////////////
 
 public:
 
-	bool hasConnection()
-	{
-		return hasHeader(HTTP::CONNECTION);
-	}
+  bool hasConnection()
+  {
+    return hasHeader(HTTP::CONNECTION);
+  }
 
-	void setConnection(const std::string &value)
-	{
-		setHeader(HTTP::CONNECTION, value);
-	}
+  void setConnection(const std::string &value)
+  {
+    setHeader(HTTP::CONNECTION, value);
+  }
 
-	const char *getConnection()
-	{
-		return getHeaderValue(HTTP::CONNECTION);
-	}
+  const char *getConnection()
+  {
+    return getHeaderValue(HTTP::CONNECTION);
+  }
 
-	bool isCloseConnection();
+  bool isCloseConnection();
 
-	bool isKeepAliveConnection();
+  bool isKeepAliveConnection();
 
-	////////////////////////////////////////////////
-	//	ContentRange
-	////////////////////////////////////////////////
-
-public:
-
-	bool hasContentRange();
-	
-	void setContentRange(long firstPos, long lastPos, long length);
-
-	void getContentRange(long range[]);
-	
-	long getContentRangeFirstPosition()
-	{
-		long range[3];
-		getContentRange(range);
-		return range[0];
-	}
-
-	long getContentRangeLastPosition()
-	{
-		long range[3];
-		getContentRange(range);
-		return range[1];
-	}
-
-	long getContentRangeInstanceLength()
-	{
-		long range[3];
-		getContentRange(range);
-		return range[2];
-	}
-
-	////////////////////////////////////////////////
-	//	CacheControl
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  ContentRange
+  ////////////////////////////////////////////////
 
 public:
 
-	void setCacheControl(const std::string &directive)
-	{
-		setHeader(HTTP::CACHE_CONTROL, directive);
-	}
-	
-	void setCacheControl(const std::string &directive, int value);
-	
-	void setCacheControl(int value)
-	{
-		setCacheControl(HTTP::MAX_AGE, value);
-	}
+  bool hasContentRange();
+  
+  void setContentRange(long firstPos, long lastPos, long length);
 
-	const char *getCacheControl()
-	{
-		return getHeaderValue(HTTP::CACHE_CONTROL);
-	}
+  void getContentRange(long range[]);
+  
+  long getContentRangeFirstPosition()
+  {
+    long range[3];
+    getContentRange(range);
+    return range[0];
+  }
 
-	////////////////////////////////////////////////
-	//	User-Agent
-	////////////////////////////////////////////////
+  long getContentRangeLastPosition()
+  {
+    long range[3];
+    getContentRange(range);
+    return range[1];
+  }
 
-public:
+  long getContentRangeInstanceLength()
+  {
+    long range[3];
+    getContentRange(range);
+    return range[2];
+  }
 
-	void setUserAgent(const std::string &name)
-	{
-		setHeader(HTTP::USER_AGENT, name);
-	}
-
-	const char *getUserAgent()
-	{
-		return getHeaderValue(HTTP::USER_AGENT);
-	}
-
-	////////////////////////////////////////////////
-	//	Accept
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  CacheControl
+  ////////////////////////////////////////////////
 
 public:
 
-	void setAccept(const std::string &name)
-	{
-		setHeader(HTTP::ACCEPT, name);
-	}
+  void setCacheControl(const std::string &directive)
+  {
+    setHeader(HTTP::CACHE_CONTROL, directive);
+  }
+  
+  void setCacheControl(const std::string &directive, int value);
+  
+  void setCacheControl(int value)
+  {
+    setCacheControl(HTTP::MAX_AGE, value);
+  }
 
-	const char *getAccept()
-	{
-		return getHeaderValue(HTTP::ACCEPT);
-	}
-    
-	////////////////////////////////////////////////
-	//	Server
-	////////////////////////////////////////////////
+  const char *getCacheControl()
+  {
+    return getHeaderValue(HTTP::CACHE_CONTROL);
+  }
 
-public:
-
-	void setServer(const std::string &name)
-	{
-		setHeader(HTTP::SERVER, name);
-	}
-
-	const char *getServer()
-	{
-		return getHeaderValue(HTTP::SERVER);
-	}
-
-	////////////////////////////////////////////////
-	//	Host
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  User-Agent
+  ////////////////////////////////////////////////
 
 public:
 
-	void setHost(const std::string &host, int port);
-	void setHost(const std::string &host);
+  void setUserAgent(const std::string &name)
+  {
+    setHeader(HTTP::USER_AGENT, name);
+  }
 
-	const char *getHost()
-	{
-		return getHeaderValue(HTTP::HOST);
-	}
+  const char *getUserAgent()
+  {
+    return getHeaderValue(HTTP::USER_AGENT);
+  }
 
-	////////////////////////////////////////////////
-	//	Date
-	////////////////////////////////////////////////
-
-public:
-
-	void setDate(HTTPDate *date)
-	{
-		setHeader(HTTP::DATE, date->getDateString());
-	}
-
-	const char *getDate()
-	{
-		return getHeaderValue(HTTP::DATE);
-	}
-
-	////////////////////////////////////////////////
-	//	Transfer-Encoding
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Accept
+  ////////////////////////////////////////////////
 
 public:
 
-	bool hasTransferEncoding()
-	{
-		return hasHeader(HTTP::TRANSFER_ENCODING);
-	}
+  void setAccept(const std::string &name)
+  {
+    setHeader(HTTP::ACCEPT, name);
+  }
 
-	void setTransferEncoding(const std::string &value)
-	{
-		setHeader(HTTP::TRANSFER_ENCODING, value);
-	}
-
-	const char *getTransferEncoding()
-	{
-		return getHeaderValue(HTTP::TRANSFER_ENCODING);
-	}
-
-	bool isChunked();
-
-	////////////////////////////////////////////////
-	//	Clear
-	////////////////////////////////////////////////
+  const char *getAccept()
+  {
+    return getHeaderValue(HTTP::ACCEPT);
+  }
+  
+  ////////////////////////////////////////////////
+  //  Server
+  ////////////////////////////////////////////////
 
 public:
 
-	void clear();
+  void setServer(const std::string &name)
+  {
+    setHeader(HTTP::SERVER, name);
+  }
+
+  const char *getServer()
+  {
+    return getHeaderValue(HTTP::SERVER);
+  }
+
+  ////////////////////////////////////////////////
+  //  Host
+  ////////////////////////////////////////////////
+
+public:
+
+  void setHost(const std::string &host, int port);
+  void setHost(const std::string &host);
+
+  const char *getHost()
+  {
+    return getHeaderValue(HTTP::HOST);
+  }
+
+  ////////////////////////////////////////////////
+  //  Date
+  ////////////////////////////////////////////////
+
+public:
+
+  void setDate(HTTPDate *date)
+  {
+    setHeader(HTTP::DATE, date->getDateString());
+  }
+
+  const char *getDate()
+  {
+    return getHeaderValue(HTTP::DATE);
+  }
+
+  ////////////////////////////////////////////////
+  //  Transfer-Encoding
+  ////////////////////////////////////////////////
+
+public:
+
+  bool hasTransferEncoding()
+  {
+    return hasHeader(HTTP::TRANSFER_ENCODING);
+  }
+
+  void setTransferEncoding(const std::string &value)
+  {
+    setHeader(HTTP::TRANSFER_ENCODING, value);
+  }
+
+  const char *getTransferEncoding()
+  {
+    return getHeaderValue(HTTP::TRANSFER_ENCODING);
+  }
+
+  bool isChunked();
+
+  ////////////////////////////////////////////////
+  //  Clear
+  ////////////////////////////////////////////////
+
+public:
+
+  void clear();
 
 };
 

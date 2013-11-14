@@ -35,26 +35,26 @@ class Mutex
 {
 
 #if defined(WIN32) && !defined(ITRON)
-	HANDLE	mutexID;
+  HANDLE  mutexID;
 #elif defined(BTRON)
-	WERR	mutexID;
+  WERR  mutexID;
 #elif defined(ITRON)
-	ER_ID	mutexID;
+  ER_ID  mutexID;
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-	ID mutexID;
+  ID mutexID;
 #elif defined(TENGINE) && defined(PROCESS_BASE)
-	WERR	mutexID;
+  WERR  mutexID;
 #else
-	pthread_mutex_t mutexID;
+  pthread_mutex_t mutexID;
 #endif
 
 public:
 
-	Mutex();
-	~Mutex();
+  Mutex();
+  ~Mutex();
 
-	bool lock();
-	bool unlock();
+  bool lock();
+  bool unlock();
 };
 
 }

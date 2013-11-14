@@ -23,318 +23,318 @@ namespace uHTTP {
 
 class HTTPRequest : public HTTPPacket
 {
-	std::string method;
-	std::string version;
-	std::string uri;
+  std::string method;
+  std::string version;
+  std::string uri;
 
-	std::string requestHost;
-	int requestPort;
-    
-	HTTPSocket *httpSocket;
+  std::string requestHost;
+  int requestPort;
+  
+  HTTPSocket *httpSocket;
 
-	Socket *postSock;
-	HTTPResponse httpRes;
-
-public:
-	
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
-	
-	HTTPRequest();
-	HTTPRequest(HTTPSocket *httpSock);
-	~HTTPRequest();
-	
-	////////////////////////////////////////////////
-	//	Method
-	////////////////////////////////////////////////
+  Socket *postSock;
+  HTTPResponse httpRes;
 
 public:
-
-	void setMethod(const std::string &value)
-	{
-		method = value;
-	}
-		
-	const char *getMethod(std::string &methodBuf)
-	{
-		if (0 < method.length()) {
-			methodBuf = method;
-			return methodBuf.c_str();
-		}
-		return getFirstLineToken(0, methodBuf);
-	}
-
-	bool isMethod(const std::string &value);
-
-	bool isGetRequest()
-	{
-		return isMethod(HTTP::GET);
-	}
-
-	bool isPutRequest()
-	{
-		return isMethod(HTTP::PUT);
-	}
-    
-	bool isPostRequest()
-	{
-		return isMethod(HTTP::POST);
-	}
-
-	bool isHeadRequest()
-	{
-		return isMethod(HTTP::HEAD);
-	}
-
-	bool isDeleteRequest()
-	{
-		return isMethod(HTTP::DELETE);
-	}
-    
-	bool isUpdateRequest()
-	{
-		return isMethod(HTTP::UPDATE);
-	}
-    
-	bool isSubscribeRequest()
-	{
-		return isMethod(HTTP::SUBSCRIBE);
-	}
-
-	bool isUnsubscribeRequest()
-	{
-		return isMethod(HTTP::UNSUBSCRIBE);
-	}
-
-	bool isNotifyRequest()
-	{
-		return isMethod(HTTP::NOTIFY);
-	}
-
-	////////////////////////////////////////////////
-	//	URI
-	////////////////////////////////////////////////
-    
-public:
-    
-	void setURI(const std::string &value);
-	const char *getURI(std::string &uriBuf);
-	void getURI(URI &uri);
-    
-	////////////////////////////////////////////////
-	//	URL
-	////////////////////////////////////////////////
-    
-public:
-    
-	void setURL(const std::string &value);
-    void setURL(URL *url);
-    
-	////////////////////////////////////////////////
-	//	URI Parameter
-	////////////////////////////////////////////////
-	
-public:
-
-	ParameterList *getParameterList(ParameterList &paramList);
-	
-	const char *getParameterValue(const std::string &name, std::string &paramBuf)
-	{
-		ParameterList paramList;
-		getParameterList(paramList);
-		paramBuf = paramList.getValue(name);
-		return paramBuf.c_str();
-	}
-
-	////////////////////////////////////////////////
-	//	SOAPAction
-	////////////////////////////////////////////////
+  
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
+  
+  HTTPRequest();
+  HTTPRequest(HTTPSocket *httpSock);
+  ~HTTPRequest();
+  
+  ////////////////////////////////////////////////
+  //  Method
+  ////////////////////////////////////////////////
 
 public:
 
-	bool isSOAPAction()
-	{
-		return hasHeader(HTTP::SOAP_ACTION);
-	}
+  void setMethod(const std::string &value)
+  {
+    method = value;
+  }
+    
+  const char *getMethod(std::string &methodBuf)
+  {
+    if (0 < method.length()) {
+      methodBuf = method;
+      return methodBuf.c_str();
+    }
+    return getFirstLineToken(0, methodBuf);
+  }
 
-	////////////////////////////////////////////////
-	// Host / Port	
-	////////////////////////////////////////////////
-	
+  bool isMethod(const std::string &value);
+
+  bool isGetRequest()
+  {
+    return isMethod(HTTP::GET);
+  }
+
+  bool isPutRequest()
+  {
+    return isMethod(HTTP::PUT);
+  }
+  
+  bool isPostRequest()
+  {
+    return isMethod(HTTP::POST);
+  }
+
+  bool isHeadRequest()
+  {
+    return isMethod(HTTP::HEAD);
+  }
+
+  bool isDeleteRequest()
+  {
+    return isMethod(HTTP::DELETE);
+  }
+  
+  bool isUpdateRequest()
+  {
+    return isMethod(HTTP::UPDATE);
+  }
+  
+  bool isSubscribeRequest()
+  {
+    return isMethod(HTTP::SUBSCRIBE);
+  }
+
+  bool isUnsubscribeRequest()
+  {
+    return isMethod(HTTP::UNSUBSCRIBE);
+  }
+
+  bool isNotifyRequest()
+  {
+    return isMethod(HTTP::NOTIFY);
+  }
+
+  ////////////////////////////////////////////////
+  //  URI
+  ////////////////////////////////////////////////
+  
+public:
+  
+  void setURI(const std::string &value);
+  const char *getURI(std::string &uriBuf);
+  void getURI(URI &uri);
+  
+  ////////////////////////////////////////////////
+  //  URL
+  ////////////////////////////////////////////////
+  
+public:
+  
+  void setURL(const std::string &value);
+  void setURL(URL *url);
+  
+  ////////////////////////////////////////////////
+  //  URI Parameter
+  ////////////////////////////////////////////////
+  
 public:
 
-	void setRequestHost(const std::string &host)
-	{
-		requestHost = host;
-	}
+  ParameterList *getParameterList(ParameterList &paramList);
+  
+  const char *getParameterValue(const std::string &name, std::string &paramBuf)
+  {
+    ParameterList paramList;
+    getParameterList(paramList);
+    paramBuf = paramList.getValue(name);
+    return paramBuf.c_str();
+  }
 
-	const char *getRequestHost()
-	{
-		return requestHost.c_str();
-	}
-
-	void setRequestPort(int host)
-	{
-		requestPort = host;
-	}
-
-	int getRequestPort()
-	{
-		return requestPort;
-	}
-	
-	////////////////////////////////////////////////
-	//	Socket
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  SOAPAction
+  ////////////////////////////////////////////////
 
 public:
 
-	void setSocket(HTTPSocket *value)
-	{
-		httpSocket = value;
-	}
-		
-	HTTPSocket *getSocket()
-	{
-		return httpSocket;
-	}
+  bool isSOAPAction()
+  {
+    return hasHeader(HTTP::SOAP_ACTION);
+  }
 
-	/////////////////////////// /////////////////////
-	//	local address/port
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  // Host / Port  
+  ////////////////////////////////////////////////
+  
+public:
+
+  void setRequestHost(const std::string &host)
+  {
+    requestHost = host;
+  }
+
+  const char *getRequestHost()
+  {
+    return requestHost.c_str();
+  }
+
+  void setRequestPort(int host)
+  {
+    requestPort = host;
+  }
+
+  int getRequestPort()
+  {
+    return requestPort;
+  }
+  
+  ////////////////////////////////////////////////
+  //  Socket
+  ////////////////////////////////////////////////
 
 public:
 
-	const char *getLocalAddress()
-	{
-		return getSocket()->getLocalAddress();	
-	}
+  void setSocket(HTTPSocket *value)
+  {
+    httpSocket = value;
+  }
+    
+  HTTPSocket *getSocket()
+  {
+    return httpSocket;
+  }
 
-	int getLocalPort()
-	{
-		return getSocket()->getLocalPort();	
-	}
-
-	////////////////////////////////////////////////
-	//	parseRequest
-	////////////////////////////////////////////////
+  /////////////////////////// /////////////////////
+  //  local address/port
+  ////////////////////////////////////////////////
 
 public:
 
-	bool parseRequestLine(const std::string &lineStr);
+  const char *getLocalAddress()
+  {
+    return getSocket()->getLocalAddress();  
+  }
 
-	////////////////////////////////////////////////
-	//	getHeader
-	////////////////////////////////////////////////
+  int getLocalPort()
+  {
+    return getSocket()->getLocalPort();  
+  }
+
+  ////////////////////////////////////////////////
+  //  parseRequest
+  ////////////////////////////////////////////////
+
+public:
+
+  bool parseRequestLine(const std::string &lineStr);
+
+  ////////////////////////////////////////////////
+  //  getHeader
+  ////////////////////////////////////////////////
 
 private:
 
-	const char *getHTTPVersion(std::string &verBuf);
+  const char *getHTTPVersion(std::string &verBuf);
 
 public:
 
-    const char *getRequestLine(std::string &requestLineBuf);
-	const char *getHeader(std::string &headerBuf);
+  const char *getRequestLine(std::string &requestLineBuf);
+  const char *getHeader(std::string &headerBuf);
 
-	////////////////////////////////////////////////
-	//	isKeepAlive
-	////////////////////////////////////////////////
-	
-public:
-
-	bool isKeepAlive();
-
-	////////////////////////////////////////////////
-	//	read
-	////////////////////////////////////////////////
-
-public:
-
-	bool read()
-	{
-		return HTTPPacket::read(getSocket());
-	}
-
-	////////////////////////////////////////////////
-	//	POST (Response)
-	////////////////////////////////////////////////
-
-public:
-
-	bool post(HTTPResponse *httpRes, bool isOnlyHeader = false);
-
-	////////////////////////////////////////////////
-	//	POST (Request)
-	////////////////////////////////////////////////
-
-public:
-
-	HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive);
-
-	HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes)
-	{
-		return post(host, port, httpRes, false);
-	}
-
-	HTTPResponse *post(const std::string &host, int port, bool isKeepAlive)
-	{
-		return post(host, port, &httpRes, isKeepAlive);
-	}
-
-	HTTPResponse *post(const std::string &host, int port)
-	{
-		return post(host, port, false);
-	}
-
-  	HTTPResponse *post(bool isKeepAlive = false) {
-        return post(getRequestHost(), getRequestPort(), &httpRes, isKeepAlive);
-    }
+  ////////////////////////////////////////////////
+  //  isKeepAlive
+  ////////////////////////////////////////////////
   
-	////////////////////////////////////////////////
-	//	set
-	////////////////////////////////////////////////
+public:
+
+  bool isKeepAlive();
+
+  ////////////////////////////////////////////////
+  //  read
+  ////////////////////////////////////////////////
 
 public:
 
-	void set(HTTPRequest *httpReq)
-	{
-		HTTPPacket::set((HTTPPacket *)httpReq);
-		setSocket(httpReq->getSocket());
-	}
+  bool read()
+  {
+    return HTTPPacket::read(getSocket());
+  }
 
-	////////////////////////////////////////////////
-	//	OK/BAD_REQUEST
-	////////////////////////////////////////////////
-
-public:
-
-	bool returnResponse(int statusCode);
-
-	bool returnOK()
-	{
-		return returnResponse(HTTP::OK_REQUEST);
-	}
-
-	bool returnBadRequest()
-	{
-		return returnResponse(HTTP::BAD_REQUEST);
-	}
-
-	bool returnNotFound()
-	{
-		return returnResponse(HTTP::NOT_FOUND);
-	}
-    
-	////////////////////////////////////////////////
-	//	toString
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  POST (Response)
+  ////////////////////////////////////////////////
 
 public:
 
-	const char *toString(std::string &buf);
+  bool post(HTTPResponse *httpRes, bool isOnlyHeader = false);
 
-	void print();
+  ////////////////////////////////////////////////
+  //  POST (Request)
+  ////////////////////////////////////////////////
+
+public:
+
+  HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive);
+
+  HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes)
+  {
+    return post(host, port, httpRes, false);
+  }
+
+  HTTPResponse *post(const std::string &host, int port, bool isKeepAlive)
+  {
+    return post(host, port, &httpRes, isKeepAlive);
+  }
+
+  HTTPResponse *post(const std::string &host, int port)
+  {
+    return post(host, port, false);
+  }
+
+    HTTPResponse *post(bool isKeepAlive = false) {
+    return post(getRequestHost(), getRequestPort(), &httpRes, isKeepAlive);
+  }
+  
+  ////////////////////////////////////////////////
+  //  set
+  ////////////////////////////////////////////////
+
+public:
+
+  void set(HTTPRequest *httpReq)
+  {
+    HTTPPacket::set((HTTPPacket *)httpReq);
+    setSocket(httpReq->getSocket());
+  }
+
+  ////////////////////////////////////////////////
+  //  OK/BAD_REQUEST
+  ////////////////////////////////////////////////
+
+public:
+
+  bool returnResponse(int statusCode);
+
+  bool returnOK()
+  {
+    return returnResponse(HTTP::OK_REQUEST);
+  }
+
+  bool returnBadRequest()
+  {
+    return returnResponse(HTTP::BAD_REQUEST);
+  }
+
+  bool returnNotFound()
+  {
+    return returnResponse(HTTP::NOT_FOUND);
+  }
+  
+  ////////////////////////////////////////////////
+  //  toString
+  ////////////////////////////////////////////////
+
+public:
+
+  const char *toString(std::string &buf);
+
+  void print();
 
 };
 

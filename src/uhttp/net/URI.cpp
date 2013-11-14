@@ -34,7 +34,7 @@ const char *uHTTP::URI::SHARP_DELIM = "#";
 const char *uHTTP::URI::QUESTION_DELIM = "?";
 
 ////////////////////////////////////////////////
-//	uHTTP::URI::URI
+//  uHTTP::URI::URI
 ////////////////////////////////////////////////
 
 uHTTP::URI::URI()
@@ -43,7 +43,7 @@ uHTTP::URI::URI()
 
 uHTTP::URI::URI(const std::string &value)
 {
-	setString(value);
+  setString(value);
 }
 
 ////////////////////////////////////////////////
@@ -52,78 +52,78 @@ uHTTP::URI::URI(const std::string &value)
 
 void uHTTP::URI::setString(const std::string &value)
 {
-	uriStr = value;
+  uriStr = value;
 
-	// Protocol
-	size_t idx = uriStr.find(PROTOCOL_DELIM);
-	if (idx != std::string::npos) {
-		size_t protocolStrLen = strlen(PROTOCOL_DELIM);
-		// Thanks for Jay Deen (03/26/04)
-		protocol = uriStr.substr(0, idx/* + protocolStrLen*/);
-		idx += protocolStrLen;
-	}
-	else
-		idx = 0;
+  // Protocol
+  size_t idx = uriStr.find(PROTOCOL_DELIM);
+  if (idx != std::string::npos) {
+    size_t protocolStrLen = strlen(PROTOCOL_DELIM);
+    // Thanks for Jay Deen (03/26/04)
+    protocol = uriStr.substr(0, idx/* + protocolStrLen*/);
+    idx += protocolStrLen;
+  }
+  else
+    idx = 0;
 
-	// User (Password)
-	size_t atIdx = uriStr.find(USER_DELIM, idx);
-	if (atIdx != (int)std::string::npos) {
-		std::string userPassStr = uriStr.substr(idx, atIdx - idx);
-		size_t colonIdx = userPassStr.find(COLON_DELIM);
-		if (colonIdx != std::string::npos) {
-			user = userPassStr.substr(0, colonIdx);
-			password = userPassStr.substr(colonIdx + 1, userPassStr.length() - colonIdx -1);
-		}
-		else
-			user = userPassStr;
-		idx = atIdx + 1;
-	}
-
-	// Host (Port)
-	size_t shashIdx = uriStr.find(SLASH_DELIM, idx);
-	if (shashIdx != std::string::npos)
-		host = uriStr.substr(idx, shashIdx - idx);
-	else
-		host = uriStr.substr(idx, uriStr.length() - idx);
-	size_t colonIdx = host.rfind(COLON_DELIM);
-	size_t eblacketIdx = host.rfind(EBLACET_DELIM);
-	if (colonIdx != std::string::npos && ((eblacketIdx == std::string::npos) || (eblacketIdx < colonIdx))) {
-		std::string hostStr = host;
-		host = hostStr.substr(0, colonIdx);
-		if (0 < host.length()) {
-			if (host.at(0) == '[' && host.at(host.length()-1) == ']')
-				host = host.substr(1, colonIdx-2);
-		}
-		std::string portStr = hostStr.substr(colonIdx + 1, hostStr.length() - colonIdx -1);
-		port = atoi(portStr.c_str());
-	}
-	else {
-		port = URI_KNKOWN_PORT;
-        if (isHTTP())
-            port = HTTP_PORT;
-        else if (isHTTPS())
-            port = HTTPS_PORT;
+  // User (Password)
+  size_t atIdx = uriStr.find(USER_DELIM, idx);
+  if (atIdx != (int)std::string::npos) {
+    std::string userPassStr = uriStr.substr(idx, atIdx - idx);
+    size_t colonIdx = userPassStr.find(COLON_DELIM);
+    if (colonIdx != std::string::npos) {
+      user = userPassStr.substr(0, colonIdx);
+      password = userPassStr.substr(colonIdx + 1, userPassStr.length() - colonIdx -1);
     }
-    
-	if (shashIdx == (int)std::string::npos)
-		return;
-	idx = shashIdx/* + 1*/;
+    else
+      user = userPassStr;
+    idx = atIdx + 1;
+  }
 
-	// Path (Query/Fragment)
-	path = uriStr.substr(idx, uriStr.length() - idx);
-	size_t sharpIdx = path.find(SHARP_DELIM);
-	if (sharpIdx != std::string::npos) {
-		std::string pathStr = path;
-		path = pathStr.substr(0, sharpIdx);
-		fragment = pathStr.substr(sharpIdx + 1, pathStr.length() - sharpIdx -1);
-	}
-	size_t questionIdx = path.find(QUESTION_DELIM);
-	if (questionIdx != std::string::npos) {
-		std::string pathStr = path;
-		path = pathStr.substr(0, questionIdx);
-		query = pathStr.substr(questionIdx + 1, pathStr.length() - questionIdx -1);
-	}
-	
+  // Host (Port)
+  size_t shashIdx = uriStr.find(SLASH_DELIM, idx);
+  if (shashIdx != std::string::npos)
+    host = uriStr.substr(idx, shashIdx - idx);
+  else
+    host = uriStr.substr(idx, uriStr.length() - idx);
+  size_t colonIdx = host.rfind(COLON_DELIM);
+  size_t eblacketIdx = host.rfind(EBLACET_DELIM);
+  if (colonIdx != std::string::npos && ((eblacketIdx == std::string::npos) || (eblacketIdx < colonIdx))) {
+    std::string hostStr = host;
+    host = hostStr.substr(0, colonIdx);
+    if (0 < host.length()) {
+      if (host.at(0) == '[' && host.at(host.length()-1) == ']')
+        host = host.substr(1, colonIdx-2);
+    }
+    std::string portStr = hostStr.substr(colonIdx + 1, hostStr.length() - colonIdx -1);
+    port = atoi(portStr.c_str());
+  }
+  else {
+    port = URI_KNKOWN_PORT;
+    if (isHTTP())
+      port = HTTP_PORT;
+    else if (isHTTPS())
+      port = HTTPS_PORT;
+  }
+  
+  if (shashIdx == (int)std::string::npos)
+    return;
+  idx = shashIdx/* + 1*/;
+
+  // Path (Query/Fragment)
+  path = uriStr.substr(idx, uriStr.length() - idx);
+  size_t sharpIdx = path.find(SHARP_DELIM);
+  if (sharpIdx != std::string::npos) {
+    std::string pathStr = path;
+    path = pathStr.substr(0, sharpIdx);
+    fragment = pathStr.substr(sharpIdx + 1, pathStr.length() - sharpIdx -1);
+  }
+  size_t questionIdx = path.find(QUESTION_DELIM);
+  if (questionIdx != std::string::npos) {
+    std::string pathStr = path;
+    path = pathStr.substr(0, questionIdx);
+    query = pathStr.substr(questionIdx + 1, pathStr.length() - questionIdx -1);
+  }
+  
 }
 
 ////////////////////////////////////////////////
@@ -132,9 +132,9 @@ void uHTTP::URI::setString(const std::string &value)
 
 bool uHTTP::URI::IsAbsoluteURI()
 {
-	if (0 < protocol.length())
-		return true;
-	return false;
+  if (0 < protocol.length())
+    return true;
+  return false;
 }
 
 ////////////////////////////////////////////////
@@ -144,15 +144,15 @@ bool uHTTP::URI::IsAbsoluteURI()
 void uHTTP::URI::print()
 {
 #if !defined(CG_NOUSE_STDOUT)
-	printf("URI = %s\n", uriStr.c_str());
-	printf("  protocol = %s\n", protocol.c_str());
-	printf("  user = %s\n", user.c_str());
-	printf("  password = %s\n", password.c_str());
-	printf("  host = %s\n", host.c_str());
-	printf("  port = %d\n", port);
-	printf("  path = %s\n", path.c_str());
-	printf("  query = %s\n", query.c_str());
-	printf("  fragment = %s\n", fragment.c_str());
+  printf("URI = %s\n", uriStr.c_str());
+  printf("  protocol = %s\n", protocol.c_str());
+  printf("  user = %s\n", user.c_str());
+  printf("  password = %s\n", password.c_str());
+  printf("  host = %s\n", host.c_str());
+  printf("  port = %d\n", port);
+  printf("  path = %s\n", path.c_str());
+  printf("  query = %s\n", query.c_str());
+  printf("  fragment = %s\n", fragment.c_str());
 #endif
 }
 

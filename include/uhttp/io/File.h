@@ -21,151 +21,151 @@ class FileList;
 
 class File
 {
-	std::string nameStr;
-	std::string parentStr;
+  std::string nameStr;
+  std::string parentStr;
 
-	File *absoluteFile;
+  File *absoluteFile;
 
-	////////////////////////////////////////////////
-	//	Constants
-	////////////////////////////////////////////////
-
-public:
-
-	static const char separatorChar;
-	static const char pathSeparatorChar;
-	static const char *separator;
-	static const char *pathSeparator;
-	static const char *O_TEXT;
-	static const char *O_BINARY;
-
-	////////////////////////////////////////////////
-	//	Constructor
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Constants
+  ////////////////////////////////////////////////
 
 public:
 
-	File();
-	File(const std::string &fname);
-	File(const std::string &dir, const std::string &fname);
-	File(File *file);
+  static const char separatorChar;
+  static const char pathSeparatorChar;
+  static const char *separator;
+  static const char *pathSeparator;
+  static const char *O_TEXT;
+  static const char *O_BINARY;
 
-	~File();
-
-	////////////////////////////////////////////////
-	//	Name
-	////////////////////////////////////////////////
-
-public:
-
-	void setName(const std::string &fname)
-	{
-		nameStr = fname;
-		if (absoluteFile != NULL) {
-			delete absoluteFile;
-			absoluteFile = NULL;
-		}
-	}
-
-	const char *getName()
-	{
-		return nameStr.c_str();
-	}
-
-	////////////////////////////////////////////////
-	//	get*
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Constructor
+  ////////////////////////////////////////////////
 
 public:
 
-	const char *getFileName(std::string &buf);
+  File();
+  File(const std::string &fname);
+  File(const std::string &dir, const std::string &fname);
+  File(File *file);
 
-	File *getAbsoluteFile();
+  ~File();
 
-	const char *getParent();
-
-	////////////////////////////////////////////////
-	//	exists
-	////////////////////////////////////////////////
-
-public:
-
-	static bool exists(const std::string &name);
-	
-	bool exists()
-	{
-		return exists(getName());
-	}
-
-	////////////////////////////////////////////////
-	//	load
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Name
+  ////////////////////////////////////////////////
 
 public:
 
-	static const char *load(const std::string &name, std::string &buf);
+  void setName(const std::string &fname)
+  {
+    nameStr = fname;
+    if (absoluteFile != NULL) {
+      delete absoluteFile;
+      absoluteFile = NULL;
+    }
+  }
 
-	const char *load(std::string &buf)
-	{
-		return load(getName(), buf);
-	}
+  const char *getName()
+  {
+    return nameStr.c_str();
+  }
 
-	////////////////////////////////////////////////
-	//save
-	////////////////////////////////////////////////
-
-public:
-
-	static bool save(const std::string &name, const std::string &buf);
-
-	bool save(const std::string &buf)
-	{
-		return save(getName(), buf);
-	}
-
-	////////////////////////////////////////////////
-	//	File Type
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  get*
+  ////////////////////////////////////////////////
 
 public:
 
-	const char *getSuffix(std::string &buf);
+  const char *getFileName(std::string &buf);
 
-	static bool isXMLFileName(const std::string &name);
+  File *getAbsoluteFile();
 
-	////////////////////////////////////////////////
-	//	Attributes
-	////////////////////////////////////////////////
+  const char *getParent();
 
-public:
-
-	long lastModified();
-	long length();
-
-	////////////////////////////////////////////////
-	//	Compare
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  exists
+  ////////////////////////////////////////////////
 
 public:
 
-	bool equals(File *file);
+  static bool exists(const std::string &name);
+  
+  bool exists()
+  {
+    return exists(getName());
+  }
 
-	////////////////////////////////////////////////
-	//	FileList
-	////////////////////////////////////////////////
-
-public:
-
-	int listFiles(FileList &fileList);
-
-	////////////////////////////////////////////////
-	//	is*
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  load
+  ////////////////////////////////////////////////
 
 public:
 
-	bool isDirectory();
-	bool isFile();
+  static const char *load(const std::string &name, std::string &buf);
+
+  const char *load(std::string &buf)
+  {
+    return load(getName(), buf);
+  }
+
+  ////////////////////////////////////////////////
+  //save
+  ////////////////////////////////////////////////
+
+public:
+
+  static bool save(const std::string &name, const std::string &buf);
+
+  bool save(const std::string &buf)
+  {
+    return save(getName(), buf);
+  }
+
+  ////////////////////////////////////////////////
+  //  File Type
+  ////////////////////////////////////////////////
+
+public:
+
+  const char *getSuffix(std::string &buf);
+
+  static bool isXMLFileName(const std::string &name);
+
+  ////////////////////////////////////////////////
+  //  Attributes
+  ////////////////////////////////////////////////
+
+public:
+
+  long lastModified();
+  long length();
+
+  ////////////////////////////////////////////////
+  //  Compare
+  ////////////////////////////////////////////////
+
+public:
+
+  bool equals(File *file);
+
+  ////////////////////////////////////////////////
+  //  FileList
+  ////////////////////////////////////////////////
+
+public:
+
+  int listFiles(FileList &fileList);
+
+  ////////////////////////////////////////////////
+  //  is*
+  ////////////////////////////////////////////////
+
+public:
+
+  bool isDirectory();
+  bool isFile();
 };
 
 }

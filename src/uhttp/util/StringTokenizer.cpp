@@ -17,12 +17,12 @@ using namespace uHTTP;
 
 StringTokenizer::StringTokenizer(const std::string &str, const std::string &delim)
 {
-	hasNextTokens = true;
-	strBuf = str;
-	strDelim = delim;
-	lastDelimPos = string::npos;
+  hasNextTokens = true;
+  strBuf = str;
+  strDelim = delim;
+  lastDelimPos = string::npos;
 
-	nextToken(delim);
+  nextToken(delim);
 }
 
 StringTokenizer::~StringTokenizer()
@@ -31,32 +31,32 @@ StringTokenizer::~StringTokenizer()
 
 bool StringTokenizer::hasMoreTokens()
 {
-	return hasNextTokens;
+  return hasNextTokens;
 }
 
 const char *StringTokenizer::nextToken()
 {
-	return nextToken(strDelim.c_str());
+  return nextToken(strDelim.c_str());
 }
 
 const char *StringTokenizer::nextToken(const std::string &delim)
 {
-	strCurrToken = strNextToken;
+  strCurrToken = strNextToken;
 
-	string::size_type findStartDelimPos = (lastDelimPos == string::npos) ? 0 : (lastDelimPos+1);
-	string::size_type startDelimPos = strBuf.find_first_not_of(delim, findStartDelimPos);
-	if (startDelimPos == string::npos) {
-		hasNextTokens = false;
-		strNextToken = "";
-		return strCurrToken.c_str();
-	}
+  string::size_type findStartDelimPos = (lastDelimPos == string::npos) ? 0 : (lastDelimPos+1);
+  string::size_type startDelimPos = strBuf.find_first_not_of(delim, findStartDelimPos);
+  if (startDelimPos == string::npos) {
+    hasNextTokens = false;
+    strNextToken = "";
+    return strCurrToken.c_str();
+  }
 
-	string::size_type endDelimPos = strBuf.find_first_of(delim, startDelimPos);
-	if (endDelimPos == string::npos)
-		endDelimPos = strBuf.length();
-	strNextToken = strBuf.substr(startDelimPos, endDelimPos-startDelimPos);
+  string::size_type endDelimPos = strBuf.find_first_of(delim, startDelimPos);
+  if (endDelimPos == string::npos)
+    endDelimPos = strBuf.length();
+  strNextToken = strBuf.substr(startDelimPos, endDelimPos-startDelimPos);
 
-	lastDelimPos = endDelimPos;
+  lastDelimPos = endDelimPos;
 
-	return strCurrToken.c_str();
+  return strCurrToken.c_str();
 }

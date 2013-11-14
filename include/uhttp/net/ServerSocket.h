@@ -19,8 +19,8 @@ class ServerSocket : public Socket
 {
 public:
 
-	ServerSocket();
-	~ServerSocket();
+  ServerSocket();
+  ~ServerSocket();
 
 };
 

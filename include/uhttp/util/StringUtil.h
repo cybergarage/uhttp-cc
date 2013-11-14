@@ -19,93 +19,93 @@
 namespace uHTTP {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-//	String Class
+//  String Class
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 class  String
 {
 
-	////////////////////////////////////////////////
-	//	Constants
-	////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //  Constants
+  ////////////////////////////////////////////////
 
 public:
 
-	static const int INT_STRING_MAXSIZE;
-	static const int LONG_STRING_MAXSIZE;
-	static const int LONGLONG_STRING_MAXSIZE;
-	
-	////////////////////////////////////////////////
-	//	Member
-	////////////////////////////////////////////////
+  static const int INT_STRING_MAXSIZE;
+  static const int LONG_STRING_MAXSIZE;
+  static const int LONGLONG_STRING_MAXSIZE;
+  
+  ////////////////////////////////////////////////
+  //  Member
+  ////////////////////////////////////////////////
 
 private:
 
-	std::string	mValue;
+  std::string  mValue;
 
-	
+  
 public:
 
-	String();
-	String(const std::string &value);
-	String(const std::string &value, int offset, int count);
-	String(std::string &value);
+  String();
+  String(const std::string &value);
+  String(const std::string &value, int offset, int count);
+  String(std::string &value);
 
-	~String();
+  ~String();
 
-	String operator=(String value);
-	String operator=(const std::string &value);
-	String operator=(const char *value);
-	String operator+(String value);
-	String operator+(const std::string &value);
-	String operator+(const char *value);
+  String operator=(String value);
+  String operator=(const std::string &value);
+  String operator=(const char *value);
+  String operator+(String value);
+  String operator+(const std::string &value);
+  String operator+(const char *value);
 
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
-	friend std::ostream& operator<<(std::ostream &s, String &value);
-	friend std::ostream& operator<<(std::ostream &s, String *value);
+  friend std::ostream& operator<<(std::ostream &s, String &value);
+  friend std::ostream& operator<<(std::ostream &s, String *value);
 #endif
 
-	void setValue(const std::string &value);
-	void setValue(const std::string &value, int offset, int count);
-	void append(const std::string &value);
-	void append(const char c);
+  void setValue(const std::string &value);
+  void setValue(const std::string &value, int offset, int count);
+  void append(const std::string &value);
+  void append(const char c);
 
-	const char *getValue();
-	void clear();
+  const char *getValue();
+  void clear();
 
-	int length();
+  int length();
 
-	char charAt(int  index);
-	int indexOf(const std::string &value);
+  char charAt(int  index);
+  int indexOf(const std::string &value);
 
-	const char *toUppderCase();
-	const char *toLowerCase();
-	const char *trim();
+  const char *toUppderCase();
+  const char *toLowerCase();
+  const char *trim();
 
-	int compareTo(const std::string &anotherString);
-	int compareToIgnoreCase(const std::string &anotherString);
+  int compareTo(const std::string &anotherString);
+  int compareToIgnoreCase(const std::string &anotherString);
 
-	bool equals(const std::string &anotherString) {return compareTo(anotherString) == 0 ? true : false; }
-	bool equalsIgnoreCase(const std::string &anotherString) {return compareToIgnoreCase(anotherString) == 0 ? true : false; }
+  bool equals(const std::string &anotherString) {return compareTo(anotherString) == 0 ? true : false; }
+  bool equalsIgnoreCase(const std::string &anotherString) {return compareToIgnoreCase(anotherString) == 0 ? true : false; }
 
-	void concat(const std::string &str);
-	void copyValueOf(const std::string &data);
-	void copyValueOf(const char  *data, int  offset, int count);
+  void concat(const std::string &str);
+  void copyValueOf(const std::string &data);
+  void copyValueOf(const char  *data, int  offset, int count);
 
-	int regionMatches(int toffset, const std::string &other, int ooffset, int len);
-	int regionMatchesIgnoreCase(int toffset, const std::string &other, int ooffset, int len);
+  int regionMatches(int toffset, const std::string &other, int ooffset, int len);
+  int regionMatchesIgnoreCase(int toffset, const std::string &other, int ooffset, int len);
 
-	bool startsWith(const std::string &prefix);
-	bool startsWith(String &str) {return startsWith(str.getValue());}
+  bool startsWith(const std::string &prefix);
+  bool startsWith(String &str) {return startsWith(str.getValue());}
 
-	bool endsWith(const std::string &suffix);
-	bool endsWith(String &str) {return endsWith(str.getValue());}
+  bool endsWith(const std::string &suffix);
+  bool endsWith(String &str) {return endsWith(str.getValue());}
 
-	const char *substring(int idx, int len, String &buf);
+  const char *substring(int idx, int len, String &buf);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-//	String Functions
+//  String Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool StringHasData(const std::string &value);
