@@ -48,7 +48,7 @@ public:
   static void message(const std::string &s)
   {
     if (enabled == true)
-      printf("CyberGarage message : %s\n", s.c_str());
+      printf("uHTTP message : %s\n", s.c_str());
   }
 
   static void message(std::string &s)
@@ -70,7 +70,7 @@ public:
       std::fstream fout(fname.c_str(), std::ios::out|std::ios::app);
       if (fout.fail())
         return;
-      fout << "CyberGarage message : " << s << std::endl;
+      fout << "uHTTP message : " << s << std::endl;
       fout.close();
     }
   }
@@ -78,7 +78,7 @@ public:
 
   static void warning(const std::string &s)
   {
-    printf("CyberGarage warning : %s\n", s.c_str());
+    printf("uHTTP warning : %s\n", s.c_str());
   }
 
   static void warning(std::string &s)
@@ -104,7 +104,7 @@ public:
     std::fstream fout(fname.c_str(), std::ios::out|std::ios::app);
     if (fout.fail())
       return;
-    fout << "CyberGarage warning : " << s << std::endl;
+    fout << "uHTTP warning : " << s << std::endl;
     fout.close();
   }
 #endif
