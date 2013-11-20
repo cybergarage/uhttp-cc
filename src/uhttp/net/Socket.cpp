@@ -270,14 +270,19 @@ bool Socket::connect(const std::string &addr, int port)
     return false;
 
   if (isBound() == false)
-    sock = socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0);
+    this->sock = socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0);
+
+  if (this->sock == -1) {
+    setErrorCode(errno);
+    return false;
+  }
 
 #if defined(HAVE_SO_NOSIGPIPE) || defined(__APPLE_CC__)
   int sockOpt = 1;
-  setsockopt(sock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
+  setsockopt(this->sock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
 #endif
   
-  int ret = ::connect(sock, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
+  int ret = ::connect(this->sock, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
   if (ret != 0)
     setErrorCode(errno);
   
