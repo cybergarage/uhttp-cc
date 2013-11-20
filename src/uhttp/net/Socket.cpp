@@ -52,7 +52,6 @@ Socket::Socket()
   gSocketInstanceCount++;
   
   setType(STREAM);
-  setErrorCode(0);
   
 #if defined(ITRON)
   sendWinBuf = NULL;

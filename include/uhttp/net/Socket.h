@@ -27,10 +27,6 @@ public:
   Socket();
   ~Socket();
 
-  int getErrorCode() const {
-    return this->errorCode;
-  }
-  
   bool listen();
 
   bool bind(int port, const std::string &addr);
@@ -46,14 +42,6 @@ public:
   ssize_t recv(char *buffer, size_t bufferLen);
 
 private:
-
-  void setErrorCode(int code) {
-    this->errorCode = code;
-  }
-
-private:
-
-  int errorCode;
   
 #if defined(ITRON)
   static const int WINDOW_BUF_SIZE;

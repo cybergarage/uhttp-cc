@@ -8,6 +8,7 @@
 *
 ******************************************************************/
 
+#include <errno.h>
 #include <uhttp/net/SocketImp.h>
 #include <uhttp/net/SocketUtil.h>
 #include <uhttp/net/HostInterface.h>
@@ -94,6 +95,7 @@ SocketImp::SocketImp()
   setType(0);
   setLocalAddress("");
   setLocalPort(0);
+  setErrorCode(0);
 #if (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)) && !defined(ITRON)
   setSocket(INVALID_SOCKET);
 #else
@@ -156,7 +158,10 @@ bool SocketImp::close()
   if (0 <= flag)
     fcntl(sock, F_SETFL, flag | O_NONBLOCK);
   shutdown(sock, 2);
-  ::close(sock);
+  if (::close(sock) == -1) {
+    setErrorCode(errno);
+    return false;
+  }
   #endif
   setSocket(-1);
 #endif

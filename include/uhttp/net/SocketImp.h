@@ -49,6 +49,7 @@ private:
   int type;
   std::string localAddr;
   int localPort;
+  int errorCode;
 
 public:
 
@@ -143,6 +144,22 @@ public:
   int getType()
   {
     return type;
+  }
+
+  ////////////////////////////////////////////////
+  // Error Code
+  ////////////////////////////////////////////////
+
+protected:
+  
+  void setErrorCode(int code) {
+    this->errorCode = code;
+  }
+
+public:
+
+  int getErrorCode() const {
+    return this->errorCode;
   }
 
   ////////////////////////////////////////////////
