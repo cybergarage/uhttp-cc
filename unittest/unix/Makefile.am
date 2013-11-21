@@ -8,7 +8,8 @@ uhttpcctestunit_SOURCES = \
 	../uHTTPMutexTests.cpp \
 	../uHTTPNetworkInterfaceTests.cpp \
 	../uHTTPPacketTests.cpp \
-	../uHTTPRequest.cpp \
+	../uHTTPRandomTests.cpp \
+	../uHTTPRequestTests.cpp \
 	../uHTTPServerTests.cpp \
 	../uHTTPSocketTests.cpp \
 	../uHTTPStringTests.cpp \

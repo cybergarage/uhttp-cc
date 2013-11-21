@@ -16,6 +16,7 @@ uhttpcc_source = \
 	../../src/uhttp/util/Date.cpp \
 	../../src/uhttp/util/Debug.cpp \
 	../../src/uhttp/util/Mutex.cpp \
+	../../src/uhttp/util/Random.cpp \
 	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
 	../../src/uhttp/util/Thread.cpp \

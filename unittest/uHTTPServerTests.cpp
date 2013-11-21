@@ -123,7 +123,6 @@ BOOST_AUTO_TEST_CASE(HTTPCotentRangeTest)
 // Simple Server
 //////////////////////////////////////////////////////////////////////
 
-#define UHTTP_HTTP_SERVER_TEST_PORT 8080
 #define UHTTP_HTTP_SERVER_TEST_LOOP_COUNT 100
 #define UHTTP_HTTP_SERVER_TEST_CONTENT "123456789abcedfghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -138,13 +137,18 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     HTTPServer httpServer;
     HTTPSimpleRequestListener httpSimpleReqListener;
     httpServer.addRequestListener(&httpSimpleReqListener);
+
+    Random rand (1000, 10000);
+    int httpPort = rand.rand();
     
-    BOOST_CHECK(httpServer.open(UHTTP_HTTP_SERVER_TEST_PORT));
+    BOOST_CHECK(httpServer.open(httpPort));
     BOOST_CHECK(httpServer.start());
 
     HTTPRequest httpReq;
     httpReq.setMethod(HTTP::GET);
-    httpReq.setURL("http://127.0.0.1:8080/");
+    char httpReqURL[64];
+    snprintf(httpReqURL, sizeof(httpReqURL), "http://127.0.0.1:%d", httpPort);
+    httpReq.setURL(httpReqURL);
     //httpReq.print();
     
     for (int n=0; n<UHTTP_HTTP_SERVER_TEST_LOOP_COUNT; n++) {

@@ -14,8 +14,9 @@
 		214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */; };
 		214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */; };
 		214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */; };
-		214CE3951564EDDA00115E8A /* uHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */; };
 		21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */; };
+		21AA0411183E0CEE006B0406 /* uHTTPRandomTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */; };
+		21AA0416183E0F44006B0406 /* uHTTPRequestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */; };
 		21AE154A153C2A4600F47C5C /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* libuhttp++.a */; };
 		21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */; };
 		21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */; };
@@ -59,9 +60,10 @@
 		214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPNetworkInterfaceTests.cpp; path = ../../uHTTPNetworkInterfaceTests.cpp; sourceTree = "<group>"; };
 		214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPSocketTests.cpp; path = ../../uHTTPSocketTests.cpp; sourceTree = "<group>"; };
 		214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPPacketTests.cpp; path = ../../uHTTPPacketTests.cpp; sourceTree = "<group>"; };
-		214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRequest.cpp; path = ../../uHTTPRequest.cpp; sourceTree = "<group>"; };
 		21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPServerTests.cpp; path = ../../uHTTPServerTests.cpp; sourceTree = "<group>"; };
 		21998CD41536A96A00F9454F /* uHttpUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uHttpUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRandomTests.cpp; path = ../../uHTTPRandomTests.cpp; sourceTree = "<group>"; };
+		21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRequestTests.cpp; path = ../../uHTTPRequestTests.cpp; sourceTree = "<group>"; };
 		21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPUriTests.cpp; path = ../../uHTTPUriTests.cpp; sourceTree = "<group>"; };
 		21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPTestMain.cpp; path = ../../uHTTPTestMain.cpp; sourceTree = "<group>"; };
 		21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
@@ -100,7 +102,8 @@
 		21F497DA1536AAFF0035F09A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				214CE3941564EDDA00115E8A /* uHTTPRequest.cpp */,
+				21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */,
+				21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */,
 				214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */,
 				214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */,
 				214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */,
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */,
+				21AA0411183E0CEE006B0406 /* uHTTPRandomTests.cpp in Sources */,
 				21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */,
 				21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */,
 				21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */,
@@ -210,7 +214,7 @@
 				214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */,
 				214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */,
 				214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */,
-				214CE3951564EDDA00115E8A /* uHTTPRequest.cpp in Sources */,
+				21AA0416183E0F44006B0406 /* uHTTPRequestTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

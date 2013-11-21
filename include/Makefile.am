@@ -54,6 +54,7 @@ uhttpcc_header = \
 	uhttp/util/Exception.h \
 	uhttp/util/ListenerList.h \
 	uhttp/util/Mutex.h \
+	uhttp/util/Random.h \
 	uhttp/util/StringTokenizer.h \
 	uhttp/util/StringUtil.h \
 	uhttp/util/Thread.h \

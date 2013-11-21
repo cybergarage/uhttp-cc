@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(SocketHttpTests)
 
 BOOST_AUTO_TEST_CASE(SocketHttpRepeatTests)
 {
-  for (int n=0; n<100; n++) {
+  for (int n=0; n<1000; n++) {
     SocketConnectionHttpServerTest();
   }
 }

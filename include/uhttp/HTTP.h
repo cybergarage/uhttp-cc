@@ -16,6 +16,7 @@
 #include <uhttp/io/InputStreamReader.h>
 
 #include <uhttp/util/Mutex.h>
+#include <uhttp/util/Random.h>
 #include <uhttp/util/StringTokenizer.h>
 
 #include <uhttp/net/URI.h>
