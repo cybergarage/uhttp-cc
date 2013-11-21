@@ -8,31 +8,44 @@
 *
 ******************************************************************/
 
+#ifdef HAVE_CONFIG_H
+#  include "config.h"
+#endif
+
 #include <string>
 #include <vector>
+
+#if defined(HAVE_IFADDRS_H)
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#endif
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
 #include <uhttp/HTTP.h>
+#include <uhttp/net/SocketUtil.h>
 
 using namespace std;
 using namespace uHTTP;
 
+void SocketConnectionHttpServerTest(void);
+
 BOOST_AUTO_TEST_CASE(SocketAddrInfoTests)
 {
-    /*
+#if defined(HAVE_IFADDRS_H)
 	struct addrinfo *addrInfo;
 	bool ret = toSocketAddrInfo(SOCK_STREAM, "192.168.100.10", 80, &addrInfo, true);
 	if (ret == true)
 		freeaddrinfo(addrInfo);
 	BOOST_CHECK(ret);
-    */
+#endif
 }
 
-BOOST_AUTO_TEST_CASE(SocketHTTPTests)
+void SocketConnectionHttpServerTest(void)
 {
-    const char *CG_HOST_IPADDR = "203.138.119.39";
+    const char *CG_HOST_IPADDR = "www.cybergarage.org";
     const char *TEST_HTTP_METHOD = "GET /index.html HTTP/1.0";
 
 	Socket *sock;
@@ -61,6 +74,19 @@ BOOST_AUTO_TEST_CASE(SocketHTTPTests)
 		//printf("%d:%s\n", readLen, line);
 	} while (2 < readLen);
     
-	BOOST_CHECK(sock->close() == true);
+	BOOST_CHECK(sock->close());
 	delete sock;
 }
+
+BOOST_AUTO_TEST_CASE(SocketHttpTests)
+{
+  SocketConnectionHttpServerTest();
+}
+
+BOOST_AUTO_TEST_CASE(SocketHttpRepeatTests)
+{
+  for (int n=0; n<100; n++) {
+    SocketConnectionHttpServerTest();
+  }
+}
+

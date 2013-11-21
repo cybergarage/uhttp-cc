@@ -136,9 +136,10 @@ AC_CHECK_FUNCS([uname])
 AC_ARG_ENABLE([unittests], AC_HELP_STRING([--enable-unittests], [ builds unittests (default = no) ]), [build_unittests="yes"], [])
 AM_CONDITIONAL(UNITTESTS,test "$build_unittests" = yes)
 if [ test "$build_unittests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::unit_test_framework)])
-	AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::system)])
-	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::filesystem)])
+	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::unit_test_framework)])
+	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::system)])
+	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::thread)])
+	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::filesystem)])
 fi
 
 ##############################
