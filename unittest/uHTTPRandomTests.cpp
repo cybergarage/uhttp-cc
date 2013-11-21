@@ -34,19 +34,35 @@ BOOST_AUTO_TEST_CASE(RandomTest02)
 
   int randVal = randRange.rand();
   BOOST_CHECK(minRange <= randVal);
-  BOOST_CHECK(randVal <= RAND_MAX);
+  BOOST_CHECK(randVal <= maxRange);
 }
 
 BOOST_AUTO_TEST_CASE(RandomTest03)
 {
+  int minRange = 10;
+  int maxRange = 1;
+
+  Random randRange(minRange, maxRange);
+  std::swap(minRange, maxRange);
+
+  int randVal = randRange.rand();
+  BOOST_CHECK(minRange <= randVal);
+  BOOST_CHECK(randVal <= maxRange);
+}
+
+BOOST_AUTO_TEST_CASE(RandomTest04)
+{
   Random rand;
 
-  int minRange = rand.rand();
-  int maxRange = rand.rand();
+  int randValue1 = rand.rand();
+  int randValue2 = rand.rand();
+
+  int minRange = std::min(randValue1, randValue2);
+  int maxRange = std::max(randValue1, randValue2);
 
   Random randRange(minRange, maxRange);
 
   int randVal = randRange.rand();
   BOOST_CHECK(minRange <= randVal);
-  BOOST_CHECK(randVal <= RAND_MAX);
+  BOOST_CHECK(randVal <= maxRange);
 }

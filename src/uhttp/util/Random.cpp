@@ -40,6 +40,6 @@ uHTTP::Random::~Random()
 unsigned int uHTTP::Random::rand()
 {
   double doubleRand = (this->maxRange - this->minRange) * ((double)::rand() / (double)RAND_MAX);
-  return floor(doubleRand) + this->minRange;
+  return ceil(doubleRand) + this->minRange;
 }
 

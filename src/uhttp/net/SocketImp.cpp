@@ -36,7 +36,7 @@ const int SocketImp::DGRAM = 2;
 //  SocketInit/Close
 ////////////////////////////////////////////////
 
-static int socketCnt = 0;
+static size_t socketCnt = 0;
 static Mutex sockMutex;
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
@@ -83,6 +83,11 @@ void uHTTP::SocketCleanup()
 #endif
   }
   sockMutex.unlock();
+}
+
+size_t uHTTP::SocketImp::GetInstanceCount()
+{
+  return socketCnt;
 }
 
 ////////////////////////////////////////////////

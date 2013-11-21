@@ -85,8 +85,11 @@ BOOST_AUTO_TEST_CASE(SocketHttpTests)
 
 BOOST_AUTO_TEST_CASE(SocketHttpRepeatTests)
 {
+  size_t startSocketCount = Socket::GetInstanceCount();
   for (int n=0; n<1000; n++) {
     SocketConnectionHttpServerTest();
   }
+  size_t endSocketCount = Socket::GetInstanceCount();
+  BOOST_CHECK_EQUAL(startSocketCount, endSocketCount);
 }
 

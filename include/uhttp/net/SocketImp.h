@@ -44,30 +44,27 @@ namespace uHTTP {
 
 class SocketImp
 {
-private:
-
-  int type;
-  std::string localAddr;
-  int localPort;
-  int errorCode;
-
-public:
-
-  SOCKET  sock;
-
 public:
 
   SocketImp();
   ~SocketImp();
 
   ////////////////////////////////////////////////
-  //  Socket
+  // Static Members
   ////////////////////////////////////////////////
 
 public:
 
   static const int STREAM;
   static const int DGRAM;
+
+  ////////////////////////////////////////////////
+  //  Static Methods
+  ////////////////////////////////////////////////
+
+public:
+
+  static size_t GetInstanceCount();
 
   ////////////////////////////////////////////////
   //  Socket
@@ -174,6 +171,17 @@ public:
   #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   bool setMulticastInterface(const std::string &ifaddr);
   #endif
+
+private:
+
+  int type;
+  std::string localAddr;
+  int localPort;
+  int errorCode;
+
+protected:
+  SOCKET  sock;
+
 };
 
 void SocketStartup();
