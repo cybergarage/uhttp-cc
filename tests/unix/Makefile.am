@@ -1,6 +1,6 @@
 noinst_PROGRAMS = uhttpcctestunit
 
-INCLUDES = -I$(top_srcdir)/include -I../
+AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
 uhttpcctestunit_SOURCES = \
 	../uHTTDateTests.cpp \

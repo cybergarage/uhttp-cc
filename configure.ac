@@ -8,11 +8,12 @@
 #
 ###################################################################
 
-AC_INIT(include/uhttp/http/HTTP.h)
 AC_CONFIG_AUX_DIR(config)
-
-AM_INIT_AUTOMAKE(uhttpcc, 1.0)
 AM_CONFIG_HEADER(config.h)
+
+AC_INIT([uhttpcc], [0.6])
+AC_CONFIG_SRCDIR([include/uhttp/http/HTTP.h])
+AM_INIT_AUTOMAKE
 
 ##############################
 # Checks for programs.
@@ -136,13 +137,13 @@ AC_CHECK_FUNCS([uname])
 #if [ test "$build_examples" = yes ]; then
 #fi
 
-AC_ARG_ENABLE([unittests], AC_HELP_STRING([--enable-unittests], [ builds unittests (default = no) ]), [build_unittests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_unittests" = yes)
-if [ test "$build_unittests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::unit_test_framework)])
-	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::system)])
-	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::thread)])
-	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP unittests need boost::filesystem)])
+AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ builds tests (default = no) ]), [build_tests="yes"], [])
+AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+if [ test "$build_tests" = yes ]; then
+	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::unit_test_framework)])
+	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::system)])
+	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::thread)])
+	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::filesystem)])
 fi
 
 ##############################
@@ -159,6 +160,6 @@ examples/httpget/Makefile
 examples/httpget/unix/Makefile
 examples/fsserver/Makefile
 examples/fsserver/unix/Makefile
-unittest/Makefile
-unittest/unix/Makefile
+tests/Makefile
+tests/unix/Makefile
 ])

@@ -1,6 +1,6 @@
 noinst_PROGRAMS = fsserver
 
-INCLUDES = -I$(top_srcdir)/include -I../
+AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
 fsserver_SOURCES = \
 	../FileServer.cpp \

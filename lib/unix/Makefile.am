@@ -10,7 +10,7 @@
 
 lib_LIBRARIES = libuhttp++.a
 
-INCLUDES = -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(top_srcdir)/include
 
 uhttpcc_source = \
 	../../src/uhttp/util/Date.cpp \

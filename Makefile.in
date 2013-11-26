@@ -82,7 +82,7 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	config/depcomp config/install-sh config/missing \
 	$(top_srcdir)/config/install-sh $(top_srcdir)/config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -147,7 +147,7 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
-DIST_SUBDIRS = include lib examples unittest
+DIST_SUBDIRS = include lib examples tests
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -284,12 +284,12 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 #else
-#SUBDIRS = include lib unittest
+#SUBDIRS = include lib tests
 #endif
 #if EXAMPLES
 @UNITTESTS_FALSE@SUBDIRS = include lib examples
 #if EXAMPLES
-@UNITTESTS_TRUE@SUBDIRS = include lib unittest examples
+@UNITTESTS_TRUE@SUBDIRS = include lib examples tests
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
