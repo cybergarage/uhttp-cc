@@ -128,7 +128,7 @@ bool SocketImp::isBound()
 
 bool SocketImp::close()
 {
-  if (isBound() == true)
+  if (!isBound())
     return true;
 
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
