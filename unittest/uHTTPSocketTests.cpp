@@ -10,6 +10,9 @@
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
+#elif defined(__APPLE__)
+#define HAVE_IFADDRS_H
+#define HAVE_SYS_RESOURCE_H
 #endif
 
 #include <string>
@@ -19,6 +22,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#endif
+
+#if defined(HAVE_SYS_RESOURCE_H)
+#include <sys/resource.h>
 #endif
 
 #include <boost/test/unit_test.hpp>
@@ -85,8 +92,15 @@ BOOST_AUTO_TEST_CASE(SocketHttpTests)
 
 BOOST_AUTO_TEST_CASE(SocketHttpRepeatTests)
 {
+  size_t socketRepeatCnt = 1000;
+#if defined(HAVE_SYS_RESOURCE_H)
+  struct rlimit resLimit;
+  BOOST_CHECK_EQUAL(getrlimit(RLIMIT_NOFILE, &resLimit), 0);
+  socketRepeatCnt = resLimit.rlim_cur / 2;
+#endif
+
   size_t startSocketCount = Socket::GetInstanceCount();
-  for (int n=0; n<1000; n++) {
+  for (size_t n=0; n<socketRepeatCnt; n++) {
     SocketConnectionHttpServerTest();
   }
   size_t endSocketCount = Socket::GetInstanceCount();
