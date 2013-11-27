@@ -20,7 +20,7 @@ static const char CR = '\r';
 const char *BufferedReader::readLine()
 {
   char readChar = 0;
-  lineStr = "";
+  lineStr.clear();
 
   // Read line until CR & LF
   ssize_t readLen = reader->read(lineStr, 1);
