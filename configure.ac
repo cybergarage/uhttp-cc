@@ -137,8 +137,11 @@ AC_CHECK_FUNCS([uname])
 #if [ test "$build_examples" = yes ]; then
 #fi
 
-AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ builds tests (default = no) ]), [build_tests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+AC_ARG_ENABLE([debug], AC_HELP_STRING([--enable-debug], [ enable debugging (default = no) ]), [debug="yes"], [])
+AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
+
+AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
+AM_CONDITIONAL(UNITTESTS, test "$build_tests" = "yes")
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::unit_test_framework)])
 	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::system)])

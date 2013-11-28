@@ -605,6 +605,8 @@ LTLIBOBJS
 LIBOBJS
 UNITTESTS_FALSE
 UNITTESTS_TRUE
+DEBUG_FALSE
+DEBUG_TRUE
 EGREP
 GREP
 CXXCPP
@@ -703,6 +705,7 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
+enable_debug
 enable_tests
 '
       ac_precious_vars='build_alias
@@ -1340,7 +1343,8 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
-  --enable-tests          builds tests (default = no)
+  --enable-debug          enable debugging (default = no)
+  --enable-tests          build tests (default = no)
 
 Some influential environment variables:
   CC          C compiler command
@@ -5447,12 +5451,26 @@ done
 #if [ test "$build_examples" = yes ]; then
 #fi
 
+# Check whether --enable-debug was given.
+if test "${enable_debug+set}" = set; then :
+  enableval=$enable_debug; debug="yes"
+fi
+
+ if test "$debug" = "yes"; then
+  DEBUG_TRUE=
+  DEBUG_FALSE='#'
+else
+  DEBUG_TRUE='#'
+  DEBUG_FALSE=
+fi
+
+
 # Check whether --enable-tests was given.
 if test "${enable_tests+set}" = set; then :
   enableval=$enable_tests; build_tests="yes"
 fi
 
- if test "$build_tests" = yes; then
+ if test "$build_tests" = "yes"; then
   UNITTESTS_TRUE=
   UNITTESTS_FALSE='#'
 else
@@ -5767,6 +5785,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DEBUG_TRUE}" && test -z "${DEBUG_FALSE}"; then
+  as_fn_error $? "conditional \"DEBUG\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${UNITTESTS_TRUE}" && test -z "${UNITTESTS_FALSE}"; then
