@@ -20,7 +20,7 @@ class Socket : public SocketImp
 {
 public:
 
-  static int GetInstanceCount();
+  static ssize_t GetInstanceCount();
   
 public:
 

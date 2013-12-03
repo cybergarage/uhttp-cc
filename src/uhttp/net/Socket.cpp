@@ -36,9 +36,9 @@ const int Socket::WINDOW_BUF_SIZE = 4096;
 //  Static methods
 ////////////////////////////////////////////////
 
-static int gSocketInstanceCount = 0;
+static ssize_t gSocketInstanceCount = 0;
 
-int Socket::GetInstanceCount()
+ssize_t Socket::GetInstanceCount()
 {
   return gSocketInstanceCount;
 }

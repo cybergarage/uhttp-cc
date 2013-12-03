@@ -307,7 +307,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LIBRARIES = libuhttp++.a
 @DEBUG_FALSE@AM_CPPFLAGS = -I$(top_srcdir)/include -O2
-@DEBUG_TRUE@AM_CPPFLAGS = -I$(top_srcdir)/include -O0
+@DEBUG_TRUE@AM_CPPFLAGS = -I$(top_srcdir)/include -DDEBUG -O0
 uhttpcc_source = \
 	../../src/uhttp/util/Date.cpp \
 	../../src/uhttp/util/Debug.cpp \

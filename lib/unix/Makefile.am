@@ -11,7 +11,7 @@
 lib_LIBRARIES = libuhttp++.a
 
 if DEBUG
-AM_CPPFLAGS = -I$(top_srcdir)/include -O0
+AM_CPPFLAGS = -I$(top_srcdir)/include -DDEBUG -O0
 else
 AM_CPPFLAGS = -I$(top_srcdir)/include -O2
 endif
