@@ -134,8 +134,10 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libuhttp___a_AR = $(AR) $(ARFLAGS)
 libuhttp___a_LIBADD =
-am__objects_1 = Date.$(OBJEXT) Debug.$(OBJEXT) Mutex.$(OBJEXT) \
-	Random.$(OBJEXT) StringTokenizer.$(OBJEXT) \
+am__objects_1 = Date.$(OBJEXT) Debug.$(OBJEXT) Log.$(OBJEXT) \
+	Logger.$(OBJEXT) LoggerFileTarget.$(OBJEXT) \
+	LoggerTarget.$(OBJEXT) LoggerTargetList.$(OBJEXT) \
+	Mutex.$(OBJEXT) Random.$(OBJEXT) StringTokenizer.$(OBJEXT) \
 	StringUtil.$(OBJEXT) Thread.$(OBJEXT) TimeUtil.$(OBJEXT) \
 	BufferedReader.$(OBJEXT) File.$(OBJEXT) FileList.$(OBJEXT) \
 	FileInputStream.$(OBJEXT) FileInputStream.$(OBJEXT) \
@@ -311,6 +313,11 @@ lib_LIBRARIES = libuhttp++.a
 uhttpcc_source = \
 	../../src/uhttp/util/Date.cpp \
 	../../src/uhttp/util/Debug.cpp \
+        ../../src/uhttp/util/Log.cpp \
+        ../../src/uhttp/util/Logger.cpp \
+        ../../src/uhttp/util/LoggerFileTarget.cpp \
+        ../../src/uhttp/util/LoggerTarget.cpp \
+        ../../src/uhttp/util/LoggerTargetList.cpp \
 	../../src/uhttp/util/Mutex.cpp \
 	../../src/uhttp/util/Random.cpp \
 	../../src/uhttp/util/StringTokenizer.cpp \
@@ -445,6 +452,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTPStatus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HostInterface.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Log.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Logger.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LoggerFileTarget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LoggerTarget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LoggerTargetList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MulticastSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Mutex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Random.Po@am__quote@
@@ -503,6 +515,76 @@ Debug.obj: ../../src/uhttp/util/Debug.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/Debug.cpp' object='Debug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Debug.obj `if test -f '../../src/uhttp/util/Debug.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/Debug.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/Debug.cpp'; fi`
+
+Log.o: ../../src/uhttp/util/Log.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Log.o -MD -MP -MF $(DEPDIR)/Log.Tpo -c -o Log.o `test -f '../../src/uhttp/util/Log.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/Log.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/Log.Tpo $(DEPDIR)/Log.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/Log.cpp' object='Log.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Log.o `test -f '../../src/uhttp/util/Log.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/Log.cpp
+
+Log.obj: ../../src/uhttp/util/Log.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Log.obj -MD -MP -MF $(DEPDIR)/Log.Tpo -c -o Log.obj `if test -f '../../src/uhttp/util/Log.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/Log.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/Log.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/Log.Tpo $(DEPDIR)/Log.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/Log.cpp' object='Log.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Log.obj `if test -f '../../src/uhttp/util/Log.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/Log.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/Log.cpp'; fi`
+
+Logger.o: ../../src/uhttp/util/Logger.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Logger.o -MD -MP -MF $(DEPDIR)/Logger.Tpo -c -o Logger.o `test -f '../../src/uhttp/util/Logger.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/Logger.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/Logger.Tpo $(DEPDIR)/Logger.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/Logger.cpp' object='Logger.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Logger.o `test -f '../../src/uhttp/util/Logger.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/Logger.cpp
+
+Logger.obj: ../../src/uhttp/util/Logger.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Logger.obj -MD -MP -MF $(DEPDIR)/Logger.Tpo -c -o Logger.obj `if test -f '../../src/uhttp/util/Logger.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/Logger.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/Logger.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/Logger.Tpo $(DEPDIR)/Logger.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/Logger.cpp' object='Logger.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Logger.obj `if test -f '../../src/uhttp/util/Logger.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/Logger.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/Logger.cpp'; fi`
+
+LoggerFileTarget.o: ../../src/uhttp/util/LoggerFileTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerFileTarget.o -MD -MP -MF $(DEPDIR)/LoggerFileTarget.Tpo -c -o LoggerFileTarget.o `test -f '../../src/uhttp/util/LoggerFileTarget.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerFileTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerFileTarget.Tpo $(DEPDIR)/LoggerFileTarget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerFileTarget.cpp' object='LoggerFileTarget.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerFileTarget.o `test -f '../../src/uhttp/util/LoggerFileTarget.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerFileTarget.cpp
+
+LoggerFileTarget.obj: ../../src/uhttp/util/LoggerFileTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerFileTarget.obj -MD -MP -MF $(DEPDIR)/LoggerFileTarget.Tpo -c -o LoggerFileTarget.obj `if test -f '../../src/uhttp/util/LoggerFileTarget.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerFileTarget.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerFileTarget.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerFileTarget.Tpo $(DEPDIR)/LoggerFileTarget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerFileTarget.cpp' object='LoggerFileTarget.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerFileTarget.obj `if test -f '../../src/uhttp/util/LoggerFileTarget.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerFileTarget.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerFileTarget.cpp'; fi`
+
+LoggerTarget.o: ../../src/uhttp/util/LoggerTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerTarget.o -MD -MP -MF $(DEPDIR)/LoggerTarget.Tpo -c -o LoggerTarget.o `test -f '../../src/uhttp/util/LoggerTarget.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerTarget.Tpo $(DEPDIR)/LoggerTarget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerTarget.cpp' object='LoggerTarget.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerTarget.o `test -f '../../src/uhttp/util/LoggerTarget.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerTarget.cpp
+
+LoggerTarget.obj: ../../src/uhttp/util/LoggerTarget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerTarget.obj -MD -MP -MF $(DEPDIR)/LoggerTarget.Tpo -c -o LoggerTarget.obj `if test -f '../../src/uhttp/util/LoggerTarget.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerTarget.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerTarget.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerTarget.Tpo $(DEPDIR)/LoggerTarget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerTarget.cpp' object='LoggerTarget.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerTarget.obj `if test -f '../../src/uhttp/util/LoggerTarget.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerTarget.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerTarget.cpp'; fi`
+
+LoggerTargetList.o: ../../src/uhttp/util/LoggerTargetList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerTargetList.o -MD -MP -MF $(DEPDIR)/LoggerTargetList.Tpo -c -o LoggerTargetList.o `test -f '../../src/uhttp/util/LoggerTargetList.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerTargetList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerTargetList.Tpo $(DEPDIR)/LoggerTargetList.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerTargetList.cpp' object='LoggerTargetList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerTargetList.o `test -f '../../src/uhttp/util/LoggerTargetList.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/LoggerTargetList.cpp
+
+LoggerTargetList.obj: ../../src/uhttp/util/LoggerTargetList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LoggerTargetList.obj -MD -MP -MF $(DEPDIR)/LoggerTargetList.Tpo -c -o LoggerTargetList.obj `if test -f '../../src/uhttp/util/LoggerTargetList.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerTargetList.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerTargetList.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/LoggerTargetList.Tpo $(DEPDIR)/LoggerTargetList.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../../src/uhttp/util/LoggerTargetList.cpp' object='LoggerTargetList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LoggerTargetList.obj `if test -f '../../src/uhttp/util/LoggerTargetList.cpp'; then $(CYGPATH_W) '../../src/uhttp/util/LoggerTargetList.cpp'; else $(CYGPATH_W) '$(srcdir)/../../src/uhttp/util/LoggerTargetList.cpp'; fi`
 
 Mutex.o: ../../src/uhttp/util/Mutex.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Mutex.o -MD -MP -MF $(DEPDIR)/Mutex.Tpo -c -o Mutex.o `test -f '../../src/uhttp/util/Mutex.cpp' || echo '$(srcdir)/'`../../src/uhttp/util/Mutex.cpp

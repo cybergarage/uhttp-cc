@@ -303,6 +303,11 @@ uhttpcc_header = \
 	uhttp/util/Debug.h \
 	uhttp/util/Exception.h \
 	uhttp/util/ListenerList.h \
+	uhttp/util/Log.h \
+	uhttp/util/Logger.h \
+	uhttp/util/LoggerFileTarget.h \
+	uhttp/util/LoggerStdTarget.h \
+	uhttp/util/LoggerTarget.h \
 	uhttp/util/Mutex.h \
 	uhttp/util/Random.h \
 	uhttp/util/StringTokenizer.h \

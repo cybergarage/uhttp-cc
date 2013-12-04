@@ -93,6 +93,16 @@
 		21AA040D183E0A41006B0406 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA040C183E0A41006B0406 /* Random.cpp */; };
 		21AA040F183E0A52006B0406 /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AA040E183E0A52006B0406 /* Random.h */; };
 		21AE1546153C042500F47C5C /* HTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AE1545153C042500F47C5C /* HTTP.h */; };
+		21B42315184F835800EFC1AF /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B42310184F835800EFC1AF /* Log.h */; };
+		21B42316184F835800EFC1AF /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B42311184F835800EFC1AF /* Logger.h */; };
+		21B42317184F835800EFC1AF /* LoggerFileTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B42312184F835800EFC1AF /* LoggerFileTarget.h */; };
+		21B42318184F835800EFC1AF /* LoggerStdTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B42313184F835800EFC1AF /* LoggerStdTarget.h */; };
+		21B42319184F835800EFC1AF /* LoggerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B42314184F835800EFC1AF /* LoggerTarget.h */; };
+		21B42320184F84C300EFC1AF /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231C184F84C300EFC1AF /* Logger.cpp */; };
+		21B42321184F84C300EFC1AF /* LoggerFileTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231D184F84C300EFC1AF /* LoggerFileTarget.cpp */; };
+		21B42322184F84C300EFC1AF /* LoggerTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231E184F84C300EFC1AF /* LoggerTarget.cpp */; };
+		21B42323184F84C300EFC1AF /* LoggerTargetList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231F184F84C300EFC1AF /* LoggerTargetList.cpp */; };
+		21B42325184F86FA00EFC1AF /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B42324184F86FA00EFC1AF /* Log.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +192,16 @@
 		21AA040C183E0A41006B0406 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		21AA040E183E0A52006B0406 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		21AE1545153C042500F47C5C /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
+		21B42310184F835800EFC1AF /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		21B42311184F835800EFC1AF /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		21B42312184F835800EFC1AF /* LoggerFileTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerFileTarget.h; sourceTree = "<group>"; };
+		21B42313184F835800EFC1AF /* LoggerStdTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerStdTarget.h; sourceTree = "<group>"; };
+		21B42314184F835800EFC1AF /* LoggerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerTarget.h; sourceTree = "<group>"; };
+		21B4231C184F84C300EFC1AF /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		21B4231D184F84C300EFC1AF /* LoggerFileTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerFileTarget.cpp; sourceTree = "<group>"; };
+		21B4231E184F84C300EFC1AF /* LoggerTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerTarget.cpp; sourceTree = "<group>"; };
+		21B4231F184F84C300EFC1AF /* LoggerTargetList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerTargetList.cpp; sourceTree = "<group>"; };
+		21B42324184F86FA00EFC1AF /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		21E1EB1C1535D1E0005AA247 /* libuhttp++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuhttp++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -280,6 +300,11 @@
 		2176F3CC1535D2C100DE85B9 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21B42310184F835800EFC1AF /* Log.h */,
+				21B42311184F835800EFC1AF /* Logger.h */,
+				21B42312184F835800EFC1AF /* LoggerFileTarget.h */,
+				21B42313184F835800EFC1AF /* LoggerStdTarget.h */,
+				21B42314184F835800EFC1AF /* LoggerTarget.h */,
 				21AA040E183E0A52006B0406 /* Random.h */,
 				2176F3CD1535D2C100DE85B9 /* Date.h */,
 				2176F3CE1535D2C100DE85B9 /* Debug.h */,
@@ -366,6 +391,11 @@
 		2176F4281535D2E400DE85B9 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21B42324184F86FA00EFC1AF /* Log.cpp */,
+				21B4231C184F84C300EFC1AF /* Logger.cpp */,
+				21B4231D184F84C300EFC1AF /* LoggerFileTarget.cpp */,
+				21B4231E184F84C300EFC1AF /* LoggerTarget.cpp */,
+				21B4231F184F84C300EFC1AF /* LoggerTargetList.cpp */,
 				21AA040C183E0A41006B0406 /* Random.cpp */,
 				2176F4291535D2E400DE85B9 /* Date.cpp */,
 				2176F42A1535D2E400DE85B9 /* Debug.cpp */,
@@ -417,8 +447,11 @@
 				2176F3E31535D2C100DE85B9 /* HTTPStatus.h in Headers */,
 				2176F3E41535D2C100DE85B9 /* Parameter.h in Headers */,
 				2176F3E51535D2C100DE85B9 /* ParameterList.h in Headers */,
+				21B42318184F835800EFC1AF /* LoggerStdTarget.h in Headers */,
 				2176F3E61535D2C100DE85B9 /* BufferedReader.h in Headers */,
 				2176F3E71535D2C100DE85B9 /* File.h in Headers */,
+				21B42315184F835800EFC1AF /* Log.h in Headers */,
+				21B42319184F835800EFC1AF /* LoggerTarget.h in Headers */,
 				2176F3E81535D2C100DE85B9 /* FileInputStream.h in Headers */,
 				2176F3E91535D2C100DE85B9 /* FileList.h in Headers */,
 				2176F3EA1535D2C100DE85B9 /* InputStream.h in Headers */,
@@ -430,6 +463,7 @@
 				2176F3F01535D2C100DE85B9 /* DatagramPacket.h in Headers */,
 				2176F3F11535D2C100DE85B9 /* DatagramSocket.h in Headers */,
 				21AA040F183E0A52006B0406 /* Random.h in Headers */,
+				21B42316184F835800EFC1AF /* Logger.h in Headers */,
 				2176F3F21535D2C100DE85B9 /* HostInterface.h in Headers */,
 				2176F3F31535D2C100DE85B9 /* InetSocketAddress.h in Headers */,
 				2176F3F41535D2C100DE85B9 /* MulticastSocket.h in Headers */,
@@ -445,6 +479,7 @@
 				2176F3FE1535D2C100DE85B9 /* Date.h in Headers */,
 				2176F3FF1535D2C100DE85B9 /* Debug.h in Headers */,
 				2176F4001535D2C100DE85B9 /* Exception.h in Headers */,
+				21B42317184F835800EFC1AF /* LoggerFileTarget.h in Headers */,
 				2176F4011535D2C100DE85B9 /* ListenerList.h in Headers */,
 				2176F4021535D2C100DE85B9 /* Mutex.h in Headers */,
 				2176F4031535D2C100DE85B9 /* StringTokenizer.h in Headers */,
@@ -522,12 +557,17 @@
 				21AA040D183E0A41006B0406 /* Random.cpp in Sources */,
 				2176F43D1535D2E400DE85B9 /* FileInputStream.cpp in Sources */,
 				2176F43E1535D2E400DE85B9 /* FileList.cpp in Sources */,
+				21B42322184F84C300EFC1AF /* LoggerTarget.cpp in Sources */,
 				2176F43F1535D2E400DE85B9 /* StringBufferInputStream.cpp in Sources */,
 				2176F4401535D2E400DE85B9 /* StringReader.cpp in Sources */,
 				2176F4411535D2E400DE85B9 /* DatagramSocket.cpp in Sources */,
+				21B42321184F84C300EFC1AF /* LoggerFileTarget.cpp in Sources */,
+				21B42320184F84C300EFC1AF /* Logger.cpp in Sources */,
 				2176F4421535D2E400DE85B9 /* HostInterface.cpp in Sources */,
 				2176F4431535D2E400DE85B9 /* MulticastSocket.cpp in Sources */,
 				2176F4441535D2E400DE85B9 /* ServerSocket.cpp in Sources */,
+				21B42323184F84C300EFC1AF /* LoggerTargetList.cpp in Sources */,
+				21B42325184F86FA00EFC1AF /* Log.cpp in Sources */,
 				2176F4451535D2E400DE85B9 /* Socket.cpp in Sources */,
 				2176F4461535D2E400DE85B9 /* SocketImp.cpp in Sources */,
 				2176F4471535D2E400DE85B9 /* SocketInputStream.cpp in Sources */,

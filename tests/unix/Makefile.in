@@ -95,7 +95,7 @@ am_uhttpcctestunit_OBJECTS = uHTTDateTests.$(OBJEXT) \
 	uHTTPPacketTests.$(OBJEXT) uHTTPRandomTests.$(OBJEXT) \
 	uHTTPRequestTests.$(OBJEXT) uHTTPServerTests.$(OBJEXT) \
 	uHTTPSocketTests.$(OBJEXT) uHTTPStringTests.$(OBJEXT) \
-	uHTTPTestMain.$(OBJEXT) uHTTPThreadTests.$(OBJEXT) \
+	uHTTPTestMain.$(OBJEXT) uHTTPLoggerTests.$(OBJEXT) \
 	uHTTPUriTests.$(OBJEXT)
 uhttpcctestunit_OBJECTS = $(am_uhttpcctestunit_OBJECTS)
 uhttpcctestunit_DEPENDENCIES = ../../lib/unix/libuhttp++.a
@@ -265,7 +265,7 @@ uhttpcctestunit_SOURCES = \
 	../uHTTPSocketTests.cpp \
 	../uHTTPStringTests.cpp \
 	../uHTTPTestMain.cpp \
-	../uHTTPThreadTests.cpp \
+	../uHTTPLoggerTests.cpp \
 	../uHTTPUriTests.cpp
 
 uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a
@@ -319,6 +319,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTDateTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPGetTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPLoggerTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPMutexTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPNetworkInterfaceTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPPacketTests.Po@am__quote@
@@ -328,7 +329,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPSocketTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPStringTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPTestMain.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPThreadTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPUriTests.Po@am__quote@
 
 .cpp.o:
@@ -499,19 +499,19 @@ uHTTPTestMain.obj: ../uHTTPTestMain.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPTestMain.obj `if test -f '../uHTTPTestMain.cpp'; then $(CYGPATH_W) '../uHTTPTestMain.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPTestMain.cpp'; fi`
 
-uHTTPThreadTests.o: ../uHTTPThreadTests.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPThreadTests.o -MD -MP -MF $(DEPDIR)/uHTTPThreadTests.Tpo -c -o uHTTPThreadTests.o `test -f '../uHTTPThreadTests.cpp' || echo '$(srcdir)/'`../uHTTPThreadTests.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/uHTTPThreadTests.Tpo $(DEPDIR)/uHTTPThreadTests.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../uHTTPThreadTests.cpp' object='uHTTPThreadTests.o' libtool=no @AMDEPBACKSLASH@
+uHTTPLoggerTests.o: ../uHTTPLoggerTests.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPLoggerTests.o -MD -MP -MF $(DEPDIR)/uHTTPLoggerTests.Tpo -c -o uHTTPLoggerTests.o `test -f '../uHTTPLoggerTests.cpp' || echo '$(srcdir)/'`../uHTTPLoggerTests.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/uHTTPLoggerTests.Tpo $(DEPDIR)/uHTTPLoggerTests.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../uHTTPLoggerTests.cpp' object='uHTTPLoggerTests.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPThreadTests.o `test -f '../uHTTPThreadTests.cpp' || echo '$(srcdir)/'`../uHTTPThreadTests.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPLoggerTests.o `test -f '../uHTTPLoggerTests.cpp' || echo '$(srcdir)/'`../uHTTPLoggerTests.cpp
 
-uHTTPThreadTests.obj: ../uHTTPThreadTests.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPThreadTests.obj -MD -MP -MF $(DEPDIR)/uHTTPThreadTests.Tpo -c -o uHTTPThreadTests.obj `if test -f '../uHTTPThreadTests.cpp'; then $(CYGPATH_W) '../uHTTPThreadTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPThreadTests.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/uHTTPThreadTests.Tpo $(DEPDIR)/uHTTPThreadTests.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../uHTTPThreadTests.cpp' object='uHTTPThreadTests.obj' libtool=no @AMDEPBACKSLASH@
+uHTTPLoggerTests.obj: ../uHTTPLoggerTests.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPLoggerTests.obj -MD -MP -MF $(DEPDIR)/uHTTPLoggerTests.Tpo -c -o uHTTPLoggerTests.obj `if test -f '../uHTTPLoggerTests.cpp'; then $(CYGPATH_W) '../uHTTPLoggerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPLoggerTests.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/uHTTPLoggerTests.Tpo $(DEPDIR)/uHTTPLoggerTests.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../uHTTPLoggerTests.cpp' object='uHTTPLoggerTests.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPThreadTests.obj `if test -f '../uHTTPThreadTests.cpp'; then $(CYGPATH_W) '../uHTTPThreadTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPThreadTests.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPLoggerTests.obj `if test -f '../uHTTPLoggerTests.cpp'; then $(CYGPATH_W) '../uHTTPLoggerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPLoggerTests.cpp'; fi`
 
 uHTTPUriTests.o: ../uHTTPUriTests.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPUriTests.o -MD -MP -MF $(DEPDIR)/uHTTPUriTests.Tpo -c -o uHTTPUriTests.o `test -f '../uHTTPUriTests.cpp' || echo '$(srcdir)/'`../uHTTPUriTests.cpp
