@@ -14,7 +14,7 @@ uhttpcctestunit_SOURCES = \
 	../uHTTPSocketTests.cpp \
 	../uHTTPStringTests.cpp \
 	../uHTTPTestMain.cpp \
-	../uHTTPThreadTests.cpp \
+	../uHTTPLoggerTests.cpp \
 	../uHTTPUriTests.cpp
 
 uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a

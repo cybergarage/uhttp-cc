@@ -19,6 +19,11 @@ endif
 uhttpcc_source = \
 	../../src/uhttp/util/Date.cpp \
 	../../src/uhttp/util/Debug.cpp \
+        ../../src/uhttp/util/Log.cpp \
+        ../../src/uhttp/util/Logger.cpp \
+        ../../src/uhttp/util/LoggerFileTarget.cpp \
+        ../../src/uhttp/util/LoggerTarget.cpp \
+        ../../src/uhttp/util/LoggerTargetList.cpp \
 	../../src/uhttp/util/Mutex.cpp \
 	../../src/uhttp/util/Random.cpp \
 	../../src/uhttp/util/StringTokenizer.cpp \
