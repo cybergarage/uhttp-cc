@@ -12,11 +12,7 @@
 
 #include <uhttp/util/Log.h>
 
-#if defined(DEBUG)
 int uHTTP::Log(int logType, const char *fileName, int lineNo, const char *functionName, const char *format, ...)
-#else
-int uHTTP::Log(int logType, const char *format, ...)
-#endif
 {
   char outputMessage[uHTTP::Logger::MAX_LINE_STRING];
     
