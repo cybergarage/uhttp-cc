@@ -309,19 +309,19 @@ public:
 
 public:
 
-  bool returnResponse(int statusCode);
+  HTTP::StatusCode returnResponse(int statusCode);
 
-  bool returnOK()
+  HTTP::StatusCode returnOK()
   {
     return returnResponse(HTTP::OK_REQUEST);
   }
 
-  bool returnBadRequest()
+  HTTP::StatusCode returnBadRequest()
   {
     return returnResponse(HTTP::BAD_REQUEST);
   }
 
-  bool returnNotFound()
+  HTTP::StatusCode returnNotFound()
   {
     return returnResponse(HTTP::NOT_FOUND);
   }

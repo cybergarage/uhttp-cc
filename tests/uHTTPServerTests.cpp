@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_CASE(HTTPCotentRangeTest)
 
 class HTTPSimpleRequestListener : public HTTPRequestListener
 {
-    void httpRequestRecieved(HTTPRequest *httpReq);
+    uHTTP::HTTP::StatusCode httpRequestRecieved(HTTPRequest *httpReq);
 };
 
 BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
@@ -163,18 +163,16 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     BOOST_CHECK(httpServer.stop());
 }
 
-void HTTPSimpleRequestListener::httpRequestRecieved(HTTPRequest *httpReq)
+uHTTP::HTTP::StatusCode HTTPSimpleRequestListener::httpRequestRecieved(HTTPRequest *httpReq)
 {
      if (httpReq->isGetRequest() == false) {
-        httpReq->returnBadRequest();
-        return;
+        return httpReq->returnBadRequest();
      }
 
 	std::string uri;
 	httpReq->getURI(uri);
 	if (uri.length() <= 0) {
-		httpReq->returnBadRequest();
-		return;
+		return httpReq->returnBadRequest();
 	}
 
     std::string msg = UHTTP_HTTP_SERVER_TEST_CONTENT;
@@ -183,4 +181,6 @@ void HTTPSimpleRequestListener::httpRequestRecieved(HTTPRequest *httpReq)
 	httpRes.setStatusCode(HTTP::OK_REQUEST);
 	httpRes.setContent(msg);
 	httpReq->post(&httpRes);
+
+  return uHTTP::HTTP::OK_REQUEST;
 }

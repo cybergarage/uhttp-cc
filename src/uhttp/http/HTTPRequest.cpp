@@ -213,12 +213,12 @@ bool HTTPRequest::isKeepAlive()
 //  returnResponse
 ////////////////////////////////////////////////
 
-bool HTTPRequest::returnResponse(int statusCode)
+HTTP::StatusCode HTTPRequest::returnResponse(int statusCode)
 {
   HTTPResponse httpRes;
   httpRes.setStatusCode(statusCode);
   httpRes.setContentLength(0);
-  return post(&httpRes);
+  return post(&httpRes) ? statusCode : HTTP::INTERNAL_SERVER_ERROR;
 }
 
 ////////////////////////////////////////////////

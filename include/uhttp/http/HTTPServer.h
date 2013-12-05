@@ -61,13 +61,17 @@ public:
     httpRequestListenerList.remove(listener);
   }    
 
-  void performRequestListener(HTTPRequest *httpReq)
+  HTTP::StatusCode performRequestListener(HTTPRequest *httpReq)
   {
+    HTTP::StatusCode lastStatusCode = HTTP::INTERNAL_SERVER_ERROR;
     int listenerSize = httpRequestListenerList.size();
     for (int n=0; n<listenerSize; n++) {
       HTTPRequestListener *listener = (HTTPRequestListener *)httpRequestListenerList.get(n);
-      listener->httpRequestRecieved(httpReq);
+      lastStatusCode = listener->httpRequestRecieved(httpReq);
+      if (lastStatusCode == HTTP::OK_REQUEST)
+        break;
     }
+    return lastStatusCode;
   }    
 
   ////////////////////////////////////////////////

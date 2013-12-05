@@ -52,7 +52,7 @@ public:
     bool start();
     bool stop();
 
-    void httpRequestRecieved(uHTTP::HTTPRequest *httpReq);
+    uHTTP::HTTP::StatusCode httpRequestRecieved(uHTTP::HTTPRequest *httpReq);
 };
 
 #endif

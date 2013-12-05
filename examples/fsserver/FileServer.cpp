@@ -32,7 +32,7 @@ FileServer::~FileServer()
 //	HTTP Server	
 ////////////////////////////////////////////////
 
-void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
+uHTTP::HTTP::StatusCode FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
 {
     if (isVerbose()) {
         std::string firstHeader;
@@ -43,8 +43,7 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
     }
     
 	if (!httpReq->isGetRequest()) {
-        httpReq->returnBadRequest();
-		return;
+    return httpReq->returnBadRequest();
 	}
 
     uHTTP::URI reqUri;
@@ -58,8 +57,7 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
     std::ifstream contentFs;
     contentFs.open(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
     if (!contentFs.is_open()) {
-        httpReq->returnNotFound();
-        return;
+        return httpReq->returnNotFound();
     }
     size_t fileSize = (size_t)contentFs.seekg(0, std::ios::end).tellg();
     contentFs.seekg(0, std::ios::beg);
@@ -90,7 +88,7 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
 	httpReq->post(&httpRes, true);
 
     if (httpReq->isHeadRequest()) {
-        return;
+      return uHTTP::HTTP::OK_REQUEST;
     }
     
     uHTTP::HTTPSocket *httpSocket = httpReq->getSocket();
@@ -107,6 +105,8 @@ void FileServer::httpRequestRecieved(uHTTP::HTTPRequest *httpReq)
         }
     }
     contentFs.close();
+
+    return uHTTP::HTTP::OK_REQUEST;
 }
 
 ////////////////////////////////////////////////
