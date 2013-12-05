@@ -262,7 +262,7 @@ public:
 
 public:
 
-  bool post(HTTPResponse *httpRes, bool isOnlyHeader = false);
+  HTTP::StatusCode post(HTTPResponse *httpRes, bool isOnlyHeader = false);
 
   ////////////////////////////////////////////////
   //  POST (Request)
@@ -287,7 +287,7 @@ public:
     return post(host, port, false);
   }
 
-    HTTPResponse *post(bool isKeepAlive = false) {
+  HTTPResponse *post(bool isKeepAlive = false) {
     return post(getRequestHost(), getRequestPort(), &httpRes, isKeepAlive);
   }
   

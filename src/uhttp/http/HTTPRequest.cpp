@@ -225,7 +225,7 @@ HTTP::StatusCode HTTPRequest::returnResponse(int statusCode)
 //  POST (Response)
 ////////////////////////////////////////////////
 
-bool HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
+HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
 {
   HTTPSocket *httpSock = getSocket();
   size_t offset = 0;
@@ -245,7 +245,7 @@ bool HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
     offset = firstPos;
     length = lastPos - firstPos + 1;
   }
-  return httpSock->post(httpRes, offset, length, isOnlyHeader, isChunked());
+  return httpSock->post(httpRes, offset, length, isOnlyHeader, isChunked()) ? HTTP::OK_REQUEST : HTTP::INTERNAL_SERVER_ERROR;
 }
 
 ////////////////////////////////////////////////
