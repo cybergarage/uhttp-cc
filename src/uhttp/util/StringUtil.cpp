@@ -325,22 +325,15 @@ long uHTTP::HexString2Long(const std::string &value)
   return strtol(value.c_str(), NULL, 16);
 }
 
-#if defined(__USE_ISOC99) || defined (WIN32)
-
-#if defined(__USE_ISOC99)
-long long uHTTP::String2LongLong(const std::string &value)
-#else
-__int64 uHTTP::String2LongLong(const std::string &value)
-#endif
+size_t uHTTP::String2Sizet(const std::string &value)
 {
-#if defined(WIN32)
-  return _atoi64(value.c_str());
-#else
-  return atoll(value.c_str());
-#endif
+  return atol(value.c_str());
 }
 
-#endif
+size_t uHTTP::HexString2Sizet(const std::string &value)
+{
+  return strtol(value.c_str(), NULL, 16);
+}
 
 const char *uHTTP::Integer2String(int value, std::string &valueBuf)
 {
@@ -370,30 +363,6 @@ const char *uHTTP::Long2String(long value, std::string &valueBuf)
   return valueBuf.c_str();
 }
 
-#if defined(__USE_ISOC99) || defined (WIN32)
-
-#if defined(__USE_ISOC99)
-const char *uHTTP::LongLong2String(long long value, std::string &valueBuf)
-#else
-const char *uHTTP::LongLong2String(__int64 value, std::string &valueBuf)
-#endif
-{
-  // UINT_LONG : 18446744073709551615UL
-  // LONG_MAX :  9223372036854775807L
-  char strBuf[String::LONGLONG_STRING_MAXSIZE];
-#if defined (WIN32)
-  _i64toa(value, strBuf, 10); 
-#elif defined (HAVE_SNPRINTF)
-  snprintf(strBuf, sizeof(strBuf)-1, "%lld", value);
-#else
-  sprintf(strBuf, "%lld", value);
-#endif
-  valueBuf = strBuf;
-  return valueBuf.c_str();
-}
-
-#endif
-
 const char *uHTTP::Integer2HexString(int value, std::string &valueBuf)
 {
   // INT_MAX 2147483647
@@ -422,31 +391,15 @@ const char *uHTTP::Long2HexString(long value, std::string &valueBuf)
   return valueBuf.c_str();
 }
 
-#if defined(__USE_ISOC99) || defined (WIN32)
-
-#if defined(__USE_ISOC99)
-const char *uHTTP::LongLong2HexString(long long value, std::string &valueBuf)
-#else
-const char *uHTTP::LongLong2HexString(__int64 value, std::string &valueBuf)
-#endif
+const char *uHTTP::Sizet2String(size_t value, std::string &valueBuf)
 {
-  // UINT_LONG : 18446744073709551615UL
-  // LONG_MAX :  9223372036854775807L
-  char strBuf[String::LONGLONG_STRING_MAXSIZE];
-#if defined (WIN32)
-  _i64toa(value, strBuf, 16); 
-#elif defined (HAVE_SNPRINTF)
-  snprintf(strBuf, sizeof(strBuf)-1, "%llx", value);
-#else
-  sprintf(strBuf, "%llx", value);
-#endif
-  valueBuf = strBuf;
+  std::stringstream strBuf;
+  strBuf << value;
+  valueBuf = strBuf.str();
   return valueBuf.c_str();
 }
 
-#endif
-
-const char *uHTTP::Size2HexString(size_t value, std::string &valueBuf)
+const char *uHTTP::Sizet2HexString(size_t value, std::string &valueBuf)
 {
   std::stringstream strBuf;
   strBuf << hex << value;

@@ -282,7 +282,7 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
   if (0 < contentLength) {
     if (isChunkedRequest == true) {
       string chunSizeBuf;
-      Size2HexString(strlen(content), chunSizeBuf);
+      Sizet2HexString(strlen(content), chunSizeBuf);
       postSock->send(chunSizeBuf.c_str());
       postSock->send(HTTP::CRLF);
     }

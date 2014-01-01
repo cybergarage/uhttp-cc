@@ -109,37 +109,29 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool StringHasData(const std::string &value);
-int StringLength(const std::string &value);
+int  StringLength(const std::string &value);
 bool StringEquals(const std::string &value1, const std::string &value2);
 bool StringEqualsIgnoreCase(const std::string &value1, const std::string &value2);
 bool StringStartsWith(const std::string &value, const std::string &startsWith);
 bool StringEndsWith(const std::string &value, const std::string &endsWith);
 bool StringStartsWith(const std::string &value, const char startsWith);
 bool StringEndsWith(const std::string &value, const char endsWith);
-int StringIndexOf(const std::string &value, char c);
+int  StringIndexOf(const std::string &value, char c);
 
-int String2Integer(const std::string &value);
-int HexString2Integer(const std::string &value);
-long String2Long(const std::string &value);
-long HexString2Long(const std::string &value);
-#if defined(__USE_ISOC99)
-long long String2LongLong(const std::string &value);
-#elif defined(WIN32)
-__int64 String2LongLong(const std::string &value);
-#endif
+int    String2Integer(const std::string &value);
+long   String2Long(const std::string &value);
+size_t String2Sizet(const std::string &value);
+
+int    HexString2Integer(const std::string &value);
+long   HexString2Long(const std::string &value);
+size_t HexString2Sizet(const std::string &value);
 
 const char *Integer2String(int value, std::string &valueBuf);
 const char *Integer2HexString(int value, std::string &valueBuf);
 const char *Long2String(long value, std::string &valueBuf);
 const char *Long2HexString(long value, std::string &valueBuf);
-#if defined(__USE_ISOC99)
-const char *LongLong2String(long long value, std::string &valueBuf);
-const char *LongLong2HexString(long long value, std::string &valueBuf);
-#elif defined(WIN32)
-const char *LongLong2String(__int64 value, std::string &valueBuf);
-const char *LongLong2HexString(__int64 value, std::string &valueBuf);
-#endif
-const char *Size2HexString(size_t value, std::string &valueBuf);
+const char *Sizet2String(size_t value, std::string &valueBuf);
+const char *Sizet2HexString(size_t value, std::string &valueBuf);
 
 const char *StringTrim(const std::string &value, const std::string &trimChars, std::string &buf);
 const char *StringTrim(const std::string &value, std::string &buf);

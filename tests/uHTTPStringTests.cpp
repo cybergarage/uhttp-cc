@@ -16,10 +16,63 @@
 using namespace std;
 using namespace uHTTP;
 
-BOOST_AUTO_TEST_CASE(StringUtilTests)
+BOOST_AUTO_TEST_CASE(Value2StringTests)
 {
-    std::string buf;
+  std::string buf;
     
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(15, buf), "15"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(255, buf), "255"), 0);
+
+	BOOST_CHECK_EQUAL(strcmp(Long2String(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2String(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2String(15, buf), "15"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2String(255, buf), "255"), 0);
+
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(15, buf), "15"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(255, buf), "255"), 0);
+}
+
+BOOST_AUTO_TEST_CASE(Value2HexStringTests)
+{
+  std::string buf;
+    
+	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(15, buf), "f"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(255, buf), "ff"), 0);
+
+	BOOST_CHECK_EQUAL(strcmp(Long2HexString(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2HexString(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2HexString(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2HexString(15, buf), "f"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2HexString(255, buf), "ff"), 0);
+
+	BOOST_CHECK_EQUAL(strcmp(Sizet2HexString(1, buf), "1"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2HexString(9, buf), "9"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2HexString(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2HexString(15, buf), "f"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2HexString(255, buf), "ff"), 0);
+}
+
+BOOST_AUTO_TEST_CASE(HexString2ValueTests)
+{
+	BOOST_CHECK_EQUAL(HexString2Integer("1"), 1);
+	BOOST_CHECK_EQUAL(HexString2Integer("9"), 9);
+	BOOST_CHECK_EQUAL(HexString2Integer("A"), 10);
+	BOOST_CHECK_EQUAL(HexString2Integer("F"), 15);
+	BOOST_CHECK_EQUAL(HexString2Integer("FF"), 255);
+	BOOST_CHECK_EQUAL(HexString2Integer("a"), 10);
+	BOOST_CHECK_EQUAL(HexString2Integer("f"), 15);
+	BOOST_CHECK_EQUAL(HexString2Integer("ff"), 255);
+
 	BOOST_CHECK_EQUAL(HexString2Long("1"), 1);
 	BOOST_CHECK_EQUAL(HexString2Long("9"), 9);
 	BOOST_CHECK_EQUAL(HexString2Long("A"), 10);
@@ -28,18 +81,15 @@ BOOST_AUTO_TEST_CASE(StringUtilTests)
 	BOOST_CHECK_EQUAL(HexString2Long("a"), 10);
 	BOOST_CHECK_EQUAL(HexString2Long("f"), 15);
 	BOOST_CHECK_EQUAL(HexString2Long("ff"), 255);
-    
-	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(1, buf), "1"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(9, buf), "9"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(10, buf), "a"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(15, buf), "f"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Integer2HexString(255, buf), "ff"), 0);
 
-	BOOST_CHECK_EQUAL(strcmp(Size2HexString(1, buf), "1"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Size2HexString(9, buf), "9"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Size2HexString(10, buf), "a"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Size2HexString(15, buf), "f"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Size2HexString(255, buf), "ff"), 0);
+	BOOST_CHECK_EQUAL(HexString2Sizet("1"), 1);
+	BOOST_CHECK_EQUAL(HexString2Sizet("9"), 9);
+	BOOST_CHECK_EQUAL(HexString2Sizet("A"), 10);
+	BOOST_CHECK_EQUAL(HexString2Sizet("F"), 15);
+	BOOST_CHECK_EQUAL(HexString2Sizet("FF"), 255);
+	BOOST_CHECK_EQUAL(HexString2Sizet("a"), 10);
+	BOOST_CHECK_EQUAL(HexString2Sizet("f"), 15);
+	BOOST_CHECK_EQUAL(HexString2Sizet("ff"), 255);
 }
 
 BOOST_AUTO_TEST_CASE(StringUtilParseTests)
@@ -72,7 +122,7 @@ BOOST_AUTO_TEST_CASE(StringUtilParseTests)
 BOOST_AUTO_TEST_CASE(StringUtilTokenizerTests)
 {
 	StringTokenizer *strToken;
-	char *token[] = { "abcde", "test", "skonno" };
+	const char *token[] = { "abcde", "test", "skonno" };
 	char tokenStr[128];
 	int tokenCnt;
     
@@ -173,4 +223,3 @@ BOOST_AUTO_TEST_CASE(StringUtilTokenizerTests)
 	BOOST_CHECK(tokenCnt == 1);
 	delete strToken;
 }
-

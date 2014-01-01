@@ -159,11 +159,7 @@ public:
   void setHeader(const std::string &name, const std::string &value);
   void setHeader(const std::string &name, int value);
   void setHeader(const std::string &name, long value);
-#if defined(__USE_ISOC99)
-  void setHeader(const std::string &name, long long value);
-#elif defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
-  void setHeader(const std::string &name, __int64 value);
-#endif
+  void setHeader(const std::string &name, size_t value);
 
   void setHeader(HTTPHeader *header)
   {
@@ -206,16 +202,10 @@ public:
     setHeader(name, value);
   }
 
-#if defined(__USE_ISOC99) || (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-  #if defined(__USE_ISOC99)
-  void setLongLongHeader(const std::string &name, long long value)
-  #elif defined(WIN32)
-  void setLongLongHeader(const std::string &name, __int64 value)
-  #endif
+  void setSizetHeader(const std::string &name, size_t value)
   {
     setHeader(name, value);
   }
-#endif
 
   int getIntegerHeaderValue(const std::string &name)
   {
@@ -233,23 +223,13 @@ public:
     return atol(header->getValue());
   }
 
-#if defined(__USE_ISOC99) ||  (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-  #if defined(__USE_ISOC99)
-  long long getLongLongHeaderValue(const std::string &name)
-  #elif defined(WIN32)
-  __int64 getLongLongHeaderValue(const std::string &name)
-  #endif
+  size_t getLongLongHeaderValue(const std::string &name)
   {
     HTTPHeader *header = getHeader(name);
     if (header == NULL)
       return 0;
-  #if defined(__USE_ISOC99)
     return atoll(header->getValue());
-  #elif defined(WIN32)
-    return _atoi64(header->getValue());
-  #endif
   }
-#endif
 
   ////////////////////////////////////////////////
   //  getHeaderString
@@ -322,38 +302,15 @@ public:
   //  ContentLength
   ////////////////////////////////////////////////
 
-#if defined(__USE_ISOC99) || (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-  #if defined(__USE_ISOC99)
-  void setContentLength(long long len)
-  #elif defined(WIN32)
-  void setContentLength(__int64 len)
-  #endif
-  {
-    setLongLongHeader(HTTP::CONTENT_LENGTH, len);
-  }
-
-  #if defined(__USE_ISOC99)
-  long long getContentLength()
-  #elif defined(WIN32)
-  __int64 getContentLength()
-  #endif
-  {
-    return getLongLongHeaderValue(HTTP::CONTENT_LENGTH);
-  }
-
-#else
-
-  void setContentLength(long len)
+  void setContentLength(size_t len)
   {
     setLongHeader(HTTP::CONTENT_LENGTH, len);
   }
 
-  long getContentLength()
+  size_t getContentLength()
   {
     return getLongHeaderValue(HTTP::CONTENT_LENGTH);
   }
-
-#endif
 
   ////////////////////////////////////////////////
   //  Connection

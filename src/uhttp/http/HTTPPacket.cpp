@@ -142,19 +142,11 @@ void HTTPPacket::setHeader(const std::string &name, long value)
   setHeader(name, Long2String(value, valueStr));
 }
 
-#if defined(__USE_ISOC99) || (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__))
-
-#if defined(__USE_ISOC99)
-void HTTPPacket::setHeader(const std::string &name, long long value)
-#elif defined(WIN32)
-void HTTPPacket::setHeader(const std::string &name, __int64 value)
-#endif
+void HTTPPacket::setHeader(const std::string &name, size_t value)
 {
   string valueStr;
-  setHeader(name, LongLong2String(value, valueStr));
+  setHeader(name, Sizet2String(value, valueStr));
 }
-
-#endif
 
 ////////////////////////////////////////////////
 //  set
