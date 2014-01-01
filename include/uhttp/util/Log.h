@@ -17,7 +17,15 @@
 
 namespace uHTTP {
 
-int Log(Logger *logger, int logType, const char *fileName, int lineNo, const char *functionName, const char *format, ...);
+int Log(
+Logger *logger, 
+int logType, 
+#if defined(DEBUG)
+const char *fileName, 
+int lineNo, const 
+char *functionName, 
+#endif
+const char *format, ...);
 
 #if defined(DEBUG)
 #define LogTrace(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::TRACE,   __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
