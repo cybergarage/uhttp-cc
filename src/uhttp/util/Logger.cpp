@@ -26,7 +26,7 @@ void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger)
 {
   if (gUHttpLoggerSharedInstance)
     delete gUHttpLoggerSharedInstance;
-  gUHttpLoggerSharedInstance = Logger;
+  gUHttpLoggerSharedInstance = logger;
 }
 
 const char *uHTTP::Logger::GetMaskString(int outputType)

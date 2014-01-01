@@ -12,7 +12,15 @@
 
 #include <uhttp/util/Log.h>
 
-int uHTTP::Log(int logType, const char *fileName, int lineNo, const char *functionName, const char *format, ...)
+int uHTTP::Log(
+Logger *logger,
+int logType,
+#if defined(DEBUG)
+const char *fileName,
+int lineNo,
+const char *functionName,
+#endif
+const char *format, ...)
 {
   char outputMessage[uHTTP::Logger::MAX_LINE_STRING];
     
@@ -32,5 +40,5 @@ int uHTTP::Log(int logType, const char *fileName, int lineNo, const char *functi
        functionName);
 #endif
   
-  return uHTTP::Logger::GetSharedInstance()->output(logType, outputMessage);
+  return logger->output(logType, outputMessage);
 }

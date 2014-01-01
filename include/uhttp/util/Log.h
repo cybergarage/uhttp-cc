@@ -17,18 +17,22 @@
 
 namespace uHTTP {
 
-int Log(int logType, const char *fileName, int lineNo, const char *functionName, const char *format, ...);
-
-#define LogTrace(format, ...)     uHTTP::Log(uHTTP::LoggerTarget::TRACE,   __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
-#define LogInfo(format, ...)      uHTTP::Log(uHTTP::LoggerTarget::INFO,    __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
-#define LogWarn(format, ...)      uHTTP::Log(uHTTP::LoggerTarget::WARN,    __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
-#define LogError(format, ...)     uHTTP::Log(uHTTP::LoggerTarget::ERR,     __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
-#define LogFatal(format, ...)     uHTTP::Log(uHTTP::LoggerTarget::FATAL,   __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+int Log(Logger *logger, int logType, const char *fileName, int lineNo, const char *functionName, const char *format, ...);
 
 #if defined(DEBUG)
-#define LogDebug(format, ...)     uHTTP::Log(uHTTP::LoggerTarget::DBG,     __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogTrace(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::TRACE,   __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogInfo(format, ...)      uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::INFO,    __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogWarn(format, ...)      uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::WARN,    __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogError(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::ERR,     __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogFatal(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::FATAL,   __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
+#define LogDebug(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::DBG,     __FILE__,  __LINE__, __PRETTY_FUNCTION__, format, ##__VA_ARGS__)
 #else
-#define LogDebug(format, ...)     
+#define LogTrace(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::TRACE,   format, ##__VA_ARGS__)
+#define LogInfo(format, ...)      uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::INFO,    format, ##__VA_ARGS__)
+#define LogWarn(format, ...)      uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::WARN,    format, ##__VA_ARGS__)
+#define LogError(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::ERR,     format, ##__VA_ARGS__)
+#define LogFatal(format, ...)     uHTTP::Log(uHTTP::Logger::GetSharedInstance(), uHTTP::LoggerTarget::FATAL,   format, ##__VA_ARGS__)
+#define LogDebug(format, ...)
 #endif
 
 }
