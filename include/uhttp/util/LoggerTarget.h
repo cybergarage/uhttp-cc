@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_LOGGERTARGET_H_
-#define _FRACTALCC_LOGGERTARGET_H_
+#ifndef _UHTTP_LOGGERTARGET_H_
+#define _UHTTP_LOGGERTARGET_H_
 
 #include <stdio.h>
 

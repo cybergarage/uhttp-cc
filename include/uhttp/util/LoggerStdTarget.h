@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _FRACTALCC_LOGGERSTDTARGET_H_
-#define _FRACTALCC_LOGGERSTDTARGET_H_
+#ifndef _UHTTP_LOGGERSTDTARGET_H_
+#define _UHTTP_LOGGERSTDTARGET_H_
 
 #include <uhttp/util/LoggerTarget.h>
 
