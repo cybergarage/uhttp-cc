@@ -10,16 +10,23 @@
 
 #include <uhttp/util/Logger.h>
 
-static uHTTP::Logger *gLoggerSharedInstance = NULL;
+static uHTTP::Logger *gUHttpLoggerSharedInstance = NULL;
 
 const int uHTTP::Logger::MAX_LINE_STRING = 512;
 const char *uHTTP::Logger::SEPARATOR = " ";
 
 uHTTP::Logger *uHTTP::Logger::GetSharedInstance()
 {
-  if (!gLoggerSharedInstance)
-    gLoggerSharedInstance = new Logger();
-  return gLoggerSharedInstance;
+  if (!gUHttpLoggerSharedInstance)
+    gUHttpLoggerSharedInstance = new Logger();
+  return gUHttpLoggerSharedInstance;
+}
+
+void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger)
+{
+  if (gUHttpLoggerSharedInstance)
+    delete gUHttpLoggerSharedInstance;
+  gUHttpLoggerSharedInstance = Logger;
 }
 
 const char *uHTTP::Logger::GetMaskString(int outputType)

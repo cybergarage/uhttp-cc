@@ -31,6 +31,7 @@ public:
   
 public:
 
+  static void SetSharedInstance(Logger *logger);
   static Logger *GetSharedInstance();
   static const char *GetMaskString(int outputType);
 
