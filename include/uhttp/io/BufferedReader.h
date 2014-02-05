@@ -18,7 +18,8 @@
 namespace uHTTP {
 
 class BufferedReader
-{  
+{
+
   Reader *reader;
   std::string lineStr;
 

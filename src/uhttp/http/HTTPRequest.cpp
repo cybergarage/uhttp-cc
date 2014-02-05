@@ -298,7 +298,8 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
 
   httpRes->set(postSock, isHeadRequest());      
 
-  if (isKeepAlive == false) {  
+  if (isKeepAlive == false) {
+
     postSock->close();
     delete postSock;
     postSock = NULL;

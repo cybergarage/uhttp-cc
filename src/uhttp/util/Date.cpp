@@ -270,7 +270,8 @@ bool Date::time2LocalDate(SysTime uxtime)
   day++;
 
   month = 0;
-  while (1) {          
+  while (1) {
+        
     if (IsLeapYear(year)) {
       if (day <= dayLearYear[month])
         break;
