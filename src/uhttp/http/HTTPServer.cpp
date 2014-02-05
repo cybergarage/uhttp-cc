@@ -12,7 +12,7 @@
 #  include "config.h"
 #endif
 
-#if defined(HAVE_UNAME)
+#if defined(HAVE_UNAME) || defined(__APPLE__)
 #include <sys/utsname.h>
 #endif
 
@@ -168,7 +168,7 @@ const char *uHTTP::GetServerName(string &buf)
 #elif defined(TENGINE)
   osName = "T-Engine";
   osVer = "1.0";
-#elif defined(HAVE_UNAME)
+#elif defined(HAVE_UNAME) || defined(__APPLE__)
   struct utsname unameBuf;
   if (uname(&unameBuf) == 0) {
     osName = unameBuf.sysname;
