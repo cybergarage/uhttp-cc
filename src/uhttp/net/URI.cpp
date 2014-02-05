@@ -37,12 +37,10 @@ const char *uHTTP::URI::QUESTION_DELIM = "?";
 //  uHTTP::URI::URI
 ////////////////////////////////////////////////
 
-uHTTP::URI::URI()
-{
+uHTTP::URI::URI() {
 }
 
-uHTTP::URI::URI(const std::string &value)
-{
+uHTTP::URI::URI(const std::string &value) {
   setString(value);
 }
 
@@ -50,8 +48,7 @@ uHTTP::URI::URI(const std::string &value)
 // setString
 ////////////////////////////////////////////////
 
-void uHTTP::URI::setString(const std::string &value)
-{
+void uHTTP::URI::setString(const std::string &value) {
   uriStr = value;
 
   // Protocol
@@ -130,8 +127,7 @@ void uHTTP::URI::setString(const std::string &value)
 // IsAbsoluteURI
 ////////////////////////////////////////////////
 
-bool uHTTP::URI::IsAbsoluteURI()
-{
+bool uHTTP::URI::IsAbsoluteURI() {
   if (0 < protocol.length())
     return true;
   return false;
@@ -141,8 +137,7 @@ bool uHTTP::URI::IsAbsoluteURI()
 // print
 ////////////////////////////////////////////////
 
-void uHTTP::URI::print()
-{
+void uHTTP::URI::print() {
 #if !defined(CG_NOUSE_STDOUT)
   printf("URI = %s\n", uriStr.c_str());
   printf("  protocol = %s\n", protocol.c_str());

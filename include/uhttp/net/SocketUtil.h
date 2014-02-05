@@ -56,7 +56,6 @@
 #endif
 
 namespace uHTTP {
-
 int GetSocketLastErrorCode();
 const char *DecodeSocketError(int ErrorCode);
 

@@ -43,8 +43,7 @@
 
 using namespace uHTTP;
 
-void uHTTP::Wait(long mtime)
-{
+void uHTTP::Wait(long mtime) {
 #if defined(WIN32)
   Sleep(mtime);
 #elif defined(BTRON)
@@ -61,15 +60,13 @@ void uHTTP::Wait(long mtime)
 #endif
 }
 
-void uHTTP::WaitRandom(long mtime)
-{
+void uHTTP::WaitRandom(long mtime) {
   double factor = (double)rand() / (double)RAND_MAX;
   long waitTime = (long)((double)mtime * factor);
   Wait(waitTime);
 }
 
-long uHTTP::GetCurrentSystemTime()
-{
+long uHTTP::GetCurrentSystemTime() {
 #if defined(BTRON)
   STIME systime;
   TIMEZONE tz;
@@ -92,8 +89,7 @@ long uHTTP::GetCurrentSystemTime()
 #endif
 }
 
-float uHTTP::Random()
-{
+float uHTTP::Random() {
   static bool seedDone = false;
   if (seedDone == false) {
     srand((time(NULL) % UINT_MAX));

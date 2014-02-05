@@ -18,16 +18,13 @@
 #include <uhttp/io/InputStream.h>
 
 namespace uHTTP {
-
 const long FILE_INBUF_SIZE = 512*1024;
 
-class FileInputStream : public InputStream
-{
+class FileInputStream : public InputStream {
   FILE *fp;
   char *inBuf;
 
-public:
-
+ public:
   FileInputStream(File *file, const std::string &mode);
   ~FileInputStream();
 

@@ -41,11 +41,8 @@ typedef int SOCKET;
 #endif
 
 namespace uHTTP {
-
-class SocketImp
-{
-public:
-
+class SocketImp {
+ public:
   SocketImp();
   ~SocketImp();
 
@@ -53,8 +50,7 @@ public:
   // Static Members
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static const int STREAM;
   static const int DGRAM;
 
@@ -62,23 +58,19 @@ public:
   //  Static Methods
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static size_t GetInstanceCount();
 
   ////////////////////////////////////////////////
   //  Socket
   ////////////////////////////////////////////////
   
-public:
-
-  void setSocket(SOCKET value)
-  {
+ public:
+  void setSocket(SOCKET value) {
     sock = value;
   }
 
-  SOCKET getSocket()
-  {
+  SOCKET getSocket() {
     return sock;
   }
 
@@ -86,8 +78,7 @@ public:
   // bind
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   bool isBound();
   
   ////////////////////////////////////////////////
@@ -102,26 +93,21 @@ public:
   //  Local address/port
   ////////////////////////////////////////////////
 
-public:
-
-  void setLocalAddress(const std::string &addr)
-  {
+ public:
+  void setLocalAddress(const std::string &addr) {
     localAddr = addr;
     //StripIPv6ScopeID(addr, localAddr);
   }
 
-  const char *getLocalAddress()
-  {
+  const char *getLocalAddress() {
     return localAddr.c_str();
   }
 
-  void setLocalPort(int port)
-  {
+  void setLocalPort(int port) {
     localPort = port;
   }
 
-  int getLocalPort()
-  {
+  int getLocalPort() {
     return localPort;
   }
 
@@ -131,15 +117,12 @@ public:
 
 protected:
   
-  void setType(int value)
-  {
+  void setType(int value) {
     type = value;
   }
 
-public:
-
-  int getType()
-  {
+ public:
+  int getType() {
     return type;
   }
 
@@ -153,8 +136,7 @@ protected:
     this->errorCode = code;
   }
 
-public:
-
+ public:
   int getErrorCode() const {
     return this->errorCode;
   }
@@ -163,8 +145,7 @@ public:
   //  Socket Option
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   bool setReuseAddress(bool on);
   void setTimeout(int timeout);
 

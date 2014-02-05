@@ -16,9 +16,7 @@
 #include <uhttp/http/HTTPServer.h>
 
 namespace uHTTP {
-
-class HTTPServerThread : public uHTTP::Thread
-{
+class HTTPServerThread : public uHTTP::Thread {
   uHTTP::Socket *clientSock;
   uHTTP::HTTPServer *httpServer;
 

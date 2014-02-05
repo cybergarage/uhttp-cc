@@ -15,8 +15,7 @@
 using namespace std;
 using namespace uHTTP;
 
-StringTokenizer::StringTokenizer(const std::string &str, const std::string &delim)
-{
+StringTokenizer::StringTokenizer(const std::string &str, const std::string &delim) {
   hasNextTokens = true;
   strBuf = str;
   strDelim = delim;
@@ -25,22 +24,18 @@ StringTokenizer::StringTokenizer(const std::string &str, const std::string &deli
   nextToken(delim);
 }
 
-StringTokenizer::~StringTokenizer()
-{
+StringTokenizer::~StringTokenizer() {
 }
 
-bool StringTokenizer::hasMoreTokens()
-{
+bool StringTokenizer::hasMoreTokens() {
   return hasNextTokens;
 }
 
-const char *StringTokenizer::nextToken()
-{
+const char *StringTokenizer::nextToken() {
   return nextToken(strDelim.c_str());
 }
 
-const char *StringTokenizer::nextToken(const std::string &delim)
-{
+const char *StringTokenizer::nextToken(const std::string &delim) {
   strCurrToken = strNextToken;
 
   string::size_type findStartDelimPos = (lastDelimPos == string::npos) ? 0 : (lastDelimPos+1);

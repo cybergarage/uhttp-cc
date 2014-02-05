@@ -20,9 +20,7 @@
 #include <string>
 
 namespace uHTTP {
-
-class HTTPServer : public uHTTP::Thread
-{
+class HTTPServer : public uHTTP::Thread {
   uHTTP::ServerSocket *serverSock;
   uHTTP::ListenerList httpRequestListenerList;
 
@@ -30,8 +28,7 @@ class HTTPServer : public uHTTP::Thread
   bool accept(uHTTP::Socket *socket);
   bool isOpened();
 
-  uHTTP::ServerSocket *getServerSock()
-  {
+  uHTTP::ServerSocket *getServerSock() {
     return serverSock;
   }
 
@@ -51,18 +48,15 @@ public:
   //  httpRequest
   ////////////////////////////////////////////////
      
-  void addRequestListener(HTTPRequestListener *listener)
-  {
+  void addRequestListener(HTTPRequestListener *listener) {
     httpRequestListenerList.add(listener);
   }    
 
-  void removeRequestListener(HTTPRequestListener *listener)
-  {
+  void removeRequestListener(HTTPRequestListener *listener) {
     httpRequestListenerList.remove(listener);
   }    
 
-  HTTP::StatusCode performRequestListener(HTTPRequest *httpReq)
-  {
+  HTTP::StatusCode performRequestListener(HTTPRequest *httpReq) {
     HTTP::StatusCode lastStatusCode = HTTP::INTERNAL_SERVER_ERROR;
     int listenerSize = httpRequestListenerList.size();
     for (int n=0; n<listenerSize; n++) {

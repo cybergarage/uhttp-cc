@@ -15,29 +15,23 @@
 #include <vector>
 
 namespace uHTTP {
-
-class Vector
-{
+class Vector {
 private:
 
   std::vector<void *> vec;
 
-public:
-
-  Vector()
-  {
+ public:
+  Vector() {
   }
 
-  bool add(void *obj)
-  {
+  bool add(void *obj) {
     if (0 <= indexOf(obj))
       return false;
     vec.push_back(obj);
     return true;
   }
 
-  bool remove(void *obj)
-  {
+  bool remove(void *obj) {
     int idx = indexOf(obj);
     if (idx < 0)
       return false;
@@ -45,8 +39,7 @@ public:
     return true;
   }
 
-  int indexOf(void *obj)
-  {
+  int indexOf(void *obj) {
     int cnt = size();
     for (int n=0; n<cnt; n++) {
       //if (obj == ((void *)at(n)))
@@ -66,21 +59,18 @@ public:
     //return (void *)at(index);
   }
 
-  bool insertAt(void *obj, int index)
-  {
+  bool insertAt(void *obj, int index) {
     if (0 <= indexOf(obj))
       return false;
     vec.insert(vec.begin() + index, obj);
     return true;
   }
 
-  int size()
-  {
+  int size() {
     return (int)vec.size();
   }
 
-  void clear()
-  {
+  void clear() {
     vec.clear();
   }
 };

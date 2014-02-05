@@ -17,19 +17,16 @@
 #include <string>
 
 namespace uHTTP {
-
 const long SOCKET_RECV_WAIT_TIME = 100;
 const long SOCKET_RECV_RETRY_CNT = 10;
 const long SOCKET_INBUF_SIZE = 512*1024;
 
-class SocketInputStream : public uHTTP::InputStream
-{
+class SocketInputStream : public uHTTP::InputStream {
   Socket *sock;
   std::string unputBuf;
   char *inBuf;
 
-public:
-
+ public:
   SocketInputStream(Socket *sock);
 
   virtual ~SocketInputStream();

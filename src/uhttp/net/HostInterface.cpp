@@ -58,8 +58,7 @@ extern ttUserInterface kaInterfaceHandle;
 //  GetNHostAddresses
 ////////////////////////////////////////////////
 
-int uHTTP::GetNHostAddresses()
-{
+int uHTTP::GetNHostAddresses() {
   if (HasAssignedHostInterface() == true)
     return 1;
 
@@ -67,8 +66,7 @@ int uHTTP::GetNHostAddresses()
   return GetHostAddresses(netIfList);
 }
 
-const char *uHTTP::GetHostAddress(int n, std::string &buf)
-{
+const char *uHTTP::GetHostAddress(int n, std::string &buf) {
   buf = "";
   
   if (HasAssignedHostInterface() == false) {
@@ -86,8 +84,7 @@ const char *uHTTP::GetHostAddress(int n, std::string &buf)
   return buf.c_str();
 }
 
-static bool IsUseAddress(const std::string &host)
-{
+static bool IsUseAddress(const std::string &host) {
   if (uHTTP::HostInterface::USE_ONLY_IPV6_ADDR == true) {
     if (IsIPv6Address(host) == false)
       return false;
@@ -109,8 +106,7 @@ static bool IsUseAddress(const std::string &host)
 #define NOUSE_WIN32_GETHOSTADDRESSES 1
 #endif
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
-{
+int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   SocketStartup();
 
   netIfList.clear();
@@ -218,8 +214,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
 
 #if defined(HAVE_IFADDRS_H) || defined(__APPLE_CC__)
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
-{
+int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   netIfList.clear();
   struct ifaddrs *ifaddr;
   if (getifaddrs(&ifaddr) != 0)
@@ -266,8 +261,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
 
 static const char *PATH_PROC_NET_DEV = "/proc/net/dev";
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
-{
+int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   netIfList.clear();
   int s = socket(AF_INET, SOCK_DGRAM, 0);
   if (s < 0)
@@ -317,8 +311,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
-{
+int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   netIfList.clear();
   
   struct hostent hostEnt;
@@ -345,8 +338,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
-{
+int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   SocketStartup();
 
   const char *ifname = "Neta";
@@ -372,8 +364,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList)
 //  IsIPv6Address
 ////////////////////////////////////////////////
 
-bool uHTTP::IsIPv6Address(const std::string &addr)
-{
+bool uHTTP::IsIPv6Address(const std::string &addr) {
   if (addr.find(":") != std::string::npos)
     return true;
   return false;
@@ -383,8 +374,7 @@ bool uHTTP::IsIPv6Address(const std::string &addr)
 //  ScopeID
 ////////////////////////////////////////////////
 
-const char *uHTTP::StripIPv6ScopeID(const std::string &addr, std::string &buf)
-{
+const char *uHTTP::StripIPv6ScopeID(const std::string &addr, std::string &buf) {
   std::string addrStr = addr;
   if (IsIPv6Address(addr) == true) {
     size_t pos = addrStr.find("%");
@@ -395,8 +385,7 @@ const char *uHTTP::StripIPv6ScopeID(const std::string &addr, std::string &buf)
   return buf.c_str();
 }
 
-int uHTTP::GetIPv6ScopeID(const std::string &addr)
-{
+int uHTTP::GetIPv6ScopeID(const std::string &addr) {
   if (IsIPv6Address(addr) == false)
     return 0;
   std::string addrStr = addr;
@@ -413,17 +402,14 @@ int uHTTP::GetIPv6ScopeID(const std::string &addr)
 
 static string ifAddress;
 
-void uHTTP::SetHostInterface(const std::string &ifaddr)
-{
+void uHTTP::SetHostInterface(const std::string &ifaddr) {
   ifAddress = ifaddr;
 }
 
-const char *uHTTP::GetHostInterface()
-{
+const char *uHTTP::GetHostInterface() {
   return ifAddress.c_str();
 }
 
-bool uHTTP::HasAssignedHostInterface()
-{
+bool uHTTP::HasAssignedHostInterface() {
   return (0 < ifAddress.length()) ? true : false;
 }

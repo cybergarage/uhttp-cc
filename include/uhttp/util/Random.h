@@ -12,11 +12,8 @@
 #define _CUTIL_RANDOM_H_
 
 namespace uHTTP {
-
-class Random
-{
-public:
-
+class Random {
+ public:
   Random();
   Random(unsigned int min, unsigned int max);
   ~Random();

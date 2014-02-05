@@ -64,20 +64,17 @@ const char *File::O_BINARY= "rb";
 //  Constructor
 ////////////////////////////////////////////////
 
-File::File()
-{
+File::File() {
   absoluteFile = NULL;
   setName("");
 }
 
-File::File(const std::string &fname)
-{
+File::File(const std::string &fname) {
   absoluteFile = NULL;
   setName(fname);
 }
 
-File::File(const std::string &dir, const std::string &fname)
-{
+File::File(const std::string &dir, const std::string &fname) {
   absoluteFile = NULL;
   string fullname;
   fullname = dir;
@@ -89,14 +86,12 @@ File::File(const std::string &dir, const std::string &fname)
   setName(fullname.c_str());
 }
 
-File::File(File *file)
-{
+File::File(File *file) {
   absoluteFile = NULL;
   setName(file->getName());
 }
 
-File::~File()
-{
+File::~File() {
   if (absoluteFile != NULL)
     delete absoluteFile;
 }
@@ -105,8 +100,7 @@ File::~File()
 // exists
 ////////////////////////////////////////////////
 
-bool File::exists(const std::string &name)
-{
+bool File::exists(const std::string &name) {
 #if defined(BTRON)
   int fd = open(name, O_RDONLY);
   if (fd == -1)
@@ -128,8 +122,7 @@ bool File::exists(const std::string &name)
 // load
 ////////////////////////////////////////////////
 
-const char *File::load(const std::string &name, string &buf)
-{
+const char *File::load(const std::string &name, string &buf) {
   const int READ_BUF_SIZE = 1024;
   char readBuf[READ_BUF_SIZE+1];
 
@@ -166,8 +159,7 @@ const char *File::load(const std::string &name, string &buf)
 // save
 ////////////////////////////////////////////////
 
-bool File::save(const std::string &name, const std::string &buf)
-{
+bool File::save(const std::string &name, const std::string &buf) {
 #if defined(BTRON)
   int fd = open(name, O_WRONLY);
   if (fd == -1)
@@ -203,8 +195,7 @@ bool File::save(const std::string &name, const std::string &buf)
 // File Type
 ////////////////////////////////////////////////
 
-const char *File::getSuffix(std::string &buf)
-{
+const char *File::getSuffix(std::string &buf) {
   string::size_type dotPos = nameStr.rfind(".");
   if (dotPos == string::npos) {
     buf = "";
@@ -214,8 +205,7 @@ const char *File::getSuffix(std::string &buf)
   return buf.c_str();
 }
 
-bool File::isXMLFileName(const std::string &name)
-{
+bool File::isXMLFileName(const std::string &name) {
   String nameStr = name;
   String lowerName(nameStr.toLowerCase());
   return lowerName.endsWith("xml");
@@ -225,8 +215,7 @@ bool File::isXMLFileName(const std::string &name)
 // getFileName
 ////////////////////////////////////////////////
 
-const char *File::getFileName(std::string &buf)
-{
+const char *File::getFileName(std::string &buf) {
   string::size_type sepPos = nameStr.rfind(separator);
   if (sepPos != string::npos)
     sepPos++;
@@ -240,8 +229,7 @@ const char *File::getFileName(std::string &buf)
 // getAbsoluteFile
 ////////////////////////////////////////////////
 
-File *File::getAbsoluteFile()
-{
+File *File::getAbsoluteFile() {
   if (absoluteFile == NULL)
     absoluteFile = new File();
   absoluteFile->setName("");
@@ -271,8 +259,7 @@ File *File::getAbsoluteFile()
 // getParent
 ////////////////////////////////////////////////
   
-const char *File::getParent()
-{
+const char *File::getParent() {
   File *fullfile = getAbsoluteFile();
   const char *fullpath = fullfile->getName();
   string fullpathStr = fullpath;
@@ -289,8 +276,7 @@ const char *File::getParent()
 //  Attributes
 ////////////////////////////////////////////////
 
-long File::lastModified()
-{
+long File::lastModified() {
 #if defined(BTRON)
   struct stat buf ;
   if(u_stat(getName(),&buf ) == -1)
@@ -306,8 +292,7 @@ long File::lastModified()
 #endif
 }
 
-long File::length()
-{
+long File::length() {
 #if defined(BTRON)
   struct stat buf ;
   if(u_stat(getName(),&buf ) == -1)
@@ -327,8 +312,7 @@ long File::length()
 //  is*
 ////////////////////////////////////////////////
 
-bool File::isDirectory()
-{
+bool File::isDirectory() {
 #if defined(BTRON)
   struct stat buf ;
   if(u_stat(getName(),&buf ) == -1)
@@ -347,8 +331,7 @@ bool File::isDirectory()
 #endif
 }
 
-bool File::isFile()
-{
+bool File::isFile() {
 #if defined(BTRON)
   struct stat buf ;
   if(u_stat(getName(),&buf ) == -1)
@@ -371,8 +354,7 @@ bool File::isFile()
 //  Compare
 ////////////////////////////////////////////////
 
-bool File::equals(File *file)
-{
+bool File::equals(File *file) {
   string fileName1 = getName();
   string fileName2 = file->getName();
   return (fileName1.compare(fileName2) == 0) ? true : false;
@@ -382,8 +364,7 @@ bool File::equals(File *file)
 //  FileList
 ////////////////////////////////////////////////
 
-int File::listFiles(FileList &fileList)
-{
+int File::listFiles(FileList &fileList) {
   fileList.clear();
   if (isDirectory() == false)
     return 0;

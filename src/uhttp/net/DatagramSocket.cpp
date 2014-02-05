@@ -30,19 +30,16 @@ static ER TcpCallback(ID cepid, FN fncd, VP parblk);
 //  DatagramSocket
 ////////////////////////////////////////////////
 
-DatagramSocket::DatagramSocket()
-{
+DatagramSocket::DatagramSocket() {
   setType(DGRAM);
 }
 
-DatagramSocket::DatagramSocket(int port, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag)
-{
+DatagramSocket::DatagramSocket(int port, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag) {
   setType(DGRAM);
   bind(port, bindAddr, bindAddrFlag, reuseAddrFlag);
 }
 
-DatagramSocket::~DatagramSocket()
-{
+DatagramSocket::~DatagramSocket() {
   close();
 }
 
@@ -50,8 +47,7 @@ DatagramSocket::~DatagramSocket()
 //  bind
 ////////////////////////////////////////////////
 
-bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag)
-{
+bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag) {
   setLocalAddress("");
   setLocalPort(0);
 
@@ -116,8 +112,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
 //  recv
 ////////////////////////////////////////////////
 
-ssize_t DatagramSocket::receive(DatagramPacket &dataPack)
-{
+ssize_t DatagramSocket::receive(DatagramPacket &dataPack) {
   dataPack.setAddress("");
   dataPack.setPort(0);
 
@@ -177,8 +172,7 @@ ssize_t DatagramSocket::receive(DatagramPacket &dataPack)
 //  send
 ////////////////////////////////////////////////
 
-ssize_t DatagramSocket::send(const std::string &addr, int port, const std::string &data, size_t dataLen)
-{
+ssize_t DatagramSocket::send(const std::string &addr, int port, const std::string &data, size_t dataLen) {
   if (dataLen <= 0)
     dataLen = data.length();
   
@@ -245,8 +239,7 @@ ssize_t DatagramSocket::send(const std::string &addr, int port, const std::strin
   return sentLen;
 }
 
-ssize_t DatagramSocket::send(DatagramPacket *dataPack)
-{
+ssize_t DatagramSocket::send(DatagramPacket *dataPack) {
   InetSocketAddress *sockAddr = dataPack->getSocketAddress();
   return send(sockAddr->getAddress(), sockAddr->getPort(), dataPack->getData());
 }
@@ -257,8 +250,7 @@ ssize_t DatagramSocket::send(DatagramPacket *dataPack)
 
 #if defined(ITRON)
 
-static ER UdpCallback(ID cepid, FN fncd, VP parblk)
-{
+static ER UdpCallback(ID cepid, FN fncd, VP parblk) {
   return E_OK;
 }
 

@@ -21,12 +21,10 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPServerList::HTTPServerList()
-{
+HTTPServerList::HTTPServerList() {
 }
 
-HTTPServerList::~HTTPServerList()
-{
+HTTPServerList::~HTTPServerList() {
   stop();
   close();
 }
@@ -35,8 +33,7 @@ HTTPServerList::~HTTPServerList()
 //  addRequestListener
 ////////////////////////////////////////////////
 
-void HTTPServerList::addRequestListener(HTTPRequestListener *listener)
-{
+void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
   int nServers = size();
   for (int n=0; n<nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
@@ -48,8 +45,7 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener)
 //  open/close
 ////////////////////////////////////////////////
 
-void HTTPServerList::close()
-{
+void HTTPServerList::close() {
   int nServers = size();
   for (int n=0; n<nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
@@ -58,8 +54,7 @@ void HTTPServerList::close()
   clear();
 }
 
-bool HTTPServerList::open(int port)
-{
+bool HTTPServerList::open(int port) {
   bool ret = true;
   int nHostAddrs = GetNHostAddresses();
   for (int n=0; n<nHostAddrs; n++) {
@@ -87,8 +82,7 @@ bool HTTPServerList::open(int port)
 //  start/stop
 ////////////////////////////////////////////////
 
-void HTTPServerList::start()
-{
+void HTTPServerList::start() {
   int nServers = size();
   for (int n=0; n<nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
@@ -96,8 +90,7 @@ void HTTPServerList::start()
   }
 }
 
-void HTTPServerList::stop()
-{
+void HTTPServerList::stop() {
   int nServers = size();
   for (int n=0; n<nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
@@ -109,8 +102,7 @@ void HTTPServerList::stop()
 // clear
 ////////////////////////////////////////////////
 
-void HTTPServerList::clear()
-{
+void HTTPServerList::clear() {
   int nServers = size();
   for (int n=0; n<nServers; n++) {
     HTTPServer *server = getHTTPServer(n);

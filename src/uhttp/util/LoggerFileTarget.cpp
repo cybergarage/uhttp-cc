@@ -10,17 +10,14 @@
 
 #include <uhttp/util/LoggerFileTarget.h>
 
-uHTTP::LoggerFileTarget::  LoggerFileTarget()
-{
+uHTTP::LoggerFileTarget::  LoggerFileTarget() {
 }
 
-uHTTP::LoggerFileTarget::~LoggerFileTarget()
-{
+uHTTP::LoggerFileTarget::~LoggerFileTarget() {
   close();
 }
   
-bool uHTTP::LoggerFileTarget::open(const std::string &filename)
-{
+bool uHTTP::LoggerFileTarget::open(const std::string &filename) {
   FILE *fd = fopen(filename.c_str(), "a");
   if (!fd)
     return false;
@@ -28,8 +25,7 @@ bool uHTTP::LoggerFileTarget::open(const std::string &filename)
   return true;
 }
 
-bool uHTTP::LoggerFileTarget::close()
-{
+bool uHTTP::LoggerFileTarget::close() {
   bool isClosed = false;
   if (hasFD()) {
     isClosed = (fclose(getFD()) == 0) ? true : false;

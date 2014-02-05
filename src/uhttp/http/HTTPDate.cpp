@@ -23,20 +23,17 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPDate::HTTPDate()
-{
+HTTPDate::HTTPDate() {
 }
 
-HTTPDate::HTTPDate(SysTime date) : uHTTP::Date(date)
-{
+HTTPDate::HTTPDate(SysTime date) : uHTTP::Date(date) {
 }
 
 ////////////////////////////////////////////////
 //  get*String
 ////////////////////////////////////////////////
 
-const char *HTTPDate::getDateString()
-{
+const char *HTTPDate::getDateString() {
 #if defined(HAVE_GMTIME_R)
   struct tm gmTimeBuf;
   struct tm *gmTime = &gmTimeBuf;
@@ -92,15 +89,13 @@ static const char WEEK_STRING[][4] = {
   "Sat",
 };
 
-const char *uHTTP::toMonthString(int value)
-{
+const char *uHTTP::toMonthString(int value) {
   if (0 <= value && value < 12)
     return MONTH_STRING[value];
   return "";
 }
   
-const char *uHTTP::toWeekString(int value)
-{
+const char *uHTTP::toWeekString(int value) {
   if (0 <= value && value < 7)
     return WEEK_STRING[value];
   return "";

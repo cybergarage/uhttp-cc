@@ -17,19 +17,15 @@
 #include <string>
 
 namespace uHTTP {
-
-class HTTPResponse : public HTTPPacket
-{
+class HTTPResponse : public HTTPPacket {
   int statusCode;
 
-public:
-
+ public:
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   HTTPResponse();
 
   HTTPResponse(HTTPResponse *httpRes);
@@ -38,23 +34,19 @@ public:
   //  Status Line
   ////////////////////////////////////////////////
 
-public:
-
-  void setStatusCode(int code)
-  {
+ public:
+  void setStatusCode(int code) {
     statusCode = code;
   }
 
-  int getStatusCode()
-  {
+  int getStatusCode() {
     if (statusCode != 0)
       return statusCode;
     HTTPStatus httpStatus(getFirstLine());
     return httpStatus.getStatusCode();
   }
   
-  bool isSuccessful()
-  {
+  bool isSuccessful() {
     return HTTPStatus::isSuccessful(getStatusCode());
   }
 
@@ -64,16 +56,14 @@ public:
   //  getHeader
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   const char *getHeader(std::string &headerBuf);
 
   ////////////////////////////////////////////////
   //  toString
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   const char *toString(std::string &buf);
 
   void print();

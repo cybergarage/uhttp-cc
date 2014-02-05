@@ -14,14 +14,11 @@
 #include <uhttp/util/Date.h>
 
 namespace uHTTP {
-
-class HTTPDate : public uHTTP::Date
-{
+class HTTPDate : public uHTTP::Date {
   char dateStr[64];
   char timeStr[64];
 
-public:
-
+ public:
   HTTPDate();
   HTTPDate(SysTime date);
 

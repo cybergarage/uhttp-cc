@@ -16,16 +16,12 @@
 #include <uhttp/io/InputStream.h>
 
 namespace uHTTP {
-
 class HTTPResponse;
 
-class HTTPSocket
-{
-
+class HTTPSocket {
   uHTTP::Socket *socket;
   
-public:
-
+ public:
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -38,13 +34,11 @@ public:
   //  Socket
   ////////////////////////////////////////////////
 
-  void setSocket(uHTTP::Socket *socket)
-  {
+  void setSocket(uHTTP::Socket *socket) {
     this->socket = socket;
   }
 
-  uHTTP::Socket *getSocket()
-  {
+  uHTTP::Socket *getSocket() {
     return socket;
   }
 
@@ -52,15 +46,12 @@ public:
   //  local address/port
   ////////////////////////////////////////////////
   
-public:
-
-  const char *getLocalAddress()
-  {
+ public:
+  const char *getLocalAddress() {
     return getSocket()->getLocalAddress();  
   }
 
-  int getLocalPort()
-  {
+  int getLocalPort() {
     return getSocket()->getLocalPort();  
   }
 
@@ -68,8 +59,7 @@ public:
   //  open/close
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   bool open();
   bool close();
   
@@ -82,8 +72,7 @@ private:
   bool post(HTTPResponse *httpRes, const std::string &content, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
   bool post(HTTPResponse *httpRes, uHTTP::InputStream *in, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
 
-public:
-
+ public:
   bool post(HTTPResponse *httpRes, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked);
   bool post(HTTPResponse *httpRes);
   bool post(const std::string &content);

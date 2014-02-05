@@ -17,44 +17,35 @@
 #include <string>
 
 namespace uHTTP {
-
-class DatagramPacket
-{
+class DatagramPacket {
   InetSocketAddress sockAddr;
   std::string data;
 
-public:
-
-  DatagramPacket()
-  {
+ public:
+  DatagramPacket() {
   }
 
-  DatagramPacket(const std::string &msg, InetSocketAddress *addr)
-  {
+  DatagramPacket(const std::string &msg, InetSocketAddress *addr) {
     setData(msg);
     setSocketAddress(addr);
   }
 
-  ~DatagramPacket()
-  {
+  ~DatagramPacket() {
   }
 
   ////////////////////////////////////////////////
   //  date
   ////////////////////////////////////////////////
 
-  void setData(const std::string &value)
-  {
+  void setData(const std::string &value) {
     data = value;
   }
 
-  const char *getData()
-  {
+  const char *getData() {
     return data.c_str();
   }
 
-  int getLength()
-  {
+  int getLength() {
     return (int)data.length();
   }
 
@@ -62,38 +53,31 @@ public:
   //  address/port
   ////////////////////////////////////////////////
 
-  void setSocketAddress(InetSocketAddress *addr)
-  {
+  void setSocketAddress(InetSocketAddress *addr) {
     sockAddr.set(addr);
   }
 
-  InetSocketAddress *getSocketAddress()
-  {
+  InetSocketAddress *getSocketAddress() {
     return &sockAddr;
   }
 
-  void setAddress(const std::string &addr)
-  {
+  void setAddress(const std::string &addr) {
     sockAddr.setAddress(addr);
   }
 
-  void setPort(int port)
-  {
+  void setPort(int port) {
     sockAddr.setPort(port);
   }
 
-  const char *getAddress()
-  {
+  const char *getAddress() {
     return sockAddr.getAddress();
   }
 
-  int getPort()
-  {
+  int getPort() {
     return sockAddr.getPort();
   }
 
-  void set(DatagramPacket *dgmPack)
-  {
+  void set(DatagramPacket *dgmPack) {
     if (dgmPack == NULL) {
       setSocketAddress(NULL);
       setData("");

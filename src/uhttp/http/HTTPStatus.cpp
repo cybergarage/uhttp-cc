@@ -23,22 +23,19 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPStatus::HTTPStatus()
-{
+HTTPStatus::HTTPStatus() {
   setVersion("");
   setStatusCode(0);
   setReasonPhrase("");
 }
   
-HTTPStatus::HTTPStatus(const std::string &ver, int code, const std::string &reason)
-{
+HTTPStatus::HTTPStatus(const std::string &ver, int code, const std::string &reason) {
   setVersion(ver);
   setStatusCode(code);
   setReasonPhrase(reason);
 }
 
-HTTPStatus::HTTPStatus(const std::string &lineStr)
-{
+HTTPStatus::HTTPStatus(const std::string &lineStr) {
   set(lineStr);
 }
 
@@ -46,8 +43,7 @@ HTTPStatus::HTTPStatus(const std::string &lineStr)
 //  set
 ////////////////////////////////////////////////
 
-void HTTPStatus::set(const std::string &lineStr)
-{
+void HTTPStatus::set(const std::string &lineStr) {
     if (lineStr.length() <= 0) {
       setVersion(HTTP::VER);
       setStatusCode(HTTP::INTERNAL_SERVER_ERROR);
@@ -82,8 +78,7 @@ void HTTPStatus::set(const std::string &lineStr)
 //  Status
 ////////////////////////////////////////////////
   
-bool HTTPStatus::isSuccessful(int statCode)
-{
+bool HTTPStatus::isSuccessful(int statCode) {
   if (200 <= statCode && statCode < 300)
     return true;
   return false;
@@ -93,8 +88,7 @@ bool HTTPStatus::isSuccessful(int statCode)
 //  StatusCode2String
 ////////////////////////////////////////////////
   
-const char *uHTTP::HTTP::StatusCode2String(int code)
-{
+const char *uHTTP::HTTP::StatusCode2String(int code) {
   switch (code) {
   case HTTP::CONTINUE: return "Continue";
   case HTTP::OK_REQUEST: return "OK";

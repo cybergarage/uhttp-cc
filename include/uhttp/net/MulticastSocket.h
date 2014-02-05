@@ -17,12 +17,8 @@
 #include <uhttp/net/NetworkInterface.h>
 
 namespace uHTTP {
-
-class MulticastSocket : public DatagramSocket
-{
-
-public:
-
+class MulticastSocket : public DatagramSocket {
+ public:
   MulticastSocket();
   MulticastSocket(int port, const std::string &bindAddr);
   ~MulticastSocket();
@@ -30,8 +26,7 @@ public:
   bool bind(int port, const std::string &addr);
   
   bool joinGroup(const std::string &mcastAddr, const std::string &ifAddr = NULL);
-  bool joinGroup(InetSocketAddress *mcastAddr, NetworkInterface *ifAddr)
-  {
+  bool joinGroup(InetSocketAddress *mcastAddr, NetworkInterface *ifAddr) {
     return joinGroup(mcastAddr->getAddress(), ifAddr->getAddress());
   }
 

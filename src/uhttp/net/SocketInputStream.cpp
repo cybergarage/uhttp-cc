@@ -19,8 +19,7 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-SocketInputStream::SocketInputStream(Socket *sock)
-{
+SocketInputStream::SocketInputStream(Socket *sock) {
   this->sock = sock;
   this->inBuf = new char[SOCKET_INBUF_SIZE];
 }
@@ -29,8 +28,7 @@ SocketInputStream::SocketInputStream(Socket *sock)
 //  Destructor
 ////////////////////////////////////////////////
 
-SocketInputStream::~SocketInputStream()
-{
+SocketInputStream::~SocketInputStream() {
   delete[] this->inBuf;
 }
 
@@ -38,8 +36,7 @@ SocketInputStream::~SocketInputStream()
 //  read
 ////////////////////////////////////////////////
 
-ssize_t SocketInputStream::read(std::string &b, size_t len)
-{
+ssize_t SocketInputStream::read(std::string &b, size_t len) {
   if (!this->inBuf)
     return 0;
   
@@ -77,8 +74,7 @@ ssize_t SocketInputStream::read(std::string &b, size_t len)
 //  read
 ////////////////////////////////////////////////
 
-ssize_t SocketInputStream::read(char *b, size_t len)
-{
+ssize_t SocketInputStream::read(char *b, size_t len) {
   if (!this->inBuf)
     return 0;
   
@@ -103,8 +99,7 @@ ssize_t SocketInputStream::read(char *b, size_t len)
 //  unread
 ////////////////////////////////////////////////
 
-void SocketInputStream::unread(std::string &b, size_t off, size_t len)
-{
+void SocketInputStream::unread(std::string &b, size_t off, size_t len) {
   unputBuf.append(b.substr(off, len));
 }
 
@@ -112,8 +107,7 @@ void SocketInputStream::unread(std::string &b, size_t off, size_t len)
 //  skip
 ////////////////////////////////////////////////
 
-long SocketInputStream::skip(long n)
-{
+long SocketInputStream::skip(long n) {
   if (!this->inBuf)
     return 0;
   
@@ -140,7 +134,6 @@ long SocketInputStream::skip(long n)
 //  close
 ////////////////////////////////////////////////
 
-void SocketInputStream::close()
-{
+void SocketInputStream::close() {
   sock->close();
 }

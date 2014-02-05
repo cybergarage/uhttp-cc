@@ -43,8 +43,7 @@ static Mutex sockMutex;
 ttUserInterface kaInterfaceHandle;
 #endif
 
-void uHTTP::SocketStartup()
-{
+void uHTTP::SocketStartup() {
   sockMutex.lock();
   if (socketCnt == 0) {
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
@@ -67,8 +66,7 @@ void uHTTP::SocketStartup()
   sockMutex.unlock();
 }
 
-void uHTTP::SocketCleanup()
-{
+void uHTTP::SocketCleanup() {
   sockMutex.lock();
   socketCnt--;
   if (socketCnt <= 0) {
@@ -85,8 +83,7 @@ void uHTTP::SocketCleanup()
   sockMutex.unlock();
 }
 
-size_t uHTTP::SocketImp::GetInstanceCount()
-{
+size_t uHTTP::SocketImp::GetInstanceCount() {
   return socketCnt;
 }
 
@@ -94,8 +91,7 @@ size_t uHTTP::SocketImp::GetInstanceCount()
 //  Constructor/Destructor
 ////////////////////////////////////////////////
 
-SocketImp::SocketImp()
-{
+SocketImp::SocketImp() {
   SocketStartup();
   setType(0);
   setLocalAddress("");
@@ -108,13 +104,11 @@ SocketImp::SocketImp()
 #endif
 }
 
-SocketImp::~SocketImp()
-{
+SocketImp::~SocketImp() {
   SocketCleanup();
 }
 
-bool SocketImp::isBound()
-{
+bool SocketImp::isBound() {
 #if (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)) && !defined(ITRON)
   return (sock != INVALID_SOCKET) ? true : false;
 #else
@@ -126,8 +120,7 @@ bool SocketImp::isBound()
 //  close
 ////////////////////////////////////////////////
 
-bool SocketImp::close()
-{
+bool SocketImp::close() {
   if (!isBound())
     return true;
 
@@ -178,8 +171,7 @@ bool SocketImp::close()
 //  Socket Option
 ////////////////////////////////////////////////
 
-bool SocketImp::setReuseAddress(bool flag)
-{
+bool SocketImp::setReuseAddress(bool flag) {
   int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   B optval = (flag == true) ? 1 : 0;
@@ -204,8 +196,7 @@ bool SocketImp::setReuseAddress(bool flag)
   return (sockOptRet == 0) ? true : false;
 }
 
-void SocketImp::setTimeout(int timeout)
-{
+void SocketImp::setTimeout(int timeout) {
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
   setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
   setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
@@ -218,8 +209,7 @@ void SocketImp::setTimeout(int timeout)
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 
-bool SocketImp::setMulticastInterface(const std::string &ifaddr)
-{
+bool SocketImp::setMulticastInterface(const std::string &ifaddr) {
   NetworkInterfaceList netIfList;
 
   if (ifaddr == NULL || strlen(ifaddr) <= 0) {

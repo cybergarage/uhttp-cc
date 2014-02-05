@@ -21,22 +21,19 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
   
-HTTPServerThread::HTTPServerThread(HTTPServer *server, Socket *sock)
-{
+HTTPServerThread::HTTPServerThread(HTTPServer *server, Socket *sock) {
   clientSock = sock;
   httpServer = server;
 }
 
-HTTPServerThread::~HTTPServerThread()
-{
+HTTPServerThread::~HTTPServerThread() {
 }
 
 ////////////////////////////////////////////////
 //  run  
 ////////////////////////////////////////////////
 
-void HTTPServerThread::run()
-{
+void HTTPServerThread::run() {
   HTTPSocket httpSock(clientSock);
   if (httpSock.open() == false) {
     delete clientSock;

@@ -21,22 +21,17 @@
 
 namespace uHTTP {
   
-class Logger
-{
-
-public:
-
+class Logger {
+ public:
   static const int MAX_LINE_STRING;
   static const char *SEPARATOR;
   
-public:
-
+ public:
   static void SetSharedInstance(Logger *logger);
   static Logger *GetSharedInstance();
   static const char *GetMaskString(int outputType);
 
-public:
-
+ public:
   Logger();
   ~Logger();
 

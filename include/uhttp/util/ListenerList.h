@@ -14,13 +14,9 @@
 #include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-
-class ListenerList : public Vector
-{
-public:
-
-  ListenerList()
-  {
+class ListenerList : public Vector {
+ public:
+  ListenerList() {
   }
 
 };

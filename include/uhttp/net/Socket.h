@@ -15,15 +15,11 @@
 #include <uhttp/net/SocketImp.h>
 
 namespace uHTTP {
-
-class Socket : public SocketImp
-{
-public:
-
+class Socket : public SocketImp {
+ public:
   static ssize_t GetInstanceCount();
   
-public:
-
+ public:
   Socket();
   ~Socket();
 

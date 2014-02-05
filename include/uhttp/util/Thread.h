@@ -30,9 +30,7 @@
 #endif
 
 namespace uHTTP {
-
-class Thread
-{
+class Thread {
 #if defined(WIN32) && !defined(ITRON)
   HANDLE  hThread;
   DWORD  threadID;
@@ -53,8 +51,7 @@ private:
 
   void setRunnableFlag(bool flag);
 
-public:
-
+ public:
   Thread();
   virtual ~Thread();
 
@@ -63,8 +60,7 @@ public:
   bool isRunnable();
   virtual bool stop();
 
-  bool restart()
-  {
+  bool restart() {
     stop();
     start();
     return true;

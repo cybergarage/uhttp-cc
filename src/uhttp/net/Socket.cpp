@@ -38,8 +38,7 @@ const int Socket::WINDOW_BUF_SIZE = 4096;
 
 static ssize_t gSocketInstanceCount = 0;
 
-ssize_t Socket::GetInstanceCount()
-{
+ssize_t Socket::GetInstanceCount() {
   return gSocketInstanceCount;
 }
 
@@ -47,8 +46,7 @@ ssize_t Socket::GetInstanceCount()
 //  Socket
 ////////////////////////////////////////////////
 
-Socket::Socket()
-{
+Socket::Socket() {
   gSocketInstanceCount++;
   
   setType(STREAM);
@@ -59,8 +57,7 @@ Socket::Socket()
 #endif
 }
 
-Socket::~Socket()
-{
+Socket::~Socket() {
   close();
 
 #if defined(ITRON)
@@ -75,8 +72,7 @@ Socket::~Socket()
 //  listen
 ////////////////////////////////////////////////
 
-bool Socket::listen()
-{
+bool Socket::listen() {
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   ERR ret = so_listen(sock, 10);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
@@ -96,8 +92,7 @@ bool Socket::listen()
 //  bind
 ////////////////////////////////////////////////
 
-bool Socket::bind(int bindPort, const std::string &bindAddr)
-{
+bool Socket::bind(int bindPort, const std::string &bindAddr) {
   setLocalAddress("");
   setLocalPort(0);
 
@@ -175,8 +170,7 @@ bool Socket::bind(int bindPort, const std::string &bindAddr)
 //  accept
 ////////////////////////////////////////////////
 
-bool Socket::accept(Socket *socket)
-{
+bool Socket::accept(Socket *socket) {
   SOCKET clientSock;
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
@@ -219,8 +213,7 @@ bool Socket::accept(Socket *socket)
 //  connect
 ////////////////////////////////////////////////
 
-bool Socket::connect(const std::string &addr, int port)
-{
+bool Socket::connect(const std::string &addr, int port) {
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   struct sockaddr_in sockaddr;
   if (toSocketAddrIn(addr, port, &sockaddr) == false)
@@ -295,8 +288,7 @@ bool Socket::connect(const std::string &addr, int port)
 //  recv
 ////////////////////////////////////////////////
 
-ssize_t Socket::recv(char *buffer, size_t bufferLen)
-{
+ssize_t Socket::recv(char *buffer, size_t bufferLen) {
   ssize_t recvLen;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   recvLen = so_recv(sock, buffer, bufferLen, 0);
@@ -318,8 +310,7 @@ ssize_t Socket::recv(char *buffer, size_t bufferLen)
 const int CG_NET_SOCKET_SEND_RETRY_CNT = 10;
 const int CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC = 1000;
 
-ssize_t Socket::send(const char *cmd, size_t cmdLen)
-{
+ssize_t Socket::send(const char *cmd, size_t cmdLen) {
   if (cmdLen <= 0)
     return 0;
   ssize_t nTotalSent = 0;
@@ -352,13 +343,11 @@ ssize_t Socket::send(const char *cmd, size_t cmdLen)
   return nTotalSent;
 }
 
-ssize_t Socket::send(const std::string &cmd)
-{
+ssize_t Socket::send(const std::string &cmd) {
   return send(cmd.c_str(), cmd.size());
 }
 
-ssize_t Socket::send(const char c)
-{
+ssize_t Socket::send(const char c) {
   return send(&c, 1);
 }
 
@@ -368,8 +357,7 @@ ssize_t Socket::send(const char c)
 
 #if defined(ITRON)
 
-void Socket::initWindowBuffer()
-{
+void Socket::initWindowBuffer() {
 #if defined(ITRON)
   if (sendWinBuf == NULL)
     sendWinBuf = new UH[WINDOW_BUF_SIZE];
@@ -386,8 +374,7 @@ void Socket::initWindowBuffer()
 
 #if defined(ITRON)
 
-static ER TcpCallback(ID cepid, FN fncd, VP parblk)
-{
+static ER TcpCallback(ID cepid, FN fncd, VP parblk) {
   return E_OK;
 }
 

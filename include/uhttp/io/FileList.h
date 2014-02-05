@@ -14,12 +14,9 @@
 #include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-
 class File;
 
-class FileList : public uHTTP::Vector 
-{
-
+class FileList : public uHTTP::Vector  {
 public:
   ////////////////////////////////////////////////
   //  Constructor
@@ -38,10 +35,8 @@ public:
   //  Methods
   ////////////////////////////////////////////////
 
-public:
-
-  File *getFile(int n)
-  {
+ public:
+  File *getFile(int n) {
     return (File*)Vector::get(n);
   }
 
@@ -49,8 +44,7 @@ public:
   // clear
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   void clear();
 };
 

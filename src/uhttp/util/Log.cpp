@@ -20,8 +20,7 @@ const char *fileName,
 int lineNo,
 const char *functionName,
 #endif
-const char *format, ...)
-{
+const char *format, ...) {
   char outputMessage[uHTTP::Logger::MAX_LINE_STRING];
     
   va_list vaList;

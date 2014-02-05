@@ -23,25 +23,21 @@ using namespace uHTTP;
 //  MulticastSocket
 ////////////////////////////////////////////////
 
-MulticastSocket::MulticastSocket()
-{
+MulticastSocket::MulticastSocket() {
 }
 
-MulticastSocket::MulticastSocket(int port, const std::string &bindAddr)
-{
+MulticastSocket::MulticastSocket(int port, const std::string &bindAddr) {
   bind(port, bindAddr);
 }
 
-MulticastSocket::~MulticastSocket()
-{
+MulticastSocket::~MulticastSocket() {
 }
 
 ////////////////////////////////////////////////
 //  joinGroup
 ////////////////////////////////////////////////
 
-bool MulticastSocket::bind(int port, const std::string &addr)
-{
+bool MulticastSocket::bind(int port, const std::string &addr) {
   return DatagramSocket::bind(port, addr, false, true);
 }
 
@@ -49,8 +45,7 @@ bool MulticastSocket::bind(int port, const std::string &addr)
 //  joinGroup
 ////////////////////////////////////////////////
 
-bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string &ifAddr)
-{
+bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string &ifAddr) {
   bool ret = true;
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
@@ -169,8 +164,7 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
 //  setTimeToLive
 ////////////////////////////////////////////////
 
-void MulticastSocket::setTimeToLive(int ttl)
-{
+void MulticastSocket::setTimeToLive(int ttl) {
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
     SOCKET sock = getSocket();
     unsigned char ucttl = ttl & 0xFF;

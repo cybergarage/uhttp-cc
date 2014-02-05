@@ -18,24 +18,21 @@
 //  URL::URL
 ////////////////////////////////////////////////
 
-uHTTP::URL::URL() : URI()
-{
+uHTTP::URL::URL() : URI() {
 }
 
 ////////////////////////////////////////////////
 //  URL::URL
 ////////////////////////////////////////////////
 
-uHTTP::URL::URL(const std::string &urlStr) : URI(urlStr)
-{
+uHTTP::URL::URL(const std::string &urlStr) : URI(urlStr) {
 }
 
 ////////////////////////////////////////////////
 //  IsAbsoluteURL
 ////////////////////////////////////////////////
 
-bool uHTTP::IsAbsoluteURL(const std::string &urlStr)
-{
+bool uHTTP::IsAbsoluteURL(const std::string &urlStr) {
   URL url(urlStr);
   return url.hasProtocol();
 }
@@ -44,8 +41,7 @@ bool uHTTP::IsAbsoluteURL(const std::string &urlStr)
 //  URLGetHost
 ////////////////////////////////////////////////
 
-const char *uHTTP::URLGetHost(const std::string &urlStr, std::string &buf)
-{
+const char *uHTTP::URLGetHost(const std::string &urlStr, std::string &buf) {
   URL url(urlStr);
   buf = url.getHost();
   return buf.c_str();
@@ -55,8 +51,7 @@ const char *uHTTP::URLGetHost(const std::string &urlStr, std::string &buf)
 //  URLGetPort
 ////////////////////////////////////////////////
 
-int uHTTP::URLGetPort(const std::string &urlStr)
-{
+int uHTTP::URLGetPort(const std::string &urlStr) {
     URL url(urlStr);
     return url.getPort();
 }
@@ -65,8 +60,7 @@ int uHTTP::URLGetPort(const std::string &urlStr)
 //  URLGetRelativeURL
 ////////////////////////////////////////////////
 
-const char *uHTTP::URLGetRelativeURL(const std::string &uri, std::string &buf, bool withParam)
-{
+const char *uHTTP::URLGetRelativeURL(const std::string &uri, std::string &buf, bool withParam) {
   buf = uri;
   uHTTP::String urlStr = uri;
   if (IsAbsoluteURL(uri) == false) {
@@ -97,8 +91,7 @@ const char *uHTTP::URLGetRelativeURL(const std::string &uri, std::string &buf, b
 //  URLGetAbsoluteURL
 ////////////////////////////////////////////////
 
-const char *uHTTP::URLGetAbsoluteURL(const std::string &baseURLStr, const std::string &relURlStr, std::string &buf)
-{
+const char *uHTTP::URLGetAbsoluteURL(const std::string &baseURLStr, const std::string &relURlStr, std::string &buf) {
   URL baseURL(baseURLStr);
   std::string relURlStrBuf;
   std::string portStrBuf;
@@ -116,8 +109,7 @@ const char *uHTTP::URLGetAbsoluteURL(const std::string &baseURLStr, const std::s
 //  GetHostURL
 ////////////////////////////////////////////////
 
-bool uHTTP::URI::isValid()
-{
+bool uHTTP::URI::isValid() {
   if (!hasProtocol())
     return false;
   if (!hasPath())
@@ -129,8 +121,7 @@ bool uHTTP::URI::isValid()
 //  GetHostURL
 ////////////////////////////////////////////////
 
-const char *uHTTP::GetHostURL(const std::string &host, int port, const std::string &uri, std::string &buf)
-{
+const char *uHTTP::GetHostURL(const std::string &host, int port, const std::string &uri, std::string &buf) {
   std::string hostStr = host;
   if (IsIPv6Address(host) == true) {
     StripIPv6ScopeID(host, hostStr);

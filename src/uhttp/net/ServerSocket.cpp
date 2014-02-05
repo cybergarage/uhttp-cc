@@ -17,10 +17,8 @@ using namespace uHTTP;
 //  Socket
 ////////////////////////////////////////////////
 
-ServerSocket::ServerSocket()
-{
+ServerSocket::ServerSocket() {
 }
 
-ServerSocket::~ServerSocket()
-{
+ServerSocket::~ServerSocket() {
 }

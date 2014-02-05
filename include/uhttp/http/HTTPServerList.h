@@ -16,15 +16,12 @@
 #include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-
-class HTTPServerList : public Vector 
-{
+class HTTPServerList : public Vector  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   HTTPServerList();
   ~HTTPServerList();
 
@@ -32,10 +29,8 @@ public:
   //  Methods
   ////////////////////////////////////////////////
 
-public:
-
-  HTTPServer *getHTTPServer(int n)
-  {
+ public:
+  HTTPServer *getHTTPServer(int n) {
     return (HTTPServer *)get(n);
   }
 
@@ -45,8 +40,7 @@ public:
   //  open/close
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   void close();
   bool open(int port);
 
@@ -54,8 +48,7 @@ public:
   //  start/stop
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   void start();
   void stop();
 
@@ -63,8 +56,7 @@ public:
   //  clear
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   void clear();
 };
 

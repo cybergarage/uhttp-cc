@@ -21,8 +21,7 @@ using namespace uHTTP;
 //  DecodeError
 ////////////////////////////////////////////////
 
-int uHTTP::GetSocketLastErrorCode()
-{
+int uHTTP::GetSocketLastErrorCode() {
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
   return WSAGetLastError();
 #else
@@ -30,8 +29,7 @@ int uHTTP::GetSocketLastErrorCode()
 #endif
 }
 
-const char *uHTTP::DecodeSocketError(int ErrorCode)
-{
+const char *uHTTP::DecodeSocketError(int ErrorCode) {
   static char msg[1024];
 
 #if defined(WIN32) || defined(__CYGWIN__)
@@ -51,8 +49,7 @@ const char *uHTTP::DecodeSocketError(int ErrorCode)
 
 #if !defined(ITRON)
 
-bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in *sockaddr, bool isBindAddr)
-{
+bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in *sockaddr, bool isBindAddr) {
   SocketStartup();
 
   memset(sockaddr, 0, sizeof(sockaddr_in));
@@ -101,8 +98,7 @@ bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in
 
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
 
-bool uHTTP::toSocketAddrInfo(int sockType, const std::string &addr, int port, struct addrinfo **addrInfo, bool isBindAddr)
-{
+bool uHTTP::toSocketAddrInfo(int sockType, const std::string &addr, int port, struct addrinfo **addrInfo, bool isBindAddr) {
   SocketStartup();
 
   struct addrinfo hints;

@@ -20,9 +20,7 @@
 #include <string>
 
 namespace uHTTP {
-
-class HTTPRequest : public HTTPPacket
-{
+class HTTPRequest : public HTTPPacket {
   std::string method;
   std::string version;
   std::string uri;
@@ -49,15 +47,12 @@ public:
   //  Method
   ////////////////////////////////////////////////
 
-public:
-
-  void setMethod(const std::string &value)
-  {
+ public:
+  void setMethod(const std::string &value) {
     method = value;
   }
     
-  const char *getMethod(std::string &methodBuf)
-  {
+  const char *getMethod(std::string &methodBuf) {
     if (0 < method.length()) {
       methodBuf = method;
       return methodBuf.c_str();
@@ -67,48 +62,39 @@ public:
 
   bool isMethod(const std::string &value);
 
-  bool isGetRequest()
-  {
+  bool isGetRequest() {
     return isMethod(HTTP::GET);
   }
 
-  bool isPutRequest()
-  {
+  bool isPutRequest() {
     return isMethod(HTTP::PUT);
   }
   
-  bool isPostRequest()
-  {
+  bool isPostRequest() {
     return isMethod(HTTP::POST);
   }
 
-  bool isHeadRequest()
-  {
+  bool isHeadRequest() {
     return isMethod(HTTP::HEAD);
   }
 
-  bool isDeleteRequest()
-  {
+  bool isDeleteRequest() {
     return isMethod(HTTP::DELETE);
   }
   
-  bool isUpdateRequest()
-  {
+  bool isUpdateRequest() {
     return isMethod(HTTP::UPDATE);
   }
   
-  bool isSubscribeRequest()
-  {
+  bool isSubscribeRequest() {
     return isMethod(HTTP::SUBSCRIBE);
   }
 
-  bool isUnsubscribeRequest()
-  {
+  bool isUnsubscribeRequest() {
     return isMethod(HTTP::UNSUBSCRIBE);
   }
 
-  bool isNotifyRequest()
-  {
+  bool isNotifyRequest() {
     return isMethod(HTTP::NOTIFY);
   }
 
@@ -135,12 +121,10 @@ public:
   //  URI Parameter
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   ParameterList *getParameterList(ParameterList &paramList);
   
-  const char *getParameterValue(const std::string &name, std::string &paramBuf)
-  {
+  const char *getParameterValue(const std::string &name, std::string &paramBuf) {
     ParameterList paramList;
     getParameterList(paramList);
     paramBuf = paramList.getValue(name);
@@ -151,10 +135,8 @@ public:
   //  SOAPAction
   ////////////////////////////////////////////////
 
-public:
-
-  bool isSOAPAction()
-  {
+ public:
+  bool isSOAPAction() {
     return hasHeader(HTTP::SOAP_ACTION);
   }
 
@@ -162,25 +144,20 @@ public:
   // Host / Port  
   ////////////////////////////////////////////////
   
-public:
-
-  void setRequestHost(const std::string &host)
-  {
+ public:
+  void setRequestHost(const std::string &host) {
     requestHost = host;
   }
 
-  const char *getRequestHost()
-  {
+  const char *getRequestHost() {
     return requestHost.c_str();
   }
 
-  void setRequestPort(int host)
-  {
+  void setRequestPort(int host) {
     requestPort = host;
   }
 
-  int getRequestPort()
-  {
+  int getRequestPort() {
     return requestPort;
   }
   
@@ -188,15 +165,12 @@ public:
   //  Socket
   ////////////////////////////////////////////////
 
-public:
-
-  void setSocket(HTTPSocket *value)
-  {
+ public:
+  void setSocket(HTTPSocket *value) {
     httpSocket = value;
   }
     
-  HTTPSocket *getSocket()
-  {
+  HTTPSocket *getSocket() {
     return httpSocket;
   }
 
@@ -204,15 +178,12 @@ public:
   //  local address/port
   ////////////////////////////////////////////////
 
-public:
-
-  const char *getLocalAddress()
-  {
+ public:
+  const char *getLocalAddress() {
     return getSocket()->getLocalAddress();  
   }
 
-  int getLocalPort()
-  {
+  int getLocalPort() {
     return getSocket()->getLocalPort();  
   }
 
@@ -220,8 +191,7 @@ public:
   //  parseRequest
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   bool parseRequestLine(const std::string &lineStr);
 
   ////////////////////////////////////////////////
@@ -232,8 +202,7 @@ private:
 
   const char *getHTTPVersion(std::string &verBuf);
 
-public:
-
+ public:
   const char *getRequestLine(std::string &requestLineBuf);
   const char *getHeader(std::string &headerBuf);
 
@@ -241,18 +210,15 @@ public:
   //  isKeepAlive
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   bool isKeepAlive();
 
   ////////////////////////////////////////////////
   //  read
   ////////////////////////////////////////////////
 
-public:
-
-  bool read()
-  {
+ public:
+  bool read() {
     return HTTPPacket::read(getSocket());
   }
 
@@ -260,30 +226,25 @@ public:
   //  POST (Response)
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   HTTP::StatusCode post(HTTPResponse *httpRes, bool isOnlyHeader = false);
 
   ////////////////////////////////////////////////
   //  POST (Request)
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive);
 
-  HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes)
-  {
+  HTTPResponse *post(const std::string &host, int port, HTTPResponse *httpRes) {
     return post(host, port, httpRes, false);
   }
 
-  HTTPResponse *post(const std::string &host, int port, bool isKeepAlive)
-  {
+  HTTPResponse *post(const std::string &host, int port, bool isKeepAlive) {
     return post(host, port, &httpRes, isKeepAlive);
   }
 
-  HTTPResponse *post(const std::string &host, int port)
-  {
+  HTTPResponse *post(const std::string &host, int port) {
     return post(host, port, false);
   }
 
@@ -295,10 +256,8 @@ public:
   //  set
   ////////////////////////////////////////////////
 
-public:
-
-  void set(HTTPRequest *httpReq)
-  {
+ public:
+  void set(HTTPRequest *httpReq) {
     HTTPPacket::set((HTTPPacket *)httpReq);
     setSocket(httpReq->getSocket());
   }
@@ -307,22 +266,18 @@ public:
   //  OK/BAD_REQUEST
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   HTTP::StatusCode returnResponse(int statusCode);
 
-  HTTP::StatusCode returnOK()
-  {
+  HTTP::StatusCode returnOK() {
     return returnResponse(HTTP::OK_REQUEST);
   }
 
-  HTTP::StatusCode returnBadRequest()
-  {
+  HTTP::StatusCode returnBadRequest() {
     return returnResponse(HTTP::BAD_REQUEST);
   }
 
-  HTTP::StatusCode returnNotFound()
-  {
+  HTTP::StatusCode returnNotFound() {
     return returnResponse(HTTP::NOT_FOUND);
   }
   
@@ -330,8 +285,7 @@ public:
   //  toString
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   const char *toString(std::string &buf);
 
   void print();

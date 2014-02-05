@@ -14,11 +14,9 @@
 #include <string>
 
 namespace uHTTP {
-
 const int URI_KNKOWN_PORT = -1;
 
 class URI {
-
 protected:
 
   std::string uriStr;
@@ -39,8 +37,7 @@ public:
   static int HTTP_PORT;
   static int HTTPS_PORT;
   
-public:
-
+ public:
   static const char *PROTOCOL_DELIM;
   static const char *USER_DELIM;
   static const char *COLON_DELIM;
@@ -50,8 +47,7 @@ public:
   static const char *SHARP_DELIM;
   static const char *QUESTION_DELIM;
   
-public:
-
+ public:
   URI();
   URI(const std::string &uriStr);
 
@@ -59,113 +55,91 @@ public:
 
   void setString(const std::string &value);
 
-  const char *getSting()
-  {
+  const char *getSting() {
     return uriStr.c_str();
   }
 
-  void setProtocol(const std::string &value)
-  {
+  void setProtocol(const std::string &value) {
     protocol = value;
   }
   
-  const char *getProtocol()
-  {
+  const char *getProtocol() {
     return protocol.c_str();
   }
 
-  bool hasProtocol()
-  {
+  bool hasProtocol() {
     return (0 < protocol.length());
   }
   
-  bool isProtocol(const std::string &protocolPrefix)
-  {
+  bool isProtocol(const std::string &protocolPrefix) {
     return (protocol.compare(protocolPrefix) == 0) ? true : false;
   }
 
-  bool isHTTP()
-  {
+  bool isHTTP() {
     return isProtocol(HTTP);
   }
 
-  bool isHTTPS()
-  {
+  bool isHTTPS() {
     return isProtocol(HTTPS);
   }
   
-  void setUser(const std::string &value)
-  {
+  void setUser(const std::string &value) {
     user = value;
   }
   
-  const char *getUser()
-  {
+  const char *getUser() {
     return user.c_str();
   }
 
-  void setPassword(const std::string &value)
-  {
+  void setPassword(const std::string &value) {
     password = value;
   }
   
-  const char *getPassword()
-  {
+  const char *getPassword() {
     return password.c_str();
   }
 
-  void setHost(const std::string &value)
-  {
+  void setHost(const std::string &value) {
     host = value;
   }
   
-  const char *getHost()
-  {
+  const char *getHost() {
     return host.c_str();
   }
 
-  void setPort(int value)
-  {
+  void setPort(int value) {
     port = value;
   }
 
-  int getPort()
-  {
+  int getPort() {
     return port;
   }
 
-  void setPath(const std::string &value)
-  {
+  void setPath(const std::string &value) {
     path = value;
   }
   
-  const char *getPath()
-  {
+  const char *getPath() {
     return path.c_str();
   }
 
-  bool hasPath()
-  {
+  bool hasPath() {
     return (0 < path.length());
   }
   
-  void setQuery(const std::string &value)
-  {
+  void setQuery(const std::string &value) {
     query = value;
   }
   
-  const char *getQuery()
-  {
+  const char *getQuery() {
     return query.c_str();
   }
 
-  void setFragment(const std::string &value)
-  {
+  void setFragment(const std::string &value) {
     fragment = value;
   }
   
-  const char *getFragment()
-  {
+  const char *getFragment() {
     return fragment.c_str();
   }
 

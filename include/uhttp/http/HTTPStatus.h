@@ -15,7 +15,6 @@
 #include <string>
 
 namespace uHTTP {
-
 namespace HTTP {
 const int CONTINUE = 100;
 const int OK_REQUEST = 200;
@@ -34,14 +33,12 @@ namespace HTTP {
 const char *StatusCode2String(int code);
 }
 
-class HTTPStatus 
-{
+class HTTPStatus  {
   std::string version;
   int statusCode;
   std::string reasonPhrase;
 
-public:
-
+ public:
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -54,35 +51,28 @@ public:
   //  Member
   ////////////////////////////////////////////////
 
-public:
-
-  void setVersion(const std::string &value)
-  {
+ public:
+  void setVersion(const std::string &value) {
     this->version = value;
   }
     
-  void setStatusCode(int value)
-  {
+  void setStatusCode(int value) {
     this->statusCode = value;
   }
     
-  void setReasonPhrase(const std::string &value)
-  {
+  void setReasonPhrase(const std::string &value) {
     this->reasonPhrase = value;
   }
     
-  const char *getVersion()
-  {
+  const char *getVersion() {
     return version.c_str();
   }
     
-  int getStatusCode()
-  {
+  int getStatusCode() {
     return statusCode;
   }
     
-  const char *getReasonPhrase()
-  {
+  const char *getReasonPhrase() {
     return reasonPhrase.c_str();
   }
 
@@ -90,12 +80,10 @@ public:
   //  Status
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   static bool isSuccessful(int statCode);
 
-  bool isSuccessful()
-  {
+  bool isSuccessful() {
     return isSuccessful(getStatusCode());
   }
 
@@ -103,8 +91,7 @@ public:
   //  set
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   void set(const std::string &lineStr);
 
 };

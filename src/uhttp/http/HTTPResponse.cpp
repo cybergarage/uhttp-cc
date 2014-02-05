@@ -26,8 +26,7 @@ using namespace uHTTP;
 using namespace uHTTP;
 #endif
 
-HTTPResponse::HTTPResponse()
-{
+HTTPResponse::HTTPResponse() {
   string buf;
   setStatusCode(0);
   setContentType(TEXT_CONTENT_TYPE);
@@ -35,8 +34,7 @@ HTTPResponse::HTTPResponse()
   setServer(GetServerName(buf));
 }
 
-HTTPResponse::HTTPResponse(HTTPResponse *httpRes)
-{
+HTTPResponse::HTTPResponse(HTTPResponse *httpRes) {
   setStatusCode(0);
   set(httpRes);
 }
@@ -45,8 +43,7 @@ HTTPResponse::HTTPResponse(HTTPResponse *httpRes)
 //  Status Line
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::getStatusLineString(string &statusLineBuf)
-{
+const char *HTTPResponse::getStatusLineString(string &statusLineBuf) {
 #ifndef NO_USE_OSTRINGSTREAM
   ostringstream strBuf;
   strBuf <<  "HTTP/" << getVersion() << " " << getStatusCode() << " " << HTTP::StatusCode2String(statusCode) << HTTP::CRLF;
@@ -68,8 +65,7 @@ const char *HTTPResponse::getStatusLineString(string &statusLineBuf)
 //  getHeader
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::getHeader(string &headerBuf)
-{
+const char *HTTPResponse::getHeader(string &headerBuf) {
 #ifndef NO_USE_OSTRINGSTREAM
   ostringstream strBuf;
   string statusLine;
@@ -89,8 +85,7 @@ const char *HTTPResponse::getHeader(string &headerBuf)
 //  toString
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::toString(string &buf)
-{
+const char *HTTPResponse::toString(string &buf) {
   string header;
   buf = "";
   buf.append(getHeader(header));
@@ -99,8 +94,7 @@ const char *HTTPResponse::toString(string &buf)
   return buf.c_str();
 }
 
-void HTTPResponse::print()
-{
+void HTTPResponse::print() {
   std::string buf;
 #ifndef NO_USE_STD_COUT
   std::cout << toString(buf) << std::endl;

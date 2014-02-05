@@ -25,8 +25,7 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPHeader::HTTPHeader(const std::string &lineStr)
-{
+HTTPHeader::HTTPHeader(const std::string &lineStr) {
   if (lineStr.length() <= 0)
     return;
 
@@ -41,28 +40,24 @@ HTTPHeader::HTTPHeader(const std::string &lineStr)
   setValue(value.trim());
 }
 
-HTTPHeader::HTTPHeader(const std::string &name, const std::string &value)
-{
+HTTPHeader::HTTPHeader(const std::string &name, const std::string &value) {
   setName(name);
   setValue(value);
 }
 
-HTTPHeader::HTTPHeader(HTTPHeader *header)
-{
+HTTPHeader::HTTPHeader(HTTPHeader *header) {
   setName(header->getName());
   setValue(header->getValue());
 }
 
-HTTPHeader::~HTTPHeader()
-{
+HTTPHeader::~HTTPHeader() {
 }
 
 ////////////////////////////////////////////////
 //  HTTPHeaderGetValue
 ////////////////////////////////////////////////
   
-const char *uHTTP::HTTPHeaderGetValue(LineNumberReader *reader, const std::string &name, std::string &buf)
-{
+const char *uHTTP::HTTPHeaderGetValue(LineNumberReader *reader, const std::string &name, std::string &buf) {
   buf = "";
   String bigName = name;
   bigName.toUppderCase();
@@ -86,8 +81,7 @@ const char *uHTTP::HTTPHeaderGetValue(LineNumberReader *reader, const std::strin
   return buf.c_str();
 }
 
-const char *uHTTP::HTTPHeaderGetValue(const std::string &data, const std::string &name, std::string &buf)
-{
+const char *uHTTP::HTTPHeaderGetValue(const std::string &data, const std::string &name, std::string &buf) {
   if (data.length() <= 0) {
     buf = "";
     return buf.c_str();
@@ -97,8 +91,7 @@ const char *uHTTP::HTTPHeaderGetValue(const std::string &data, const std::string
   return HTTPHeaderGetValue(&lineReader, name, buf);
 }
 
-int uHTTP::HTTPHeaderGetIntegerValue(const std::string &data, const std::string &name)
-{
+int uHTTP::HTTPHeaderGetIntegerValue(const std::string &data, const std::string &name) {
   std::string buf;
   return atoi((HTTPHeaderGetValue(data, name, buf)));
 }

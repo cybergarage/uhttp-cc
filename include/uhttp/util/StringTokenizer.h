@@ -15,9 +15,7 @@
 #include <string>
 
 namespace uHTTP {
-
-class StringTokenizer
-{
+class StringTokenizer {
   std::string strBuf;
   std::string strDelim;
   std::string strCurrToken;
@@ -25,8 +23,7 @@ class StringTokenizer
   std::string::size_type lastDelimPos;
   bool hasNextTokens;
 
-public:
-
+ public:
   StringTokenizer(const std::string &str, const std::string &delim);
   ~StringTokenizer();
 

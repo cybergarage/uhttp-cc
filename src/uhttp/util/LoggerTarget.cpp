@@ -10,17 +10,14 @@
 
 #include <uhttp/util/Logger.h>
 
-uHTTP::LoggerTarget::LoggerTarget()
-{
+uHTTP::LoggerTarget::LoggerTarget() {
   setFD(NULL);
 }
 
-uHTTP::LoggerTarget::~LoggerTarget()
-{
+uHTTP::LoggerTarget::~LoggerTarget() {
 }
 
-bool uHTTP::LoggerTarget::outputMessage(const char *lineMessage)
-{
+bool uHTTP::LoggerTarget::outputMessage(const char *lineMessage) {
   int ouputLen = fputs(lineMessage, getFD());
   if (ouputLen < 0)
     return false;

@@ -20,8 +20,7 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-Date::Date()
-{
+Date::Date() {
 #if defined(BTRON) || defined(TENGINE) 
   TIMEZONE tz;
   if (get_tim(&sysTime, &tz) != 0)
@@ -42,8 +41,7 @@ Date::Date()
 #endif
 }
 
-Date::Date(SysTime value)
-{
+Date::Date(SysTime value) {
   sysTime = value;
 #if defined(BTRON) || defined(TENGINE) 
   get_tod(&localDate, sysTime, True);
@@ -64,8 +62,7 @@ Date::Date(
   int day,
   int hour,
   int min,
-  int sec)
-{
+  int sec) {
 #if defined(BTRON) || defined(TENGINE) 
   DATE_TIM dt;
   dt.d_sec = sec;
@@ -112,8 +109,7 @@ Date::Date(
 //  Date
 ////////////////////////////////////////////////
 
-int Date::getYear()
-{
+int Date::getYear() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_year + 1900;
 #elif defined(ITRON)
@@ -127,8 +123,7 @@ int Date::getYear()
 #endif
 }
 
-int Date::getMonth()
-{
+int Date::getMonth() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_month;
 #elif defined(ITRON)
@@ -142,8 +137,7 @@ int Date::getMonth()
 #endif
 }
 
-int Date::getDay()
-{
+int Date::getDay() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_day;
 #elif defined(ITRON)
@@ -157,8 +151,7 @@ int Date::getDay()
 #endif
 }
 
-int Date::getWeekDay()
-{
+int Date::getWeekDay() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_wday;
 #elif defined(ITRON)
@@ -176,8 +169,7 @@ int Date::getWeekDay()
 //  Time
 ////////////////////////////////////////////////
 
-int Date::getHour()
-{
+int Date::getHour() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_hour;
 #elif defined(ITRON)
@@ -191,8 +183,7 @@ int Date::getHour()
 #endif
 }
 
-int Date::getMinute()
-{
+int Date::getMinute() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_min;
 #elif defined(ITRON)
@@ -206,8 +197,7 @@ int Date::getMinute()
 #endif
 }
 
-int Date::getSecond()
-{
+int Date::getSecond() {
 #if defined(BTRON) || defined(TENGINE) 
   return localDate.d_sec;
 #elif defined(ITRON)
@@ -235,15 +225,13 @@ static const int dayLearYear[ ] = {
   31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 };
 
-static bool IsLeapYear(int year)
-{
+static bool IsLeapYear(int year) {
   if (!(year % 4) && ((year % 100) || !(year % 400)))
     return true;
   return false;
 }
 
-bool Date::time2LocalDate(SysTime uxtime)
-{
+bool Date::time2LocalDate(SysTime uxtime) {
   sec = uxtime % 60;
   uxtime -= sec;
   uxtime /= 60;

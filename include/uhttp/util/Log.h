@@ -16,7 +16,6 @@
 #include <uhttp/util/LoggerStdTarget.h>
 
 namespace uHTTP {
-
 int Log(
 Logger *logger, 
 int logType, 

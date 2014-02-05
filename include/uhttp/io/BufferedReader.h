@@ -16,47 +16,36 @@
 #include <uhttp/io/Reader.h>
 
 namespace uHTTP {
-
-class BufferedReader
-{
-
+class BufferedReader {
   Reader *reader;
   std::string lineStr;
 
-public:
-
-  BufferedReader(Reader *reader)
-  {
+ public:
+  BufferedReader(Reader *reader) {
     this->reader = reader;
   }
 
-  ssize_t read(std::string &b, size_t len)
-  {
+  ssize_t read(std::string &b, size_t len) {
     return reader->read(b, len);
   }
 
-  long skip(long n)
-  {
+  long skip(long n) {
     return reader->skip(n);
   }
 
-  void unread(std::string &b, size_t off, size_t len)
-  {
+  void unread(std::string &b, size_t off, size_t len) {
     reader->unread(b, off, len);
   }
 
-  void unread(std::string &b, size_t len)
-  {
+  void unread(std::string &b, size_t len) {
     reader->unread(b, len);
   }
 
-  void unread(char b)
-  {
+  void unread(char b) {
     reader->unread(b);
   }
 
-  void close()
-  {
+  void close() {
     reader->close();
   }
 

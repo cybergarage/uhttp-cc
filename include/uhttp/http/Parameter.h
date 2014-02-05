@@ -14,14 +14,11 @@
 #include <string>
 
 namespace uHTTP {
-
-class Parameter 
-{
+class Parameter  {
   std::string name; 
   std::string value; 
 
-public:
-
+ public:
   Parameter() 
   {
   }

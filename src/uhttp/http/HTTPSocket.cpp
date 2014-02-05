@@ -24,19 +24,16 @@ static const int DEFAULT_CHUNK_SIZE = 512 * 1024;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPSocket::HTTPSocket(uHTTP::Socket *socket)
-{
+HTTPSocket::HTTPSocket(uHTTP::Socket *socket) {
   setSocket(socket);
   open();
 }
 
-HTTPSocket::HTTPSocket(HTTPSocket *socket)
-{
+HTTPSocket::HTTPSocket(HTTPSocket *socket) {
   setSocket((socket != NULL) ? socket->getSocket() : NULL);
 }
   
-HTTPSocket::~HTTPSocket()
-{
+HTTPSocket::~HTTPSocket() {
   close();
 }
   
@@ -44,13 +41,11 @@ HTTPSocket::~HTTPSocket()
 //  open/close
 ////////////////////////////////////////////////
 
-bool HTTPSocket::open()
-{
+bool HTTPSocket::open() {
   return true;
 }
 
-bool HTTPSocket::close()
-{
+bool HTTPSocket::close() {
   Socket *sock = getSocket();
   if (sock != NULL) {
     sock->close();
@@ -63,8 +58,7 @@ bool HTTPSocket::close()
 //  post
 ////////////////////////////////////////////////
   
-bool HTTPSocket::post(HTTPResponse *httpRes)
-{
+bool HTTPSocket::post(HTTPResponse *httpRes) {
   HTTPDate now;
   httpRes->setDate(&now);
 
@@ -74,8 +68,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes)
   return sock->send(HTTP::CRLF);
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
-{
+bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked) {
   httpRes->setContentLength(contentLength);
   post(httpRes);
   
@@ -102,8 +95,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, const std::string &content, size_t 
   return true;
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
-{
+bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked) {
   HTTPDate now;
   httpRes->setDate(&now);
 
@@ -155,21 +147,18 @@ bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffs
   return true;
 }
 
-bool HTTPSocket::post(HTTPResponse *httpRes, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked)
-{
+bool HTTPSocket::post(HTTPResponse *httpRes, size_t contentOffset, size_t contentLength, bool isOnlyHeader, bool isChunked) {
   if (httpRes->hasContentInputStream() == true)
     return post(httpRes,httpRes->getContentInputStream(), contentOffset, contentLength, isOnlyHeader, isChunked);
   return post(httpRes,httpRes->getContent(), contentOffset, contentLength, isOnlyHeader, isChunked);
 }
 
-bool HTTPSocket::post(const std::string &content)
-{
+bool HTTPSocket::post(const std::string &content) {
   Socket *sock = getSocket();
   return sock->send(content);
 }
 
-bool HTTPSocket::post(const char c)
-{
+bool HTTPSocket::post(const char c) {
   Socket *sock = getSocket();
   return sock->send(c);
 }

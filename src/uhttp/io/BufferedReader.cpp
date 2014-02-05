@@ -17,8 +17,7 @@ using namespace uHTTP;
 static const char LF = '\n';
 static const char CR = '\r';
 
-const char *BufferedReader::readLine()
-{
+const char *BufferedReader::readLine() {
   char readChar = 0;
   lineStr.clear();
 

@@ -36,10 +36,7 @@ typedef time_t SysTime;
 #endif
 
 namespace uHTTP {
-
-class Date
-{
-
+class Date {
 protected:
 
   SysTime sysTime;
@@ -63,8 +60,7 @@ protected:
   //  Constructor
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   Date();
   Date(SysTime value);
   Date(
@@ -79,10 +75,8 @@ public:
   //  get*
   ////////////////////////////////////////////////
 
-public:
-
-  SysTime getValue()
-  {
+ public:
+  SysTime getValue() {
     return sysTime;
   }
 
@@ -90,8 +84,7 @@ public:
   //  Date
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   int getYear();
   int getMonth();
   int getDay();
@@ -101,8 +94,7 @@ public:
   //  Time
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   int getHour();
   int getMinute();
   int getSecond();

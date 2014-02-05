@@ -17,7 +17,6 @@
 #include <string>
 
 namespace uHTTP {
-
 class HostInterface {
 public:
   static bool USE_LOOPBACK_ADDR;

@@ -28,13 +28,11 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
   
-HTTPServer::HTTPServer()
-{
+HTTPServer::HTTPServer() {
   serverSock = NULL;
 }
 
-HTTPServer::~HTTPServer()
-{
+HTTPServer::~HTTPServer() {
   stop();
   close();
 }
@@ -43,8 +41,7 @@ HTTPServer::~HTTPServer()
 //  ServerSocket
 ////////////////////////////////////////////////
 
-bool HTTPServer::bind(int port, const std::string &addr)
-{
+bool HTTPServer::bind(int port, const std::string &addr) {
   if (serverSock != NULL)
     return true;
     
@@ -62,13 +59,11 @@ bool HTTPServer::bind(int port, const std::string &addr)
   return true;
 }
 
-bool HTTPServer::open(int port, const std::string &addr)
-{
+bool HTTPServer::open(int port, const std::string &addr) {
   return bind(port, addr);
 }
 
-bool HTTPServer::close()
-{
+bool HTTPServer::close() {
   if (serverSock == NULL)
     return true;
   serverSock->close();
@@ -76,8 +71,7 @@ bool HTTPServer::close()
   return true;
 }
 
-bool HTTPServer::accept(uHTTP::Socket *socket)
-{
+bool HTTPServer::accept(uHTTP::Socket *socket) {
   if (serverSock == NULL)
     return false;
   if (serverSock->accept(socket) == false)
@@ -86,8 +80,7 @@ bool HTTPServer::accept(uHTTP::Socket *socket)
   return true;
 }
 
-bool HTTPServer::isOpened()
-{
+bool HTTPServer::isOpened() {
   return (serverSock != NULL) ? true : false;
 }
 
@@ -95,8 +88,7 @@ bool HTTPServer::isOpened()
 //  run
 ////////////////////////////////////////////////
 
-void HTTPServer::run()
-{
+void HTTPServer::run() {
   if (isOpened() == false)
     return;
 
@@ -121,8 +113,7 @@ void HTTPServer::run()
 //  start
 ////////////////////////////////////////////////
 
-bool HTTPServer::start()
-{
+bool HTTPServer::start() {
   return Thread::start();
 }
 
@@ -130,8 +121,7 @@ bool HTTPServer::start()
 //  stop
 ////////////////////////////////////////////////
 
-bool HTTPServer::stop()
-{
+bool HTTPServer::stop() {
   return Thread::stop();
 }
 
@@ -139,8 +129,7 @@ bool HTTPServer::stop()
 //  Server Functions
 ////////////////////////////////////////////////
 
-const char *uHTTP::GetServerName(string &buf)
-{
+const char *uHTTP::GetServerName(string &buf) {
   buf = "";
   string osName = "Platform";
   string osVer = "1.0";

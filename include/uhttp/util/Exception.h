@@ -15,20 +15,15 @@
 #include <string>
 
 namespace uHTTP {
-
-class Exception
-{
+class Exception {
   std::string msg;
 
-public:
-
-  Exception(const std::string &msg)
-  {
+ public:
+  Exception(const std::string &msg) {
     this->msg = msg;
   }
 
-  const char *getMessage()
-  {
+  const char *getMessage() {
     return msg.c_str();
   }
 };

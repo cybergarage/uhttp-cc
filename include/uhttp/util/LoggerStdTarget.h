@@ -14,11 +14,8 @@
 #include <uhttp/util/LoggerTarget.h>
 
 namespace uHTTP {
-
-class LoggerStdoutTarget : public LoggerTarget
-{
-public:
-
+class LoggerStdoutTarget : public LoggerTarget {
+ public:
   LoggerStdoutTarget() {
     setFD(stdout);
     setMask(
@@ -29,10 +26,8 @@ public:
   }
 };
 
-class LoggerStderrTarget : public LoggerTarget
-{
-public:
-
+class LoggerStderrTarget : public LoggerTarget {
+ public:
   LoggerStderrTarget() {
     setFD(stderr);
     setMask(
@@ -43,8 +38,7 @@ public:
   }
 };
 
-class LoggerNullTarget : public LoggerTarget
-{
+class LoggerNullTarget : public LoggerTarget {
  public:
     
   LoggerNullTarget() {

@@ -14,11 +14,8 @@
 #include <uhttp/net/Socket.h>
 
 namespace uHTTP {
-
-class ServerSocket : public Socket
-{
-public:
-
+class ServerSocket : public Socket {
+ public:
   ServerSocket();
   ~ServerSocket();
 

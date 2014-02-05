@@ -30,10 +30,7 @@
 #endif
 
 namespace uHTTP {
-
-class Mutex
-{
-
+class Mutex {
 #if defined(WIN32) && !defined(ITRON)
   HANDLE  mutexID;
 #elif defined(BTRON)
@@ -48,8 +45,7 @@ class Mutex
   pthread_mutex_t mutexID;
 #endif
 
-public:
-
+ public:
   Mutex();
   ~Mutex();
 

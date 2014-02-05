@@ -27,8 +27,7 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPRequest::HTTPRequest()
-{
+HTTPRequest::HTTPRequest() {
   httpSocket = NULL;
   postSock = NULL;
   requestPort = -1;
@@ -42,15 +41,13 @@ HTTPRequest::HTTPRequest()
   setAccept("*/*");
 }
 
-HTTPRequest::HTTPRequest(HTTPSocket *httpSock) : HTTPPacket(httpSock)
-{
+HTTPRequest::HTTPRequest(HTTPSocket *httpSock) : HTTPPacket(httpSock) {
   setSocket(httpSock);
   postSock = NULL;
   requestPort = -1;
 }
 
-HTTPRequest::~HTTPRequest()
-{
+HTTPRequest::~HTTPRequest() {
   if (postSock) {
     delete postSock;
     postSock = NULL;
@@ -61,8 +58,7 @@ HTTPRequest::~HTTPRequest()
 //  Method
 ////////////////////////////////////////////////
 
-bool HTTPRequest::isMethod(const std::string &method)
-{
+bool HTTPRequest::isMethod(const std::string &method) {
   string headerMethod;
   getMethod(headerMethod);
   return StringEqualsIgnoreCase(headerMethod.c_str(), method);
@@ -72,13 +68,11 @@ bool HTTPRequest::isMethod(const std::string &method)
 //  URI
 ////////////////////////////////////////////////
 
-void uHTTP::HTTPRequest::setURI(const std::string &value)
-{
+void uHTTP::HTTPRequest::setURI(const std::string &value) {
   uri = value;
 }
 
-const char *uHTTP::HTTPRequest::getURI(std::string &uriBuf)
-{
+const char *uHTTP::HTTPRequest::getURI(std::string &uriBuf) {
   if (0 < uri.length())
     uriBuf = uri;
   else
@@ -86,8 +80,7 @@ const char *uHTTP::HTTPRequest::getURI(std::string &uriBuf)
   return uriBuf.c_str();
 }
 
-void uHTTP::HTTPRequest::getURI(URI &uri)
-{
+void uHTTP::HTTPRequest::getURI(URI &uri) {
   std::string uriString;
   getURI(uriString);
   uri.setString(uriString);
@@ -97,14 +90,12 @@ void uHTTP::HTTPRequest::getURI(URI &uri)
 //  URI
 ////////////////////////////////////////////////
 
-void uHTTP::HTTPRequest::setURL(const std::string &urlString)
-{
+void uHTTP::HTTPRequest::setURL(const std::string &urlString) {
   URL url(urlString);
   setURL(&url);
 }
 
-void uHTTP::HTTPRequest::setURL(URL *url)
-{
+void uHTTP::HTTPRequest::setURL(URL *url) {
   setRequestHost(url->getHost());
   setRequestPort(url->getPort());
   setURI(url->getPath());
@@ -116,8 +107,7 @@ void uHTTP::HTTPRequest::setURL(URL *url)
 //  URI Parameter
 ////////////////////////////////////////////////
   
-ParameterList *HTTPRequest::getParameterList(ParameterList &paramList)
-{
+ParameterList *HTTPRequest::getParameterList(ParameterList &paramList) {
   string uri;
   getURI(uri);
   if (uri.length() <= 0)
@@ -141,8 +131,7 @@ ParameterList *HTTPRequest::getParameterList(ParameterList &paramList)
 //  parseRequest
 ////////////////////////////////////////////////
 
-bool HTTPRequest::parseRequestLine(const std::string &lineStr)
-{
+bool HTTPRequest::parseRequestLine(const std::string &lineStr) {
   StringTokenizer st(lineStr, HTTP::REQEST_LINE_DELIM);
   if (st.hasMoreTokens() == false)
     return false;
@@ -160,8 +149,7 @@ bool HTTPRequest::parseRequestLine(const std::string &lineStr)
 //  getHeader
 ////////////////////////////////////////////////
   
-const char *HTTPRequest::getHTTPVersion(std::string &verBuf)
-{
+const char *HTTPRequest::getHTTPVersion(std::string &verBuf) {
   if (hasFirstLine() == true)
     return getFirstLineToken(2, verBuf);
   verBuf = "";
@@ -170,8 +158,7 @@ const char *HTTPRequest::getHTTPVersion(std::string &verBuf)
   return verBuf.c_str();
 }
 
-const char *HTTPRequest::getRequestLine(std::string &requestLineBuf)
-{
+const char *HTTPRequest::getRequestLine(std::string &requestLineBuf) {
   std::string buf;
   requestLineBuf = "";
   requestLineBuf += getMethod(buf);
@@ -182,8 +169,7 @@ const char *HTTPRequest::getRequestLine(std::string &requestLineBuf)
   return requestLineBuf.c_str();
 }
 
-const char *HTTPRequest::getHeader(std::string &headerBuf)
-{
+const char *HTTPRequest::getHeader(std::string &headerBuf) {
   getRequestLine(headerBuf);
   headerBuf += HTTP::CRLF;
   std::string buf;
@@ -195,8 +181,7 @@ const char *HTTPRequest::getHeader(std::string &headerBuf)
 //  isKeepAlive
 ////////////////////////////////////////////////
   
-bool HTTPRequest::isKeepAlive()
-{
+bool HTTPRequest::isKeepAlive() {
   if (isCloseConnection() == true)
     return false;
   if (isKeepAliveConnection() == true)
@@ -213,8 +198,7 @@ bool HTTPRequest::isKeepAlive()
 //  returnResponse
 ////////////////////////////////////////////////
 
-HTTP::StatusCode HTTPRequest::returnResponse(int statusCode)
-{
+HTTP::StatusCode HTTPRequest::returnResponse(int statusCode) {
   HTTPResponse httpRes;
   httpRes.setStatusCode(statusCode);
   httpRes.setContentLength(0);
@@ -225,8 +209,7 @@ HTTP::StatusCode HTTPRequest::returnResponse(int statusCode)
 //  POST (Response)
 ////////////////////////////////////////////////
 
-HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
-{
+HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader) {
   HTTPSocket *httpSock = getSocket();
   size_t offset = 0;
   size_t length = httpRes->getContentLength();
@@ -252,8 +235,7 @@ HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader)
 //  POST (Request)
 ////////////////////////////////////////////////
 
-HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive)
-{
+HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive) {
   if (postSock == NULL) {
     postSock = new Socket();
     if (postSock->connect(host, port) == false) {
@@ -299,7 +281,6 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
   httpRes->set(postSock, isHeadRequest());      
 
   if (isKeepAlive == false) {
-
     postSock->close();
     delete postSock;
     postSock = NULL;
@@ -312,8 +293,7 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
 //  toString
 ////////////////////////////////////////////////
 
-const char *HTTPRequest::toString(std::string &buf)
-{
+const char *HTTPRequest::toString(std::string &buf) {
   getHeader(buf);
   buf += HTTP::CRLF;
   buf += getContent();
@@ -321,8 +301,7 @@ const char *HTTPRequest::toString(std::string &buf)
   return buf.c_str();
 }
 
-void HTTPRequest::print()
-{
+void HTTPRequest::print() {
   std::string buf;
 #ifndef NO_USE_STD_COUT
   std::cout << toString(buf) << std::endl;

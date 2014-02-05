@@ -15,22 +15,19 @@ static uHTTP::Logger *gUHttpLoggerSharedInstance = NULL;
 const int uHTTP::Logger::MAX_LINE_STRING = 512;
 const char *uHTTP::Logger::SEPARATOR = " ";
 
-uHTTP::Logger *uHTTP::Logger::GetSharedInstance()
-{
+uHTTP::Logger *uHTTP::Logger::GetSharedInstance() {
   if (!gUHttpLoggerSharedInstance)
     gUHttpLoggerSharedInstance = new Logger();
   return gUHttpLoggerSharedInstance;
 }
 
-void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger)
-{
+void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger) {
   if (gUHttpLoggerSharedInstance)
     delete gUHttpLoggerSharedInstance;
   gUHttpLoggerSharedInstance = logger;
 }
 
-const char *uHTTP::Logger::GetMaskString(int outputType)
-{
+const char *uHTTP::Logger::GetMaskString(int outputType) {
   switch (outputType) {
   case LoggerTarget::TRACE:
     return "TRACE";
@@ -49,28 +46,23 @@ const char *uHTTP::Logger::GetMaskString(int outputType)
   return "UNKNOWN";
 }
 
-uHTTP::Logger::Logger()
-{
+uHTTP::Logger::Logger() {
   setLevel(LoggerTarget::INFO);
 }
 
-uHTTP::Logger::~Logger()
-{
+uHTTP::Logger::~Logger() {
 }
 
-bool uHTTP::Logger::addTarget(LoggerTarget *target)
-{
+bool uHTTP::Logger::addTarget(LoggerTarget *target) {
   return this->targetList.addTarget(target);
 }
 
-bool uHTTP::Logger::clearAllTargets()
-{
+bool uHTTP::Logger::clearAllTargets() {
   this->targetList.clear();
   return true;
 }
 
-int uHTTP::Logger::output(int outputType, const char *outputMessage)
-{
+int uHTTP::Logger::output(int outputType, const char *outputMessage) {
   if (outputType < getLevel())
     return 0;
 

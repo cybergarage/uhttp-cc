@@ -14,11 +14,8 @@
 #include <uhttp/util/LoggerTarget.h>
 
 namespace uHTTP {
-
-class LoggerFileTarget : public LoggerTarget
-{
-public:
-
+class LoggerFileTarget : public LoggerTarget {
+ public:
   LoggerFileTarget();
   ~LoggerFileTarget();
   
@@ -26,8 +23,7 @@ public:
   bool close();
 };
 
-class LoggerStdFileTarget : public LoggerFileTarget
-{
+class LoggerStdFileTarget : public LoggerFileTarget {
  public:
     
   LoggerStdFileTarget() {
@@ -39,8 +35,7 @@ class LoggerStdFileTarget : public LoggerFileTarget
   }
 };
   
-class LoggerErrorFileTarget : public LoggerFileTarget
-{
+class LoggerErrorFileTarget : public LoggerFileTarget {
  public:
     
   LoggerErrorFileTarget() {

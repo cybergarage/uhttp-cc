@@ -16,8 +16,7 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-FileInputStream::FileInputStream(File *file, const std::string &mode)
-{
+FileInputStream::FileInputStream(File *file, const std::string &mode) {
   inBuf = new char[FILE_INBUF_SIZE];
   fp = fopen(file->getName(), mode.c_str());
   if (fp == NULL)
@@ -28,8 +27,7 @@ FileInputStream::FileInputStream(File *file, const std::string &mode)
 //  Destructor
 ////////////////////////////////////////////////
 
-FileInputStream::~FileInputStream()
-{
+FileInputStream::~FileInputStream() {
   delete[] inBuf;
 }
 
@@ -37,8 +35,7 @@ FileInputStream::~FileInputStream()
 //  read
 ////////////////////////////////////////////////
 
-ssize_t FileInputStream::read(std::string &b, size_t len)
-{
+ssize_t FileInputStream::read(std::string &b, size_t len) {
   if (fp == NULL)
     return 0;
 
@@ -58,8 +55,7 @@ ssize_t FileInputStream::read(std::string &b, size_t len)
   return readCnt;
 }
 
-ssize_t FileInputStream::read(char *b, size_t len)
-{
+ssize_t FileInputStream::read(char *b, size_t len) {
   if (fp == NULL)
     return 0;
 
@@ -78,8 +74,7 @@ ssize_t FileInputStream::read(char *b, size_t len)
 //  unread
 ////////////////////////////////////////////////
 
-void FileInputStream::unread(std::string &b, size_t off, size_t len)
-{
+void FileInputStream::unread(std::string &b, size_t off, size_t len) {
   // Not Implemented
 }
 
@@ -87,8 +82,7 @@ void FileInputStream::unread(std::string &b, size_t off, size_t len)
 //  skip
 ////////////////////////////////////////////////
 
-long FileInputStream::skip(long n)
-{
+long FileInputStream::skip(long n) {
   if (fp == NULL)
     return 0;
   int ret = fseek(fp, n, SEEK_CUR);
@@ -99,8 +93,7 @@ long FileInputStream::skip(long n)
 //  close
 ////////////////////////////////////////////////
 
-void FileInputStream::close()
-{
+void FileInputStream::close() {
   if (fp == NULL)
     return;
   fclose(fp);

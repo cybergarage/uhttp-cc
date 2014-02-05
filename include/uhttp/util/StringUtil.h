@@ -17,20 +17,16 @@
 #endif
 
 namespace uHTTP {
-
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //  String Class
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-class  String
-{
-
+class  String {
   ////////////////////////////////////////////////
   //  Constants
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static const int INT_STRING_MAXSIZE;
   static const int LONG_STRING_MAXSIZE;
   static const int LONGLONG_STRING_MAXSIZE;
@@ -44,8 +40,7 @@ private:
   std::string  mValue;
 
   
-public:
-
+ public:
   String();
   String(const std::string &value);
   String(const std::string &value, int offset, int count);

@@ -15,12 +15,8 @@
 #include <uhttp/net/URI.h>
 
 namespace uHTTP {
-
-class URL : public URI
-{
-
-public:
-
+class URL : public URI {
+ public:
   URL();
   URL(const std::string &urlStr);
 };

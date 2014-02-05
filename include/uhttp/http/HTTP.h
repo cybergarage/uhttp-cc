@@ -16,13 +16,11 @@
 #include <uhttp/net/URL.h>
 
 namespace uHTTP {
-
 const char PRODUCT_NAME[] = "uhttp";
 const char LIBRARY_NAME[] = "libuhttp++";
 const char LIBRARY_VERSION[] = "0.6";
 
 namespace HTTP {
-
 typedef int StatusCode;
 
 ////////////////////////////////////////////////
@@ -96,13 +94,11 @@ const int DEFAULT_TIMEOUT = 30;
 // URL
 ////////////////////////////////////////////////
 
-inline bool IsAbsoluteURL(const std::string &urlStr)
-{
+inline bool IsAbsoluteURL(const std::string &urlStr) {
   return uHTTP::IsAbsoluteURL(urlStr);
 }
 
-inline const char *GetHost(const std::string &urlStr, std::string &buf)
-{
+inline const char *GetHost(const std::string &urlStr, std::string &buf) {
   return uHTTP::URLGetHost(urlStr, buf);
 }
 
@@ -110,8 +106,7 @@ int GetPort(const std::string &urlStr);
 
 const char *GetRequestHostURL(const std::string &host, int port, std::string &buf);
 
-inline const char *GetRelativeURL(const std::string &urlStr, std::string &buf, bool withParam = true)
-{
+inline const char *GetRelativeURL(const std::string &urlStr, std::string &buf, bool withParam = true) {
   return uHTTP::URLGetRelativeURL(urlStr, buf, withParam);
 }
 

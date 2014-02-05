@@ -15,20 +15,16 @@
 #include <string>
 
 namespace uHTTP {
-
-class NetworkInterface 
-{
+class NetworkInterface  {
   std::string name;
   std::string addr;
   int index;
-public:
-
+ public:
   ////////////////////////////////////////////////
   // Constructor
   ////////////////////////////////////////////////
 
-  NetworkInterface(const std::string &addr = NULL, const std::string &name = NULL, int idx = 0)
-  {
+  NetworkInterface(const std::string &addr = NULL, const std::string &name = NULL, int idx = 0) {
     setAddress(addr);
     setName(name);
     setIndex(idx);
@@ -38,13 +34,11 @@ public:
   // Address
   ////////////////////////////////////////////////
 
-  void setAddress(const std::string &value)
-  {
+  void setAddress(const std::string &value) {
     addr = value;
   }
     
-  const char *getAddress()
-  {
+  const char *getAddress() {
     return addr.c_str();
   }
     
@@ -52,13 +46,11 @@ public:
   // Name
   ////////////////////////////////////////////////
 
-  void setName(const std::string &value)
-  {
+  void setName(const std::string &value) {
     name = value;
   }
     
-  const char *getName()
-  {
+  const char *getName() {
     return name.c_str();
   }
 
@@ -66,13 +58,11 @@ public:
   // Index
   ////////////////////////////////////////////////
 
-  void setIndex(int value)
-  {
+  void setIndex(int value) {
     index = value;
   }
     
-  int getIndex()
-  {
+  int getIndex() {
     return index;
   }
 };

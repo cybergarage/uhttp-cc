@@ -14,32 +14,26 @@
 #include <string>
 
 namespace uHTTP {
-
-class InetSocketAddress 
-{
+class InetSocketAddress  {
   std::string addr;
   int port;
 
-public:
-
+ public:
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
 
-  InetSocketAddress()
-  {
+  InetSocketAddress() {
     setAddress("");
     setPort(-1);
   }
 
-  InetSocketAddress(int port)
-  {
+  InetSocketAddress(int port) {
     setAddress("");
     setPort(port);
   }
 
-  InetSocketAddress(const std::string &addr, int port)
-  {
+  InetSocketAddress(const std::string &addr, int port) {
     setAddress(addr);
     setPort(port);
   }
@@ -48,28 +42,23 @@ public:
   //  Member
   ////////////////////////////////////////////////
 
-  void setAddress(const std::string &value)
-  {
+  void setAddress(const std::string &value) {
     addr = value;
   }
     
-  const char *getAddress()
-  {
+  const char *getAddress() {
     return addr.c_str();
   }
     
-  void setPort(int value)
-  {
+  void setPort(int value) {
     port = value;
   }
     
-  int getPort()
-  {
+  int getPort() {
     return port;
   }
 
-  void set(InetSocketAddress *isaddr)
-  {
+  void set(InetSocketAddress *isaddr) {
     if (isaddr == NULL) {
       setAddress("");
       setPort(0);

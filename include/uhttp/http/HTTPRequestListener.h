@@ -15,9 +15,7 @@
 #include <uhttp/http/HTTPRequest.h>
 
 namespace uHTTP {
-
-class HTTPRequestListener
-{
+class HTTPRequestListener {
 public:
   virtual HTTP::StatusCode httpRequestRecieved(HTTPRequest *httpReq) = 0;
 };

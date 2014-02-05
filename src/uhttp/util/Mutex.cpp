@@ -17,8 +17,7 @@ using namespace uHTTP;
 //  Mutex
 ////////////////////////////////////////////////
 
-Mutex::Mutex()
-{
+Mutex::Mutex() {
 #if defined(WIN32) && !defined(ITRON)
   mutexID = CreateMutex(NULL, FALSE, NULL);
 #elif defined(BTRON)
@@ -44,8 +43,7 @@ Mutex::Mutex()
 #endif
 }
 
-Mutex::~Mutex()
-{
+Mutex::~Mutex() {
 #if defined(WIN32) && !defined(ITRON)
   CloseHandle(mutexID);
 #elif defined(BTRON)
@@ -61,8 +59,7 @@ Mutex::~Mutex()
 #endif
 }
 
-bool Mutex::lock()
-{
+bool Mutex::lock() {
 #if defined(WIN32) && !defined(ITRON)
   WaitForSingleObject(mutexID, INFINITE);
 #elif defined(BTRON)
@@ -79,8 +76,7 @@ bool Mutex::lock()
   return true;
 }
 
-bool Mutex::unlock()
-{
+bool Mutex::unlock() {
 #if defined(WIN32) && !defined(ITRON)
   ReleaseMutex(mutexID);
 #elif defined(BTRON)

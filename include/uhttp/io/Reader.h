@@ -12,18 +12,12 @@
 #define _CIO_READER_H_
 
 namespace uHTTP {
-
-class Reader
-{
-
-public:
-
-  Reader()
-  {
+class Reader {
+ public:
+  Reader() {
   }
 
-  virtual ~Reader()
-  {
+  virtual ~Reader() {
   }
 
   virtual ssize_t read(std::string &b, size_t len) = 0;
@@ -32,13 +26,11 @@ public:
 
   virtual void unread(std::string &b, size_t off, size_t len) = 0;
 
-  void unread(std::string &b, size_t len)
-  {
+  void unread(std::string &b, size_t len) {
      unread(b, 0, len);  
   }
 
-  void unread(char c)
-  {
+  void unread(char c) {
     std::string b;
     b.append(&c, 0, 1);
     unread(b, 0, 1);  

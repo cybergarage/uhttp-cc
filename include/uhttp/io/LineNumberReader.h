@@ -16,25 +16,19 @@
 #include <uhttp/io/BufferedReader.h>
 
 namespace uHTTP {
-
-class LineNumberReader : public BufferedReader
-{
+class LineNumberReader : public BufferedReader {
   int lineNum;
 
-public:
-
-  LineNumberReader(Reader *reader) : BufferedReader(reader)
-  {
+ public:
+  LineNumberReader(Reader *reader) : BufferedReader(reader) {
     lineNum = -1;
   }
 
-  int getLineNumber()
-  {
+  int getLineNumber() {
     return lineNum;
   }
 
-  const char *readLine()
-  {
+  const char *readLine() {
     lineNum++;
     return BufferedReader::readLine();
   }

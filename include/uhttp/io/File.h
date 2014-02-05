@@ -16,11 +16,9 @@
 #include <stdlib.h>
 
 namespace uHTTP {
-
 class FileList;
 
-class File
-{
+class File {
   std::string nameStr;
   std::string parentStr;
 
@@ -30,8 +28,7 @@ class File
   //  Constants
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static const char separatorChar;
   static const char pathSeparatorChar;
   static const char *separator;
@@ -43,8 +40,7 @@ public:
   //  Constructor
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   File();
   File(const std::string &fname);
   File(const std::string &dir, const std::string &fname);
@@ -56,10 +52,8 @@ public:
   //  Name
   ////////////////////////////////////////////////
 
-public:
-
-  void setName(const std::string &fname)
-  {
+ public:
+  void setName(const std::string &fname) {
     nameStr = fname;
     if (absoluteFile != NULL) {
       delete absoluteFile;
@@ -67,8 +61,7 @@ public:
     }
   }
 
-  const char *getName()
-  {
+  const char *getName() {
     return nameStr.c_str();
   }
 
@@ -76,8 +69,7 @@ public:
   //  get*
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   const char *getFileName(std::string &buf);
 
   File *getAbsoluteFile();
@@ -88,12 +80,10 @@ public:
   //  exists
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static bool exists(const std::string &name);
   
-  bool exists()
-  {
+  bool exists() {
     return exists(getName());
   }
 
@@ -101,12 +91,10 @@ public:
   //  load
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static const char *load(const std::string &name, std::string &buf);
 
-  const char *load(std::string &buf)
-  {
+  const char *load(std::string &buf) {
     return load(getName(), buf);
   }
 
@@ -114,12 +102,10 @@ public:
   //save
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   static bool save(const std::string &name, const std::string &buf);
 
-  bool save(const std::string &buf)
-  {
+  bool save(const std::string &buf) {
     return save(getName(), buf);
   }
 
@@ -127,8 +113,7 @@ public:
   //  File Type
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   const char *getSuffix(std::string &buf);
 
   static bool isXMLFileName(const std::string &name);
@@ -137,8 +122,7 @@ public:
   //  Attributes
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   long lastModified();
   long length();
 
@@ -146,24 +130,21 @@ public:
   //  Compare
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   bool equals(File *file);
 
   ////////////////////////////////////////////////
   //  FileList
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   int listFiles(FileList &fileList);
 
   ////////////////////////////////////////////////
   //  is*
   ////////////////////////////////////////////////
 
-public:
-
+ public:
   bool isDirectory();
   bool isFile();
 };

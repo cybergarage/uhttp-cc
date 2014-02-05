@@ -18,54 +18,43 @@
 #include <uhttp/io/LineNumberReader.h>
 
 namespace uHTTP {
-
-class HTTPHeader 
-{
+class HTTPHeader  {
   std::string name;
   std::string value;
 
-public:
-
+ public:
   HTTPHeader(const std::string &lineStr);
   HTTPHeader(const std::string &name, const std::string &value);
   HTTPHeader(HTTPHeader *header);
 
   ~HTTPHeader();
 
-  void setName(const std::string &name)
-  {
+  void setName(const std::string &name) {
     this->name = name;
   }
 
-  const char *getName()
-  {
+  const char *getName() {
     return name.c_str();
   }
 
-  bool hasName()
-  {
+  bool hasName() {
     if (name.length() <= 0)
       return false;
     return true;
   }
 
-  void setValue(const std::string &value)
-  {
+  void setValue(const std::string &value) {
     this->value = value;
   }
 
-  const char *getValue()
-  {
+  const char *getValue() {
     return value.c_str();
   }
 };
 
-class HTTPHeaderList : public std::vector<HTTPHeader *>
-{
-
+class HTTPHeaderList : public std::vector<HTTPHeader *> {
 public:
-  HTTPHeaderList()
-  {
+  HTTPHeaderList() {
   }
 };
 

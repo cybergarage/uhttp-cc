@@ -19,22 +19,19 @@ using namespace uHTTP;
 ////////////////////////////////////////////////
 
 #if defined(WIN32) && !defined(ITRON)
-static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
-{
+static DWORD WINAPI Win32ThreadProc(LPVOID lpParam) {
   Thread *thread = (Thread *)lpParam;
   thread->run();
   return 0;
 }
 #elif defined(BTRON) 
-static VOID BTronTaskProc(W param)
-{
+static VOID BTronTaskProc(W param) {
   Thread *thread = (Thread *)param;
   thread->run();
   ext_tsk();
 }
 #elif defined(ITRON)
-static TASK ITronTaskProc(int param)
-{
+static TASK ITronTaskProc(int param) {
   T_RTSK rtsk;
   if (ref_tsk(TSK_SELF, &rtsk) != E_OK)
     return;
@@ -43,22 +40,19 @@ static TASK ITronTaskProc(int param)
   exd_tsk();
 }
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-static VOID TEngineTaskProc(INT stacd, VP param)
-{
+static VOID TEngineTaskProc(INT stacd, VP param) {
   Thread *thread = (Thread *)param;
   thread->run();
   tk_exd_tsk();
 }
 #elif defined(TENGINE) && defined(PROCESS_BASE)
-static VOID TEngineProcessBasedTaskProc(W param)
-{
+static VOID TEngineProcessBasedTaskProc(W param) {
   Thread *thread = (Thread *)param;
   thread->run();
   b_ext_tsk();
 }
 #else
-static void *PosixThreadProc(void *param)
-{
+static void *PosixThreadProc(void *param) {
   Thread *thread = (Thread *)param;
   thread->run();
   return 0;
@@ -69,13 +63,11 @@ static void *PosixThreadProc(void *param)
 // Thread
 ////////////////////////////////////////////////
 
-Thread::Thread()
-{
+Thread::Thread() {
   setRunnableFlag(false);
 }
 
-bool Thread::start()
-{
+bool Thread::start() {
   setRunnableFlag(true);
 #if defined(WIN32) && !defined(ITRON)
   hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)this, 0, &threadID);
@@ -136,13 +128,11 @@ bool Thread::start()
   return true;
 }
 
-Thread::~Thread()
-{
+Thread::~Thread() {
   stop();
 }
 
-bool Thread::stop()
-{
+bool Thread::stop() {
   if (isRunnable() == true) {
     setRunnableFlag(false);
 #if defined(WIN32) && !defined(ITRON)
@@ -166,13 +156,11 @@ bool Thread::stop()
   return true;
 }
 
-void Thread::setRunnableFlag(bool flag)
-{
+void Thread::setRunnableFlag(bool flag) {
   runnableFlag = flag;
 }
 
-bool Thread::isRunnable()
-{
+bool Thread::isRunnable() {
   return runnableFlag;
 }
 

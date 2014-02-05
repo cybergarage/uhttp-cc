@@ -19,11 +19,8 @@
 #include <uhttp/util/Mutex.h>
 
 namespace uHTTP {
-
-class LoggerLevel
-{
-public:
-
+class LoggerLevel {
+ public:
   enum {
     NONE    = 0x00,
     TRACE   = 0x01,
@@ -35,10 +32,8 @@ public:
   };
 };
 
-class LoggerTarget
-{
-public:
-
+class LoggerTarget {
+ public:
   enum {
     NONE    = LoggerLevel::NONE,
     TRACE   = LoggerLevel::TRACE,
@@ -49,8 +44,7 @@ public:
     FATAL   = LoggerLevel::FATAL,
   };
 
-public:
-
+ public:
   LoggerTarget();
   virtual ~LoggerTarget();
 
@@ -84,8 +78,7 @@ private:
   int   outputMask;
 };
 
-class LoggerTargetList : public std::vector<LoggerTarget *>
-{
+class LoggerTargetList : public std::vector<LoggerTarget *> {
     
  public:
     

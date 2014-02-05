@@ -18,27 +18,22 @@
 #include <uhttp/io/InputStream.h>
 
 namespace uHTTP {
-
-class StringReader : public Reader
-{
+class StringReader : public Reader {
   std::string buf;
   int pos;
 
-public:
-
+ public:
   StringReader(const std::string &str);
   
   ssize_t read(std::string &b, size_t len);
   
   long skip(long n);
 
-  void unread(std::string &b, size_t off, size_t len)
-  {
+  void unread(std::string &b, size_t off, size_t len) {
     // Not Implemented yet.
   }
 
-  void close()
-  {
+  void close() {
   }
 };
 

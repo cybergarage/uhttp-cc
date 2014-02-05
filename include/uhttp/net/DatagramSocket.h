@@ -16,12 +16,8 @@
 #include <uhttp/net/DatagramPacket.h>
 
 namespace uHTTP {
-
-class DatagramSocket : public SocketImp
-{
-
-public:
-
+class DatagramSocket : public SocketImp {
+ public:
   DatagramSocket();
   DatagramSocket(int port, const std::string &bindAddr, bool bindAddrFlag = true, bool reuseAddrFlag = false);
   ~DatagramSocket();

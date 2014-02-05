@@ -16,15 +16,12 @@
 #include <uhttp/net/NetworkInterface.h>
 
 namespace uHTTP {
-
-class NetworkInterfaceList : public uHTTP::Vector 
-{
+class NetworkInterfaceList : public uHTTP::Vector  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
   
-public:
-
+ public:
   NetworkInterfaceList() 
   {
   }
@@ -38,10 +35,8 @@ public:
   //  Methods
   ////////////////////////////////////////////////
   
-public:
-
-  NetworkInterface *getNetworkInterface(int n)
-  {
+ public:
+  NetworkInterface *getNetworkInterface(int n) {
     return (NetworkInterface *)get(n);
   }
 
@@ -55,16 +50,14 @@ public:
     Vector::clear();
   }
 
-  void remove(NetworkInterface *netif)
-  {
+  void remove(NetworkInterface *netif) {
     if (netif == NULL)
         return;
     delete netif;
     Vector::remove(netif);
   }
 
-  void print()
-  {
+  void print() {
     int ifNum = size();
     for (int n=0; n<ifNum; n++) {
       NetworkInterface *netif = getNetworkInterface(n);

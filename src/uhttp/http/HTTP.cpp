@@ -22,16 +22,14 @@ using namespace uHTTP;
 using namespace uHTTP;
 #endif
 
-int uHTTP::HTTP::GetPort(const std::string &urlStr)
-{
+int uHTTP::HTTP::GetPort(const std::string &urlStr) {
   int port = uHTTP::URLGetPort(urlStr);
   if (port <= 0)
     port = HTTP::DEFAULT_PORT;
     return port;
 }
 
-const char *uHTTP::HTTP::GetAbsoluteURL(const std::string &baseURLStr, const std::string &relURlStr, std::string &buf)
-{
+const char *uHTTP::HTTP::GetAbsoluteURL(const std::string &baseURLStr, const std::string &relURlStr, std::string &buf) {
   uHTTP::URL baseURL(baseURLStr);
   int port = baseURL.getPort();
   if (port <= 0)
@@ -58,8 +56,7 @@ const char *uHTTP::HTTP::GetAbsoluteURL(const std::string &baseURLStr, const std
   return buf.c_str();
 }
 
-const char *uHTTP::HTTP::GetRequestHostURL(const std::string &host, int port, std::string &buf)
-{
+const char *uHTTP::HTTP::GetRequestHostURL(const std::string &host, int port, std::string &buf) {
 #ifndef NO_USE_OSTRINGSTREAM
   std::ostringstream url;
   url << "http://" << host << ":" << port;
@@ -81,12 +78,10 @@ const char *uHTTP::HTTP::GetRequestHostURL(const std::string &host, int port, st
   
 static int httpChunkSize = uHTTP::HTTP::DEFAULT_CHUNK_SIZE;
 
-void uHTTP::HTTP::SetChunkSize(int size)
-{
+void uHTTP::HTTP::SetChunkSize(int size) {
   httpChunkSize = size;
 }
   
-int uHTTP::HTTP::GetChunkSize()
-{
+int uHTTP::HTTP::GetChunkSize() {
   return httpChunkSize;
 }

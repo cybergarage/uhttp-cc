@@ -17,8 +17,7 @@ using namespace uHTTP;
 //  Methods
 ////////////////////////////////////////////////
 
-void FileList::clear() 
-{
+void FileList::clear()  {
   int nNode = size();
   for (int n=0; n<nNode; n++) {
     File *file = getFile(n);
