@@ -27,7 +27,7 @@ public:
   ~ParameterList() 
   {
     int nLists = size(); 
-    for (int n=0; n<nLists; n++) {
+    for (int n = 0; n < nLists; n++) {
       Parameter *param = at(n);
       delete param;
     }
@@ -44,7 +44,7 @@ public:
   Parameter *getParameter(const std::string &name) 
   {
     int nLists = size(); 
-    for (int n=0; n<nLists; n++) {
+    for (int n = 0; n < nLists; n++) {
       Parameter *param = at(n);
       if (uHTTP::StringEquals(name, param->getName()) == true)
         return param;

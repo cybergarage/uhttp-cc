@@ -43,7 +43,7 @@ class NetworkInterfaceList : public uHTTP::Vector  {
   void clear() 
   {
     int nNetIf = size();
-    for (int n=0; n<nNetIf; n++) {
+    for (int n = 0; n < nNetIf; n++) {
       NetworkInterface *netif = getNetworkInterface(n);
       delete netif;
     }
@@ -59,7 +59,7 @@ class NetworkInterfaceList : public uHTTP::Vector  {
 
   void print() {
     int ifNum = size();
-    for (int n=0; n<ifNum; n++) {
+    for (int n = 0; n < ifNum; n++) {
       NetworkInterface *netif = getNetworkInterface(n);
       const char *addr = netif->getAddress();
       const char *name = netif->getName();

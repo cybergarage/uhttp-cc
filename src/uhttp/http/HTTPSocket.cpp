@@ -127,7 +127,7 @@ bool HTTPSocket::post(HTTPResponse *httpRes, InputStream *in, size_t contentOffs
       sock->send(chunSizeBuf.c_str());
       sock->send(HTTP::CRLF);
     }
-    if (sock->send(chunkBuf, readLen) <=0)
+    if (sock->send(chunkBuf, readLen) <= 0)
       break;
     if (isChunked == true)
       sock->send(HTTP::CRLF);

@@ -19,7 +19,7 @@ using namespace uHTTP;
 
 void FileList::clear()  {
   int nNode = size();
-  for (int n=0; n<nNode; n++) {
+  for (int n = 0; n < nNode; n++) {
     File *file = getFile(n);
     delete file;
   }

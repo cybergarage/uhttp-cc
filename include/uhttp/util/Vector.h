@@ -41,7 +41,7 @@ private:
 
   int indexOf(void *obj) {
     int cnt = size();
-    for (int n=0; n<cnt; n++) {
+    for (int n = 0; n < cnt; n++) {
       //if (obj == ((void *)at(n)))
       if (obj == (void *)(vec[n]))
         return n;

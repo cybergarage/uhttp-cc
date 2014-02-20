@@ -76,7 +76,7 @@ void HTTPPacket::init() {
 const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
   StringTokenizer st(firstLine.c_str(), HTTP::REQEST_LINE_DELIM);
   const char *lastToken = "";
-  for (int n=0; n<=num; n++) {
+  for (int n = 0; n <= num; n++) {
     if (st.hasMoreTokens() == false) {
       tokenBuf = "";
       return tokenBuf.c_str();
@@ -93,7 +93,7 @@ const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
 
 HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
   int nHeaders = getNHeaders();
-  for (int n=0; n<nHeaders; n++) {
+  for (int n = 0; n < nHeaders; n++) {
     HTTPHeader *header = getHeader(n);
     const char *headerName = header->getName();
     if (StringEqualsIgnoreCase(headerName, name) == true)
@@ -104,7 +104,7 @@ HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
 
 void HTTPPacket::clearHeaders() {
   int nHeaders = getNHeaders();
-  for (int n=0; n<nHeaders; n++) {
+  for (int n = 0; n < nHeaders; n++) {
     HTTPHeader *header = getHeader(n);
     delete header;
   }
@@ -253,7 +253,7 @@ void HTTPPacket::set(HTTPPacket *httpPacket) {
     
   clearHeaders();
   int nHeaders = httpPacket->getNHeaders();
-  for (int n=0; n<nHeaders; n++) {
+  for (int n = 0; n < nHeaders; n++) {
     HTTPHeader *header = new HTTPHeader(httpPacket->getHeader(n));
     addHeader(header);
   }
@@ -281,7 +281,7 @@ bool HTTPPacket::read(HTTPSocket *httpSock) {
 const char *HTTPPacket::getHeaderString(string &headerStr) {
   int nHeaders = getNHeaders();
   headerStr = "";
-  for (int n=0; n<nHeaders; n++) {
+  for (int n = 0; n < nHeaders; n++) {
     HTTPHeader *header = getHeader(n);
     headerStr += header->getName();
     headerStr += ": ";

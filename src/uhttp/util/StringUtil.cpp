@@ -173,13 +173,13 @@ int String::regionMatchesIgnoreCase(int toffset, const std::string &other, int o
   int value1Len = length();
   char *value1 = new char[value1Len+1];
   strcpy(value1, getValue());
-  for (n=0; n<value1Len; n++)
+  for (n = 0; n < value1Len; n++)
     value1[n] = (char)toupper(value1[n]);
 
   size_t value2Len = strlen(other.c_str());
   char *value2 = new char[value2Len+1]; 
   strcpy(value2, other.c_str());
-  for (n=0; n<value2Len; n++)
+  for (n = 0; n < value2Len; n++)
     value2[n] = (char)toupper(value2[n]);
     
   int ret = regionMatches(toffset, other, ooffset, len);
@@ -370,14 +370,14 @@ bool uHTTP::StringEquals(const std::string &value1, const std::string &value2) {
 
 const char *uHTTP::StringToUpperCase(std::string &str) {
   int len = (int)str.length();
-  for (int n=0; n<len; n++)
+  for (int n = 0; n < len; n++)
     str[n] = toupper(str.at(n));
   return str.c_str();
 }
 
 const char *uHTTP::StringToLowerCase(std::string &str) {
   int len = (int)str.length();
-  for (int n=0; n<len; n++)
+  for (int n = 0; n < len; n++)
     str[n] = tolower(str.at(n));
   return str.c_str();
 }
@@ -432,7 +432,7 @@ bool uHTTP::StringEndsWith(const std::string &value, const char endsWith) {
 
 int uHTTP::StringIndexOf(const std::string &value, char c) {
   int len = StringLength(value);
-  for (int n = 0; n<len; n++) {
+  for (int n = 0; n < len; n++) {
     if (value[n] == c)
       return n;
   }
