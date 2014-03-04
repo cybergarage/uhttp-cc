@@ -13,6 +13,7 @@
 #define _CUTIL_VECTOR_H_
 
 #include <vector>
+#include <stdlib.h>
 
 namespace uHTTP {
 class Vector {
