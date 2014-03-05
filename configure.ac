@@ -8,12 +8,11 @@
 #
 ###################################################################
 
-AC_CONFIG_AUX_DIR(config)
-AM_CONFIG_HEADER(config.h)
-
 AC_INIT([uhttpcc], [0.6])
+AM_CONFIG_HEADER(config.h)
+AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR([include/uhttp/http/HTTP.h])
-AM_INIT_AUTOMAKE([subdir-objects])
+AM_INIT_AUTOMAKE
 
 ##############################
 # Checks for programs.
