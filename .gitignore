@@ -5,4 +5,6 @@ config.*
 *.a
 *.po
 .DS_Store
-*xcuserdata*
+xcuserdata/
+.deps/
+.dirstamp
