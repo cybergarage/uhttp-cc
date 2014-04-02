@@ -34,20 +34,32 @@ HTTPServerThread::~HTTPServerThread() {
 ////////////////////////////////////////////////
 
 void HTTPServerThread::run() {
-  HTTPSocket httpSock(clientSock);
-  if (httpSock.open() == false) {
+  HTTPSocket *httpSock = new HTTPSocket(clientSock);
+  if (!httpSock)
+    return;
+
+  if (httpSock->open() == false) {
+    delete httpSock;
     delete clientSock;
     delete this;
     return;
   }
-  HTTPRequest httpReq;
-  httpReq.setSocket(&httpSock);
-  while (httpReq.read() == true) {
-    httpServer->performRequestListener(&httpReq);
-    if (httpReq.isKeepAlive() == false)
+
+  HTTPRequest *httpReq = new HTTPRequest();
+  if (!httpReq)
+    return;
+
+  httpReq->setSocket(httpSock);
+  while (httpReq->read() == true) {
+    httpServer->performRequestListener(httpReq);
+    if (httpReq->isKeepAlive() == false)
       break;
   }
-  httpSock.close();
+  httpSock->close();
+
+  delete httpReq;
+  delete httpSock;
+
   delete clientSock;
   delete this;
 }
