@@ -18,8 +18,6 @@ using namespace uHTTP;
 using namespace uHTTP;
 using namespace uHTTP;
 
-static const int DEFAULT_CHUNK_SIZE = 512 * 1024;
-
 ////////////////////////////////////////////////
 //  Constructor
 ////////////////////////////////////////////////
