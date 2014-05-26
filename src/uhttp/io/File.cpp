@@ -122,7 +122,7 @@ bool File::exists(const std::string &name) {
 // load
 ////////////////////////////////////////////////
 
-const char *File::load(const std::string &name, string &buf) {
+bool File::load(const std::string &name, string &buf) {
   const int READ_BUF_SIZE = 1024;
   char readBuf[READ_BUF_SIZE+1];
 
@@ -131,7 +131,7 @@ const char *File::load(const std::string &name, string &buf) {
 #if defined(BTRON)
   int fd = open(name, O_RDONLY);
   if (fd == -1)
-    return buf.c_str();
+    return false;
   ssize_t nread = read(fd, readBuf, READ_BUF_SIZE);
   while (0 < nread) {
     readBuf[nread] = '\0';
@@ -142,7 +142,7 @@ const char *File::load(const std::string &name, string &buf) {
 #else
   FILE *fp = fopen(name.c_str(), "r");
   if (fp == NULL)
-    return buf.c_str();
+    return false;
   size_t nread = fread(readBuf, sizeof(char), READ_BUF_SIZE, fp);
   while (0 < nread) {
     readBuf[nread] = '\0';
@@ -152,7 +152,7 @@ const char *File::load(const std::string &name, string &buf) {
   fclose(fp);
 #endif
 
-  return buf.c_str();
+  return true;
 }
 
 ////////////////////////////////////////////////

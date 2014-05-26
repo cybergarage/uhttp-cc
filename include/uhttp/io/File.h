@@ -92,9 +92,9 @@ class File {
   ////////////////////////////////////////////////
 
  public:
-  static const char *load(const std::string &name, std::string &buf);
+  static bool load(const std::string &name, std::string &buf);
 
-  const char *load(std::string &buf) {
+  bool load(std::string &buf) {
     return load(getName(), buf);
   }
 
