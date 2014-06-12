@@ -161,6 +161,9 @@ void Thread::setRunnableFlag(bool flag) {
 }
 
 bool Thread::isRunnable() {
+#if !defined(WIN32) && !defined(ITRON) && !defined(BTRON) && !defined(TENGINE) && !defined(PROCESS_BASE)
+  pthread_testcancel();
+#endif
   return runnableFlag;
 }
 
