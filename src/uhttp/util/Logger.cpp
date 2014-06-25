@@ -16,15 +16,22 @@ const int uHTTP::Logger::MAX_LINE_STRING = 512;
 const char *uHTTP::Logger::SEPARATOR = " ";
 
 uHTTP::Logger *uHTTP::Logger::GetSharedInstance() {
-  if (!gUHttpLoggerSharedInstance)
+  if (!HasSharedInstance()) {
     gUHttpLoggerSharedInstance = new Logger();
+  }
   return gUHttpLoggerSharedInstance;
 }
 
 void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger) {
-  if (gUHttpLoggerSharedInstance)
+  if (HasSharedInstance()) {
     delete gUHttpLoggerSharedInstance;
+    gUHttpLoggerSharedInstance = NULL;
+  }
   gUHttpLoggerSharedInstance = logger;
+}
+
+bool uHTTP::Logger::HasSharedInstance() {
+  return (gUHttpLoggerSharedInstance != NULL) ? true : false;
 }
 
 const char *uHTTP::Logger::GetMaskString(int outputType) {

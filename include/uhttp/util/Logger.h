@@ -29,6 +29,7 @@ class Logger {
  public:
   static void SetSharedInstance(Logger *logger);
   static Logger *GetSharedInstance();
+  static bool HasSharedInstance();
   static const char *GetMaskString(int outputType);
 
  public:
