@@ -58,7 +58,7 @@ extern ttUserInterface kaInterfaceHandle;
 //  GetNHostAddresses
 ////////////////////////////////////////////////
 
-int uHTTP::GetNHostAddresses() {
+size_t uHTTP::GetNHostAddresses() {
   if (HasAssignedHostInterface() == true)
     return 1;
 
@@ -66,12 +66,12 @@ int uHTTP::GetNHostAddresses() {
   return GetHostAddresses(netIfList);
 }
 
-const char *uHTTP::GetHostAddress(int n, std::string &buf) {
+const char *uHTTP::GetHostAddress(size_t n, std::string &buf) {
   buf = "";
   
   if (HasAssignedHostInterface() == false) {
     NetworkInterfaceList netIfList;
-    int ifNum = GetHostAddresses(netIfList);
+    size_t ifNum = GetHostAddresses(netIfList);
     if (0 < ifNum || n < ifNum) {
       NetworkInterface *netif = netIfList.getNetworkInterface(n);
       buf = netif->getAddress();
@@ -214,7 +214,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
 
 #if defined(HAVE_IFADDRS_H) || defined(__APPLE_CC__)
 
-int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
+size_t uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   netIfList.clear();
   struct ifaddrs *ifaddr;
   if (getifaddrs(&ifaddr) != 0)

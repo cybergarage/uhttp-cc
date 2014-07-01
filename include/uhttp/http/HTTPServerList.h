@@ -30,7 +30,7 @@ class HTTPServerList : public Vector  {
   ////////////////////////////////////////////////
 
  public:
-  HTTPServer *getHTTPServer(int n) {
+  HTTPServer *getHTTPServer(size_t n) {
     return (HTTPServer *)get(n);
   }
 

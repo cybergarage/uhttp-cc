@@ -25,9 +25,9 @@ public:
   const static char *DEFAULT_IFNAME;
 };
 
-int GetNHostAddresses();
-const char *GetHostAddress(int n, std::string &buf);
-int GetHostAddresses(NetworkInterfaceList &netifList);
+size_t GetNHostAddresses();
+const char *GetHostAddress(size_t n, std::string &buf);
+size_t GetHostAddresses(NetworkInterfaceList &netifList);
 
 bool IsIPv6Address(const std::string &host);
 const char *StripIPv6ScopeID(const std::string &addr, std::string &buf);

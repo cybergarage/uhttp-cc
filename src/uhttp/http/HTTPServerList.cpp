@@ -34,8 +34,8 @@ HTTPServerList::~HTTPServerList() {
 ////////////////////////////////////////////////
 
 void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
-  int nServers = size();
-  for (int n = 0; n < nServers; n++) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
     server->addRequestListener(listener);
   }
@@ -46,8 +46,8 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
 ////////////////////////////////////////////////
 
 void HTTPServerList::close() {
-  int nServers = size();
-  for (int n = 0; n < nServers; n++) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
     server->close();
   }
@@ -56,7 +56,7 @@ void HTTPServerList::close() {
 
 bool HTTPServerList::open(int port) {
   bool ret = true;
-  int nHostAddrs = GetNHostAddresses();
+  size_t nHostAddrs = GetNHostAddresses();
   for (int n = 0; n < nHostAddrs; n++) {
     string buf;
     const char *bindAddr = GetHostAddress(n, buf);
@@ -83,16 +83,16 @@ bool HTTPServerList::open(int port) {
 ////////////////////////////////////////////////
 
 void HTTPServerList::start() {
-  int nServers = size();
-  for (int n = 0; n < nServers; n++) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
     server->start();
   }
 }
 
 void HTTPServerList::stop() {
-  int nServers = size();
-  for (int n = 0; n < nServers; n++) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
     server->stop();
   }
@@ -103,8 +103,8 @@ void HTTPServerList::stop() {
 ////////////////////////////////////////////////
 
 void HTTPServerList::clear() {
-  int nServers = size();
-  for (int n = 0; n < nServers; n++) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
     delete server;
   }

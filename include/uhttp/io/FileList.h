@@ -36,7 +36,7 @@ public:
   ////////////////////////////////////////////////
 
  public:
-  File *getFile(int n) {
+  File *getFile(size_t n) {
     return (File*)Vector::get(n);
   }
 

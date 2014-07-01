@@ -26,14 +26,14 @@ public:
   
   ~ParameterList() 
   {
-    int nLists = size(); 
-    for (int n = 0; n < nLists; n++) {
+    size_t nLists = size();
+    for (size_t n = 0; n < nLists; n++) {
       Parameter *param = at(n);
       delete param;
     }
   }
 
-  Parameter *at(int n) {
+  Parameter *at(size_t n) {
     return (Parameter *)Vector::get(n);
   }
 
@@ -43,8 +43,8 @@ public:
 
   Parameter *getParameter(const std::string &name) 
   {
-    int nLists = size(); 
-    for (int n = 0; n < nLists; n++) {
+    size_t nLists = size();
+    for (size_t n = 0; n < nLists; n++) {
       Parameter *param = at(n);
       if (uHTTP::StringEquals(name, param->getName()) == true)
         return param;
