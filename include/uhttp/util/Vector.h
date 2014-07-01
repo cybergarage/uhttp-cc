@@ -33,15 +33,15 @@ private:
   }
 
   bool remove(void *obj) {
-    int idx = indexOf(obj);
+    ssize_t idx = indexOf(obj);
     if (idx < 0)
       return false;
     vec.erase(vec.begin() + idx);
     return true;
   }
 
-  int indexOf(void *obj) {
-    int cnt = size();
+  ssize_t indexOf(void *obj) {
+    size_t cnt = size();
     for (int n = 0; n < cnt; n++) {
       //if (obj == ((void *)at(n)))
       if (obj == (void *)(vec[n]))
@@ -50,24 +50,21 @@ private:
     return -1;
   }
 
-  void *get(int index) 
+  void *get(size_t index)
   {
-    if (index < 0)
-      return NULL;
     if (size() < (index+1))
       return NULL;
     return (void *)vec[index];
-    //return (void *)at(index);
   }
 
-  bool insertAt(void *obj, int index) {
+  bool insertAt(void *obj, size_t index) {
     if (0 <= indexOf(obj))
       return false;
     vec.insert(vec.begin() + index, obj);
     return true;
   }
 
-  int size() {
+  size_t size() {
     return (int)vec.size();
   }
 
