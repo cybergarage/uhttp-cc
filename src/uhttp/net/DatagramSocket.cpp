@@ -76,9 +76,11 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
   if (sock < 0)
     return false;
   
-  if (reuseAddrFlag == true)
-    setReuseAddress(true);
-
+  if (reuseAddrFlag == true) {
+    if (setReuseAddress(true) == false)
+      return false;
+  }
+  
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   ERR ret = so_bind(sock, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
@@ -137,11 +139,9 @@ ssize_t DatagramSocket::receive(DatagramPacket &dataPack) {
 
   if (recvLen <= 0)
     return 0;
+  
   recvBuf[recvLen] = '\0';
   dataPack.setData(recvBuf);
-
-  dataPack.setAddress("");
-  dataPack.setPort(0);
 
   char remoteAddr[32];
   char remotePort[32];

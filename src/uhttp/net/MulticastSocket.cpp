@@ -92,14 +92,6 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
     int scopeID = GetIPv6ScopeID(ifAddr);
     ipv6mr.ipv6mr_interface = scopeID /*if_nametoindex*/;
     SOCKET sock = getSocket();
-    /*
-    unsigned char useLoop = 1;
-    int retCode = setsockopt(sock, IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&useLoop, sizeof(useLoop));
-    if (ret != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeError(GetLastErrorCode()));
-      ret = false;
-    }
-    */  
     retCode = setsockopt(sock, IPPROTO_IPV6, IPV6_MULTICAST_IF, (char *)&scopeID, sizeof(scopeID));
     if (retCode != 0) {
       fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
@@ -110,14 +102,6 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
       fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
       ret = false;
     }
-    /*
-    int mcastHops = 255;
-    ret = setsockopt(sock, IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&mcastHops, sizeof(mcastHops));
-    if (ret ==SOCKET_ERROR) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeError(WSAGetLastError()));
-      ret = false;
-    }
-    */
   }
   else {
     struct ip_mreq ipmr;
@@ -127,18 +111,6 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
     memcpy(&ipmr.imr_multiaddr.s_addr, &toaddr.sin_addr, sizeof(struct in_addr));
     memcpy(&ipmr.imr_interface.s_addr, &ifaddr.sin_addr, sizeof(struct in_addr));
     SOCKET sock = getSocket();
-    /*
-    ipmr.imr_multiaddr.s_addr = inet_addr(mcastAddr);
-    ipmr.imr_interface.s_addr = inet_addr(ifAddr);
-    */
-    /*
-    unsigned char useLoop = 1;
-    retCode = setsockopt(sock, IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&useLoop, sizeof(useLoop));
-    if (retCode != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeError(GetLastErrorCode()));
-      ret = false;
-    }
-    */
     retCode = setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, (char *)&ipmr.imr_interface.s_addr, sizeof(struct in_addr));
     if (retCode != 0) {
       fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
