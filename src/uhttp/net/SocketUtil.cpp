@@ -101,27 +101,30 @@ bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in
 bool uHTTP::toSocketAddrInfo(int sockType, const std::string &addr, int port, struct addrinfo **addrInfo, bool isBindAddr) {
   SocketStartup();
 
-  struct addrinfo hints;
+	int errorn;
 
-  memset(&hints, 0, sizeof(addrinfo));
-  hints.ai_socktype = sockType;
-  hints.ai_flags= /* AI_NUMERICHOST | */ AI_PASSIVE;
+	struct addrinfo hints;
+	memset(&hints, 0, sizeof(struct addrinfo));
+	hints.ai_socktype = sockType;
+	hints.ai_flags= /*AI_NUMERICHOST | */AI_PASSIVE;
   
-  char portStr[32];
-  sprintf(portStr, "%d", port);
+	char portStr[32];
+	sprintf(portStr, "%d", port);
   
-  if ((isBindAddr == true) || (0 < addr.length())) {
-    if (getaddrinfo(addr.c_str(), portStr, &hints, addrInfo) != 0)
-      return false;
-  }
-  else {
-    hints.ai_family = (*addrInfo)->ai_family;
-    freeaddrinfo(*addrInfo);
-    if (getaddrinfo(NULL, portStr, &hints, addrInfo) != 0)
-      return false;
-   }
-     
-  return true;
- }
+	if ( (errorn = getaddrinfo(addr.c_str(), portStr, &hints, addrInfo)) != 0) {
+		return false;
+	}
+	
+  if (isBindAddr)
+		return true;
+	
+  hints.ai_family = (*addrInfo)->ai_family;
+	freeaddrinfo(*addrInfo);
+	if ((errorn = getaddrinfo(NULL, portStr, &hints, addrInfo)) != 0) {
+		return false;
+	}
+  
+	return true;
+}
 
 #endif

@@ -194,7 +194,7 @@ bool SocketImp::setReuseAddress(bool flag) {
   int optval = (flag == true) ? 1 : 0;
   sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
   #if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
-	if (sockOptRet == 0) {
+  if (sockOptRet == 0) {
     sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const char *)&optval, sizeof(optval));
   }
   #endif
