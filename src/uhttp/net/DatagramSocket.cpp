@@ -80,7 +80,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
     if (setReuseAddress(true) == false)
       return false;
   }
-  
+
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   ERR ret = so_bind(sock, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)

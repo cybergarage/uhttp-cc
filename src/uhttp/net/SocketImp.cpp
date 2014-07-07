@@ -22,6 +22,10 @@
 #endif
 #endif
 
+#if defined(__APPLE_CPP__) || defined(__APPLE_CC__)
+#include <TargetConditionals.h>
+#endif
+
 using namespace uHTTP;
 using namespace uHTTP;
 
@@ -189,8 +193,10 @@ bool SocketImp::setReuseAddress(bool flag) {
 #else
   int optval = (flag == true) ? 1 : 0;
   sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
-  #ifdef USE_SO_REUSEPORT
-  setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const std::string &)&optval, sizeof(optval));
+  #if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
+  if (sockOptRet == 0) {
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const char *)&optval, sizeof(optval));
+  }
   #endif
 #endif
   return (sockOptRet == 0) ? true : false;
