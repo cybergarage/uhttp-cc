@@ -93,9 +93,6 @@ class LoggerTargetList : public std::vector<LoggerTarget *> {
   LoggerTarget *getTarget(int index) const {
     return at(index);
   }
-    
-  void clear();
-    
 };
   
 

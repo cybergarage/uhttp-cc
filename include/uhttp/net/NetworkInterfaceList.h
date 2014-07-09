@@ -35,13 +35,6 @@ class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
     return get(n);
   }
 
-  void remove(NetworkInterface *netif) {
-    if (netif == NULL)
-        return;
-    delete netif;
-    Vector::remove(netif);
-  }
-
   void print() {
     size_t ifNum = size();
     for (size_t n = 0; n < ifNum; n++) {

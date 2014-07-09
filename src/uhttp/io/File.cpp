@@ -365,7 +365,6 @@ bool File::equals(File *file) {
 ////////////////////////////////////////////////
 
 size_t File::listFiles(FileList &fileList) {
-  fileList.clear();
   if (isDirectory() == false)
     return 0;
 

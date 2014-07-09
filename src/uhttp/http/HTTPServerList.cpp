@@ -26,7 +26,6 @@ HTTPServerList::HTTPServerList() {
 
 HTTPServerList::~HTTPServerList() {
   stop();
-  close();
 }
 
 ////////////////////////////////////////////////
@@ -96,17 +95,5 @@ void HTTPServerList::stop() {
     HTTPServer *server = getHTTPServer(n);
     server->stop();
   }
-}
-
-////////////////////////////////////////////////
-// clear
-////////////////////////////////////////////////
-
-void HTTPServerList::clear() {
-  size_t nServers = size();
-  for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
-    delete server;
-  }
-  Vector::clear();
+  close();
 }

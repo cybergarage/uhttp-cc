@@ -15,10 +15,3 @@ uHTTP::LoggerTargetList::LoggerTargetList() {
 
 uHTTP::LoggerTargetList::~LoggerTargetList() {
 }
-
-void uHTTP::LoggerTargetList::clear() {
-  for (LoggerTargetList::iterator loggerTarget = begin(); loggerTarget != end(); loggerTarget++) {
-    delete (*loggerTarget);
-  }
-  std::vector<LoggerTarget *>::clear();
-}

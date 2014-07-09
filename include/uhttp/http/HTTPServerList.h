@@ -52,13 +52,6 @@ class HTTPServerList : public Vector<HTTPServer>  {
  public:
   void start();
   void stop();
-
-  ////////////////////////////////////////////////
-  //  clear
-  ////////////////////////////////////////////////
-
- public:
-  void clear();
 };
 
 }
