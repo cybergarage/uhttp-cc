@@ -19,7 +19,7 @@ using namespace uHTTP;
 
 BOOST_AUTO_TEST_CASE(HTTPDateTests)
 {
-	HTTPDate httpDate(1118220696);
-	const char *dateStr = httpDate.getDateString();
-	BOOST_CHECK_EQUAL(strcmp(dateStr, "Wed, 08 Jun 2005 08:51:36 GMT"), 0);
+  HTTPDate httpDate(1118220696);
+  const char *dateStr = httpDate.getDateString();
+  BOOST_CHECK_EQUAL(strcmp(dateStr, "Wed, 08 Jun 2005 08:51:36 GMT"), 0);
 }

@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(VectorTests)
   const size_t TEST_VECTOR_OBJECT_NUM = 10;
   
   TestVectorList vectorObjectList;
-	BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
+  BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
 
   TestVectorObject *vectorObject[TEST_VECTOR_OBJECT_NUM];
   for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
@@ -56,5 +56,5 @@ BOOST_AUTO_TEST_CASE(VectorTests)
     delete vectorObject[n];
   }
   
-	BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
+  BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
 }
