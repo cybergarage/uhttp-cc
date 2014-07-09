@@ -25,11 +25,6 @@ class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
   NetworkInterfaceList() 
   {
   }
-  
-  ~NetworkInterfaceList() 
-  {
-    clear();
-  }
 
   ////////////////////////////////////////////////
   //  Methods
@@ -38,16 +33,6 @@ class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
  public:
   NetworkInterface *getNetworkInterface(size_t n) {
     return get(n);
-  }
-
-  void clear() 
-  {
-    size_t nNetIf = size();
-    for (size_t n = 0; n < nNetIf; n++) {
-      NetworkInterface *netif = getNetworkInterface(n);
-      delete netif;
-    }
-    Vector::clear();
   }
 
   void remove(NetworkInterface *netif) {

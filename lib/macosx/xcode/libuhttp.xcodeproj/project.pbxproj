@@ -70,7 +70,6 @@
 		2176F43B1535D2E400DE85B9 /* BufferedReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4171535D2E400DE85B9 /* BufferedReader.cpp */; };
 		2176F43C1535D2E400DE85B9 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4181535D2E400DE85B9 /* File.cpp */; };
 		2176F43D1535D2E400DE85B9 /* FileInputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4191535D2E400DE85B9 /* FileInputStream.cpp */; };
-		2176F43E1535D2E400DE85B9 /* FileList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F41A1535D2E400DE85B9 /* FileList.cpp */; };
 		2176F43F1535D2E400DE85B9 /* StringBufferInputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F41B1535D2E400DE85B9 /* StringBufferInputStream.cpp */; };
 		2176F4401535D2E400DE85B9 /* StringReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F41C1535D2E400DE85B9 /* StringReader.cpp */; };
 		2176F4411535D2E400DE85B9 /* DatagramSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F41E1535D2E400DE85B9 /* DatagramSocket.cpp */; };
@@ -169,7 +168,6 @@
 		2176F4171535D2E400DE85B9 /* BufferedReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferedReader.cpp; sourceTree = "<group>"; };
 		2176F4181535D2E400DE85B9 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
 		2176F4191535D2E400DE85B9 /* FileInputStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileInputStream.cpp; sourceTree = "<group>"; };
-		2176F41A1535D2E400DE85B9 /* FileList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileList.cpp; sourceTree = "<group>"; };
 		2176F41B1535D2E400DE85B9 /* StringBufferInputStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringBufferInputStream.cpp; sourceTree = "<group>"; };
 		2176F41C1535D2E400DE85B9 /* StringReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringReader.cpp; sourceTree = "<group>"; };
 		2176F41E1535D2E400DE85B9 /* DatagramSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DatagramSocket.cpp; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 				2176F4171535D2E400DE85B9 /* BufferedReader.cpp */,
 				2176F4181535D2E400DE85B9 /* File.cpp */,
 				2176F4191535D2E400DE85B9 /* FileInputStream.cpp */,
-				2176F41A1535D2E400DE85B9 /* FileList.cpp */,
 				2176F41B1535D2E400DE85B9 /* StringBufferInputStream.cpp */,
 				2176F41C1535D2E400DE85B9 /* StringReader.cpp */,
 			);
@@ -558,7 +555,6 @@
 				2176F43C1535D2E400DE85B9 /* File.cpp in Sources */,
 				21AA040D183E0A41006B0406 /* Random.cpp in Sources */,
 				2176F43D1535D2E400DE85B9 /* FileInputStream.cpp in Sources */,
-				2176F43E1535D2E400DE85B9 /* FileList.cpp in Sources */,
 				21B42322184F84C300EFC1AF /* LoggerTarget.cpp in Sources */,
 				2176F43F1535D2E400DE85B9 /* StringBufferInputStream.cpp in Sources */,
 				2176F4401535D2E400DE85B9 /* StringReader.cpp in Sources */,

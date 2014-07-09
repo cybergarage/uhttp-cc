@@ -56,9 +56,5 @@ BOOST_AUTO_TEST_CASE(VectorTests)
     BOOST_CHECK_EQUAL(vectorObjectList.indexOf(vectorObject[n]), -1);
   }
 
-  for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
-    delete vectorObject[n];
-  }
-  
   BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
 }

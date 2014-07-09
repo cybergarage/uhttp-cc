@@ -21,19 +21,9 @@ namespace uHTTP {
 class ParameterList : public uHTTP::Vector<Parameter> {
 public:
   
-  ParameterList() 
-  {
+  ParameterList() {
   }
   
-  ~ParameterList() 
-  {
-    size_t nLists = size();
-    for (size_t n = 0; n < nLists; n++) {
-      Parameter *param = at(n);
-      delete param;
-    }
-  }
-
   Parameter *at(size_t n) {
     return Vector::get(n);
   }

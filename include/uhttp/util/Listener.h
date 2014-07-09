@@ -24,6 +24,7 @@ public:
 class ListenerList : public Vector<Listener> {
  public:
   ListenerList() {
+    setWeekContainer(true);
   }
 
 };

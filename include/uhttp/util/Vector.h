@@ -23,8 +23,21 @@ private:
  public:
     
   Vector() {
+    setWeekContainer(false);
   }
 
+  ~Vector() {
+    clear();
+  }
+  
+  void setWeekContainer(bool flag) {
+    this->weekContainerFlag = flag;
+  }
+  
+  bool isWeekContainer() {
+    return this->weekContainerFlag;
+  }
+  
   bool add(T *obj) {
     if (0 <= indexOf(obj))
       return false;
@@ -36,7 +49,11 @@ private:
     ssize_t idx = indexOf(obj);
     if (idx < 0)
       return false;
-    std::vector<T*>::erase(std::vector<T*>::begin() + idx);
+    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
+    if (!isWeekContainer()) {
+      delete *objIt;
+    }
+    std::vector<T*>::erase(objIt);
     return true;
   }
 
@@ -61,6 +78,21 @@ private:
     std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
     return true;
   }
+
+  void clear()
+  {
+    if (!isWeekContainer()) {
+      for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
+        delete *objIt;
+      }
+    }
+    std::vector<T*>::clear();
+  }
+  
+private:
+  
+  bool weekContainerFlag;
+  
 };
 
 }
