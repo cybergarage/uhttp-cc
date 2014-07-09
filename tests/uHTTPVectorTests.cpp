@@ -42,14 +42,18 @@ BOOST_AUTO_TEST_CASE(VectorTests)
 
   for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
     BOOST_CHECK_EQUAL(vectorObjectList.size(), n);
+    BOOST_CHECK_EQUAL(vectorObjectList.indexOf(vectorObject[n]), -1);
     vectorObjectList.add(vectorObject[n]);
     BOOST_CHECK_EQUAL(vectorObjectList.size(), (n+1));
+    BOOST_CHECK_EQUAL(vectorObjectList.indexOf(vectorObject[n]), n);
   }
 
   for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
     BOOST_CHECK_EQUAL(vectorObjectList.size(), (TEST_VECTOR_OBJECT_NUM - n));
+    BOOST_CHECK_EQUAL(vectorObjectList.indexOf(vectorObject[n]), 0);
     vectorObjectList.remove(vectorObject[n]);
     BOOST_CHECK_EQUAL(vectorObjectList.size(), (TEST_VECTOR_OBJECT_NUM - (n+1)));
+    BOOST_CHECK_EQUAL(vectorObjectList.indexOf(vectorObject[n]), -1);
   }
 
   for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
