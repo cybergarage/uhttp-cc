@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+print<<HEADER;
+############################################################
+#
+# uHTTP for C++
+#
+# Copyright (C) Satoshi Konno 2002
+#
+############################################################
+
+uhttpcc_header = \\
+HEADER
+
+my @find_files = `find ./uhttp -name *.h`;
+my @include_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @include_files, $file;
+}
+print join(" \\\n", @include_files) . "\n";
+
+print<<FOTTER;
+
+nobase_include_HEADERS = \\
+	\$(uhttpcc_header)
+FOTTER
