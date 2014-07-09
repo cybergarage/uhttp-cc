@@ -22,19 +22,19 @@ BOOST_AUTO_TEST_CASE(Value2StringTests)
     
 	BOOST_CHECK_EQUAL(strcmp(Integer2String(1, buf), "1"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2String(9, buf), "9"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Integer2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Integer2String(10, buf), "10"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2String(15, buf), "15"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Integer2String(255, buf), "255"), 0);
 
 	BOOST_CHECK_EQUAL(strcmp(Long2String(1, buf), "1"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Long2String(9, buf), "9"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Long2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Long2String(10, buf), "10"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Long2String(15, buf), "15"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Long2String(255, buf), "255"), 0);
 
 	BOOST_CHECK_EQUAL(strcmp(Sizet2String(1, buf), "1"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Sizet2String(9, buf), "9"), 0);
-	BOOST_CHECK_EQUAL(strcmp(Sizet2String(10, buf), "a"), 0);
+	BOOST_CHECK_EQUAL(strcmp(Sizet2String(10, buf), "10"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Sizet2String(15, buf), "15"), 0);
 	BOOST_CHECK_EQUAL(strcmp(Sizet2String(255, buf), "255"), 0);
 }

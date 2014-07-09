@@ -16,7 +16,7 @@
 namespace uHTTP {
 class File;
 
-class FileList : public uHTTP::Vector  {
+class FileList : public uHTTP::Vector<File>  {
 public:
   ////////////////////////////////////////////////
   //  Constructor
@@ -37,7 +37,7 @@ public:
 
  public:
   File *getFile(size_t n) {
-    return (File*)Vector::get(n);
+    return Vector::get(n);
   }
 
   ////////////////////////////////////////////////

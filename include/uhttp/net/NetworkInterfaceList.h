@@ -16,7 +16,7 @@
 #include <uhttp/net/NetworkInterface.h>
 
 namespace uHTTP {
-class NetworkInterfaceList : public uHTTP::Vector  {
+class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -37,7 +37,7 @@ class NetworkInterfaceList : public uHTTP::Vector  {
   
  public:
   NetworkInterface *getNetworkInterface(size_t n) {
-    return (NetworkInterface *)get(n);
+    return get(n);
   }
 
   void clear() 

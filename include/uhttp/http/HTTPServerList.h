@@ -16,7 +16,8 @@
 #include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-class HTTPServerList : public Vector  {
+    
+class HTTPServerList : public Vector<HTTPServer>  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -31,7 +32,7 @@ class HTTPServerList : public Vector  {
 
  public:
   HTTPServer *getHTTPServer(size_t n) {
-    return (HTTPServer *)get(n);
+    return get(n);
   }
 
   void addRequestListener(HTTPRequestListener *listener);

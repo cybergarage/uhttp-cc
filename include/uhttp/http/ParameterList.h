@@ -17,7 +17,8 @@
 #include <uhttp/http/Parameter.h>
 
 namespace uHTTP {
-class ParameterList : public uHTTP::Vector {
+
+class ParameterList : public uHTTP::Vector<Parameter> {
 public:
   
   ParameterList() 
@@ -34,11 +35,11 @@ public:
   }
 
   Parameter *at(size_t n) {
-    return (Parameter *)Vector::get(n);
+    return Vector::get(n);
   }
 
   Parameter *getParameter(int n) {
-    return (Parameter *)Vector::get(n);
+    return Vector::get(n);
   }
 
   Parameter *getParameter(const std::string &name) 

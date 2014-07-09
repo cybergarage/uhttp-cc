@@ -16,60 +16,50 @@
 #include <stdlib.h>
 
 namespace uHTTP {
-class Vector {
+
+template <typename T> class Vector : public std::vector<T*> {
 private:
 
-  std::vector<void *> vec;
-
  public:
+    
   Vector() {
   }
 
-  bool add(void *obj) {
+  bool add(T *obj) {
     if (0 <= indexOf(obj))
       return false;
-    vec.push_back(obj);
+    std::vector<T*>::push_back(obj);
     return true;
   }
 
-  bool remove(void *obj) {
+  bool remove(T *obj) {
     ssize_t idx = indexOf(obj);
     if (idx < 0)
       return false;
-    vec.erase(vec.begin() + idx);
+    std::vector<T*>::erase(std::vector<T*>::begin() + idx);
     return true;
   }
 
   ssize_t indexOf(void *obj) {
-    size_t cnt = size();
-    for (int n = 0; n < cnt; n++) {
-      //if (obj == ((void *)at(n)))
-      if (obj == (void *)(vec[n]))
+    size_t cnt = std::vector<T*>::size();
+    for (size_t n = 0; n < cnt; n++) {
+      if (obj == ((T *)std::vector<T*>::at(n)))
         return n;
     }
     return -1;
   }
 
-  void *get(size_t index)
-  {
-    if (size() < (index+1))
+  T *get(size_t index) {
+    if (std::vector<T*>::size() < (index+1))
       return NULL;
-    return (void *)vec[index];
+    return std::vector<T*>::at(index);
   }
 
-  bool insertAt(void *obj, size_t index) {
+  bool insertAt(T *obj, size_t index) {
     if (0 <= indexOf(obj))
       return false;
-    vec.insert(vec.begin() + index, obj);
+    std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
     return true;
-  }
-
-  size_t size() {
-    return (int)vec.size();
-  }
-
-  void clear() {
-    vec.clear();
   }
 };
 

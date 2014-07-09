@@ -13,9 +13,11 @@
 #define _CHTTP_HTTPREQUESTLISTENER_H_
 
 #include <uhttp/http/HTTPRequest.h>
+#include <uhttp/util/Listener.h>
 
 namespace uHTTP {
-class HTTPRequestListener {
+    
+class HTTPRequestListener : public Listener {
 public:
   virtual HTTP::StatusCode httpRequestRecieved(HTTPRequest *httpReq) = 0;
 };
