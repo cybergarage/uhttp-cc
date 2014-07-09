@@ -39,6 +39,8 @@ private:
   }
   
   bool add(T *obj) {
+    if (!obj)
+      return false;
     if (0 <= indexOf(obj))
       return false;
     std::vector<T*>::push_back(obj);
@@ -46,6 +48,8 @@ private:
   }
 
   bool remove(T *obj) {
+    if (!obj)
+      return false;
     ssize_t idx = indexOf(obj);
     if (idx < 0)
       return false;
@@ -58,6 +62,8 @@ private:
   }
 
   ssize_t indexOf(void *obj) {
+    if (!obj)
+      return -1;
     size_t cnt = std::vector<T*>::size();
     for (size_t n = 0; n < cnt; n++) {
       if (obj == ((T *)std::vector<T*>::at(n)))
@@ -73,6 +79,8 @@ private:
   }
 
   bool insertAt(T *obj, size_t index) {
+    if (!obj)
+      return false;
     if (0 <= indexOf(obj))
       return false;
     std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
@@ -83,7 +91,10 @@ private:
   {
     if (!isWeekContainer()) {
       for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
-        delete *objIt;
+        T* obj = dynamic_cast<T*>(*objIt);
+        if (!obj)
+          continue;
+        delete obj;
       }
     }
     std::vector<T*>::clear();
