@@ -14,6 +14,14 @@
 
 @SET_MAKE@
 
+############################################################
+#
+# uHTTP for C++
+#
+# Copyright (C) Satoshi Konno 2002
+#
+############################################################
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -45,14 +53,16 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
-am_uhttpcctestunit_OBJECTS = uHTTDateTests.$(OBJEXT) \
-	uHTTPGetTests.$(OBJEXT) uHTTPMutexTests.$(OBJEXT) \
-	uHTTPNetworkInterfaceTests.$(OBJEXT) \
-	uHTTPPacketTests.$(OBJEXT) uHTTPRandomTests.$(OBJEXT) \
-	uHTTPRequestTests.$(OBJEXT) uHTTPServerTests.$(OBJEXT) \
-	uHTTPSocketTests.$(OBJEXT) uHTTPStringTests.$(OBJEXT) \
-	uHTTPTestMain.$(OBJEXT) uHTTPLoggerTests.$(OBJEXT) \
-	uHTTPUriTests.$(OBJEXT)
+am__dirstamp = $(am__leading_dot)dirstamp
+am_uhttpcctestunit_OBJECTS = ../uHTTPSocketTests.$(OBJEXT) \
+	../uHTTPServerTests.$(OBJEXT) ../uHTTDateTests.$(OBJEXT) \
+	../uHTTPMutexTests.$(OBJEXT) ../uHTTPUriTests.$(OBJEXT) \
+	../uHTTPThreadTests.$(OBJEXT) ../uHTTPLoggerTests.$(OBJEXT) \
+	../uHTTPTestMain.$(OBJEXT) ../uHTTPRequestTests.$(OBJEXT) \
+	../uHTTPPacketTests.$(OBJEXT) ../uHTTPRandomTests.$(OBJEXT) \
+	../uHTTPNetworkInterfaceTests.$(OBJEXT) \
+	../uHTTPStringTests.$(OBJEXT) ../uHTTPGetTests.$(OBJEXT) \
+	../uHTTPVectorTests.$(OBJEXT)
 uhttpcctestunit_OBJECTS = $(am_uhttpcctestunit_OBJECTS)
 uhttpcctestunit_DEPENDENCIES = ../../lib/unix/libuhttp++.a
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
@@ -161,19 +171,21 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 uhttpcctestunit_SOURCES = \
+	../uHTTPSocketTests.cpp \
+	../uHTTPServerTests.cpp \
 	../uHTTDateTests.cpp \
-	../uHTTPGetTests.cpp \
 	../uHTTPMutexTests.cpp \
-	../uHTTPNetworkInterfaceTests.cpp \
+	../uHTTPUriTests.cpp \
+	../uHTTPThreadTests.cpp \
+	../uHTTPLoggerTests.cpp \
+	../uHTTPTestMain.cpp \
+	../uHTTPRequestTests.cpp \
 	../uHTTPPacketTests.cpp \
 	../uHTTPRandomTests.cpp \
-	../uHTTPRequestTests.cpp \
-	../uHTTPServerTests.cpp \
-	../uHTTPSocketTests.cpp \
+	../uHTTPNetworkInterfaceTests.cpp \
 	../uHTTPStringTests.cpp \
-	../uHTTPTestMain.cpp \
-	../uHTTPLoggerTests.cpp \
-	../uHTTPUriTests.cpp
+	../uHTTPGetTests.cpp \
+	../uHTTPVectorTests.cpp
 
 uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a
 all: all-am
@@ -212,225 +224,98 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
+../$(am__dirstamp):
+	@$(mkdir_p) ..
+	@: > ../$(am__dirstamp)
+../$(DEPDIR)/$(am__dirstamp):
+	@$(mkdir_p) ../$(DEPDIR)
+	@: > ../$(DEPDIR)/$(am__dirstamp)
+../uHTTPSocketTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPServerTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTDateTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPMutexTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPUriTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPThreadTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPLoggerTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPTestMain.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPRequestTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPPacketTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPRandomTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPNetworkInterfaceTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPStringTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPGetTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uHTTPVectorTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 uhttpcctestunit$(EXEEXT): $(uhttpcctestunit_OBJECTS) $(uhttpcctestunit_DEPENDENCIES) 
 	@rm -f uhttpcctestunit$(EXEEXT)
 	$(CXXLINK) $(uhttpcctestunit_LDFLAGS) $(uhttpcctestunit_OBJECTS) $(uhttpcctestunit_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f ../uHTTDateTests.$(OBJEXT)
+	-rm -f ../uHTTPGetTests.$(OBJEXT)
+	-rm -f ../uHTTPLoggerTests.$(OBJEXT)
+	-rm -f ../uHTTPMutexTests.$(OBJEXT)
+	-rm -f ../uHTTPNetworkInterfaceTests.$(OBJEXT)
+	-rm -f ../uHTTPPacketTests.$(OBJEXT)
+	-rm -f ../uHTTPRandomTests.$(OBJEXT)
+	-rm -f ../uHTTPRequestTests.$(OBJEXT)
+	-rm -f ../uHTTPServerTests.$(OBJEXT)
+	-rm -f ../uHTTPSocketTests.$(OBJEXT)
+	-rm -f ../uHTTPStringTests.$(OBJEXT)
+	-rm -f ../uHTTPTestMain.$(OBJEXT)
+	-rm -f ../uHTTPThreadTests.$(OBJEXT)
+	-rm -f ../uHTTPUriTests.$(OBJEXT)
+	-rm -f ../uHTTPVectorTests.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTDateTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPGetTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPLoggerTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPMutexTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPNetworkInterfaceTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPPacketTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPRandomTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPRequestTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPServerTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPSocketTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPStringTests.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPTestMain.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uHTTPUriTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTDateTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPGetTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPLoggerTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPMutexTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPNetworkInterfaceTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPPacketTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPRandomTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPRequestTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPServerTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPSocketTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPStringTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPTestMain.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPThreadTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPUriTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPVectorTests.Po@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
+@am__fastdepCXX_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`; \
+@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$$depbase.Tpo" -c -o $@ $<; \
+@am__fastdepCXX_TRUE@	then mv -f "$$depbase.Tpo" "$$depbase.Po"; else rm -f "$$depbase.Tpo"; exit 1; fi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ `$(CYGPATH_W) '$<'`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
+@am__fastdepCXX_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`; \
+@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$$depbase.Tpo" -c -o $@ `$(CYGPATH_W) '$<'`; \
+@am__fastdepCXX_TRUE@	then mv -f "$$depbase.Tpo" "$$depbase.Po"; else rm -f "$$depbase.Tpo"; exit 1; fi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-uHTTDateTests.o: ../uHTTDateTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTDateTests.o -MD -MP -MF "$(DEPDIR)/uHTTDateTests.Tpo" -c -o uHTTDateTests.o `test -f '../uHTTDateTests.cpp' || echo '$(srcdir)/'`../uHTTDateTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTDateTests.Tpo" "$(DEPDIR)/uHTTDateTests.Po"; else rm -f "$(DEPDIR)/uHTTDateTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTDateTests.cpp' object='uHTTDateTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTDateTests.o `test -f '../uHTTDateTests.cpp' || echo '$(srcdir)/'`../uHTTDateTests.cpp
-
-uHTTDateTests.obj: ../uHTTDateTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTDateTests.obj -MD -MP -MF "$(DEPDIR)/uHTTDateTests.Tpo" -c -o uHTTDateTests.obj `if test -f '../uHTTDateTests.cpp'; then $(CYGPATH_W) '../uHTTDateTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTDateTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTDateTests.Tpo" "$(DEPDIR)/uHTTDateTests.Po"; else rm -f "$(DEPDIR)/uHTTDateTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTDateTests.cpp' object='uHTTDateTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTDateTests.obj `if test -f '../uHTTDateTests.cpp'; then $(CYGPATH_W) '../uHTTDateTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTDateTests.cpp'; fi`
-
-uHTTPGetTests.o: ../uHTTPGetTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPGetTests.o -MD -MP -MF "$(DEPDIR)/uHTTPGetTests.Tpo" -c -o uHTTPGetTests.o `test -f '../uHTTPGetTests.cpp' || echo '$(srcdir)/'`../uHTTPGetTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPGetTests.Tpo" "$(DEPDIR)/uHTTPGetTests.Po"; else rm -f "$(DEPDIR)/uHTTPGetTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPGetTests.cpp' object='uHTTPGetTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPGetTests.o `test -f '../uHTTPGetTests.cpp' || echo '$(srcdir)/'`../uHTTPGetTests.cpp
-
-uHTTPGetTests.obj: ../uHTTPGetTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPGetTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPGetTests.Tpo" -c -o uHTTPGetTests.obj `if test -f '../uHTTPGetTests.cpp'; then $(CYGPATH_W) '../uHTTPGetTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPGetTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPGetTests.Tpo" "$(DEPDIR)/uHTTPGetTests.Po"; else rm -f "$(DEPDIR)/uHTTPGetTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPGetTests.cpp' object='uHTTPGetTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPGetTests.obj `if test -f '../uHTTPGetTests.cpp'; then $(CYGPATH_W) '../uHTTPGetTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPGetTests.cpp'; fi`
-
-uHTTPMutexTests.o: ../uHTTPMutexTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPMutexTests.o -MD -MP -MF "$(DEPDIR)/uHTTPMutexTests.Tpo" -c -o uHTTPMutexTests.o `test -f '../uHTTPMutexTests.cpp' || echo '$(srcdir)/'`../uHTTPMutexTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPMutexTests.Tpo" "$(DEPDIR)/uHTTPMutexTests.Po"; else rm -f "$(DEPDIR)/uHTTPMutexTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPMutexTests.cpp' object='uHTTPMutexTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPMutexTests.o `test -f '../uHTTPMutexTests.cpp' || echo '$(srcdir)/'`../uHTTPMutexTests.cpp
-
-uHTTPMutexTests.obj: ../uHTTPMutexTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPMutexTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPMutexTests.Tpo" -c -o uHTTPMutexTests.obj `if test -f '../uHTTPMutexTests.cpp'; then $(CYGPATH_W) '../uHTTPMutexTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPMutexTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPMutexTests.Tpo" "$(DEPDIR)/uHTTPMutexTests.Po"; else rm -f "$(DEPDIR)/uHTTPMutexTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPMutexTests.cpp' object='uHTTPMutexTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPMutexTests.obj `if test -f '../uHTTPMutexTests.cpp'; then $(CYGPATH_W) '../uHTTPMutexTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPMutexTests.cpp'; fi`
-
-uHTTPNetworkInterfaceTests.o: ../uHTTPNetworkInterfaceTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPNetworkInterfaceTests.o -MD -MP -MF "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo" -c -o uHTTPNetworkInterfaceTests.o `test -f '../uHTTPNetworkInterfaceTests.cpp' || echo '$(srcdir)/'`../uHTTPNetworkInterfaceTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo" "$(DEPDIR)/uHTTPNetworkInterfaceTests.Po"; else rm -f "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPNetworkInterfaceTests.cpp' object='uHTTPNetworkInterfaceTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPNetworkInterfaceTests.o `test -f '../uHTTPNetworkInterfaceTests.cpp' || echo '$(srcdir)/'`../uHTTPNetworkInterfaceTests.cpp
-
-uHTTPNetworkInterfaceTests.obj: ../uHTTPNetworkInterfaceTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPNetworkInterfaceTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo" -c -o uHTTPNetworkInterfaceTests.obj `if test -f '../uHTTPNetworkInterfaceTests.cpp'; then $(CYGPATH_W) '../uHTTPNetworkInterfaceTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPNetworkInterfaceTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo" "$(DEPDIR)/uHTTPNetworkInterfaceTests.Po"; else rm -f "$(DEPDIR)/uHTTPNetworkInterfaceTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPNetworkInterfaceTests.cpp' object='uHTTPNetworkInterfaceTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPNetworkInterfaceTests.obj `if test -f '../uHTTPNetworkInterfaceTests.cpp'; then $(CYGPATH_W) '../uHTTPNetworkInterfaceTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPNetworkInterfaceTests.cpp'; fi`
-
-uHTTPPacketTests.o: ../uHTTPPacketTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPPacketTests.o -MD -MP -MF "$(DEPDIR)/uHTTPPacketTests.Tpo" -c -o uHTTPPacketTests.o `test -f '../uHTTPPacketTests.cpp' || echo '$(srcdir)/'`../uHTTPPacketTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPPacketTests.Tpo" "$(DEPDIR)/uHTTPPacketTests.Po"; else rm -f "$(DEPDIR)/uHTTPPacketTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPPacketTests.cpp' object='uHTTPPacketTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPPacketTests.o `test -f '../uHTTPPacketTests.cpp' || echo '$(srcdir)/'`../uHTTPPacketTests.cpp
-
-uHTTPPacketTests.obj: ../uHTTPPacketTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPPacketTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPPacketTests.Tpo" -c -o uHTTPPacketTests.obj `if test -f '../uHTTPPacketTests.cpp'; then $(CYGPATH_W) '../uHTTPPacketTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPPacketTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPPacketTests.Tpo" "$(DEPDIR)/uHTTPPacketTests.Po"; else rm -f "$(DEPDIR)/uHTTPPacketTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPPacketTests.cpp' object='uHTTPPacketTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPPacketTests.obj `if test -f '../uHTTPPacketTests.cpp'; then $(CYGPATH_W) '../uHTTPPacketTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPPacketTests.cpp'; fi`
-
-uHTTPRandomTests.o: ../uHTTPRandomTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPRandomTests.o -MD -MP -MF "$(DEPDIR)/uHTTPRandomTests.Tpo" -c -o uHTTPRandomTests.o `test -f '../uHTTPRandomTests.cpp' || echo '$(srcdir)/'`../uHTTPRandomTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPRandomTests.Tpo" "$(DEPDIR)/uHTTPRandomTests.Po"; else rm -f "$(DEPDIR)/uHTTPRandomTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPRandomTests.cpp' object='uHTTPRandomTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPRandomTests.o `test -f '../uHTTPRandomTests.cpp' || echo '$(srcdir)/'`../uHTTPRandomTests.cpp
-
-uHTTPRandomTests.obj: ../uHTTPRandomTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPRandomTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPRandomTests.Tpo" -c -o uHTTPRandomTests.obj `if test -f '../uHTTPRandomTests.cpp'; then $(CYGPATH_W) '../uHTTPRandomTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPRandomTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPRandomTests.Tpo" "$(DEPDIR)/uHTTPRandomTests.Po"; else rm -f "$(DEPDIR)/uHTTPRandomTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPRandomTests.cpp' object='uHTTPRandomTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPRandomTests.obj `if test -f '../uHTTPRandomTests.cpp'; then $(CYGPATH_W) '../uHTTPRandomTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPRandomTests.cpp'; fi`
-
-uHTTPRequestTests.o: ../uHTTPRequestTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPRequestTests.o -MD -MP -MF "$(DEPDIR)/uHTTPRequestTests.Tpo" -c -o uHTTPRequestTests.o `test -f '../uHTTPRequestTests.cpp' || echo '$(srcdir)/'`../uHTTPRequestTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPRequestTests.Tpo" "$(DEPDIR)/uHTTPRequestTests.Po"; else rm -f "$(DEPDIR)/uHTTPRequestTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPRequestTests.cpp' object='uHTTPRequestTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPRequestTests.o `test -f '../uHTTPRequestTests.cpp' || echo '$(srcdir)/'`../uHTTPRequestTests.cpp
-
-uHTTPRequestTests.obj: ../uHTTPRequestTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPRequestTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPRequestTests.Tpo" -c -o uHTTPRequestTests.obj `if test -f '../uHTTPRequestTests.cpp'; then $(CYGPATH_W) '../uHTTPRequestTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPRequestTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPRequestTests.Tpo" "$(DEPDIR)/uHTTPRequestTests.Po"; else rm -f "$(DEPDIR)/uHTTPRequestTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPRequestTests.cpp' object='uHTTPRequestTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPRequestTests.obj `if test -f '../uHTTPRequestTests.cpp'; then $(CYGPATH_W) '../uHTTPRequestTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPRequestTests.cpp'; fi`
-
-uHTTPServerTests.o: ../uHTTPServerTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPServerTests.o -MD -MP -MF "$(DEPDIR)/uHTTPServerTests.Tpo" -c -o uHTTPServerTests.o `test -f '../uHTTPServerTests.cpp' || echo '$(srcdir)/'`../uHTTPServerTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPServerTests.Tpo" "$(DEPDIR)/uHTTPServerTests.Po"; else rm -f "$(DEPDIR)/uHTTPServerTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPServerTests.cpp' object='uHTTPServerTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPServerTests.o `test -f '../uHTTPServerTests.cpp' || echo '$(srcdir)/'`../uHTTPServerTests.cpp
-
-uHTTPServerTests.obj: ../uHTTPServerTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPServerTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPServerTests.Tpo" -c -o uHTTPServerTests.obj `if test -f '../uHTTPServerTests.cpp'; then $(CYGPATH_W) '../uHTTPServerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPServerTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPServerTests.Tpo" "$(DEPDIR)/uHTTPServerTests.Po"; else rm -f "$(DEPDIR)/uHTTPServerTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPServerTests.cpp' object='uHTTPServerTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPServerTests.obj `if test -f '../uHTTPServerTests.cpp'; then $(CYGPATH_W) '../uHTTPServerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPServerTests.cpp'; fi`
-
-uHTTPSocketTests.o: ../uHTTPSocketTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPSocketTests.o -MD -MP -MF "$(DEPDIR)/uHTTPSocketTests.Tpo" -c -o uHTTPSocketTests.o `test -f '../uHTTPSocketTests.cpp' || echo '$(srcdir)/'`../uHTTPSocketTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPSocketTests.Tpo" "$(DEPDIR)/uHTTPSocketTests.Po"; else rm -f "$(DEPDIR)/uHTTPSocketTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPSocketTests.cpp' object='uHTTPSocketTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPSocketTests.o `test -f '../uHTTPSocketTests.cpp' || echo '$(srcdir)/'`../uHTTPSocketTests.cpp
-
-uHTTPSocketTests.obj: ../uHTTPSocketTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPSocketTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPSocketTests.Tpo" -c -o uHTTPSocketTests.obj `if test -f '../uHTTPSocketTests.cpp'; then $(CYGPATH_W) '../uHTTPSocketTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPSocketTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPSocketTests.Tpo" "$(DEPDIR)/uHTTPSocketTests.Po"; else rm -f "$(DEPDIR)/uHTTPSocketTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPSocketTests.cpp' object='uHTTPSocketTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPSocketTests.obj `if test -f '../uHTTPSocketTests.cpp'; then $(CYGPATH_W) '../uHTTPSocketTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPSocketTests.cpp'; fi`
-
-uHTTPStringTests.o: ../uHTTPStringTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPStringTests.o -MD -MP -MF "$(DEPDIR)/uHTTPStringTests.Tpo" -c -o uHTTPStringTests.o `test -f '../uHTTPStringTests.cpp' || echo '$(srcdir)/'`../uHTTPStringTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPStringTests.Tpo" "$(DEPDIR)/uHTTPStringTests.Po"; else rm -f "$(DEPDIR)/uHTTPStringTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPStringTests.cpp' object='uHTTPStringTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPStringTests.o `test -f '../uHTTPStringTests.cpp' || echo '$(srcdir)/'`../uHTTPStringTests.cpp
-
-uHTTPStringTests.obj: ../uHTTPStringTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPStringTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPStringTests.Tpo" -c -o uHTTPStringTests.obj `if test -f '../uHTTPStringTests.cpp'; then $(CYGPATH_W) '../uHTTPStringTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPStringTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPStringTests.Tpo" "$(DEPDIR)/uHTTPStringTests.Po"; else rm -f "$(DEPDIR)/uHTTPStringTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPStringTests.cpp' object='uHTTPStringTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPStringTests.obj `if test -f '../uHTTPStringTests.cpp'; then $(CYGPATH_W) '../uHTTPStringTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPStringTests.cpp'; fi`
-
-uHTTPTestMain.o: ../uHTTPTestMain.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPTestMain.o -MD -MP -MF "$(DEPDIR)/uHTTPTestMain.Tpo" -c -o uHTTPTestMain.o `test -f '../uHTTPTestMain.cpp' || echo '$(srcdir)/'`../uHTTPTestMain.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPTestMain.Tpo" "$(DEPDIR)/uHTTPTestMain.Po"; else rm -f "$(DEPDIR)/uHTTPTestMain.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPTestMain.cpp' object='uHTTPTestMain.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPTestMain.o `test -f '../uHTTPTestMain.cpp' || echo '$(srcdir)/'`../uHTTPTestMain.cpp
-
-uHTTPTestMain.obj: ../uHTTPTestMain.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPTestMain.obj -MD -MP -MF "$(DEPDIR)/uHTTPTestMain.Tpo" -c -o uHTTPTestMain.obj `if test -f '../uHTTPTestMain.cpp'; then $(CYGPATH_W) '../uHTTPTestMain.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPTestMain.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPTestMain.Tpo" "$(DEPDIR)/uHTTPTestMain.Po"; else rm -f "$(DEPDIR)/uHTTPTestMain.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPTestMain.cpp' object='uHTTPTestMain.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPTestMain.obj `if test -f '../uHTTPTestMain.cpp'; then $(CYGPATH_W) '../uHTTPTestMain.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPTestMain.cpp'; fi`
-
-uHTTPLoggerTests.o: ../uHTTPLoggerTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPLoggerTests.o -MD -MP -MF "$(DEPDIR)/uHTTPLoggerTests.Tpo" -c -o uHTTPLoggerTests.o `test -f '../uHTTPLoggerTests.cpp' || echo '$(srcdir)/'`../uHTTPLoggerTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPLoggerTests.Tpo" "$(DEPDIR)/uHTTPLoggerTests.Po"; else rm -f "$(DEPDIR)/uHTTPLoggerTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPLoggerTests.cpp' object='uHTTPLoggerTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPLoggerTests.o `test -f '../uHTTPLoggerTests.cpp' || echo '$(srcdir)/'`../uHTTPLoggerTests.cpp
-
-uHTTPLoggerTests.obj: ../uHTTPLoggerTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPLoggerTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPLoggerTests.Tpo" -c -o uHTTPLoggerTests.obj `if test -f '../uHTTPLoggerTests.cpp'; then $(CYGPATH_W) '../uHTTPLoggerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPLoggerTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPLoggerTests.Tpo" "$(DEPDIR)/uHTTPLoggerTests.Po"; else rm -f "$(DEPDIR)/uHTTPLoggerTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPLoggerTests.cpp' object='uHTTPLoggerTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPLoggerTests.obj `if test -f '../uHTTPLoggerTests.cpp'; then $(CYGPATH_W) '../uHTTPLoggerTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPLoggerTests.cpp'; fi`
-
-uHTTPUriTests.o: ../uHTTPUriTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPUriTests.o -MD -MP -MF "$(DEPDIR)/uHTTPUriTests.Tpo" -c -o uHTTPUriTests.o `test -f '../uHTTPUriTests.cpp' || echo '$(srcdir)/'`../uHTTPUriTests.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPUriTests.Tpo" "$(DEPDIR)/uHTTPUriTests.Po"; else rm -f "$(DEPDIR)/uHTTPUriTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPUriTests.cpp' object='uHTTPUriTests.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPUriTests.o `test -f '../uHTTPUriTests.cpp' || echo '$(srcdir)/'`../uHTTPUriTests.cpp
-
-uHTTPUriTests.obj: ../uHTTPUriTests.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT uHTTPUriTests.obj -MD -MP -MF "$(DEPDIR)/uHTTPUriTests.Tpo" -c -o uHTTPUriTests.obj `if test -f '../uHTTPUriTests.cpp'; then $(CYGPATH_W) '../uHTTPUriTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPUriTests.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/uHTTPUriTests.Tpo" "$(DEPDIR)/uHTTPUriTests.Po"; else rm -f "$(DEPDIR)/uHTTPUriTests.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../uHTTPUriTests.cpp' object='uHTTPUriTests.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o uHTTPUriTests.obj `if test -f '../uHTTPUriTests.cpp'; then $(CYGPATH_W) '../uHTTPUriTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../uHTTPUriTests.cpp'; fi`
 uninstall-info-am:
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -532,6 +417,8 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-rm -f ../$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -541,7 +428,7 @@ clean: clean-am
 clean-am: clean-generic clean-noinstPROGRAMS mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf ../$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -567,7 +454,7 @@ install-man:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
+	-rm -rf ../$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
