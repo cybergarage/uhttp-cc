@@ -116,13 +116,17 @@ public:
     return (int)httpHeaderList.size();
   }
 
-  void addHeader(HTTPHeader *header) {
+  bool addHeader(HTTPHeader *header) {
     httpHeaderList.push_back(header);
+    return true;
   }
 
-  void addHeader(const std::string &name, const std::string &value) {
+  bool addHeader(const std::string &name, const std::string &value) {
     HTTPHeader *header = new HTTPHeader(name, value);
+    if (header == NULL)
+      return false;
     httpHeaderList.push_back(header);
+    return true;
   }
 
   HTTPHeader *getHeader(int n) {

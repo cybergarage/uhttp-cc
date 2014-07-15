@@ -94,10 +94,14 @@ void HTTPServer::run() {
 
   while (isRunnable() == true) {
     Socket *sock = new Socket();
+    if (sock == NULL)
+      continue;
+    
     if (accept(sock) == false) {
       delete sock;
       continue;
     }
+    
     ServerSocket *serverSock = getServerSock();
     if (serverSock == NULL) {
       delete sock;
@@ -105,6 +109,11 @@ void HTTPServer::run() {
     }
 
     HTTPServerThread *httpServThread = new HTTPServerThread(this, sock);
+    if (httpServThread == NULL) {
+      delete sock;
+      continue;
+    }
+      
     httpServThread->start();
   }
 }
