@@ -117,11 +117,16 @@ bool Thread::start() {
   }
 #else
   pthread_attr_t thread_attr;
-  pthread_attr_init(&thread_attr);
-  pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
+  if (pthread_attr_init(&thread_attr) != 0)
+    return false;
+  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
+    pthread_attr_destroy(&thread_attr);
+    return false;
+  }
   if (pthread_create(&thread, &thread_attr, PosixThreadProc, this) != 0) {
     setRunnableFlag(false);
     pthread_attr_destroy(&thread_attr);
+    return false;
   }
   pthread_attr_destroy(&thread_attr);
 #endif
