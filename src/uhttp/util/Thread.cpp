@@ -117,9 +117,12 @@ bool Thread::start() {
   }
 #else
   pthread_attr_t thread_attr;
-  if (pthread_attr_init(&thread_attr) != 0)
+  if (pthread_attr_init(&thread_attr) != 0) {
+    setRunnableFlag(false);
     return false;
+  }
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
+    setRunnableFlag(false);
     pthread_attr_destroy(&thread_attr);
     return false;
   }
