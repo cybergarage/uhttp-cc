@@ -13,6 +13,7 @@
 #define _CUTIL_TIMERUTIL_H_
 
 namespace uHTTP {
+
 void Wait(long mtime);
 void WaitRandom(long mtime);
 long GetCurrentSystemTime();

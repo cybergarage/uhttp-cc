@@ -18,11 +18,14 @@
 
 #include <uhttp/http/HTTPServer.h>
 #include <uhttp/http/HTTPServerThread.h>
+#include <uhttp/util/TimeUtil.h>
 
 #include <sstream>
 
 using namespace std;
 using namespace uHTTP;
+
+const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
 
 ////////////////////////////////////////////////
 //  Constructor
@@ -114,7 +117,9 @@ void HTTPServer::run() {
       continue;
     }
       
-    httpServThread->start();
+    while (!httpServThread->start()) {
+      Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
+    }
   }
 }
 

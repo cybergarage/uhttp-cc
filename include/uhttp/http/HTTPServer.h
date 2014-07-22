@@ -20,18 +20,13 @@
 #include <string>
 
 namespace uHTTP {
+
 class HTTPServer : public uHTTP::Thread {
-  uHTTP::ServerSocket *serverSock;
-  uHTTP::ListenerList httpRequestListenerList;
-
-  bool bind(int port, const std::string &addr = "");
-  bool accept(uHTTP::Socket *socket);
-  bool isOpened();
-
-  uHTTP::ServerSocket *getServerSock() {
-    return serverSock;
-  }
-
+  
+public:
+  
+  static const long DEFAULT_SERVER_THREAD_WAIT_TIME;
+  
 public:
   
   HTTPServer();
@@ -76,6 +71,19 @@ public:
   void run();
   bool stop();
 
+private:
+  
+  uHTTP::ServerSocket *serverSock;
+  uHTTP::ListenerList httpRequestListenerList;
+  
+  bool bind(int port, const std::string &addr = "");
+  bool accept(uHTTP::Socket *socket);
+  bool isOpened();
+  
+  uHTTP::ServerSocket *getServerSock() {
+    return serverSock;
+  }
+  
 };
 
 const char *GetServerName(std::string &buf);
