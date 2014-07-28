@@ -121,16 +121,12 @@ public:
     return true;
   }
 
-  bool addHeader(const std::string &name, const std::string &value) {
-    HTTPHeader *header = new HTTPHeader(name, value);
-    if (header == NULL)
-      return false;
-    httpHeaderList.push_back(header);
-    return true;
-  }
+  bool addHeader(const std::string &name, const std::string &value);
 
   HTTPHeader *getHeader(size_t n) {
-    return (HTTPHeader *)httpHeaderList[n];
+    if ((httpHeaderList.size()-1) < n)
+        return NULL;
+    return httpHeaderList.at(n);
   }
 
   HTTPHeaderList &getHeaders() {

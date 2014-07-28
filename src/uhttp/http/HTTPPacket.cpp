@@ -95,6 +95,8 @@ HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
   size_t nHeaders = getNHeaders();
   for (size_t n = 0; n < nHeaders; n++) {
     HTTPHeader *header = getHeader(n);
+    if (!header)
+      continue;
     const char *headerName = header->getName();
     if (StringEqualsIgnoreCase(headerName, name) == true)
       return header;      
@@ -133,6 +135,16 @@ void HTTPPacket::setHeader(const std::string &name, long value) {
 void HTTPPacket::setHeader(const std::string &name, size_t value) {
   string valueStr;
   setHeader(name, Sizet2String(value, valueStr));
+}
+
+bool HTTPPacket::addHeader(const std::string &name, const std::string &value) {
+  if (name.length() <= 0)
+    return false;
+  HTTPHeader *header = new HTTPHeader(name, value);
+  if (header == NULL)
+    return false;
+  httpHeaderList.push_back(header);
+  return true;
 }
 
 ////////////////////////////////////////////////
@@ -283,6 +295,8 @@ const char *HTTPPacket::getHeaderString(string &headerStr) {
   headerStr = "";
   for (size_t n = 0; n < nHeaders; n++) {
     HTTPHeader *header = getHeader(n);
+    if (!header)
+      continue;
     headerStr += header->getName();
     headerStr += ": ";
     headerStr += header->getValue();
@@ -338,6 +352,7 @@ void HTTPPacket::setHost(const std::string &host, int port) {
     os << "[" << host << "]:" << port;
   else
     os << host << ":" << port;
+  
   setHeader(HTTP::HOST, os.str());
 }
 
