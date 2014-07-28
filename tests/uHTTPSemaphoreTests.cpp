@@ -17,7 +17,7 @@ using namespace std;
 using namespace uHTTP;
 
 BOOST_AUTO_TEST_CASE(SemaphoreBasicTest) {
-  Semaphore *sem = new Semaphore();
+  Semaphore *sem = new Semaphore(1);
 
   BOOST_CHECK_EQUAL(sem->post(), true);
   BOOST_CHECK_EQUAL(sem->wait(), true);
@@ -51,7 +51,7 @@ class SemaphoreThread : public Thread {
 };
 
 BOOST_AUTO_TEST_CASE(SemaphoreThreadTest) {
-  Semaphore *sem = new Semaphore();
+  Semaphore *sem = new Semaphore(1);
   
   SemaphoreThread semThread;
   semThread.setObject(sem);

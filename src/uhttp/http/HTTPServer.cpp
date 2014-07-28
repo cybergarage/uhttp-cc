@@ -25,6 +25,7 @@
 using namespace std;
 using namespace uHTTP;
 
+const size_t HTTPServer::DEFAULT_SERVER_WORKER_THREAD_NUM = 10;
 const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
 
 ////////////////////////////////////////////////
@@ -33,6 +34,8 @@ const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
   
 HTTPServer::HTTPServer() {
   serverSock = NULL;
+  threadSem = NULL;
+  setWorkerThreadMax(DEFAULT_SERVER_WORKER_THREAD_NUM);
 }
 
 HTTPServer::~HTTPServer() {
@@ -116,7 +119,9 @@ void HTTPServer::run() {
       delete sock;
       continue;
     }
-      
+    
+    wait();
+    
     while (!httpServThread->start()) {
       Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
     }
@@ -128,6 +133,8 @@ void HTTPServer::run() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::start() {
+  clean();
+  threadSem = new Semaphore(getWorkerThreadMax());
   return Thread::start();
 }
 
@@ -136,7 +143,19 @@ bool HTTPServer::start() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::stop() {
+  clean();
   return Thread::stop();
+}
+
+////////////////////////////////////////////////
+//  clean
+////////////////////////////////////////////////
+
+void HTTPServer::clean() {
+  if (threadSem) {
+    delete threadSem;
+    threadSem = NULL;
+  }
 }
 
 ////////////////////////////////////////////////

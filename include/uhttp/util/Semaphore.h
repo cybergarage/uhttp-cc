@@ -36,7 +36,7 @@ typedef sem_t SemaphoreId;
 
 class Semaphore {
  public:
-  Semaphore();
+  Semaphore(size_t maxCount);
   ~Semaphore();
 
   bool post();

@@ -59,7 +59,9 @@ void HTTPServerThread::run() {
 
   delete httpReq;
   delete httpSock;
-
   delete clientSock;
+
+  httpServer->post();
+  
   delete this;
 }

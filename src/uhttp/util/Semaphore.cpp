@@ -14,18 +14,18 @@
 static const int FRACTAL_SEMAPHORE_MAX = 1000;
 #endif
 
-uHTTP::Semaphore::Semaphore() {
+uHTTP::Semaphore::Semaphore(size_t maxCount) {
   this->setCount = 0;
   this->isCanceled = false;
 
 #if defined(__APPLE__)
 #if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  this->semId = dispatch_semaphore_create(0);
+  this->semId = dispatch_semaphore_create(maxCount);
 #else
-  MPCreateSemaphore(FRACTAL_SEMAPHORE_MAX, 0, &this->semId);
+  MPCreateSemaphore(maxCount, 0, &this->semId);
 #endif
 #else
-  sem_init(&semId, 0, 0);
+  sem_init(&semId, 0, maxCount);
 #endif
 }
 

@@ -13,6 +13,7 @@
 
 #include <uhttp/net/ServerSocket.h>
 #include <uhttp/util/Thread.h>
+#include <uhttp/util/Semaphore.h>
 #include <uhttp/util/Listener.h>
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/http/HTTPRequestListener.h>
@@ -26,7 +27,7 @@ class HTTPServer : public uHTTP::Thread {
 public:
   
   static const long DEFAULT_SERVER_THREAD_WAIT_TIME;
-  
+  static const size_t DEFAULT_SERVER_WORKER_THREAD_NUM;
 public:
   
   HTTPServer();
@@ -71,10 +72,42 @@ public:
   void run();
   bool stop();
 
+  void clean();
+  
+  ////////////////////////////////////////////////
+  //  Semaphore
+  ////////////////////////////////////////////////
+  
+  void setWorkerThreadMax(size_t value) {
+    this->workerThreadMax = value;
+  }
+  
+  size_t getWorkerThreadMax() {
+    return this->workerThreadMax;
+  }
+  
+  ////////////////////////////////////////////////
+  //  Semaphore
+  ////////////////////////////////////////////////
+  
+  bool post() {
+    if (!this->threadSem)
+      return false;
+    return threadSem->post();
+  }
+ 
+  bool wait() {
+    if (!this->threadSem)
+      return false;
+    return threadSem->wait();
+  }
+
 private:
   
-  uHTTP::ServerSocket *serverSock;
-  uHTTP::ListenerList httpRequestListenerList;
+  Semaphore *threadSem;
+  ServerSocket *serverSock;
+  ListenerList httpRequestListenerList;
+  size_t workerThreadMax;
   
   bool bind(int port, const std::string &addr = "");
   bool accept(uHTTP::Socket *socket);
