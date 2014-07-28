@@ -112,8 +112,8 @@ public:
   //  Header
   ////////////////////////////////////////////////
 
-  int getNHeaders() {
-    return (int)httpHeaderList.size();
+  size_t getNHeaders() {
+    return (size_t)httpHeaderList.size();
   }
 
   bool addHeader(HTTPHeader *header) {
@@ -129,7 +129,7 @@ public:
     return true;
   }
 
-  HTTPHeader *getHeader(int n) {
+  HTTPHeader *getHeader(size_t n) {
     return (HTTPHeader *)httpHeaderList[n];
   }
 
