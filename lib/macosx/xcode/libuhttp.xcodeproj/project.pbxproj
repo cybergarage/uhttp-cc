@@ -102,6 +102,8 @@
 		21B42322184F84C300EFC1AF /* LoggerTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231E184F84C300EFC1AF /* LoggerTarget.cpp */; };
 		21B42323184F84C300EFC1AF /* LoggerTargetList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231F184F84C300EFC1AF /* LoggerTargetList.cpp */; };
 		21B42325184F86FA00EFC1AF /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B42324184F86FA00EFC1AF /* Log.cpp */; };
+		21D520771986A2F3005F9DC3 /* Semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D520761986A2F3005F9DC3 /* Semaphore.cpp */; };
+		21D520791986A308005F9DC3 /* Semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D520781986A308005F9DC3 /* Semaphore.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +202,8 @@
 		21B4231E184F84C300EFC1AF /* LoggerTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerTarget.cpp; sourceTree = "<group>"; };
 		21B4231F184F84C300EFC1AF /* LoggerTargetList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoggerTargetList.cpp; sourceTree = "<group>"; };
 		21B42324184F86FA00EFC1AF /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		21D520761986A2F3005F9DC3 /* Semaphore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Semaphore.cpp; sourceTree = "<group>"; };
+		21D520781986A308005F9DC3 /* Semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Semaphore.h; sourceTree = "<group>"; };
 		21E1EB1C1535D1E0005AA247 /* libuhttp++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libuhttp++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -309,6 +313,7 @@
 				2176F3CE1535D2C100DE85B9 /* Debug.h */,
 				2176F3CF1535D2C100DE85B9 /* Exception.h */,
 				2176F3D11535D2C100DE85B9 /* Mutex.h */,
+				21D520781986A308005F9DC3 /* Semaphore.h */,
 				2176F3D21535D2C100DE85B9 /* StringTokenizer.h */,
 				2176F3D31535D2C100DE85B9 /* StringUtil.h */,
 				2176F3D41535D2C100DE85B9 /* Thread.h */,
@@ -397,6 +402,7 @@
 				2176F4291535D2E400DE85B9 /* Date.cpp */,
 				2176F42A1535D2E400DE85B9 /* Debug.cpp */,
 				2176F42B1535D2E400DE85B9 /* Mutex.cpp */,
+				21D520761986A2F3005F9DC3 /* Semaphore.cpp */,
 				2176F42C1535D2E400DE85B9 /* StringTokenizer.cpp */,
 				2176F42D1535D2E400DE85B9 /* StringUtil.cpp */,
 				2176F42E1535D2E400DE85B9 /* Thread.cpp */,
@@ -478,6 +484,7 @@
 				2176F3FE1535D2C100DE85B9 /* Date.h in Headers */,
 				2176F3FF1535D2C100DE85B9 /* Debug.h in Headers */,
 				2176F4001535D2C100DE85B9 /* Exception.h in Headers */,
+				21D520791986A308005F9DC3 /* Semaphore.h in Headers */,
 				21B42317184F835800EFC1AF /* LoggerFileTarget.h in Headers */,
 				2176F4021535D2C100DE85B9 /* Mutex.h in Headers */,
 				2176F4031535D2C100DE85B9 /* StringTokenizer.h in Headers */,
@@ -558,6 +565,7 @@
 				21B42322184F84C300EFC1AF /* LoggerTarget.cpp in Sources */,
 				2176F43F1535D2E400DE85B9 /* StringBufferInputStream.cpp in Sources */,
 				2176F4401535D2E400DE85B9 /* StringReader.cpp in Sources */,
+				21D520771986A2F3005F9DC3 /* Semaphore.cpp in Sources */,
 				2176F4411535D2E400DE85B9 /* DatagramSocket.cpp in Sources */,
 				21B42321184F84C300EFC1AF /* LoggerFileTarget.cpp in Sources */,
 				21B42320184F84C300EFC1AF /* Logger.cpp in Sources */,

@@ -46,12 +46,13 @@ class Thread {
   pthread_t thread;
 #endif
   bool runnableFlag;
+  void *runObject;
 
 private:
 
   void setRunnableFlag(bool flag);
 
- public:
+public:
   Thread();
   virtual ~Thread();
 
@@ -60,6 +61,14 @@ private:
   bool isRunnable();
   virtual bool stop();
 
+  void setObject(void *object) {
+    this->runObject = object;
+  }
+  
+  void *getObject() {
+    return this->runObject;
+  }
+  
   bool restart() {
     stop();
     start();

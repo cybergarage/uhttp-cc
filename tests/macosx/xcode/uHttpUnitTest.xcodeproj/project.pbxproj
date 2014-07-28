@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21092E31196D011E000E53FB /* uHTTPVectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */; };
+		210D551C1986A4770008D080 /* uHTTPSemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */; };
 		214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */; };
 		214CE3851564E32800115E8A /* uHTTPThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */; };
 		214CE3871564E51C00115E8A /* uHTTPMutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPVectorTests.cpp; path = ../../uHTTPVectorTests.cpp; sourceTree = "<group>"; };
+		210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPSemaphoreTests.cpp; path = ../../uHTTPSemaphoreTests.cpp; sourceTree = "<group>"; };
 		214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPStringTests.cpp; path = ../../uHTTPStringTests.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPThreadTests.cpp; path = ../../uHTTPThreadTests.cpp; sourceTree = "<group>"; };
 		214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPMutexTests.cpp; path = ../../uHTTPMutexTests.cpp; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		21F497DA1536AAFF0035F09A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */,
 				21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */,
 				21B4231A184F848800EFC1AF /* uHTTPLoggerTests.cpp */,
 				21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */,
@@ -214,6 +217,7 @@
 				21AA0411183E0CEE006B0406 /* uHTTPRandomTests.cpp in Sources */,
 				21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */,
 				21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */,
+				210D551C1986A4770008D080 /* uHTTPSemaphoreTests.cpp in Sources */,
 				21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */,
 				21B4231B184F848800EFC1AF /* uHTTPLoggerTests.cpp in Sources */,
 				214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */,

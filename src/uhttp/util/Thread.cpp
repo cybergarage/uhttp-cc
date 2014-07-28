@@ -65,6 +65,7 @@ static void *PosixThreadProc(void *param) {
 
 Thread::Thread() {
   setRunnableFlag(false);
+  setObject(NULL);
 }
 
 bool Thread::start() {
