@@ -11,21 +11,21 @@ noinst_PROGRAMS = uhttpcctestunit
 AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
 uhttpcctestunit_SOURCES = \
-	..//uHTTDateTests.cpp \
-	..//uHTTPGetTests.cpp \
-	..//uHTTPLoggerTests.cpp \
-	..//uHTTPMutexTests.cpp \
-	..//uHTTPNetworkInterfaceTests.cpp \
-	..//uHTTPPacketTests.cpp \
-	..//uHTTPRandomTests.cpp \
-	..//uHTTPRequestTests.cpp \
-	..//uHTTPSemaphoreTests.cpp \
-	..//uHTTPServerTests.cpp \
-	..//uHTTPSocketTests.cpp \
-	..//uHTTPStringTests.cpp \
-	..//uHTTPTestMain.cpp \
-	..//uHTTPThreadTests.cpp \
-	..//uHTTPUriTests.cpp \
-	..//uHTTPVectorTests.cpp
+	..//DateTests.cpp \
+	..//HTTPClientTests.cpp \
+	..//HTTPPacketTests.cpp \
+	..//HTTPRequestTests.cpp \
+	..//HTTPServerTests.cpp \
+	..//HTTPTestMain.cpp \
+	..//LoggerTests.cpp \
+	..//MutexTests.cpp \
+	..//NetworkInterfaceTests.cpp \
+	..//RandomTests.cpp \
+	..//SemaphoreTests.cpp \
+	..//SocketTests.cpp \
+	..//StringTests.cpp \
+	..//ThreadTests.cpp \
+	..//UriTests.cpp \
+	..//VectorTests.cpp
 
 uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a

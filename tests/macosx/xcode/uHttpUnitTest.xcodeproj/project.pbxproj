@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21092E31196D011E000E53FB /* uHTTPVectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */; };
-		210D551C1986A4770008D080 /* uHTTPSemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */; };
-		214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */; };
-		214CE3851564E32800115E8A /* uHTTPThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */; };
-		214CE3871564E51C00115E8A /* uHTTPMutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */; };
-		214CE38E1564E66C00115E8A /* uHTTDateTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */; };
-		214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */; };
-		214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */; };
-		214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */; };
-		21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */; };
-		21AA0411183E0CEE006B0406 /* uHTTPRandomTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */; };
-		21AA0416183E0F44006B0406 /* uHTTPRequestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */; };
+		21092E31196D011E000E53FB /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21092E30196D011E000E53FB /* VectorTests.cpp */; };
+		210D551C1986A4770008D080 /* SemaphoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210D551B1986A4770008D080 /* SemaphoreTests.cpp */; };
+		214CE3831564E28C00115E8A /* StringTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3821564E28C00115E8A /* StringTests.cpp */; };
+		214CE3851564E32800115E8A /* ThreadTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3841564E32800115E8A /* ThreadTests.cpp */; };
+		214CE3871564E51C00115E8A /* MutexTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3861564E51C00115E8A /* MutexTests.cpp */; };
+		214CE38E1564E66C00115E8A /* DateTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38C1564E66C00115E8A /* DateTests.cpp */; };
+		214CE38F1564E66C00115E8A /* NetworkInterfaceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38D1564E66C00115E8A /* NetworkInterfaceTests.cpp */; };
+		214CE3911564E98D00115E8A /* SocketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3901564E98D00115E8A /* SocketTests.cpp */; };
+		214CE3931564EB8600115E8A /* HTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* HTTPPacketTests.cpp */; };
+		21805DF1153ED21A005EC7D6 /* HTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */; };
+		21AA0411183E0CEE006B0406 /* RandomTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0410183E0CEE006B0406 /* RandomTests.cpp */; };
+		21AA0416183E0F44006B0406 /* HTTPRequestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0415183E0F44006B0406 /* HTTPRequestTests.cpp */; };
 		21AE154A153C2A4600F47C5C /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* libuhttp++.a */; };
-		21B4231B184F848800EFC1AF /* uHTTPLoggerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231A184F848800EFC1AF /* uHTTPLoggerTests.cpp */; };
-		21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */; };
-		21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */; };
-		21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497E71536AC270035F09A /* uHTTPGetTests.cpp */; };
+		21B4231B184F848800EFC1AF /* LoggerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231A184F848800EFC1AF /* LoggerTests.cpp */; };
+		21C01C40153DE18F00547B13 /* UriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* UriTests.cpp */; };
+		21F497DD1536AB430035F09A /* HTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* HTTPTestMain.cpp */; };
+		21F497E81536AC270035F09A /* HTTPClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497E71536AC270035F09A /* HTTPClientTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,24 +56,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPVectorTests.cpp; path = ../../uHTTPVectorTests.cpp; sourceTree = "<group>"; };
-		210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPSemaphoreTests.cpp; path = ../../uHTTPSemaphoreTests.cpp; sourceTree = "<group>"; };
-		214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPStringTests.cpp; path = ../../uHTTPStringTests.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPThreadTests.cpp; path = ../../uHTTPThreadTests.cpp; sourceTree = "<group>"; };
-		214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPMutexTests.cpp; path = ../../uHTTPMutexTests.cpp; sourceTree = "<group>"; };
-		214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTDateTests.cpp; path = ../../uHTTDateTests.cpp; sourceTree = "<group>"; };
-		214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPNetworkInterfaceTests.cpp; path = ../../uHTTPNetworkInterfaceTests.cpp; sourceTree = "<group>"; };
-		214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPSocketTests.cpp; path = ../../uHTTPSocketTests.cpp; sourceTree = "<group>"; };
-		214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPPacketTests.cpp; path = ../../uHTTPPacketTests.cpp; sourceTree = "<group>"; };
-		21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPServerTests.cpp; path = ../../uHTTPServerTests.cpp; sourceTree = "<group>"; };
+		21092E30196D011E000E53FB /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VectorTests.cpp; path = ../../VectorTests.cpp; sourceTree = "<group>"; };
+		210D551B1986A4770008D080 /* SemaphoreTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SemaphoreTests.cpp; path = ../../SemaphoreTests.cpp; sourceTree = "<group>"; };
+		214CE3821564E28C00115E8A /* StringTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = StringTests.cpp; path = ../../StringTests.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		214CE3841564E32800115E8A /* ThreadTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ThreadTests.cpp; path = ../../ThreadTests.cpp; sourceTree = "<group>"; };
+		214CE3861564E51C00115E8A /* MutexTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutexTests.cpp; path = ../../MutexTests.cpp; sourceTree = "<group>"; };
+		214CE38C1564E66C00115E8A /* DateTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DateTests.cpp; path = ../../DateTests.cpp; sourceTree = "<group>"; };
+		214CE38D1564E66C00115E8A /* NetworkInterfaceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetworkInterfaceTests.cpp; path = ../../NetworkInterfaceTests.cpp; sourceTree = "<group>"; };
+		214CE3901564E98D00115E8A /* SocketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SocketTests.cpp; path = ../../SocketTests.cpp; sourceTree = "<group>"; };
+		214CE3921564EB8600115E8A /* HTTPPacketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPPacketTests.cpp; path = ../../HTTPPacketTests.cpp; sourceTree = "<group>"; };
+		21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPServerTests.cpp; path = ../../HTTPServerTests.cpp; sourceTree = "<group>"; };
 		21998CD41536A96A00F9454F /* uHttpUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uHttpUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRandomTests.cpp; path = ../../uHTTPRandomTests.cpp; sourceTree = "<group>"; };
-		21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPRequestTests.cpp; path = ../../uHTTPRequestTests.cpp; sourceTree = "<group>"; };
-		21B4231A184F848800EFC1AF /* uHTTPLoggerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPLoggerTests.cpp; path = ../../uHTTPLoggerTests.cpp; sourceTree = "<group>"; };
-		21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPUriTests.cpp; path = ../../uHTTPUriTests.cpp; sourceTree = "<group>"; };
-		21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPTestMain.cpp; path = ../../uHTTPTestMain.cpp; sourceTree = "<group>"; };
+		21AA0410183E0CEE006B0406 /* RandomTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RandomTests.cpp; path = ../../RandomTests.cpp; sourceTree = "<group>"; };
+		21AA0415183E0F44006B0406 /* HTTPRequestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPRequestTests.cpp; path = ../../HTTPRequestTests.cpp; sourceTree = "<group>"; };
+		21B4231A184F848800EFC1AF /* LoggerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoggerTests.cpp; path = ../../LoggerTests.cpp; sourceTree = "<group>"; };
+		21C01C3F153DE18F00547B13 /* UriTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UriTests.cpp; path = ../../UriTests.cpp; sourceTree = "<group>"; };
+		21F497DC1536AB430035F09A /* HTTPTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPTestMain.cpp; path = ../../HTTPTestMain.cpp; sourceTree = "<group>"; };
 		21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
-		21F497E71536AC270035F09A /* uHTTPGetTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uHTTPGetTests.cpp; path = ../../uHTTPGetTests.cpp; sourceTree = "<group>"; };
+		21F497E71536AC270035F09A /* HTTPClientTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPClientTests.cpp; path = ../../HTTPClientTests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,22 +108,22 @@
 		21F497DA1536AAFF0035F09A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				210D551B1986A4770008D080 /* uHTTPSemaphoreTests.cpp */,
-				21092E30196D011E000E53FB /* uHTTPVectorTests.cpp */,
-				21B4231A184F848800EFC1AF /* uHTTPLoggerTests.cpp */,
-				21AA0415183E0F44006B0406 /* uHTTPRequestTests.cpp */,
-				21AA0410183E0CEE006B0406 /* uHTTPRandomTests.cpp */,
-				214CE3921564EB8600115E8A /* uHTTPPacketTests.cpp */,
-				214CE3901564E98D00115E8A /* uHTTPSocketTests.cpp */,
-				214CE38C1564E66C00115E8A /* uHTTDateTests.cpp */,
-				214CE38D1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp */,
-				214CE3861564E51C00115E8A /* uHTTPMutexTests.cpp */,
-				214CE3841564E32800115E8A /* uHTTPThreadTests.cpp */,
-				214CE3821564E28C00115E8A /* uHTTPStringTests.cpp */,
-				21C01C3F153DE18F00547B13 /* uHTTPUriTests.cpp */,
-				21F497E71536AC270035F09A /* uHTTPGetTests.cpp */,
-				21F497DC1536AB430035F09A /* uHTTPTestMain.cpp */,
-				21805DF0153ED21A005EC7D6 /* uHTTPServerTests.cpp */,
+				210D551B1986A4770008D080 /* SemaphoreTests.cpp */,
+				21092E30196D011E000E53FB /* VectorTests.cpp */,
+				21B4231A184F848800EFC1AF /* LoggerTests.cpp */,
+				21AA0415183E0F44006B0406 /* HTTPRequestTests.cpp */,
+				21AA0410183E0CEE006B0406 /* RandomTests.cpp */,
+				214CE3921564EB8600115E8A /* HTTPPacketTests.cpp */,
+				214CE3901564E98D00115E8A /* SocketTests.cpp */,
+				214CE38C1564E66C00115E8A /* DateTests.cpp */,
+				214CE38D1564E66C00115E8A /* NetworkInterfaceTests.cpp */,
+				214CE3861564E51C00115E8A /* MutexTests.cpp */,
+				214CE3841564E32800115E8A /* ThreadTests.cpp */,
+				214CE3821564E28C00115E8A /* StringTests.cpp */,
+				21C01C3F153DE18F00547B13 /* UriTests.cpp */,
+				21F497E71536AC270035F09A /* HTTPClientTests.cpp */,
+				21F497DC1536AB430035F09A /* HTTPTestMain.cpp */,
+				21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */,
 			);
 			indentWidth = 2;
 			name = Sources;
@@ -213,22 +213,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F497DD1536AB430035F09A /* uHTTPTestMain.cpp in Sources */,
-				21AA0411183E0CEE006B0406 /* uHTTPRandomTests.cpp in Sources */,
-				21F497E81536AC270035F09A /* uHTTPGetTests.cpp in Sources */,
-				21C01C40153DE18F00547B13 /* uHTTPUriTests.cpp in Sources */,
-				210D551C1986A4770008D080 /* uHTTPSemaphoreTests.cpp in Sources */,
-				21805DF1153ED21A005EC7D6 /* uHTTPServerTests.cpp in Sources */,
-				21B4231B184F848800EFC1AF /* uHTTPLoggerTests.cpp in Sources */,
-				214CE3831564E28C00115E8A /* uHTTPStringTests.cpp in Sources */,
-				214CE3851564E32800115E8A /* uHTTPThreadTests.cpp in Sources */,
-				21092E31196D011E000E53FB /* uHTTPVectorTests.cpp in Sources */,
-				214CE3871564E51C00115E8A /* uHTTPMutexTests.cpp in Sources */,
-				214CE38E1564E66C00115E8A /* uHTTDateTests.cpp in Sources */,
-				214CE38F1564E66C00115E8A /* uHTTPNetworkInterfaceTests.cpp in Sources */,
-				214CE3911564E98D00115E8A /* uHTTPSocketTests.cpp in Sources */,
-				214CE3931564EB8600115E8A /* uHTTPPacketTests.cpp in Sources */,
-				21AA0416183E0F44006B0406 /* uHTTPRequestTests.cpp in Sources */,
+				21F497DD1536AB430035F09A /* HTTPTestMain.cpp in Sources */,
+				21AA0411183E0CEE006B0406 /* RandomTests.cpp in Sources */,
+				21F497E81536AC270035F09A /* HTTPClientTests.cpp in Sources */,
+				21C01C40153DE18F00547B13 /* UriTests.cpp in Sources */,
+				210D551C1986A4770008D080 /* SemaphoreTests.cpp in Sources */,
+				21805DF1153ED21A005EC7D6 /* HTTPServerTests.cpp in Sources */,
+				21B4231B184F848800EFC1AF /* LoggerTests.cpp in Sources */,
+				214CE3831564E28C00115E8A /* StringTests.cpp in Sources */,
+				214CE3851564E32800115E8A /* ThreadTests.cpp in Sources */,
+				21092E31196D011E000E53FB /* VectorTests.cpp in Sources */,
+				214CE3871564E51C00115E8A /* MutexTests.cpp in Sources */,
+				214CE38E1564E66C00115E8A /* DateTests.cpp in Sources */,
+				214CE38F1564E66C00115E8A /* NetworkInterfaceTests.cpp in Sources */,
+				214CE3911564E98D00115E8A /* SocketTests.cpp in Sources */,
+				214CE3931564EB8600115E8A /* HTTPPacketTests.cpp in Sources */,
+				21AA0416183E0F44006B0406 /* HTTPRequestTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
