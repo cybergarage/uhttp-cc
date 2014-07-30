@@ -103,10 +103,12 @@ am_uhttpcctestunit_OBJECTS = ..//uHTTDateTests.$(OBJEXT) \
 	..//uHTTPMutexTests.$(OBJEXT) \
 	..//uHTTPNetworkInterfaceTests.$(OBJEXT) \
 	..//uHTTPPacketTests.$(OBJEXT) ..//uHTTPRandomTests.$(OBJEXT) \
-	..//uHTTPRequestTests.$(OBJEXT) ..//uHTTPServerTests.$(OBJEXT) \
-	..//uHTTPSocketTests.$(OBJEXT) ..//uHTTPStringTests.$(OBJEXT) \
-	..//uHTTPTestMain.$(OBJEXT) ..//uHTTPThreadTests.$(OBJEXT) \
-	..//uHTTPUriTests.$(OBJEXT) ..//uHTTPVectorTests.$(OBJEXT)
+	..//uHTTPRequestTests.$(OBJEXT) \
+	..//uHTTPSemaphoreTests.$(OBJEXT) \
+	..//uHTTPServerTests.$(OBJEXT) ..//uHTTPSocketTests.$(OBJEXT) \
+	..//uHTTPStringTests.$(OBJEXT) ..//uHTTPTestMain.$(OBJEXT) \
+	..//uHTTPThreadTests.$(OBJEXT) ..//uHTTPUriTests.$(OBJEXT) \
+	..//uHTTPVectorTests.$(OBJEXT)
 uhttpcctestunit_OBJECTS = $(am_uhttpcctestunit_OBJECTS)
 uhttpcctestunit_DEPENDENCIES = ../../lib/unix/libuhttp++.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -268,6 +270,7 @@ uhttpcctestunit_SOURCES = \
 	..//uHTTPPacketTests.cpp \
 	..//uHTTPRandomTests.cpp \
 	..//uHTTPRequestTests.cpp \
+	..//uHTTPSemaphoreTests.cpp \
 	..//uHTTPServerTests.cpp \
 	..//uHTTPSocketTests.cpp \
 	..//uHTTPStringTests.cpp \
@@ -336,6 +339,8 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ..//uHTTPRequestTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+..//uHTTPSemaphoreTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ..//uHTTPServerTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ..//uHTTPSocketTests.$(OBJEXT): ../$(am__dirstamp) \
@@ -370,6 +375,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPPacketTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPRandomTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPRequestTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPSemaphoreTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPServerTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPSocketTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uHTTPStringTests.Po@am__quote@

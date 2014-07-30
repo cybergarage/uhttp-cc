@@ -46,6 +46,7 @@ uhttpcc_sources = \
 	../../src/uhttp/util/LoggerTargetList.cpp \
 	../../src/uhttp/util/Mutex.cpp \
 	../../src/uhttp/util/Random.cpp \
+	../../src/uhttp/util/Semaphore.cpp \
 	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
 	../../src/uhttp/util/Thread.cpp \

@@ -35,6 +35,20 @@ BOOST_AUTO_TEST_CASE(SemaphoreBasicTest) {
   delete sem;
 }
 
+BOOST_AUTO_TEST_CASE(SemaphoreMaxCountTest) {
+  for (size_t semMaxCount = 1; semMaxCount<10; semMaxCount++) {
+    Semaphore sem(semMaxCount);
+    
+    for (size_t n=0; n<semMaxCount; n++) {
+      BOOST_CHECK_EQUAL(sem.wait(), true);
+    }
+    
+    for (size_t n=0; n<semMaxCount; n++) {
+      BOOST_CHECK_EQUAL(sem.post(), true);
+    }
+  }
+}
+
 static const int SEMAPHORE_THREAD_TEST_LOOP_NUM = 5;
 
 class SemaphoreThread : public Thread {

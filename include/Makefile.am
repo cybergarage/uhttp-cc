@@ -58,6 +58,7 @@ uhttpcc_header = \
 	./uhttp/util/LoggerTarget.h \
 	./uhttp/util/Mutex.h \
 	./uhttp/util/Random.h \
+	./uhttp/util/Semaphore.h \
 	./uhttp/util/StringTokenizer.h \
 	./uhttp/util/StringUtil.h \
 	./uhttp/util/Thread.h \

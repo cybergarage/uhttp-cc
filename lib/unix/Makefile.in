@@ -168,6 +168,7 @@ am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/util/LoggerTargetList.$(OBJEXT) \
 	../../src/uhttp/util/Mutex.$(OBJEXT) \
 	../../src/uhttp/util/Random.$(OBJEXT) \
+	../../src/uhttp/util/Semaphore.$(OBJEXT) \
 	../../src/uhttp/util/StringTokenizer.$(OBJEXT) \
 	../../src/uhttp/util/StringUtil.$(OBJEXT) \
 	../../src/uhttp/util/Thread.$(OBJEXT) \
@@ -361,6 +362,7 @@ uhttpcc_sources = \
 	../../src/uhttp/util/LoggerTargetList.cpp \
 	../../src/uhttp/util/Mutex.cpp \
 	../../src/uhttp/util/Random.cpp \
+	../../src/uhttp/util/Semaphore.cpp \
 	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
 	../../src/uhttp/util/Thread.cpp \
@@ -562,6 +564,9 @@ clean-libLIBRARIES:
 ../../src/uhttp/util/Random.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Semaphore.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/StringTokenizer.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
@@ -625,6 +630,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/LoggerTargetList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Mutex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Random.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Semaphore.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/StringTokenizer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/StringUtil.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Thread.Po@am__quote@

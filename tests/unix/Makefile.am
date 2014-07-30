@@ -19,6 +19,7 @@ uhttpcctestunit_SOURCES = \
 	..//uHTTPPacketTests.cpp \
 	..//uHTTPRandomTests.cpp \
 	..//uHTTPRequestTests.cpp \
+	..//uHTTPSemaphoreTests.cpp \
 	..//uHTTPServerTests.cpp \
 	..//uHTTPSocketTests.cpp \
 	..//uHTTPStringTests.cpp \
