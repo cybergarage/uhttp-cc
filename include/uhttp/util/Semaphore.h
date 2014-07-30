@@ -40,7 +40,7 @@ class Semaphore {
   ~Semaphore();
 
   bool post();
-  bool wait();
+  bool wait(time_t timeoutSec = 0);
 
 private:
 

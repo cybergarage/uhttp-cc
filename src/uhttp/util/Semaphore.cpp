@@ -54,7 +54,7 @@ bool uHTTP::Semaphore::post() {
   return isSuccess;
 }
 
-bool uHTTP::Semaphore::wait() {
+bool uHTTP::Semaphore::wait(time_t timeoutSec) {
   bool isSuccess = true;
   
   this->semMutex.lock();
@@ -62,13 +62,22 @@ bool uHTTP::Semaphore::wait() {
   this->semMutex.unlock();
   
 #if defined(__APPLE__)
-#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)  
-  isSuccess = (dispatch_semaphore_wait(this->semId, DISPATCH_TIME_FOREVER) == 0) ? true : false;
+#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
+  dispatch_time_t disPatchTimeout = dispatch_time(DISPATCH_TIME_NOW, (timeoutSec * NSEC_PER_SEC));
+  isSuccess = (dispatch_semaphore_wait(this->semId, ((0 < timeoutSec) ? disPatchTimeout : DISPATCH_TIME_FOREVER)) == 0) ? true : false;
 #else
-  isSuccess = (MPWaitOnSemaphore(this->semId, kDurationForever) == 0) ? true : false;
+  isSuccess = (MPWaitOnSemaphore(this->semId, ((0 < timeoutSec) ? kDurationMillisecond : kDurationForever)) == 0) ? true : false;
 #endif
 #else
-  isSuccess = (sem_wait(&semId) == 0)  ? true : false;
+  if (0 < timeoutSec) {
+    timespec absTimeout;
+    absTimeout.tv_sec = timeoutSec;
+    absTimeout.tv_nsec = 0;
+    isSuccess = (sem_timedwait(&semId, &absTimeout) == 0)  ? true : false;
+  }
+  else {
+    isSuccess = (sem_wait(&semId) == 0)  ? true : false;
+  }
 #endif
 
   if (this->isCanceled)

@@ -96,10 +96,10 @@ public:
     return threadSem->post();
   }
  
-  bool wait() {
+  bool wait(long timeoutSec) {
     if (!this->threadSem)
       return false;
-    return threadSem->wait();
+    return threadSem->wait(timeoutSec);
   }
 
 private:

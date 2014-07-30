@@ -120,7 +120,9 @@ void HTTPServer::run() {
       continue;
     }
     
-    wait();
+    while (!wait(DEFAULT_SERVER_THREAD_WAIT_TIME)) {
+      Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
+    }
     
     while (!httpServThread->start()) {
       Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
