@@ -16,6 +16,7 @@
 		214CE38F1564E66C00115E8A /* NetworkInterfaceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE38D1564E66C00115E8A /* NetworkInterfaceTests.cpp */; };
 		214CE3911564E98D00115E8A /* SocketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3901564E98D00115E8A /* SocketTests.cpp */; };
 		214CE3931564EB8600115E8A /* HTTPPacketTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214CE3921564EB8600115E8A /* HTTPPacketTests.cpp */; };
+		2168600319973B1E00324D13 /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2168600219973B1E00324D13 /* MessageQueue.cpp */; };
 		21805DF1153ED21A005EC7D6 /* HTTPServerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */; };
 		21AA0411183E0CEE006B0406 /* RandomTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0410183E0CEE006B0406 /* RandomTests.cpp */; };
 		21AA0416183E0F44006B0406 /* HTTPRequestTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AA0415183E0F44006B0406 /* HTTPRequestTests.cpp */; };
@@ -65,6 +66,7 @@
 		214CE38D1564E66C00115E8A /* NetworkInterfaceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetworkInterfaceTests.cpp; path = ../../NetworkInterfaceTests.cpp; sourceTree = "<group>"; };
 		214CE3901564E98D00115E8A /* SocketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SocketTests.cpp; path = ../../SocketTests.cpp; sourceTree = "<group>"; };
 		214CE3921564EB8600115E8A /* HTTPPacketTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPPacketTests.cpp; path = ../../HTTPPacketTests.cpp; sourceTree = "<group>"; };
+		2168600219973B1E00324D13 /* MessageQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageQueue.cpp; path = ../../MessageQueue.cpp; sourceTree = "<group>"; };
 		21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPServerTests.cpp; path = ../../HTTPServerTests.cpp; sourceTree = "<group>"; };
 		21998CD41536A96A00F9454F /* uHttpUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uHttpUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AA0410183E0CEE006B0406 /* RandomTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RandomTests.cpp; path = ../../RandomTests.cpp; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		21F497DA1536AAFF0035F09A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2168600219973B1E00324D13 /* MessageQueue.cpp */,
 				210D551B1986A4770008D080 /* SemaphoreTests.cpp */,
 				21092E30196D011E000E53FB /* VectorTests.cpp */,
 				21B4231A184F848800EFC1AF /* LoggerTests.cpp */,
@@ -229,6 +232,7 @@
 				214CE3911564E98D00115E8A /* SocketTests.cpp in Sources */,
 				214CE3931564EB8600115E8A /* HTTPPacketTests.cpp in Sources */,
 				21AA0416183E0F44006B0406 /* HTTPRequestTests.cpp in Sources */,
+				2168600319973B1E00324D13 /* MessageQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

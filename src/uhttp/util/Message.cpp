@@ -1,19 +1,20 @@
 /******************************************************************
 *
-* uHTTP for C++
+*uHTTP for C++
 *
-* Copyright (C) Satoshi Konno 2002
+* Copyright (C) Satoshi Konno 2012
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTML_H_
-#define _CHTTP_HTML_H_
+#include <string>
+#include <sstream>
 
-namespace uHTTP {
-const char TEXT_CONTENT_TYPE[] = "text/html; charset=\"utf-8\"";
+#include <uhttp/util/MessageQueue.h>
 
+uHTTP::Message::Message() {
 }
 
-#endif
+uHTTP::Message::~Message() {
+}

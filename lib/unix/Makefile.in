@@ -166,6 +166,8 @@ am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/util/LoggerFileTarget.$(OBJEXT) \
 	../../src/uhttp/util/LoggerTarget.$(OBJEXT) \
 	../../src/uhttp/util/LoggerTargetList.$(OBJEXT) \
+	../../src/uhttp/util/Message.$(OBJEXT) \
+	../../src/uhttp/util/MessageQueue.$(OBJEXT) \
 	../../src/uhttp/util/Mutex.$(OBJEXT) \
 	../../src/uhttp/util/Random.$(OBJEXT) \
 	../../src/uhttp/util/Semaphore.$(OBJEXT) \
@@ -360,6 +362,8 @@ uhttpcc_sources = \
 	../../src/uhttp/util/LoggerFileTarget.cpp \
 	../../src/uhttp/util/LoggerTarget.cpp \
 	../../src/uhttp/util/LoggerTargetList.cpp \
+	../../src/uhttp/util/Message.cpp \
+	../../src/uhttp/util/MessageQueue.cpp \
 	../../src/uhttp/util/Mutex.cpp \
 	../../src/uhttp/util/Random.cpp \
 	../../src/uhttp/util/Semaphore.cpp \
@@ -558,6 +562,12 @@ clean-libLIBRARIES:
 ../../src/uhttp/util/LoggerTargetList.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Message.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/MessageQueue.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/Mutex.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
@@ -628,6 +638,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/LoggerFileTarget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/LoggerTarget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/LoggerTargetList.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Message.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/MessageQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Mutex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Random.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Semaphore.Po@am__quote@

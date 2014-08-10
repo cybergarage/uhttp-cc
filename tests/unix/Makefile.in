@@ -102,11 +102,11 @@ am_uhttpcctestunit_OBJECTS = ..//DateTests.$(OBJEXT) \
 	..//HTTPClientTests.$(OBJEXT) ..//HTTPPacketTests.$(OBJEXT) \
 	..//HTTPRequestTests.$(OBJEXT) ..//HTTPServerTests.$(OBJEXT) \
 	..//HTTPTestMain.$(OBJEXT) ..//LoggerTests.$(OBJEXT) \
-	..//MutexTests.$(OBJEXT) ..//NetworkInterfaceTests.$(OBJEXT) \
-	..//RandomTests.$(OBJEXT) ..//SemaphoreTests.$(OBJEXT) \
-	..//SocketTests.$(OBJEXT) ..//StringTests.$(OBJEXT) \
-	..//ThreadTests.$(OBJEXT) ..//UriTests.$(OBJEXT) \
-	..//VectorTests.$(OBJEXT)
+	..//MessageQueue.$(OBJEXT) ..//MutexTests.$(OBJEXT) \
+	..//NetworkInterfaceTests.$(OBJEXT) ..//RandomTests.$(OBJEXT) \
+	..//SemaphoreTests.$(OBJEXT) ..//SocketTests.$(OBJEXT) \
+	..//StringTests.$(OBJEXT) ..//ThreadTests.$(OBJEXT) \
+	..//UriTests.$(OBJEXT) ..//VectorTests.$(OBJEXT)
 uhttpcctestunit_OBJECTS = $(am_uhttpcctestunit_OBJECTS)
 uhttpcctestunit_DEPENDENCIES = ../../lib/unix/libuhttp++.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -267,6 +267,7 @@ uhttpcctestunit_SOURCES = \
 	..//HTTPServerTests.cpp \
 	..//HTTPTestMain.cpp \
 	..//LoggerTests.cpp \
+	..//MessageQueue.cpp \
 	..//MutexTests.cpp \
 	..//NetworkInterfaceTests.cpp \
 	..//RandomTests.cpp \
@@ -335,6 +336,8 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ..//LoggerTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+..//MessageQueue.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ..//MutexTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ..//NetworkInterfaceTests.$(OBJEXT): ../$(am__dirstamp) \
@@ -372,6 +375,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/HTTPServerTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/HTTPTestMain.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/LoggerTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/MessageQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/MutexTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/NetworkInterfaceTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RandomTests.Po@am__quote@

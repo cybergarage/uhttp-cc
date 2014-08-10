@@ -10,10 +10,6 @@
 
 #include <uhttp/util/Semaphore.h>
 
-#if !defined(__APPLE__)
-static const int FRACTAL_SEMAPHORE_MAX = 1000;
-#endif
-
 uHTTP::Semaphore::Semaphore(size_t maxCount) {
   this->setCount = 0;
   this->isCanceled = false;

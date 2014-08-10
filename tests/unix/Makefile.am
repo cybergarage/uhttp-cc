@@ -18,6 +18,7 @@ uhttpcctestunit_SOURCES = \
 	..//HTTPServerTests.cpp \
 	..//HTTPTestMain.cpp \
 	..//LoggerTests.cpp \
+	..//MessageQueue.cpp \
 	..//MutexTests.cpp \
 	..//NetworkInterfaceTests.cpp \
 	..//RandomTests.cpp \
