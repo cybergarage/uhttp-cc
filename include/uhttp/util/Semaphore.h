@@ -42,9 +42,9 @@ class Semaphore {
   bool post();
   bool wait(time_t timeoutSec = 0);
 
-private:
+  bool cancel();
 
-  void cancel();
+private:
   
   SemaphoreId semId;
   bool isCanceled;

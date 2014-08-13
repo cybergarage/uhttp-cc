@@ -46,7 +46,6 @@ bool uHTTP::Semaphore::post() {
   isSuccess = (sem_post(&semId) == 0)  ? true : false;
 #endif
 
-
   return isSuccess;
 }
 
@@ -82,8 +81,11 @@ bool uHTTP::Semaphore::wait(time_t timeoutSec) {
   return isSuccess;
 }
 
-void uHTTP::Semaphore::cancel() {
+bool uHTTP::Semaphore::cancel() {
   this->isCanceled = true;
+  
+  if (this->semId == 0)
+    return false;
   
 #if defined(__APPLE__)
 #if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
@@ -102,4 +104,8 @@ void uHTTP::Semaphore::cancel() {
 #else
   sem_destroy(&semId);
 #endif
+  
+  this->semId = 0;
+  
+  return true;
 }
