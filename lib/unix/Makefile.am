@@ -33,7 +33,7 @@ uhttpcc_sources = \
 	../../src/uhttp/net/MulticastSocket.cpp \
 	../../src/uhttp/net/ServerSocket.cpp \
 	../../src/uhttp/net/Socket.cpp \
-	../../src/uhttp/net/SocketImp.cpp \
+	../../src/uhttp/net/SocketCore.cpp \
 	../../src/uhttp/net/SocketInputStream.cpp \
 	../../src/uhttp/net/SocketUtil.cpp \
 	../../src/uhttp/net/URI.cpp \

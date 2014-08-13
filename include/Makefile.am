@@ -43,7 +43,7 @@ uhttpcc_header = \
 	./uhttp/net/NetworkInterfaceList.h \
 	./uhttp/net/ServerSocket.h \
 	./uhttp/net/Socket.h \
-	./uhttp/net/SocketImp.h \
+	./uhttp/net/SocketCore.h \
 	./uhttp/net/SocketInputStream.h \
 	./uhttp/net/SocketUtil.h \
 	./uhttp/net/URI.h \

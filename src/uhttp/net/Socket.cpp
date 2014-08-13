@@ -34,20 +34,6 @@ const int Socket::WINDOW_BUF_SIZE = 4096;
 #endif
 
 ////////////////////////////////////////////////
-//  Static methods
-////////////////////////////////////////////////
-
-static SocketList gAllSocketList;
-
-size_t Socket::GetInstanceCount() {
-  return gAllSocketList.size();
-}
-
-SocketList *Socket::GetInstanceList() {
-  return &gAllSocketList;
-}
-
-////////////////////////////////////////////////
 //  Socket
 ////////////////////////////////////////////////
 
@@ -58,8 +44,6 @@ Socket::Socket() {
   sendWinBuf = NULL;
   recvWinBuf = NULL;
 #endif
-  
-  gAllSocketList.add(this);
 }
 
 Socket::~Socket() {
@@ -69,8 +53,6 @@ Socket::~Socket() {
   delete[] sendWinBuf;
   delete[] recvWinBuf;
 #endif
-
-  gAllSocketList.remove(this);
 }
 
 ////////////////////////////////////////////////

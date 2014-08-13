@@ -155,7 +155,7 @@ am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/net/MulticastSocket.$(OBJEXT) \
 	../../src/uhttp/net/ServerSocket.$(OBJEXT) \
 	../../src/uhttp/net/Socket.$(OBJEXT) \
-	../../src/uhttp/net/SocketImp.$(OBJEXT) \
+	../../src/uhttp/net/SocketCore.$(OBJEXT) \
 	../../src/uhttp/net/SocketInputStream.$(OBJEXT) \
 	../../src/uhttp/net/SocketUtil.$(OBJEXT) \
 	../../src/uhttp/net/URI.$(OBJEXT) \
@@ -353,7 +353,7 @@ uhttpcc_sources = \
 	../../src/uhttp/net/MulticastSocket.cpp \
 	../../src/uhttp/net/ServerSocket.cpp \
 	../../src/uhttp/net/Socket.cpp \
-	../../src/uhttp/net/SocketImp.cpp \
+	../../src/uhttp/net/SocketCore.cpp \
 	../../src/uhttp/net/SocketInputStream.cpp \
 	../../src/uhttp/net/SocketUtil.cpp \
 	../../src/uhttp/net/URI.cpp \
@@ -527,7 +527,7 @@ clean-libLIBRARIES:
 ../../src/uhttp/net/Socket.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/SocketImp.$(OBJEXT):  \
+../../src/uhttp/net/SocketCore.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/net/SocketInputStream.$(OBJEXT):  \
@@ -637,7 +637,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/MulticastSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/ServerSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/Socket.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/SocketImp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/SocketCore.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/SocketInputStream.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/SocketUtil.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/net/$(DEPDIR)/URI.Po@am__quote@

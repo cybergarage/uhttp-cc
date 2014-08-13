@@ -9,7 +9,7 @@
 ******************************************************************/
 
 #include <errno.h>
-#include <uhttp/net/SocketImp.h>
+#include <uhttp/net/SocketCore.h>
 #include <uhttp/net/SocketUtil.h>
 #include <uhttp/net/HostInterface.h>
 #include <uhttp/util/Mutex.h>
@@ -27,29 +27,38 @@
 #endif
 
 using namespace uHTTP;
-using namespace uHTTP;
 
 ////////////////////////////////////////////////
 //  Constants
 ////////////////////////////////////////////////
 
-const int SocketImp::STREAM = 1;
-const int SocketImp::DGRAM = 2;
+const int SocketCore::STREAM = 1;
+const int SocketCore::DGRAM = 2;
+
+////////////////////////////////////////////////
+//  Static methods
+////////////////////////////////////////////////
+
+static SocketList gAllSocketList;
+
+size_t SocketCore::GetInstanceCount() {
+  return gAllSocketList.size();
+}
+
+SocketList *SocketCore::GetInstanceList() {
+  return &gAllSocketList;
+}
 
 ////////////////////////////////////////////////
 //  SocketInit/Close
 ////////////////////////////////////////////////
-
-static size_t socketCnt = 0;
-static Mutex sockMutex;
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 ttUserInterface kaInterfaceHandle;
 #endif
 
 void uHTTP::SocketStartup() {
-  sockMutex.lock();
-  if (socketCnt == 0) {
+  if (SocketCore::GetInstanceCount() == 0) {
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
     WSADATA wsaData;
     WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -66,14 +75,10 @@ void uHTTP::SocketStartup() {
 #endif
 #endif
   }
-  socketCnt++;
-  sockMutex.unlock();
 }
 
 void uHTTP::SocketCleanup() {
-  sockMutex.lock();
-  socketCnt--;
-  if (socketCnt <= 0) {
+  if (SocketCore::GetInstanceCount() == 0) {
 #if defined(WIN32) || defined(__CYGWIN__)
     //  WSACleanup( );
 #endif
@@ -84,18 +89,13 @@ void uHTTP::SocketCleanup() {
 #endif
 #endif
   }
-  sockMutex.unlock();
-}
-
-size_t uHTTP::SocketImp::GetInstanceCount() {
-  return socketCnt;
 }
 
 ////////////////////////////////////////////////
 //  Constructor/Destructor
 ////////////////////////////////////////////////
 
-SocketImp::SocketImp() {
+SocketCore::SocketCore() {
   SocketStartup();
   setType(0);
   setLocalAddress("");
@@ -106,13 +106,17 @@ SocketImp::SocketImp() {
 #else
   setSocket(-1);
 #endif
+  
+  gAllSocketList.add(this);
 }
 
-SocketImp::~SocketImp() {
+SocketCore::~SocketCore() {
+  gAllSocketList.remove(this);
+
   SocketCleanup();
 }
 
-bool SocketImp::isBound() {
+bool SocketCore::isBound() {
 #if (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)) && !defined(ITRON)
   return (sock != INVALID_SOCKET) ? true : false;
 #else
@@ -124,7 +128,7 @@ bool SocketImp::isBound() {
 //  close
 ////////////////////////////////////////////////
 
-bool SocketImp::close() {
+bool SocketCore::close() {
   if (!isBound())
     return true;
 
@@ -175,7 +179,7 @@ bool SocketImp::close() {
 //  Socket Option
 ////////////////////////////////////////////////
 
-bool SocketImp::setReuseAddress(bool flag) {
+bool SocketCore::setReuseAddress(bool flag) {
   int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   B optval = (flag == true) ? 1 : 0;
@@ -202,7 +206,7 @@ bool SocketImp::setReuseAddress(bool flag) {
   return (sockOptRet == 0) ? true : false;
 }
 
-void SocketImp::setTimeout(int timeout) {
+void SocketCore::setTimeout(int timeout) {
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
   setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
   setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
@@ -215,7 +219,7 @@ void SocketImp::setTimeout(int timeout) {
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 
-bool SocketImp::setMulticastInterface(const std::string &ifaddr) {
+bool SocketCore::setMulticastInterface(const std::string &ifaddr) {
   NetworkInterfaceList netIfList;
 
   if (ifaddr == NULL || strlen(ifaddr) <= 0) {
