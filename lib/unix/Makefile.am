@@ -14,6 +14,7 @@ uhttpcc_sources = \
 	../../src/uhttp/http/HTTP.cpp \
 	../../src/uhttp/http/HTTPDate.cpp \
 	../../src/uhttp/http/HTTPHeader.cpp \
+	../../src/uhttp/http/HTTPMessageQueue.cpp \
 	../../src/uhttp/http/HTTPPacket.cpp \
 	../../src/uhttp/http/HTTPRequest.cpp \
 	../../src/uhttp/http/HTTPResponse.cpp \

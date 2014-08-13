@@ -136,6 +136,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/http/HTTPDate.$(OBJEXT) \
 	../../src/uhttp/http/HTTPHeader.$(OBJEXT) \
+	../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT) \
 	../../src/uhttp/http/HTTPPacket.$(OBJEXT) \
 	../../src/uhttp/http/HTTPRequest.$(OBJEXT) \
 	../../src/uhttp/http/HTTPResponse.$(OBJEXT) \
@@ -333,6 +334,7 @@ uhttpcc_sources = \
 	../../src/uhttp/http/HTTP.cpp \
 	../../src/uhttp/http/HTTPDate.cpp \
 	../../src/uhttp/http/HTTPHeader.cpp \
+	../../src/uhttp/http/HTTPMessageQueue.cpp \
 	../../src/uhttp/http/HTTPPacket.cpp \
 	../../src/uhttp/http/HTTPRequest.cpp \
 	../../src/uhttp/http/HTTPResponse.cpp \
@@ -455,6 +457,9 @@ clean-libLIBRARIES:
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPHeader.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPPacket.$(OBJEXT):  \
@@ -613,6 +618,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTP.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPDate.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPHeader.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPMessageQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPPacket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPRequest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPResponse.Po@am__quote@
