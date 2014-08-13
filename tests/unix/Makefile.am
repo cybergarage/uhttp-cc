@@ -21,6 +21,7 @@ uhttpcctestunit_SOURCES = \
 	..//MessageQueue.cpp \
 	..//MutexTests.cpp \
 	..//NetworkInterfaceTests.cpp \
+	..//ParameterTests.cpp \
 	..//RandomTests.cpp \
 	..//SemaphoreTests.cpp \
 	..//SocketTests.cpp \

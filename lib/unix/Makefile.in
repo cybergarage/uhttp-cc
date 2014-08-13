@@ -141,9 +141,9 @@ am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/http/HTTPResponse.$(OBJEXT) \
 	../../src/uhttp/http/HTTPServer.$(OBJEXT) \
 	../../src/uhttp/http/HTTPServerList.$(OBJEXT) \
-	../../src/uhttp/http/HTTPServerThread.$(OBJEXT) \
 	../../src/uhttp/http/HTTPSocket.$(OBJEXT) \
 	../../src/uhttp/http/HTTPStatus.$(OBJEXT) \
+	../../src/uhttp/http/HTTPWorkerThread.$(OBJEXT) \
 	../../src/uhttp/io/BufferedReader.$(OBJEXT) \
 	../../src/uhttp/io/File.$(OBJEXT) \
 	../../src/uhttp/io/FileInputStream.$(OBJEXT) \
@@ -174,6 +174,7 @@ am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/util/StringTokenizer.$(OBJEXT) \
 	../../src/uhttp/util/StringUtil.$(OBJEXT) \
 	../../src/uhttp/util/Thread.$(OBJEXT) \
+	../../src/uhttp/util/ThreadList.$(OBJEXT) \
 	../../src/uhttp/util/TimeUtil.$(OBJEXT)
 am_libuhttp___a_OBJECTS = $(am__objects_1)
 libuhttp___a_OBJECTS = $(am_libuhttp___a_OBJECTS)
@@ -337,9 +338,9 @@ uhttpcc_sources = \
 	../../src/uhttp/http/HTTPResponse.cpp \
 	../../src/uhttp/http/HTTPServer.cpp \
 	../../src/uhttp/http/HTTPServerList.cpp \
-	../../src/uhttp/http/HTTPServerThread.cpp \
 	../../src/uhttp/http/HTTPSocket.cpp \
 	../../src/uhttp/http/HTTPStatus.cpp \
+	../../src/uhttp/http/HTTPWorkerThread.cpp \
 	../../src/uhttp/io/BufferedReader.cpp \
 	../../src/uhttp/io/File.cpp \
 	../../src/uhttp/io/FileInputStream.cpp \
@@ -370,6 +371,7 @@ uhttpcc_sources = \
 	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
 	../../src/uhttp/util/Thread.cpp \
+	../../src/uhttp/util/ThreadList.cpp \
 	../../src/uhttp/util/TimeUtil.cpp
 
 libuhttp___a_SOURCES = \
@@ -470,13 +472,13 @@ clean-libLIBRARIES:
 ../../src/uhttp/http/HTTPServerList.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPServerThread.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPSocket.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPStatus.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPWorkerThread.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/io/$(am__dirstamp):
@@ -586,6 +588,9 @@ clean-libLIBRARIES:
 ../../src/uhttp/util/Thread.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/ThreadList.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/TimeUtil.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
@@ -613,9 +618,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPResponse.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPServer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPServerList.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPServerThread.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPStatus.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/http/$(DEPDIR)/HTTPWorkerThread.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/io/$(DEPDIR)/BufferedReader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/io/$(DEPDIR)/File.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/io/$(DEPDIR)/FileInputStream.Po@am__quote@
@@ -646,6 +651,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/StringTokenizer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/StringUtil.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/Thread.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/ThreadList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uhttp/util/$(DEPDIR)/TimeUtil.Po@am__quote@
 
 .cpp.o:

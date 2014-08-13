@@ -11,7 +11,7 @@
 #ifndef _CHTTP_THREAD_H_
 #define _CHTTP_THREAD_H_
 
-#include <vector>
+#include <uhttp/util/Vector.h>
 
 #if defined(WIN32) && !defined(ITRON)
 #include <windows.h>
@@ -80,19 +80,15 @@ public:
 };
 
   
-class ThreadList : public std::vector<Thread *> {
+class ThreadList : public Vector<Thread> {
     
   public:
     
     ThreadList();
     virtual ~ThreadList();
     
-    void addThread(Thread *thread);
-    
     bool start();
     bool stop();
-    
-    void clear();
 };
 
 }

@@ -17,6 +17,7 @@
 #include <uhttp/util/Listener.h>
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/http/HTTPRequestListener.h>
+#include <uhttp/http/HTTPMessageQueue.h>
 
 #include <string>
 
@@ -71,8 +72,6 @@ public:
   bool start();
   void run();
   bool stop();
-
-  void clean();
   
   ////////////////////////////////////////////////
   //  Semaphore
@@ -84,6 +83,10 @@ public:
   
   size_t getWorkerThreadMax() {
     return this->workerThreadMax;
+  }
+  
+  bool waitMessage(HTTPMessage **httpMsg, time_t timeoutSec = 0) {
+    return messageQueue.waitMessage(httpMsg, timeoutSec);
   }
   
   ////////////////////////////////////////////////
@@ -107,7 +110,11 @@ private:
   Semaphore *threadSem;
   ServerSocket *serverSock;
   ListenerList httpRequestListenerList;
+  
+  HTTPMessageQueue messageQueue;
+  
   size_t workerThreadMax;
+  ThreadList workerThreadList;
   
   bool bind(int port, const std::string &addr = "");
   bool accept(uHTTP::Socket *socket);

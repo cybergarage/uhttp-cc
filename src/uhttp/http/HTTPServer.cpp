@@ -17,7 +17,7 @@
 #endif
 
 #include <uhttp/http/HTTPServer.h>
-#include <uhttp/http/HTTPServerThread.h>
+#include <uhttp/http/HTTPWorkerThread.h>
 #include <uhttp/util/TimeUtil.h>
 
 #include <sstream>
@@ -110,26 +110,9 @@ void HTTPServer::run() {
     
     if (isRunnable() == false)
       break;
-    
-    ServerSocket *serverSock = getServerSock();
-    if (serverSock == NULL) {
-      delete sock;
-      continue;
-    }
 
-    HTTPServerThread *httpServThread = new HTTPServerThread(this, sock);
-    if (httpServThread == NULL) {
-      delete sock;
-      continue;
-    }
-    
-    while (!wait(DEFAULT_SERVER_THREAD_WAIT_TIME)) {
-      Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
-    }
-    
-    while (!httpServThread->start()) {
-      Wait(DEFAULT_SERVER_THREAD_WAIT_TIME);
-    }
+    HTTPMessage *httpMsg = new HTTPMessage(sock);
+    this->messageQueue.pushMessage(httpMsg);
   }
 }
 
@@ -138,8 +121,18 @@ void HTTPServer::run() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::start() {
-  clean();
-  threadSem = new Semaphore(getWorkerThreadMax());
+  stop();
+  
+  size_t workerThreadMax = getWorkerThreadMax();
+  for (size_t n=0; n<workerThreadMax; n++) {
+    HTTPWorkerThread *workerThread = new HTTPWorkerThread(this);
+    workerThreadList.add(workerThread);
+  }
+  if (!workerThreadList.start()) {
+    stop();
+    return false;
+  }
+  
   return Thread::start();
 }
 
@@ -148,19 +141,15 @@ bool HTTPServer::start() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::stop() {
-  clean();
-  return Thread::stop();
-}
+  if (!Thread::stop())
+    return false;
+  
+  if (!workerThreadList.stop())
+    return false;
+  if (!workerThreadList.clear())
+    return false;
 
-////////////////////////////////////////////////
-//  clean
-////////////////////////////////////////////////
-
-void HTTPServer::clean() {
-  if (threadSem) {
-    delete threadSem;
-    threadSem = NULL;
-  }
+  return true;
 }
 
 ////////////////////////////////////////////////

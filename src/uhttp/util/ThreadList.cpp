@@ -16,19 +16,6 @@ uHTTP::ThreadList::ThreadList() {
 }
 
 uHTTP::ThreadList::~ThreadList() {
-  clear();
-}
-
-void uHTTP::ThreadList::addThread(Thread *thread) {
-  push_back(thread);
-}
-
-void uHTTP::ThreadList::clear() {
-  for (ThreadList::iterator thread = begin(); thread != end(); thread++) {
-    (*thread)->stop();
-    delete (*thread);
-  }
-  std::vector<Thread *>::clear();
 }
 
 bool uHTTP::ThreadList::start() {

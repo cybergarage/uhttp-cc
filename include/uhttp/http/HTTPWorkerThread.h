@@ -9,21 +9,21 @@
 ******************************************************************/
 
 
-#ifndef _CHTTP_HTTPSERVERTHREAD_H_
-#define _CHTTP_HTTPSERVERTHREAD_H_
+#ifndef _CHTTP_HTTPWORKERTHREAD_H_
+#define _CHTTP_HTTPWORKERTHREAD_H_
 
 #include <uhttp/util/Thread.h>
 #include <uhttp/http/HTTPServer.h>
 
 namespace uHTTP {
-class HTTPServerThread : public uHTTP::Thread {
-  uHTTP::Socket *clientSock;
+  
+class HTTPWorkerThread : public uHTTP::Thread {
   uHTTP::HTTPServer *httpServer;
 
 public:
   
-  HTTPServerThread(uHTTP::HTTPServer *server, uHTTP::Socket *sock);
-  ~HTTPServerThread();
+  HTTPWorkerThread(uHTTP::HTTPServer *server);
+  ~HTTPWorkerThread();
 
   ////////////////////////////////////////////////
   //  run  

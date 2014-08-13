@@ -19,9 +19,9 @@ uhttpcc_sources = \
 	../../src/uhttp/http/HTTPResponse.cpp \
 	../../src/uhttp/http/HTTPServer.cpp \
 	../../src/uhttp/http/HTTPServerList.cpp \
-	../../src/uhttp/http/HTTPServerThread.cpp \
 	../../src/uhttp/http/HTTPSocket.cpp \
 	../../src/uhttp/http/HTTPStatus.cpp \
+	../../src/uhttp/http/HTTPWorkerThread.cpp \
 	../../src/uhttp/io/BufferedReader.cpp \
 	../../src/uhttp/io/File.cpp \
 	../../src/uhttp/io/FileInputStream.cpp \
@@ -52,6 +52,7 @@ uhttpcc_sources = \
 	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
 	../../src/uhttp/util/Thread.cpp \
+	../../src/uhttp/util/ThreadList.cpp \
 	../../src/uhttp/util/TimeUtil.cpp
 
 libuhttp___a_SOURCES = \

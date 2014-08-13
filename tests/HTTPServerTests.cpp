@@ -141,9 +141,13 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
   Random rand (1000, 10000);
   int httpPort = rand.rand();
   
+  BOOST_CHECK_EQUAL(Socket::GetInstanceCount(), 0);
+  
   BOOST_CHECK(httpServer.open(httpPort));
   BOOST_CHECK(httpServer.start());
 
+  BOOST_MESSAGE("Opened Sockets : " << Socket::GetInstanceCount());
+  
   for (int n=0; n<UHTTP_HTTP_SERVER_TEST_LOOP_COUNT; n++) {
     HTTPRequest httpReq;
     httpReq.setMethod(HTTP::GET);
@@ -169,7 +173,11 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     BOOST_MESSAGE(httpResStr);
   }
   
+  BOOST_MESSAGE("Opened Sockets : " << Socket::GetInstanceCount());
+  
   BOOST_CHECK(httpServer.stop());
+
+  BOOST_CHECK_EQUAL(Socket::GetInstanceCount(), 0);
 }
 
 uHTTP::HTTP::StatusCode HTTPSimpleRequestListener::httpRequestRecieved(HTTPRequest *httpReq)

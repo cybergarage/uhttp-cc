@@ -110,7 +110,6 @@ private:
     }
     std::vector<T*>::clear();
     return true;
-    
   }
   
 private:

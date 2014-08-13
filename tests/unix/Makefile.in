@@ -103,7 +103,8 @@ am_uhttpcctestunit_OBJECTS = ..//DateTests.$(OBJEXT) \
 	..//HTTPRequestTests.$(OBJEXT) ..//HTTPServerTests.$(OBJEXT) \
 	..//HTTPTestMain.$(OBJEXT) ..//LoggerTests.$(OBJEXT) \
 	..//MessageQueue.$(OBJEXT) ..//MutexTests.$(OBJEXT) \
-	..//NetworkInterfaceTests.$(OBJEXT) ..//RandomTests.$(OBJEXT) \
+	..//NetworkInterfaceTests.$(OBJEXT) \
+	..//ParameterTests.$(OBJEXT) ..//RandomTests.$(OBJEXT) \
 	..//SemaphoreTests.$(OBJEXT) ..//SocketTests.$(OBJEXT) \
 	..//StringTests.$(OBJEXT) ..//ThreadTests.$(OBJEXT) \
 	..//UriTests.$(OBJEXT) ..//VectorTests.$(OBJEXT)
@@ -270,6 +271,7 @@ uhttpcctestunit_SOURCES = \
 	..//MessageQueue.cpp \
 	..//MutexTests.cpp \
 	..//NetworkInterfaceTests.cpp \
+	..//ParameterTests.cpp \
 	..//RandomTests.cpp \
 	..//SemaphoreTests.cpp \
 	..//SocketTests.cpp \
@@ -342,6 +344,8 @@ clean-noinstPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ..//NetworkInterfaceTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+..//ParameterTests.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ..//RandomTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ..//SemaphoreTests.$(OBJEXT): ../$(am__dirstamp) \
@@ -378,6 +382,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/MessageQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/MutexTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/NetworkInterfaceTests.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ParameterTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/RandomTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/SemaphoreTests.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/SocketTests.Po@am__quote@
