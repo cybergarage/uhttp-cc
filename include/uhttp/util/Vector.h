@@ -60,17 +60,6 @@ private:
     std::vector<T*>::erase(objIt);
     return true;
   }
-
-  bool erase(T *obj) {
-    if (!obj)
-      return false;
-    ssize_t idx = indexOf(obj);
-    if (idx < 0)
-      return false;
-    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
-    std::vector<T*>::erase(objIt);
-    return true;
-  }
   
   ssize_t indexOf(void *obj) {
     if (!obj)
