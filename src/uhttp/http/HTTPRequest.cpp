@@ -98,9 +98,17 @@ void uHTTP::HTTPRequest::setURL(const std::string &urlString) {
 void uHTTP::HTTPRequest::setURL(URL *url) {
   setRequestHost(url->getHost());
   setRequestPort(url->getPort());
-  setURI(url->getPath());
   
   setHost(getRequestHost(), getRequestPort());
+  std::stringstream uriBuf;
+  
+  if (url->hasPath())
+    uriBuf << url->getPath();
+  if (url->hasFragment())
+    uriBuf << URL::SHARP_DELIM << url->getFragment();
+  if (url->hasQuery())
+    uriBuf << URL::QUESTION_DELIM << url->getQuery();
+  setURI(uriBuf.str());  
 }
 
 ////////////////////////////////////////////////

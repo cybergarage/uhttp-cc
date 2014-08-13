@@ -33,14 +33,20 @@ BOOST_AUTO_TEST_CASE(HTTPUri)
   BOOST_CHECK_EQUAL(url.getHost(), "www.yahoo.co.jp");
   BOOST_CHECK_EQUAL(url.getPort(), 443);
   BOOST_CHECK_EQUAL(url.getPath(), "/index.html");
+}
 
+BOOST_AUTO_TEST_CASE(HTTPGetAbsoluteURL)
+{
   // URLGetAbsoluteURL
   std::string urlBuf;
   URLGetAbsoluteURL("http://www.cybergarage.org:8080/test.html", "blog/index.html", urlBuf);
   BOOST_CHECK(strcmp(urlBuf.c_str(), "http://www.cybergarage.org:8080/blog/index.html") == 0);
-    
-  // GetHostURL
-  std::string hostBuf;
-  GetHostURL("www.cybergarage.org", 8080, "/blog/index.html", hostBuf);
-  BOOST_CHECK(strcmp(hostBuf.c_str(), "http://www.cybergarage.org:8080/blog/index.html") == 0);
+}
+
+BOOST_AUTO_TEST_CASE(HTTPGetHostURL)
+{
+  // URLGetAbsoluteURL
+  std::string urlBuf;
+  URLGetAbsoluteURL("http://www.cybergarage.org:8080/test.html", "blog/index.html", urlBuf);
+  BOOST_CHECK(strcmp(urlBuf.c_str(), "http://www.cybergarage.org:8080/blog/index.html") == 0);
 }

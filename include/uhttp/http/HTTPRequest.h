@@ -124,11 +124,10 @@ public:
  public:
   ParameterList *getParameterList(ParameterList &paramList);
   
-  const char *getParameterValue(const std::string &name, std::string &paramBuf) {
+  bool getParameterValue(const std::string &name, std::string *paramBuf) {
     ParameterList paramList;
     getParameterList(paramList);
-    paramBuf = paramList.getValue(name);
-    return paramBuf.c_str();
+    return paramList.getParameterValue(name, paramBuf);
   }
 
   ////////////////////////////////////////////////

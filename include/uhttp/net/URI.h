@@ -135,6 +135,10 @@ public:
     return query.c_str();
   }
 
+  bool hasQuery() {
+    return (0 < query.length());
+  }
+
   void setFragment(const std::string &value) {
     fragment = value;
   }
@@ -143,6 +147,10 @@ public:
     return fragment.c_str();
   }
 
+  bool hasFragment() {
+    return (0 < fragment.length());
+  }
+  
   bool isValid();
   
   void print();

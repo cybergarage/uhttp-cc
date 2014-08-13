@@ -43,12 +43,13 @@ public:
     return NULL;
   }
 
-  const char *getValue(const std::string &name) 
+  bool getParameterValue(const std::string &name, std::string *value)
   {
     Parameter *param = getParameter(name);
     if (param == NULL)
-      return "";
-    return param->getValue();
+      return false;
+    *value = param->getValue();
+    return true;
   }
 };
 

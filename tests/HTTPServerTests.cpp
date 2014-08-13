@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(HTTPCotentRangeTest)
 
 #define UHTTP_HTTP_SERVER_TEST_LOOP_COUNT 100
 #define UHTTP_HTTP_SERVER_TEST_CONTENT "123456789abcedfghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
+#define UHTTP_HTTP_SERVER_TEST_PARAM_NAME "param"
 
 class HTTPSimpleRequestListener : public HTTPRequestListener
 {
@@ -144,20 +144,29 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
   BOOST_CHECK(httpServer.open(httpPort));
   BOOST_CHECK(httpServer.start());
 
-  HTTPRequest httpReq;
-  httpReq.setMethod(HTTP::GET);
-  char httpReqURL[64];
-  snprintf(httpReqURL, sizeof(httpReqURL), "http://127.0.0.1:%d", httpPort);
-  httpReq.setURL(httpReqURL);
-  //httpReq.print();
-  
   for (int n=0; n<UHTTP_HTTP_SERVER_TEST_LOOP_COUNT; n++) {
+    HTTPRequest httpReq;
+    httpReq.setMethod(HTTP::GET);
+    char httpReqURL[64];
+    snprintf(httpReqURL, sizeof(httpReqURL), "http://127.0.0.1:%d/?%s=%d", httpPort, UHTTP_HTTP_SERVER_TEST_PARAM_NAME, n);
+    httpReq.setURL(httpReqURL);
+    
+    string httpReqStr;
+    httpReq.toString(httpReqStr);
+    BOOST_MESSAGE(httpReqStr);
+    
     HTTPResponse *httpRes = httpReq.post();
     BOOST_CHECK_EQUAL(httpRes->getStatusCode(), 200);
     string httpResContent = httpRes->getContent();
     BOOST_CHECK(0 < httpResContent.length());
-    BOOST_CHECK_EQUAL(httpResContent.compare(UHTTP_HTTP_SERVER_TEST_CONTENT), 0);
-    //httpRes->print();
+
+    std::stringstream msgBuf;
+    msgBuf << UHTTP_HTTP_SERVER_TEST_CONTENT << n;
+    BOOST_CHECK_EQUAL(httpResContent.compare(msgBuf.str()), 0);
+    
+    string httpResStr;
+    httpRes->toString(httpResStr);
+    BOOST_MESSAGE(httpResStr);
   }
   
   BOOST_CHECK(httpServer.stop());
@@ -175,8 +184,12 @@ uHTTP::HTTP::StatusCode HTTPSimpleRequestListener::httpRequestRecieved(HTTPReque
     return httpReq->returnBadRequest();
   }
 
-  std::string msg = UHTTP_HTTP_SERVER_TEST_CONTENT;
+  string paramStr;
+  BOOST_CHECK(httpReq->getParameterValue(UHTTP_HTTP_SERVER_TEST_PARAM_NAME, &paramStr));
 
+  std::string msg = UHTTP_HTTP_SERVER_TEST_CONTENT;
+  msg.append(paramStr);
+  
   HTTPResponse httpRes;
   httpRes.setStatusCode(HTTP::OK_REQUEST);
   httpRes.setContent(msg);

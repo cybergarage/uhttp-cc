@@ -104,7 +104,8 @@ void uHTTP::URI::setString(const std::string &value) {
   
   if (shashIdx == (int)std::string::npos)
     return;
-  idx = shashIdx/* + 1*/;
+  
+  idx = shashIdx;
 
   // Path (Query/Fragment)
   path = uriStr.substr(idx, uriStr.length() - idx);
