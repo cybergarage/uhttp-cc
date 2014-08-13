@@ -40,6 +40,7 @@ const int SocketCore::DGRAM = 2;
 ////////////////////////////////////////////////
 
 static SocketList gAllSocketList;
+static Mutex      gSocketListMutex;
 
 size_t SocketCore::GetInstanceCount() {
   return gAllSocketList.size();
@@ -107,11 +108,15 @@ SocketCore::SocketCore() {
   setSocket(-1);
 #endif
   
+  gSocketListMutex.lock();
   gAllSocketList.add(this);
+  gSocketListMutex.unlock();
 }
 
 SocketCore::~SocketCore() {
+  gSocketListMutex.lock();
   gAllSocketList.remove(this);
+  gSocketListMutex.unlock();
 
   SocketCleanup();
 }
