@@ -35,6 +35,7 @@ const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
 HTTPServer::HTTPServer() {
   serverSock = NULL;
   threadSem = NULL;
+  messageQueue = NULL;
   setWorkerThreadMax(DEFAULT_SERVER_WORKER_THREAD_NUM);
 }
 
@@ -101,6 +102,7 @@ void HTTPServer::run() {
   if (isOpened() == false)
     return;
 
+  
   Socket *sock = NULL;
   
   while (isRunnable() == true) {
@@ -114,7 +116,7 @@ void HTTPServer::run() {
     }
     
     HTTPMessage *httpMsg = new HTTPMessage(sock);
-    this->messageQueue.pushMessage(httpMsg);
+    this->messageQueue->pushMessage(httpMsg);
     
     sock = NULL;
   }
@@ -131,6 +133,8 @@ void HTTPServer::run() {
 bool HTTPServer::start() {
   stop();
   
+  this->messageQueue = new HTTPMessageQueue();
+
   size_t workerThreadMax = getWorkerThreadMax();
   for (size_t n=0; n<workerThreadMax; n++) {
     HTTPWorkerThread *workerThread = new HTTPWorkerThread(this);
@@ -149,14 +153,19 @@ bool HTTPServer::start() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::stop() {
-  if (!Thread::stop())
-    return false;
+  if (this->messageQueue) {
+    delete this->messageQueue;
+    this->messageQueue = NULL;
+  }
   
   if (!workerThreadList.stop())
     return false;
   if (!workerThreadList.clear())
     return false;
-
+  
+  if (!Thread::stop())
+    return false;
+    
   return true;
 }
 
