@@ -8,8 +8,10 @@
 *
 ******************************************************************/
 
-#ifndef _CUTIL_THREAD_H_
-#define _CUTIL_THREAD_H_
+#ifndef _CHTTP_THREAD_H_
+#define _CHTTP_THREAD_H_
+
+#include <vector>
 
 #if defined(WIN32) && !defined(ITRON)
 #include <windows.h>
@@ -30,6 +32,7 @@
 #endif
 
 namespace uHTTP {
+  
 class Thread {
 #if defined(WIN32) && !defined(ITRON)
   HANDLE  hThread;
@@ -74,6 +77,22 @@ public:
     start();
     return true;
   }
+};
+
+  
+class ThreadList : public std::vector<Thread *> {
+    
+  public:
+    
+    ThreadList();
+    virtual ~ThreadList();
+    
+    void addThread(Thread *thread);
+    
+    bool start();
+    bool stop();
+    
+    void clear();
 };
 
 }
