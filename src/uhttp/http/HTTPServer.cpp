@@ -108,6 +108,9 @@ void HTTPServer::run() {
       continue;
     }
     
+    if (isRunnable() == false)
+      break;
+    
     ServerSocket *serverSock = getServerSock();
     if (serverSock == NULL) {
       delete sock;

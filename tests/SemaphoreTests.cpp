@@ -35,18 +35,33 @@ BOOST_AUTO_TEST_CASE(SemaphoreBasicTest) {
   delete sem;
 }
 
-BOOST_AUTO_TEST_CASE(SemaphoreMaxCountTest) {
-  for (size_t semMaxCount = 1; semMaxCount<10; semMaxCount++) {
-    Semaphore sem(semMaxCount);
-    
-    for (size_t n=0; n<semMaxCount; n++) {
-      BOOST_CHECK_EQUAL(sem.wait(), true);
-    }
-    
-    for (size_t n=0; n<semMaxCount; n++) {
-      BOOST_CHECK_EQUAL(sem.post(), true);
-    }
-  }
+BOOST_AUTO_TEST_CASE(SemaphoreWaitTest) {
+  const time_t TEST_WAIT_TIME = 1;
+  
+  Semaphore *sem = new Semaphore(0);
+  
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), false);
+  
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), false);
+  
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+  
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), false);
+  
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->post(), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+  BOOST_CHECK_EQUAL(sem->wait(TEST_WAIT_TIME), true);
+  
+  delete sem;
 }
 
 static const int SEMAPHORE_THREAD_TEST_LOOP_NUM = 5;

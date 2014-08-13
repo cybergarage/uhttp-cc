@@ -34,15 +34,17 @@ public:
   virtual ~MessageQueue();
   
   bool pushMessage(Message *message);
-  bool popMessage(Message **message);
+  bool waitMessage(Message **message, time_t timeoutSec = 0);
   
 private:
   
+  bool popMessage(Message **message);
   void clear();
 
 private:
-
-  Mutex mutex;
+  
+  Semaphore *sem;
+  Mutex *mutex;
 };
 
 }

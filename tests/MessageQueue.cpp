@@ -24,7 +24,7 @@ class TestMessage : public Message {
 
 public:
   
-  TestMessage(int value) {
+  TestMessage(int value = 0) {
     this->value = value;
   }
   
@@ -38,7 +38,19 @@ private:
 
 BOOST_AUTO_TEST_CASE(MessageQueueTest) {
   MessageQueue msgQueue;
+  
+  Message *popMsg;
+  BOOST_CHECK_EQUAL(msgQueue.waitMessage(&popMsg, 1), false);
+  
+  TestMessage *msg = new TestMessage();
+  BOOST_CHECK(msgQueue.pushMessage(msg));
+  
+  BOOST_CHECK_EQUAL(msgQueue.waitMessage(&popMsg), true);
+}
 
+BOOST_AUTO_TEST_CASE(MessageQueueLoopTest) {
+  MessageQueue msgQueue;
+  
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     TestMessage *msg = new TestMessage(n);
     BOOST_CHECK(msgQueue.pushMessage(msg));
@@ -46,7 +58,7 @@ BOOST_AUTO_TEST_CASE(MessageQueueTest) {
 
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
     Message *msg;
-    BOOST_CHECK(msgQueue.popMessage(&msg));
+    BOOST_CHECK(msgQueue.waitMessage(&msg));
     TestMessage *testMsg = dynamic_cast<TestMessage *>(msg);
     BOOST_CHECK(testMsg);
     int msgValue = testMsg->getValue();
