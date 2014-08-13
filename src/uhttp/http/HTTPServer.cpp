@@ -73,6 +73,7 @@ bool HTTPServer::close() {
   if (serverSock == NULL)
     return true;
   serverSock->close();
+  delete serverSock;
   serverSock = NULL;
   return true;
 }

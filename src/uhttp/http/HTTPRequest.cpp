@@ -249,14 +249,14 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
     if (postSock->connect(host, port) == false) {
       int socketErrno = postSock->getErrorCode();
       httpRes->setStatusCode((HTTP::INTERNAL_CLIENT_ERROR + socketErrno));
+      delete postSock;
+      postSock = NULL;
       return httpRes;
     }
   }  
 
   setHost(host, port);
-
   setConnection((isKeepAlive == true) ? HTTP::KEEP_ALIVE : HTTP::CLOSE);
-
 
   string header;
   postSock->send(getHeader(header));

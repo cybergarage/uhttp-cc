@@ -14,6 +14,7 @@
 #include <uhttp/util/StringUtil.h>
 #include <uhttp/util/TimeUtil.h>
 #include <uhttp/net/SocketUtil.h>
+#include <uhttp/util/Mutex.h>
 
 #include <stdio.h>
 
@@ -36,10 +37,14 @@ const int Socket::WINDOW_BUF_SIZE = 4096;
 //  Static methods
 ////////////////////////////////////////////////
 
-static ssize_t gSocketInstanceCount = 0;
+static SocketList gAllSocketList;
 
-ssize_t Socket::GetInstanceCount() {
-  return gSocketInstanceCount;
+size_t Socket::GetInstanceCount() {
+  return gAllSocketList.size();
+}
+
+SocketList *Socket::GetInstanceList() {
+  return &gAllSocketList;
 }
 
 ////////////////////////////////////////////////
@@ -47,14 +52,14 @@ ssize_t Socket::GetInstanceCount() {
 ////////////////////////////////////////////////
 
 Socket::Socket() {
-  gSocketInstanceCount++;
-  
   setType(STREAM);
   
 #if defined(ITRON)
   sendWinBuf = NULL;
   recvWinBuf = NULL;
 #endif
+  
+  gAllSocketList.add(this);
 }
 
 Socket::~Socket() {
@@ -65,7 +70,7 @@ Socket::~Socket() {
   delete[] recvWinBuf;
 #endif
 
-  gSocketInstanceCount--;
+  gAllSocketList.remove(this);
 }
 
 ////////////////////////////////////////////////
