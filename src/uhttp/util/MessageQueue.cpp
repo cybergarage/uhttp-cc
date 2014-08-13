@@ -20,6 +20,7 @@ uHTTP::MessageQueue::MessageQueue() {
 }
 
 uHTTP::MessageQueue::~MessageQueue() {
+  clear();
   delete this->sem;
   delete this->mutex;
 }
@@ -58,4 +59,14 @@ bool uHTTP::MessageQueue::waitMessage(Message **message, time_t timeoutSec) {
   this->mutex->unlock();
   
   return popSucces;
+}
+
+bool uHTTP::MessageQueue::clear() {
+  
+  Message *message;
+  while (popMessage(&message)) {
+    delete message;
+  }
+  
+  return true;
 }

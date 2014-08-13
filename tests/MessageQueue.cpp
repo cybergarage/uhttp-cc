@@ -48,6 +48,20 @@ BOOST_AUTO_TEST_CASE(MessageQueueTest) {
   BOOST_CHECK_EQUAL(msgQueue.waitMessage(&popMsg), true);
 }
 
+BOOST_AUTO_TEST_CASE(MessageQueueClearTest) {
+  MessageQueue msgQueue;
+  
+  TestMessage *msg = new TestMessage();
+  
+  BOOST_CHECK_EQUAL(msgQueue.size(), 0);
+  
+  BOOST_CHECK(msgQueue.pushMessage(msg));
+  BOOST_CHECK_EQUAL(msgQueue.size(), 1);
+  
+  BOOST_CHECK(msgQueue.clear());
+  BOOST_CHECK_EQUAL(msgQueue.size(), 0);
+}
+
 BOOST_AUTO_TEST_CASE(MessageQueueLoopTest) {
   MessageQueue msgQueue;
   

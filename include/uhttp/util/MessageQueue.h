@@ -36,10 +36,15 @@ public:
   bool pushMessage(Message *message);
   bool waitMessage(Message **message, time_t timeoutSec = 0);
   
+  size_t size() {
+    return std::queue<Message *>::size();
+  }
+  
+  bool clear();
+  
 private:
   
   bool popMessage(Message **message);
-  void clear();
 
 private:
   
