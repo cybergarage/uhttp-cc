@@ -98,7 +98,7 @@ private:
     return true;
   }
 
-  void clear()
+  bool clear()
   {
     if (!isWeekContainer()) {
       for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
@@ -109,6 +109,8 @@ private:
       }
     }
     std::vector<T*>::clear();
+    return true;
+    
   }
   
 private:
