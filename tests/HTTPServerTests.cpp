@@ -171,8 +171,8 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     BOOST_MESSAGE(httpResStr);
   }
   
-  BOOST_CHECK(httpServer.stop());
   BOOST_CHECK(httpServer.close());
+  BOOST_CHECK(httpServer.stop());
   
   SocketList *socketList = Socket::GetInstanceList();
   size_t socketListCnt = socketList->size();

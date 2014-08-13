@@ -72,9 +72,11 @@ bool HTTPServer::open(int port, const std::string &addr) {
 bool HTTPServer::close() {
   if (serverSock == NULL)
     return true;
+  
   serverSock->close();
   delete serverSock;
   serverSock = NULL;
+  
   return true;
 }
 
@@ -99,8 +101,10 @@ void HTTPServer::run() {
   if (isOpened() == false)
     return;
 
+  Socket *sock = NULL;
+  
   while (isRunnable() == true) {
-    Socket *sock = new Socket();
+    sock = new Socket();
     if (sock == NULL)
       continue;
     
@@ -109,11 +113,14 @@ void HTTPServer::run() {
       continue;
     }
     
-    if (isRunnable() == false)
-      break;
-
     HTTPMessage *httpMsg = new HTTPMessage(sock);
     this->messageQueue.pushMessage(httpMsg);
+    
+    sock = NULL;
+  }
+
+  if (sock) {
+      delete sock;;
   }
 }
 
