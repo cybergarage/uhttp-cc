@@ -103,6 +103,6 @@ const char *uHTTP::HTTP::StatusCode2String(int code) {
   if ((code % 100) == HTTP::INTERNAL_CLIENT_ERROR)
     return "Internal Client Error";
   
-   return "Unknown Error";
+  return "Unknown Error";
 }
 
