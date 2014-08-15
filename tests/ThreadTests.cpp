@@ -11,7 +11,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/thread.hpp>
 
-#include <uhttp/HTTP.h>
+#include <uhttp/util/Thread.h>
 
 using namespace uHTTP;
 

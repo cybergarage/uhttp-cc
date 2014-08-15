@@ -27,9 +27,22 @@ uHTTP::Semaphore::Semaphore(size_t maxCount) {
 
 uHTTP::Semaphore::~Semaphore() {
   cancel();
+
+#if defined(__APPLE__)
+#if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
+  dispatch_release(this->semId);
+#else
+  MPDeleteSemaphore(this->semId);
+#endif
+#else
+  sem_destroy(&semId);
+#endif
 }
 
 bool uHTTP::Semaphore::post() {
+  if (this->isCanceled)
+    return false;
+  
   bool isSuccess = true;
   
   this->semMutex.lock();
@@ -46,11 +59,13 @@ bool uHTTP::Semaphore::post() {
   isSuccess = (sem_post(&semId) == 0)  ? true : false;
 #endif
 
-
   return isSuccess;
 }
 
 bool uHTTP::Semaphore::wait(time_t timeoutSec) {
+  if (this->isCanceled)
+    return false;
+  
   bool isSuccess = true;
   
   this->semMutex.lock();
@@ -82,7 +97,10 @@ bool uHTTP::Semaphore::wait(time_t timeoutSec) {
   return isSuccess;
 }
 
-void uHTTP::Semaphore::cancel() {
+bool uHTTP::Semaphore::cancel() {
+  if (this->isCanceled)
+    return false;
+  
   this->isCanceled = true;
   
 #if defined(__APPLE__)
@@ -95,11 +113,8 @@ void uHTTP::Semaphore::cancel() {
     for (int n=0; n<(-this->setCount); n++)
       dispatch_semaphore_wait(this->semId, DISPATCH_TIME_FOREVER);
   }
-  dispatch_release(this->semId);
-#else
-  MPDeleteSemaphore(this->semId);
 #endif
-#else
-  sem_destroy(&semId);
 #endif
+
+  return true;
 }

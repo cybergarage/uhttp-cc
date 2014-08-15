@@ -10,10 +10,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <stdio.h>
-#include <time.h>
-
 #include <uhttp/util/MessageQueue.h>
+#include <uhttp/util/Thread.h>
+#include <uhttp/util/TimeUtil.h>
 
 using namespace std;
 using namespace uHTTP;
@@ -79,4 +78,33 @@ BOOST_AUTO_TEST_CASE(MessageQueueLoopTest) {
     BOOST_CHECK_EQUAL(n, msgValue);
     delete msg;
   }
+}
+
+class MessageCalcelThread : public Thread
+{
+public:
+  
+  MessageQueue *msgQueue;
+  
+  MessageCalcelThread(MessageQueue *msgQueue)
+  {
+    this->msgQueue = msgQueue;
+  }
+  
+  void run()
+  {
+    Wait(1000);
+    msgQueue->clear();
+  }
+};
+
+BOOST_AUTO_TEST_CASE(MessageCancelTest) {
+  MessageQueue msgQueue;
+
+  MessageCalcelThread msgCancelThread(&msgQueue);
+  msgCancelThread.start();
+  
+  Message *msg = NULL;
+  BOOST_CHECK_EQUAL(msgQueue.waitMessage(&msg), false);
+  BOOST_CHECK(!msg);
 }

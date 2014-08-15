@@ -63,6 +63,8 @@ bool uHTTP::MessageQueue::waitMessage(Message **message, time_t timeoutSec) {
 
 bool uHTTP::MessageQueue::clear() {
   
+  this->sem->cancel();
+  
   Message *message;
   while (popMessage(&message)) {
     delete message;
