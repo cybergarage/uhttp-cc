@@ -12,11 +12,11 @@
 #ifndef _CNET_DATAGRAMSOCKET_H_
 #define _CNET_DATAGRAMSOCKET_H_
 
-#include <uhttp/net/SocketImp.h>
+#include <uhttp/net/SocketCore.h>
 #include <uhttp/net/DatagramPacket.h>
 
 namespace uHTTP {
-class DatagramSocket : public SocketImp {
+class DatagramSocket : public SocketCore {
  public:
   DatagramSocket();
   DatagramSocket(int port, const std::string &bindAddr, bool bindAddrFlag = true, bool reuseAddrFlag = false);

@@ -45,7 +45,7 @@
 		2176F3F61535D2C100DE85B9 /* NetworkInterfaceList.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C41535D2C100DE85B9 /* NetworkInterfaceList.h */; };
 		2176F3F71535D2C100DE85B9 /* ServerSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C51535D2C100DE85B9 /* ServerSocket.h */; };
 		2176F3F81535D2C100DE85B9 /* Socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C61535D2C100DE85B9 /* Socket.h */; };
-		2176F3F91535D2C100DE85B9 /* SocketImp.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C71535D2C100DE85B9 /* SocketImp.h */; };
+		2176F3F91535D2C100DE85B9 /* SocketCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C71535D2C100DE85B9 /* SocketCore.h */; };
 		2176F3FA1535D2C100DE85B9 /* SocketInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C81535D2C100DE85B9 /* SocketInputStream.h */; };
 		2176F3FB1535D2C100DE85B9 /* SocketUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3C91535D2C100DE85B9 /* SocketUtil.h */; };
 		2176F3FC1535D2C100DE85B9 /* URI.h in Headers */ = {isa = PBXBuildFile; fileRef = 2176F3CA1535D2C100DE85B9 /* URI.h */; };
@@ -79,7 +79,7 @@
 		2176F4431535D2E400DE85B9 /* MulticastSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4201535D2E400DE85B9 /* MulticastSocket.cpp */; };
 		2176F4441535D2E400DE85B9 /* ServerSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4211535D2E400DE85B9 /* ServerSocket.cpp */; };
 		2176F4451535D2E400DE85B9 /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4221535D2E400DE85B9 /* Socket.cpp */; };
-		2176F4461535D2E400DE85B9 /* SocketImp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4231535D2E400DE85B9 /* SocketImp.cpp */; };
+		2176F4461535D2E400DE85B9 /* SocketCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4231535D2E400DE85B9 /* SocketCore.cpp */; };
 		2176F4471535D2E400DE85B9 /* SocketInputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4241535D2E400DE85B9 /* SocketInputStream.cpp */; };
 		2176F4481535D2E400DE85B9 /* SocketUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4251535D2E400DE85B9 /* SocketUtil.cpp */; };
 		2176F4491535D2E400DE85B9 /* URI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2176F4261535D2E400DE85B9 /* URI.cpp */; };
@@ -151,7 +151,7 @@
 		2176F3C41535D2C100DE85B9 /* NetworkInterfaceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkInterfaceList.h; sourceTree = "<group>"; };
 		2176F3C51535D2C100DE85B9 /* ServerSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSocket.h; sourceTree = "<group>"; };
 		2176F3C61535D2C100DE85B9 /* Socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Socket.h; sourceTree = "<group>"; };
-		2176F3C71535D2C100DE85B9 /* SocketImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketImp.h; sourceTree = "<group>"; };
+		2176F3C71535D2C100DE85B9 /* SocketCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketCore.h; sourceTree = "<group>"; };
 		2176F3C81535D2C100DE85B9 /* SocketInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketInputStream.h; sourceTree = "<group>"; };
 		2176F3C91535D2C100DE85B9 /* SocketUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketUtil.h; sourceTree = "<group>"; };
 		2176F3CA1535D2C100DE85B9 /* URI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URI.h; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		2176F4201535D2E400DE85B9 /* MulticastSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MulticastSocket.cpp; sourceTree = "<group>"; };
 		2176F4211535D2E400DE85B9 /* ServerSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerSocket.cpp; sourceTree = "<group>"; };
 		2176F4221535D2E400DE85B9 /* Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Socket.cpp; sourceTree = "<group>"; };
-		2176F4231535D2E400DE85B9 /* SocketImp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketImp.cpp; sourceTree = "<group>"; };
+		2176F4231535D2E400DE85B9 /* SocketCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketCore.cpp; sourceTree = "<group>"; };
 		2176F4241535D2E400DE85B9 /* SocketInputStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketInputStream.cpp; sourceTree = "<group>"; };
 		2176F4251535D2E400DE85B9 /* SocketUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = SocketUtil.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		2176F4261535D2E400DE85B9 /* URI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URI.cpp; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 				2176F3C41535D2C100DE85B9 /* NetworkInterfaceList.h */,
 				2176F3C51535D2C100DE85B9 /* ServerSocket.h */,
 				2176F3C61535D2C100DE85B9 /* Socket.h */,
-				2176F3C71535D2C100DE85B9 /* SocketImp.h */,
+				2176F3C71535D2C100DE85B9 /* SocketCore.h */,
 				2176F3C81535D2C100DE85B9 /* SocketInputStream.h */,
 				2176F3C91535D2C100DE85B9 /* SocketUtil.h */,
 				2176F3CA1535D2C100DE85B9 /* URI.h */,
@@ -396,7 +396,7 @@
 				2176F4201535D2E400DE85B9 /* MulticastSocket.cpp */,
 				2176F4211535D2E400DE85B9 /* ServerSocket.cpp */,
 				2176F4221535D2E400DE85B9 /* Socket.cpp */,
-				2176F4231535D2E400DE85B9 /* SocketImp.cpp */,
+				2176F4231535D2E400DE85B9 /* SocketCore.cpp */,
 				2176F4241535D2E400DE85B9 /* SocketInputStream.cpp */,
 				2176F4251535D2E400DE85B9 /* SocketUtil.cpp */,
 				2176F4261535D2E400DE85B9 /* URI.cpp */,
@@ -495,7 +495,7 @@
 				2176F3F61535D2C100DE85B9 /* NetworkInterfaceList.h in Headers */,
 				2176F3F71535D2C100DE85B9 /* ServerSocket.h in Headers */,
 				2176F3F81535D2C100DE85B9 /* Socket.h in Headers */,
-				2176F3F91535D2C100DE85B9 /* SocketImp.h in Headers */,
+				2176F3F91535D2C100DE85B9 /* SocketCore.h in Headers */,
 				2176F3FA1535D2C100DE85B9 /* SocketInputStream.h in Headers */,
 				2176F3FB1535D2C100DE85B9 /* SocketUtil.h in Headers */,
 				2176F3FC1535D2C100DE85B9 /* URI.h in Headers */,
@@ -597,7 +597,7 @@
 				21B42323184F84C300EFC1AF /* LoggerTargetList.cpp in Sources */,
 				21B42325184F86FA00EFC1AF /* Log.cpp in Sources */,
 				2176F4451535D2E400DE85B9 /* Socket.cpp in Sources */,
-				2176F4461535D2E400DE85B9 /* SocketImp.cpp in Sources */,
+				2176F4461535D2E400DE85B9 /* SocketCore.cpp in Sources */,
 				2176F4471535D2E400DE85B9 /* SocketInputStream.cpp in Sources */,
 				2176F4481535D2E400DE85B9 /* SocketUtil.cpp in Sources */,
 				2176F4491535D2E400DE85B9 /* URI.cpp in Sources */,

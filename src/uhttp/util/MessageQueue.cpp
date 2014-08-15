@@ -69,6 +69,6 @@ bool uHTTP::MessageQueue::clear() {
   while (popMessage(&message)) {
     delete message;
   }
-  
+    
   return true;
 }

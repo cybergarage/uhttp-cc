@@ -171,13 +171,13 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
     BOOST_MESSAGE(httpResStr);
   }
   
-  BOOST_CHECK(httpServer.stop());
   BOOST_CHECK(httpServer.close());
+  BOOST_CHECK(httpServer.stop());
   
   SocketList *socketList = Socket::GetInstanceList();
   size_t socketListCnt = socketList->size();
   for (size_t n=0; n<socketListCnt; n++) {
-    Socket *socket = socketList->get(n);
+    SocketCore *socket = socketList->get(n);
     const type_info& socketInfo = typeid(*socket);
     BOOST_MESSAGE("Opened Sockets [" << n << "] : " << socketInfo.name() << "(" << socket->getSocket()) << ")";
   }

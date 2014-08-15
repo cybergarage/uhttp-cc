@@ -50,7 +50,7 @@ private:
   bool isCanceled;
   
   Mutex semMutex;
-  int setCount;
+  int semCount;
 };
 
 }

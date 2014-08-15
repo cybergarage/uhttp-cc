@@ -11,7 +11,7 @@
 #include <uhttp/util/Semaphore.h>
 
 uHTTP::Semaphore::Semaphore(size_t maxCount) {
-  this->setCount = 0;
+  this->semCount = 0;
   this->isCanceled = false;
 
 #if defined(__APPLE__)
@@ -46,7 +46,7 @@ bool uHTTP::Semaphore::post() {
   bool isSuccess = true;
   
   this->semMutex.lock();
-  this->setCount++;
+  this->semCount++;
   this->semMutex.unlock();
 
 #if defined(__APPLE__)
@@ -69,7 +69,7 @@ bool uHTTP::Semaphore::wait(time_t timeoutSec) {
   bool isSuccess = true;
   
   this->semMutex.lock();
-  this->setCount--;
+  this->semCount--;
   this->semMutex.unlock();
   
 #if defined(__APPLE__)
@@ -100,17 +100,17 @@ bool uHTTP::Semaphore::wait(time_t timeoutSec) {
 bool uHTTP::Semaphore::cancel() {
   if (this->isCanceled)
     return false;
-  
+
   this->isCanceled = true;
   
 #if defined(__APPLE__)
 #if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
-  if (this->setCount < 0) {
-    for (int n=0; n<(-this->setCount); n++)
+  if (this->semCount < 0) {
+    for (int n=0; n<(-this->semCount); n++)
       dispatch_semaphore_signal(this->semId);
   }
-  if (0 < this->setCount) {
-    for (int n=0; n<(-this->setCount); n++)
+  if (0 < this->semCount) {
+    for (int n=0; n<(-this->semCount); n++)
       dispatch_semaphore_wait(this->semId, DISPATCH_TIME_FOREVER);
   }
 #endif

@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_SOCKETIMP_H_
-#define _CNET_SOCKETIMP_H_
+#ifndef _CNET_SOCKETCORE_H_
+#define _CNET_SOCKETCORE_H_
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
@@ -40,11 +40,17 @@ typedef int SOCKET;
 #endif
 #endif
 
+#include <uhttp/util/Vector.h>
+
+
 namespace uHTTP {
-class SocketImp {
+
+class SocketList;
+
+class SocketCore {
  public:
-  SocketImp();
-  ~SocketImp();
+  SocketCore();
+  virtual ~SocketCore();
 
   ////////////////////////////////////////////////
   // Static Members
@@ -58,8 +64,8 @@ class SocketImp {
   //  Static Methods
   ////////////////////////////////////////////////
 
- public:
-  static size_t GetInstanceCount();
+  static size_t      GetInstanceCount();
+  static SocketList *GetInstanceList();
 
   ////////////////////////////////////////////////
   //  Socket
@@ -165,6 +171,15 @@ protected:
 
 };
 
+class SocketList : public Vector<SocketCore> {
+  
+public:
+  
+  SocketList() {
+    setWeekContainer(true);
+  }
+};
+  
 void SocketStartup();
 void SocketCleanup();
 

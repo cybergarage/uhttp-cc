@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <uhttp/net/SocketImp.h>
+#include <uhttp/net/SocketCore.h>
 #include <uhttp/net/SocketUtil.h>
 
 using namespace uHTTP;

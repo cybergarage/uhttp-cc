@@ -12,17 +12,13 @@
 #ifndef _CNET_SOCKET_H_
 #define _CNET_SOCKET_H_
 
-#include <uhttp/util/Vector.h>
-#include <uhttp/net/SocketImp.h>
+#include <uhttp/net/SocketCore.h>
 
 namespace uHTTP {
 
 class SocketList;
   
-class Socket : public SocketImp {
- public:
-  static size_t      GetInstanceCount();
-  static SocketList *GetInstanceList();
+class Socket : public SocketCore {
   
  public:
   Socket();
@@ -54,15 +50,6 @@ private:
   void initWindowBuffer();
 #endif
   
-};
-
-class SocketList : public Vector<Socket> {
-    
-public:
-    
-  SocketList() {
-    setWeekContainer(true);
-  }
 };
 
 }
