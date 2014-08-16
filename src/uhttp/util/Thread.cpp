@@ -14,6 +14,8 @@
 
 using namespace uHTTP;
 
+#undef UHTTP_THREAD_DETACHED
+
 ////////////////////////////////////////////////
 // Thread Func
 ////////////////////////////////////////////////
@@ -123,11 +125,13 @@ bool Thread::start() {
     this->mutex.unlock();
     return false;
   }
+#if defined(UHTTP_THREAD_DETACHED)
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
     pthread_attr_destroy(&thread_attr);
     this->mutex.unlock();
     return false;
   }
+#endif
   if (pthread_create(&thread, &thread_attr, PosixThreadProc, this) != 0) {
     pthread_attr_destroy(&thread_attr);
     this->mutex.unlock();
@@ -167,7 +171,11 @@ bool Thread::stop() {
     b_ter_tsk(taskID);
 #else
     pthread_cancel(thread);
+#if defined(UHTTP_THREAD_DETACHED)
     pthread_detach(thread);
+#else
+    pthread_join(thread, NULL);
+#endif
 #endif
   }
   
