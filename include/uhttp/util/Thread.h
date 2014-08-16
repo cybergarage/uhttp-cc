@@ -11,8 +11,6 @@
 #ifndef _CHTTP_THREAD_H_
 #define _CHTTP_THREAD_H_
 
-#include <uhttp/util/Vector.h>
-
 #if defined(WIN32) && !defined(ITRON)
 #include <windows.h>
 #elif defined(BTRON)
@@ -31,30 +29,12 @@
 #include <signal.h>
 #endif
 
+#include <uhttp/util/Vector.h>
+#include <uhttp/util/Mutex.h>
+
 namespace uHTTP {
   
 class Thread {
-#if defined(WIN32) && !defined(ITRON)
-  HANDLE  hThread;
-  DWORD  threadID;
-#elif defined(BTRON)
-  W taskID;
-#elif defined(ITRON)
-  ER_ID  taskID;
-#elif defined(TENGINE) && !defined(PROCESS_BASE)
-  ID taskID;
-#elif defined(TENGINE) && defined(PROCESS_BASE)
-  WERR taskID;
-#else
-  pthread_t thread;
-#endif
-  bool runnableFlag;
-  void *runObject;
-
-private:
-
-  void setRunnableFlag(bool flag);
-
 public:
   Thread();
   virtual ~Thread();
@@ -77,6 +57,31 @@ public:
     start();
     return true;
   }
+
+private:
+  
+  void setRunnableFlag(bool flag);
+  
+private:
+
+#if defined(WIN32) && !defined(ITRON)
+  HANDLE  hThread;
+  DWORD  threadID;
+#elif defined(BTRON)
+  W taskID;
+#elif defined(ITRON)
+  ER_ID  taskID;
+#elif defined(TENGINE) && !defined(PROCESS_BASE)
+  ID taskID;
+#elif defined(TENGINE) && defined(PROCESS_BASE)
+  WERR taskID;
+#else
+  pthread_t thread;
+#endif
+  
+  Mutex mutex;
+  bool runnableFlag;
+  void *runObject;
 };
 
   

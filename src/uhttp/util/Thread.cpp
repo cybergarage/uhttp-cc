@@ -69,7 +69,8 @@ Thread::Thread() {
 }
 
 bool Thread::start() {
-  setRunnableFlag(true);
+  this->mutex.lock();
+  
 #if defined(WIN32) && !defined(ITRON)
   hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)this, 0, &threadID);
 #elif defined(BTRON)
@@ -77,22 +78,22 @@ bool Thread::start() {
   prc_sts(0, &pstate, NULL);
   taskID = cre_tsk(BTronTaskProc, pstate.priority, (W)this);
   if (taskID < 0) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
   if (wup_tsk(taskID) != 0) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
 #elif defined(ITRON)
   T_CTSK ctsk = {TA_HLNG,  (VP_INT)this, (FP)ITronTaskProc, 6, 512, NULL, NULL};
   taskID = acre_tsk(&ctsk);
   if (taskID < 0) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
   if (sta_tsk(taskID, 0) != E_OK) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     del_tsk(taskID);
     return FALSE;
   }
@@ -100,12 +101,12 @@ bool Thread::start() {
   T_CTSK ctsk = {(VP)this, TA_HLNG, TEngineTaskProc,10, 2048};
   taskID = tk_cre_tsk(&ctsk);
   if (taskID < E_OK) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
   if (tk_sta_tsk(taskID, 0) < E_OK) {
-    setRunnableFlag(false);
     tk_del_tsk(thread->taskID);
+    this->mutex.unlock();
     return false;
   }
 #elif defined(TENGINE) && defined(PROCESS_BASE)
@@ -113,27 +114,32 @@ bool Thread::start() {
   b_prc_sts(0, &pstate, NULL);
   taskID = b_cre_tsk(TEngineProcessBasedTaskProc, pstate.priority, (W)this);
   if (taskID < 0) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
 #else
   pthread_attr_t thread_attr;
   if (pthread_attr_init(&thread_attr) != 0) {
-    setRunnableFlag(false);
+    this->mutex.unlock();
     return false;
   }
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
-    setRunnableFlag(false);
     pthread_attr_destroy(&thread_attr);
+    this->mutex.unlock();
     return false;
   }
   if (pthread_create(&thread, &thread_attr, PosixThreadProc, this) != 0) {
-    setRunnableFlag(false);
     pthread_attr_destroy(&thread_attr);
+    this->mutex.unlock();
     return false;
   }
   pthread_attr_destroy(&thread_attr);
 #endif
+  
+  setRunnableFlag(true);
+  
+  this->mutex.unlock();
+  
   return true;
 }
 
@@ -142,6 +148,8 @@ Thread::~Thread() {
 }
 
 bool Thread::stop() {
+  this->mutex.lock();
+  
   if (isRunnable() == true) {
     setRunnableFlag(false);
 #if defined(WIN32) && !defined(ITRON)
@@ -162,6 +170,9 @@ bool Thread::stop() {
     pthread_detach(thread);
 #endif
   }
+  
+  this->mutex.unlock();
+  
   return true;
 }
 
