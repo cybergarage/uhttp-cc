@@ -42,7 +42,7 @@ class HTTPServerList : public Vector<HTTPServer>  {
   ////////////////////////////////////////////////
 
  public:
-  void close();
+  bool close();
   bool open(int port);
 
   ////////////////////////////////////////////////
@@ -50,8 +50,8 @@ class HTTPServerList : public Vector<HTTPServer>  {
   ////////////////////////////////////////////////
 
  public:
-  void start();
-  void stop();
+  bool start();
+  bool stop();
 };
 
 }

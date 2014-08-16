@@ -44,13 +44,17 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
 //  open/close
 ////////////////////////////////////////////////
 
-void HTTPServerList::close() {
+bool HTTPServerList::close() {
+  bool areAllSocketsClosed = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
-    server->close();
+    if (server->close() == false) {
+      areAllSocketsClosed = false;
+    }
   }
   clear();
+  return areAllSocketsClosed;
 }
 
 bool HTTPServerList::open(int port) {
@@ -81,19 +85,27 @@ bool HTTPServerList::open(int port) {
 //  start/stop
 ////////////////////////////////////////////////
 
-void HTTPServerList::start() {
+bool HTTPServerList::start() {
+  bool areAllSocketsStarted = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
-    server->start();
+    if (server->start() == false) {
+      areAllSocketsStarted = false;
+    }
   }
+  return areAllSocketsStarted;
 }
 
-void HTTPServerList::stop() {
+bool HTTPServerList::stop() {
+  bool areAllSocketsStopped = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
     HTTPServer *server = getHTTPServer(n);
-    server->stop();
+    if (server->stop() == false) {
+      areAllSocketsStopped = false;
+    }
   }
   close();
+  return areAllSocketsStopped;
 }
