@@ -34,7 +34,6 @@ const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
   
 HTTPServer::HTTPServer() {
   serverSock = NULL;
-  threadSem = NULL;
   messageQueue = NULL;
   setWorkerThreadMax(DEFAULT_SERVER_WORKER_THREAD_NUM);
 }

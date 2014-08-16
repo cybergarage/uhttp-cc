@@ -13,7 +13,6 @@
 
 #include <uhttp/net/ServerSocket.h>
 #include <uhttp/util/Thread.h>
-#include <uhttp/util/Semaphore.h>
 #include <uhttp/util/Listener.h>
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/http/HTTPRequestListener.h>
@@ -74,7 +73,7 @@ public:
   bool stop();
   
   ////////////////////////////////////////////////
-  //  Semaphore
+  //  Worker Threads
   ////////////////////////////////////////////////
   
   void setWorkerThreadMax(size_t value) {
@@ -91,25 +90,8 @@ public:
     return messageQueue->waitMessage(httpMsg, timeoutSec);
   }
   
-  ////////////////////////////////////////////////
-  //  Semaphore
-  ////////////////////////////////////////////////
-  
-  bool post() {
-    if (!this->threadSem)
-      return false;
-    return threadSem->post();
-  }
- 
-  bool wait(long timeoutSec) {
-    if (!this->threadSem)
-      return false;
-    return threadSem->wait(timeoutSec);
-  }
-
 private:
   
-  Semaphore *threadSem;
   ServerSocket *serverSock;
   ListenerList httpRequestListenerList;
   
