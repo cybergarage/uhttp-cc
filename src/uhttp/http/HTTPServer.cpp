@@ -101,7 +101,6 @@ bool HTTPServer::isOpened() {
 void HTTPServer::run() {
   if (isOpened() == false)
     return;
-
   
   Socket *sock = NULL;
   
@@ -153,9 +152,9 @@ bool HTTPServer::start() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::stop() {
+  
   if (this->messageQueue) {
-    delete this->messageQueue;
-    this->messageQueue = NULL;
+    this->messageQueue->clear();
   }
   
   if (!workerThreadList.stop())
@@ -166,6 +165,11 @@ bool HTTPServer::stop() {
   if (!Thread::stop())
     return false;
     
+  if (this->messageQueue) {
+    delete this->messageQueue;
+    this->messageQueue = NULL;
+  }
+  
   return true;
 }
 

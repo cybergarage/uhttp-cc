@@ -105,6 +105,7 @@ bool uHTTP::Semaphore::cancel() {
   
 #if defined(__APPLE__)
 #if defined(FRACTAL_USE_MACOSX_DISPATCH_SEMAPHORE)
+  this->semMutex.lock();
   if (this->semCount < 0) {
     for (int n=0; n<(-this->semCount); n++)
       dispatch_semaphore_signal(this->semId);
@@ -113,6 +114,8 @@ bool uHTTP::Semaphore::cancel() {
     for (int n=0; n<(-this->semCount); n++)
       dispatch_semaphore_wait(this->semId, DISPATCH_TIME_FOREVER);
   }
+  this->semCount = 0;
+  this->semMutex.unlock();
 #endif
 #endif
 

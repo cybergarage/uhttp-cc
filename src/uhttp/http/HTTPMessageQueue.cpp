@@ -39,3 +39,11 @@ bool uHTTP::HTTPMessageQueue::waitMessage(HTTPMessage **httpMsg, time_t timeoutS
   *httpMsg = dynamic_cast<HTTPMessage *>(msg);
   return (*httpMsg) ? true : false;
 }
+
+////////////////////////////////////////////////
+//  clear
+////////////////////////////////////////////////
+
+bool uHTTP::HTTPMessageQueue::clear() {
+  return MessageQueue::clear();
+}
