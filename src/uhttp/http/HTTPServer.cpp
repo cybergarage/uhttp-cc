@@ -35,7 +35,7 @@ const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
 HTTPServer::HTTPServer() {
   serverSock = NULL;
   messageQueue = NULL;
-  setWorkerThreadMax(DEFAULT_SERVER_WORKER_THREAD_NUM);
+  setWorkerCount(DEFAULT_SERVER_WORKER_THREAD_NUM);
 }
 
 HTTPServer::~HTTPServer() {
@@ -133,7 +133,7 @@ bool HTTPServer::start() {
   
   this->messageQueue = new HTTPMessageQueue();
 
-  size_t workerThreadMax = getWorkerThreadMax();
+  size_t workerThreadMax = getWorkerCount();
   for (size_t n=0; n<workerThreadMax; n++) {
     HTTPWorkerThread *workerThread = new HTTPWorkerThread(this);
     workerThreadList.add(workerThread);
