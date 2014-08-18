@@ -39,6 +39,17 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
     server->addRequestListener(listener);
   }
 }
+////////////////////////////////////////////////
+//  addRequestListener
+////////////////////////////////////////////////
+
+void HTTPServerList::setWorkerCount(size_t count) {
+  size_t nServers = size();
+  for (size_t n = 0; n < nServers; n++) {
+    HTTPServer *server = getHTTPServer(n);
+    server->setWorkerCount(count);
+  }
+}
 
 ////////////////////////////////////////////////
 //  open/close

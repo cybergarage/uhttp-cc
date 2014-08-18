@@ -36,6 +36,7 @@ class HTTPServerList : public Vector<HTTPServer>  {
   }
 
   void addRequestListener(HTTPRequestListener *listener);
+  void setWorkerCount(size_t count);
   
   ////////////////////////////////////////////////
   //  open/close
@@ -44,6 +45,7 @@ class HTTPServerList : public Vector<HTTPServer>  {
  public:
   bool close();
   bool open(int port);
+
 
   ////////////////////////////////////////////////
   //  start/stop

@@ -76,11 +76,11 @@ public:
   //  Worker Threads
   ////////////////////////////////////////////////
   
-  void setWorkerThreadMax(size_t value) {
-    this->workerThreadMax = value;
+  void setWorkerCount(size_t count) {
+    this->workerThreadMax = count;
   }
   
-  size_t getWorkerThreadMax() {
+  size_t getWorkerCount() {
     return this->workerThreadMax;
   }
   
