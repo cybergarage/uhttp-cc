@@ -19,15 +19,19 @@ uHTTP::ThreadList::~ThreadList() {
 }
 
 bool uHTTP::ThreadList::start() {
+  bool allThreadsStarted = true;
   for (ThreadList::iterator thread = begin(); thread != end(); thread++) {
-    (*thread)->start();
+    if ((*thread)->start() == false)
+      allThreadsStarted = false;
   }
-  return true;
+  return allThreadsStarted;
 }
 
 bool uHTTP::ThreadList::stop() {
+  bool allThreadsStopped = true;
   for (ThreadList::iterator thread = begin(); thread != end(); thread++) {
-    (*thread)->stop();
+    if ((*thread)->stop() == false)
+      allThreadsStopped = false;
   }
-  return true;
+  return allThreadsStopped;
 }
