@@ -246,16 +246,19 @@ HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader) {
 HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive) {
   if (postSock == NULL) {
     postSock = new Socket();
-    if (postSock->connect(host, port) == false) {
+    bool isConnected = postSock->connect(host, port);
+    bool isTimeoutSet = false;
+    if (isConnected) {
+      isTimeoutSet = postSock->setTimeout(HTTP::DEFAULT_TIMEOUT_SECOND);
+    }
+    if (!isConnected || !isTimeoutSet) {
       int socketErrno = postSock->getErrorCode();
-      httpRes->setStatusCode((HTTP::INTERNAL_CLIENT_ERROR + socketErrno));
-    
       delete postSock;
       postSock = NULL;
-      
+      httpRes->setStatusCode((HTTP::INTERNAL_CLIENT_ERROR + socketErrno));
       return httpRes;
     }
-  }  
+  }
 
   setHost(host, port);
   setConnection((isKeepAlive == true) ? HTTP::KEEP_ALIVE : HTTP::CLOSE);

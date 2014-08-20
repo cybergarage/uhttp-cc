@@ -85,7 +85,8 @@ bool HTTPServer::accept(uHTTP::Socket *socket) {
     return false;
   if (serverSock->accept(socket) == false)
     return false;
-  serverSock->setTimeout(HTTP::DEFAULT_TIMEOUT * 1000);
+  if (serverSock->setTimeout(HTTP::DEFAULT_TIMEOUT_SECOND) == false)
+    return false;
   return true;
 }
 

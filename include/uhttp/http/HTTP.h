@@ -88,7 +88,7 @@ const char STATUS_LINE_DELIM[] = " ";
 
 const int DEFAULT_PORT = 80;
 const int DEFAULT_CHUNK_SIZE = 512 * 1024;
-const int DEFAULT_TIMEOUT = 30;
+const int DEFAULT_TIMEOUT_SECOND = 30;
 
 ////////////////////////////////////////////////
 // URL
