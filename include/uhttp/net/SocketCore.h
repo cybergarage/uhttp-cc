@@ -15,6 +15,8 @@
 #  include "config.h"
 #endif
 
+#include <time.h>
+
 #if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
 #include <afxwin.h>
 #endif
@@ -153,7 +155,7 @@ protected:
 
  public:
   bool setReuseAddress(bool on);
-  void setTimeout(int timeout);
+  bool setTimeout(time_t timeout);
 
   #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   bool setMulticastInterface(const std::string &ifaddr);

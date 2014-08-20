@@ -211,11 +211,37 @@ bool SocketCore::setReuseAddress(bool flag) {
   return (sockOptRet == 0) ? true : false;
 }
 
-void SocketCore::setTimeout(int timeout) {
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
-  setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
-  setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
+bool SocketCore::setTimeout(time_t timeoutSec) {
+  int sockOptRet;
+
+#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+  sockOptRet = -1; /* TODO: Implement this */
+#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+  sockOptRet = -1; /* TODO: Implement this */
+#elif defined (ITRON)
+  /**** Not Implemented for NORTi ***/
+  sockOptRet = -1;
+#elif defined (WIN32)
+  timeval timeout;
+  timeout.tv_sec = sec;
+  timeout.tv_usec = 0;
+  
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
+  if (sockOptRet == 0) {
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
+  }
+#else
+  timeval timeout;
+  timeout.tv_sec = timeoutSec;
+  timeout.tv_usec = 0;
+  
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
+  if (sockOptRet == 0) {
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
+  }
 #endif
+  
+  return (sockOptRet == 0) ? true : false;
 }
 
 ////////////////////////////////////////////////
