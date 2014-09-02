@@ -177,8 +177,13 @@ bool Socket::accept(Socket *socket) {
   struct sockaddr_storage sockClientAddr;
   socklen_t nLength = sizeof(sockClientAddr);
   clientSock = ::accept(sock, (struct sockaddr *)&sockClientAddr, &nLength);
-  if (clientSock < 0)
+  if (0 < clientSock) {
+    int sockOpt = 1;
+    setsockopt(clientSock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
+  }
+  else {
     setErrorCode(errno);
+  }
 #endif
 
 #if defined(WIN32) && !defined(ITRON)
