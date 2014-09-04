@@ -71,6 +71,8 @@ bool HTTPServerList::close() {
 bool HTTPServerList::open(int port) {
   bool ret = true;
   size_t nHostAddrs = GetNHostAddresses();
+  if (nHostAddrs == 0)
+    return false;
   for (int n = 0; n < nHostAddrs; n++) {
     string buf;
     const char *bindAddr = GetHostAddress(n, buf);
