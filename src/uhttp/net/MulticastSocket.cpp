@@ -17,6 +17,8 @@
 #include <uhttp/net/HostInterface.h>
 #include <uhttp/util/StringUtil.h>
 
+#include <uhttp/util/Log.h>
+
 using namespace uHTTP;
 
 ////////////////////////////////////////////////
@@ -76,7 +78,7 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
     return false;
   // Thanks for Lorenzo Vicisano (10/24/04)
   if (getaddrinfo(ifAddr.c_str(), NULL, &hints, &ifAddrInfo) != 0) {
-    fprintf(stderr, "error %d: %s\n", 0, DecodeSocketError(GetSocketLastErrorCode()));
+    LogFatal("error %d: %s", 0, DecodeSocketError(GetSocketLastErrorCode()));
     freeaddrinfo(mcastAddrInfo);
     return false;
   }
@@ -94,12 +96,12 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
     SOCKET sock = getSocket();
     retCode = setsockopt(sock, IPPROTO_IPV6, IPV6_MULTICAST_IF, (char *)&scopeID, sizeof(scopeID));
     if (retCode != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
+      LogFatal("error %d: %s", ret, DecodeSocketError(GetSocketLastErrorCode()));
       ret = false;
     }
     retCode = setsockopt(sock, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char *)&ipv6mr, sizeof(ipv6mr));
     if (retCode != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
+      LogFatal("error %d: %s", ret, DecodeSocketError(GetSocketLastErrorCode()));
       ret = false;
     }
   }
@@ -113,12 +115,12 @@ bool MulticastSocket::joinGroup(const std::string &mcastAddr, const std::string 
     SOCKET sock = getSocket();
     retCode = setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, (char *)&ipmr.imr_interface.s_addr, sizeof(struct in_addr));
     if (retCode != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
+      LogFatal("error %d: %s", ret, DecodeSocketError(GetSocketLastErrorCode()));
       ret = false;
     }
     retCode = setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ipmr, sizeof(ipmr));
     if (retCode != 0) {
-      fprintf(stderr, "error %d: %s\n", ret, DecodeSocketError(GetSocketLastErrorCode()));
+      LogFatal("error %d: %s", ret, DecodeSocketError(GetSocketLastErrorCode()));
       ret = false;
     }
   }
