@@ -556,7 +556,11 @@ m4trace:configure.ac:149: -1- AH_OUTPUT([HAVE_LIBBOOST_FILESYSTEM_MT], [/* Defin
 @%:@undef HAVE_LIBBOOST_FILESYSTEM_MT])
 m4trace:configure.ac:149: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBBOOST_FILESYSTEM_MT])
 m4trace:configure.ac:149: -1- m4_pattern_allow([^HAVE_LIBBOOST_FILESYSTEM_MT$])
-m4trace:configure.ac:156: -1- AC_CONFIG_FILES([
+m4trace:configure.ac:156: -1- AH_OUTPUT([HAVE_LIBEDIT], [/* Define to 1 if you have the `edit\' library (-ledit). */
+@%:@undef HAVE_LIBEDIT])
+m4trace:configure.ac:156: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBEDIT])
+m4trace:configure.ac:156: -1- m4_pattern_allow([^HAVE_LIBEDIT$])
+m4trace:configure.ac:162: -1- AC_CONFIG_FILES([
 Makefile
 include/Makefile
 lib/Makefile
@@ -569,21 +573,21 @@ examples/fsserver/unix/Makefile
 tests/Makefile
 tests/unix/Makefile
 ])
-m4trace:configure.ac:156: -1- _m4_warn([obsolete], [AC_OUTPUT should be used without arguments.
+m4trace:configure.ac:162: -1- _m4_warn([obsolete], [AC_OUTPUT should be used without arguments.
 You should run autoupdate.], [])
-m4trace:configure.ac:156: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
-m4trace:configure.ac:156: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:156: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([LTLIBOBJS])
-m4trace:configure.ac:156: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([top_builddir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([top_build_prefix])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([srcdir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([abs_srcdir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([top_srcdir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([abs_top_srcdir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([builddir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([abs_builddir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([abs_top_builddir])
-m4trace:configure.ac:156: -1- AC_SUBST_TRACE([INSTALL])
+m4trace:configure.ac:162: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
+m4trace:configure.ac:162: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:162: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([LTLIBOBJS])
+m4trace:configure.ac:162: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([top_builddir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([top_build_prefix])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([srcdir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([abs_srcdir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([top_srcdir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([abs_top_srcdir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([builddir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([abs_builddir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([abs_top_builddir])
+m4trace:configure.ac:162: -1- AC_SUBST_TRACE([INSTALL])

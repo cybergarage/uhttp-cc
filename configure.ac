@@ -143,11 +143,17 @@ AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
 AM_CONDITIONAL(UNITTESTS, test "$build_tests" = "yes")
 if [ test "$build_tests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::unit_test_framework)])
-	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::system)])
-	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::thread)])
-	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP testss need boost::filesystem)])
+	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::unit_test_framework)])
+	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::system)])
+	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::thread)])
+	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::filesystem)])
 fi
+
+##############################
+# Checks libraries for examples
+##############################
+
+AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(uHTTP needs libedit)])
 
 ##############################
 # Makefiles

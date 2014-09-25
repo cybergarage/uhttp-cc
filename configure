@@ -5365,7 +5365,7 @@ _ACEOF
   LIBS="-lboost_unit_test_framework-mt $LIBS"
 
 else
-  as_fn_error $? "uHTTP testss need boost::unit_test_framework" "$LINENO" 5
+  as_fn_error $? "uHTTP tests need boost::unit_test_framework" "$LINENO" 5
 fi
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_system-mt" >&5
@@ -5406,7 +5406,7 @@ _ACEOF
   LIBS="-lboost_system-mt $LIBS"
 
 else
-  as_fn_error $? "uHTTP testss need boost::system" "$LINENO" 5
+  as_fn_error $? "uHTTP tests need boost::system" "$LINENO" 5
 fi
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_thread-mt" >&5
@@ -5447,7 +5447,7 @@ _ACEOF
   LIBS="-lboost_thread-mt $LIBS"
 
 else
-  as_fn_error $? "uHTTP testss need boost::thread" "$LINENO" 5
+  as_fn_error $? "uHTTP tests need boost::thread" "$LINENO" 5
 fi
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_filesystem-mt" >&5
@@ -5488,10 +5488,56 @@ _ACEOF
   LIBS="-lboost_filesystem-mt $LIBS"
 
 else
-  as_fn_error $? "uHTTP testss need boost::filesystem" "$LINENO" 5
+  as_fn_error $? "uHTTP tests need boost::filesystem" "$LINENO" 5
 fi
 
 fi
+
+##############################
+# Checks libraries for examples
+##############################
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
+$as_echo_n "checking for main in -ledit... " >&6; }
+if ${ac_cv_lib_edit_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ledit  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_edit_main=yes
+else
+  ac_cv_lib_edit_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_edit_main" >&5
+$as_echo "$ac_cv_lib_edit_main" >&6; }
+if test "x$ac_cv_lib_edit_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBEDIT 1
+_ACEOF
+
+  LIBS="-ledit $LIBS"
+
+else
+  as_fn_error $? "uHTTP needs libedit" "$LINENO" 5
+fi
+
 
 ##############################
 # Makefiles
