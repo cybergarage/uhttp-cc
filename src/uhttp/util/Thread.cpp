@@ -175,8 +175,8 @@ bool Thread::stop() {
       pthread_detach(thread);
 #else
       pthread_join(thread, NULL);
-    }
 #endif
+    }
 #endif
   }
   
