@@ -11,6 +11,8 @@
 #ifndef _CIO_READER_H_
 #define _CIO_READER_H_
 
+#include <stdio.h>
+
 namespace uHTTP {
 class Reader {
  public:

@@ -1,4 +1,3 @@
-
 /******************************************************************
 *
 * uHTTP for C++
@@ -179,7 +178,9 @@ bool Socket::accept(Socket *socket) {
   clientSock = ::accept(sock, (struct sockaddr *)&sockClientAddr, &nLength);
   if (0 < clientSock) {
     int sockOpt = 1;
+#if defined(HAVE_SO_NOSIGPIPE) || defined(__APPLE_CC__)
     setsockopt(clientSock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
+#endif
   }
   else {
     setErrorCode(errno);
