@@ -170,11 +170,12 @@ bool Thread::stop() {
 #elif defined(TENGINE) && defined(PROCESS_BASE)
     b_ter_tsk(taskID);
 #else
-    pthread_cancel(thread);
+    if (pthread_cancel(thread) == 0) {
 #if defined(UHTTP_THREAD_DETACHED)
-    pthread_detach(thread);
+      pthread_detach(thread);
 #else
-    pthread_join(thread, NULL);
+      pthread_join(thread, NULL);
+    }
 #endif
 #endif
   }
