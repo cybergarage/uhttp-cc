@@ -152,25 +152,30 @@ bool HTTPServer::start() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::stop() {
+
+  bool areAllOperationsSuccess = true;
   
   if (this->messageQueue) {
     this->messageQueue->clear();
   }
   
-  if (!workerThreadList.stop())
-    return false;
-  if (!workerThreadList.clear())
-    return false;
+  if (!workerThreadList.stop()) {
+    areAllOperationsSuccess = false;
+  }
+  if (!workerThreadList.clear()) {
+    areAllOperationsSuccess = false;
+  }
   
-  if (!Thread::stop())
-    return false;
+  if (!Thread::stop()) {
+    areAllOperationsSuccess = false;
+  }
     
   if (this->messageQueue) {
     delete this->messageQueue;
     this->messageQueue = NULL;
   }
   
-  return true;
+  return areAllOperationsSuccess;
 }
 
 ////////////////////////////////////////////////
