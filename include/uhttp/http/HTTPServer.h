@@ -85,9 +85,7 @@ public:
   }
   
   bool waitMessage(HTTPMessage **httpMsg, time_t timeoutSec = 0) {
-    if (!messageQueue)
-      return false;
-    return messageQueue->waitMessage(httpMsg, timeoutSec);
+    return messageQueue.waitMessage(httpMsg, timeoutSec);
   }
   
 private:
@@ -95,7 +93,7 @@ private:
   ServerSocket *serverSock;
   ListenerList httpRequestListenerList;
   
-  HTTPMessageQueue *messageQueue;
+  HTTPMessageQueue messageQueue;
   
   size_t workerThreadMax;
   ThreadList workerThreadList;

@@ -49,21 +49,30 @@ bool uHTTP::MessageQueue::popMessage(Message **message) {
 }
 
 bool uHTTP::MessageQueue::waitMessage(Message **message, time_t timeoutSec) {
+  if (!this->sem)
+    return false;
+  
   if (!this->sem->wait(timeoutSec))
     return false;
 
-  this->mutex->lock();
+  if (this->mutex) {
+    this->mutex->lock();
+  }
   
   bool popSucces = popMessage(message);
   
-  this->mutex->unlock();
+  if (this->mutex) {
+    this->mutex->unlock();
+  }
   
   return popSucces;
 }
 
 bool uHTTP::MessageQueue::clear() {
   
-  this->sem->cancel();
+  if (this->sem) {
+    this->sem->cancel();
+  }
   
   Message *message;
   while (popMessage(&message)) {
