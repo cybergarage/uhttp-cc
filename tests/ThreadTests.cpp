@@ -44,5 +44,6 @@ BOOST_AUTO_TEST_CASE(ThreadTests)
   }
   BOOST_CHECK_EQUAL(thread->value, THREAD_TEST_LOOP_NUM);
   BOOST_CHECK_EQUAL(thread->stop(), true);
+  BOOST_CHECK_EQUAL(thread->stop(), true);
   delete thread;
 }
