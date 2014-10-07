@@ -34,11 +34,27 @@ public:
   ~HTTPServer();
 
   ////////////////////////////////////////////////
-  //  open/close
+  // open/close
   ////////////////////////////////////////////////
   
   bool open(int port, const std::string &addr = "");
   bool close();
+  
+  ////////////////////////////////////////////////
+  // binding address and port
+  ////////////////////////////////////////////////
+  
+  const char *getAddress() {
+    if (!serverSock)
+      return "";
+    return serverSock->getLocalAddress();
+  }
+  
+  int getPort() {
+    if (!serverSock)
+      return 0;
+    return serverSock->getLocalPort();
+  }
   
   ////////////////////////////////////////////////
   //  httpRequest
@@ -105,7 +121,7 @@ private:
   uHTTP::ServerSocket *getServerSock() {
     return serverSock;
   }
-  
+
 };
 
 const char *GetServerName(std::string &buf);
