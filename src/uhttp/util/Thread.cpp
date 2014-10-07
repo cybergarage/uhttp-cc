@@ -14,7 +14,7 @@
 
 using namespace uHTTP;
 
-#undef UHTTP_THREAD_DETACHED
+#define UHTTP_THREAD_DETACHED 1
 
 ////////////////////////////////////////////////
 // Thread Func

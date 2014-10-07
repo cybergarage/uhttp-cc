@@ -161,6 +161,7 @@ bool HTTPServer::stop() {
   if (!workerThreadList.stop()) {
     areAllOperationsSuccess = false;
   }
+  
   if (!workerThreadList.clear()) {
     areAllOperationsSuccess = false;
   }
