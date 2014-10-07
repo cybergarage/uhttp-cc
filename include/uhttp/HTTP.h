@@ -30,6 +30,7 @@
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/http/HTTPResponse.h>
 #include <uhttp/http/HTTPServer.h>
+#include <uhttp/http/HTTPServerList.h>
 #include <uhttp/http/HTTPRequestListener.h>
 
 #endif
