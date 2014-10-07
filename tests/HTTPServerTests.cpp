@@ -30,8 +30,15 @@ using namespace uHTTP;
 
 class HTTPSimpleRequestListener : public HTTPRequestListener
 {
+public:
+  HTTPSimpleRequestListener();
+  
   uHTTP::HTTP::StatusCode httpRequestRecieved(HTTPRequest *httpReq);
 };
+
+HTTPSimpleRequestListener::HTTPSimpleRequestListener()
+{
+}
 
 uHTTP::HTTP::StatusCode HTTPSimpleRequestListener::httpRequestRecieved(HTTPRequest *httpReq)
 {
@@ -131,9 +138,8 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServerList)
   httpServerList.addRequestListener(&httpSimpleReqListener);
   
   Random rand (1000, 10000);
-  int httpPort = rand.rand();
   
-  BOOST_CHECK(httpServerList.open(httpPort));
+  BOOST_CHECK(httpServerList.open(rand.rand()));
   BOOST_CHECK(httpServerList.start());
   
   size_t htttpServerCount = httpServerList.size();
@@ -141,7 +147,8 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServerList)
   for (size_t n= 0; n < htttpServerCount; n++) {
     HTTPServer *httpServer = httpServerList.getHTTPServer(n);
     const std::string ifaddr = httpServer->getAddress();
-    //RequestToHTTPServer(ifaddr, httpPort);
+    int httpPort = httpServer->getPort();
+    RequestToHTTPServer(ifaddr, httpPort);
   }
   
   BOOST_CHECK(httpServerList.close());
