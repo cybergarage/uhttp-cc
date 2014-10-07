@@ -131,6 +131,12 @@ void HTTPServer::run() {
 bool HTTPServer::start() {
   stop();
 
+  bool areAllOperationsSuccess = true;
+  
+  if (messageQueue.reset() == false) {
+    areAllOperationsSuccess = false;
+  }
+  
   size_t workerThreadMax = getWorkerCount();
   for (size_t n=0; n<workerThreadMax; n++) {
     HTTPWorkerThread *workerThread = new HTTPWorkerThread(this);

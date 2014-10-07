@@ -133,13 +133,14 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServerList)
 {
   BOOST_CHECK_EQUAL(Socket::GetInstanceCount(), 0);
   
+  Random rand (1000, 10000);
+  
   HTTPServerList httpServerList;
+  BOOST_CHECK(httpServerList.open(rand.rand()));
+
   HTTPSimpleRequestListener httpSimpleReqListener;
   httpServerList.addRequestListener(&httpSimpleReqListener);
   
-  Random rand (1000, 10000);
-  
-  BOOST_CHECK(httpServerList.open(rand.rand()));
   BOOST_CHECK(httpServerList.start());
   
   size_t htttpServerCount = httpServerList.size();

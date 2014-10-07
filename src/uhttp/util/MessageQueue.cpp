@@ -68,6 +68,20 @@ bool uHTTP::MessageQueue::waitMessage(Message **message, time_t timeoutSec) {
   return popSucces;
 }
 
+bool uHTTP::MessageQueue::reset() {
+  
+  bool areAllOperationSuccess = true;
+  if (clear() == false) {
+    areAllOperationSuccess = false;
+  }
+  
+  if (this->sem->reset() == false) {
+    areAllOperationSuccess = false;
+  }
+
+  return areAllOperationSuccess;
+}
+
 bool uHTTP::MessageQueue::clear() {
   
   if (this->sem) {

@@ -40,6 +40,7 @@ public:
     return std::queue<Message *>::size();
   }
   
+  bool reset();
   bool clear();
   
 private:

@@ -42,6 +42,7 @@ class Semaphore {
   bool post();
   bool wait(time_t timeoutSec = 0);
 
+  bool reset();
   bool cancel();
   
 private:

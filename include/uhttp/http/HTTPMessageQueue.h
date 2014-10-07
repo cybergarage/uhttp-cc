@@ -45,6 +45,7 @@ public:
   
   bool pushMessage(HTTPMessage *httpMsg);
   bool waitMessage(HTTPMessage **httpMsg, time_t timeoutSec = 0);
+  bool reset();
   bool clear();
 };
 
