@@ -72,7 +72,7 @@ public:
     HTTP::StatusCode lastStatusCode = HTTP::INTERNAL_SERVER_ERROR;
     size_t listenerSize = httpRequestListenerList.size();
     for (size_t n = 0; n < listenerSize; n++) {
-      HTTPRequestListener *listener = (HTTPRequestListener *)httpRequestListenerList.get(n);
+      HTTPRequestListener *listener = httpRequestListenerList.get(n);
       lastStatusCode = listener->httpRequestRecieved(httpReq);
       if (lastStatusCode == HTTP::OK_REQUEST)
         break;
@@ -107,7 +107,7 @@ public:
 private:
   
   ServerSocket *serverSock;
-  ListenerList httpRequestListenerList;
+  ListenerList<HTTPRequestListener> httpRequestListenerList;
   
   HTTPMessageQueue messageQueue;
   

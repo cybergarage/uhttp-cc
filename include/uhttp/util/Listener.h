@@ -19,12 +19,14 @@ class Listener {
 public:
     Listener() {
     }
+    virtual ~Listener() {
+    }
 };
 
-class ListenerList : public Vector<Listener> {
+template <typename T> class ListenerList : public Vector<T> {
  public:
   ListenerList() {
-    setWeekContainer(true);
+    Vector<T>::setWeekContainer(true);
   }
 
 };
