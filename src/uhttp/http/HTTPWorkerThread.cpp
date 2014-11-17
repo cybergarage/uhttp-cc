@@ -36,7 +36,7 @@ void HTTPWorkerThread::run() {
   while (isRunnable()) {
     HTTPMessage *httpMsg;
     if (!httpServer->waitMessage(&httpMsg))
-      continue;
+      break;
     
     Socket *clientSock = httpMsg->getSocket();
     if (!clientSock) {
