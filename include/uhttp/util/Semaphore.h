@@ -11,6 +11,8 @@
 #ifndef _UHTTP_UTIL_SEMAPHORE_H_
 #define _UHTTP_UTIL_SEMAPHORE_H_
 
+#include <time.h>
+
 #if defined(__APPLE__)
 #include <mach/mach.h>
 #include <mach/semaphore.h>
@@ -19,9 +21,8 @@
 #include <semaphore.h>
 #endif
 
-#include <uhttp/util/Mutex.h>
-
 namespace uHTTP {
+
 #if defined(__APPLE__)
 typedef semaphore_t SemaphoreId;
 #else
