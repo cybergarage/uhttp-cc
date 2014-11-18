@@ -52,8 +52,8 @@ BOOST_AUTO_TEST_CASE(SocketAddrInfoTests)
 
 void SocketConnectionHttpServerTest(void)
 {
-    const char *CG_HOST_IPADDR = "www.cybergarage.org";
-    const char *TEST_HTTP_METHOD = "GET /index.html HTTP/1.0";
+  const char *CG_HOST_IPADDR = "www.cybergarage.org";
+  const char *TEST_HTTP_METHOD = "GET /index.html HTTP/1.0";
 
   Socket *sock;
   ssize_t sentLen;
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(SocketHttpTests)
 
 BOOST_AUTO_TEST_CASE(SocketHttpRepeatTests)
 {
-  size_t socketRepeatCnt = 1000;
+  size_t socketRepeatCnt = 100;
 #if defined(HAVE_SYS_RESOURCE_H)
   struct rlimit resLimit;
   BOOST_CHECK_EQUAL(getrlimit(RLIMIT_NOFILE, &resLimit), 0);
