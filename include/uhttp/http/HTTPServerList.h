@@ -36,6 +36,8 @@ class HTTPServerList : public Vector<HTTPServer>  {
   }
 
   void addRequestListener(HTTPRequestListener *listener);
+  void removeRequestListener(HTTPRequestListener *listener);
+  
   void setWorkerCount(size_t count);
   
   ////////////////////////////////////////////////
