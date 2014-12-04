@@ -15,22 +15,31 @@
 #include <string>
 
 namespace uHTTP {
+  
 namespace HTTP {
-const int CONTINUE = 100;
-const int OK_REQUEST = 200;
-// Thanks for Brent Hills (10/20/04)
-const int PARTIAL_CONTENT = 206;
-const int BAD_REQUEST = 400;
-const int NOT_FOUND = 404;
-const int PRECONDITION_FAILED = 412;
-// Thanks for Brent Hills (10/20/04)
-const int INVALID_RANGE =416;
-const int INTERNAL_SERVER_ERROR = 500;
-const int INTERNAL_CLIENT_ERROR = 600;
+  // 1xx Informational
+  const int CONTINUE = 100;
+  
+  // 2xx Success
+  const int OK_REQUEST = 200;
+  const int PARTIAL_CONTENT = 206;
+
+  // 4xx Client Error
+  const int BAD_REQUEST = 400;
+  const int NOT_FOUND = 404;
+  const int PRECONDITION_FAILED = 412;
+  const int INVALID_RANGE =416;
+  
+  // 5xx Server Error
+  const int INTERNAL_SERVER_ERROR = 500;
+  
+  // xxx uHTTP Extentions
+  const int PROCESSING = 102;
+  const int INTERNAL_CLIENT_ERROR = 600;
 }
 
 namespace HTTP {
-const char *StatusCode2String(int code);
+  const char *StatusCode2String(int code);
 }
 
 class HTTPStatus  {
