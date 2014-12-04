@@ -44,9 +44,8 @@ bool HTTPSocket::open() {
 }
 
 bool HTTPSocket::close() {
-  Socket *sock = getSocket();
-  if (sock != NULL) {
-    sock->close();
+  if (socket != NULL) {
+    delete socket;
     setSocket(NULL);
   }
   return true;

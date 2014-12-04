@@ -29,7 +29,7 @@ using namespace uHTTP;
 
 HTTPRequest::HTTPRequest() {
   httpSocket = NULL;
-  postSock = NULL;
+  postSocket = NULL;
   requestPort = -1;
 
   setVersion(HTTP::VER_11);
@@ -43,14 +43,18 @@ HTTPRequest::HTTPRequest() {
 
 HTTPRequest::HTTPRequest(HTTPSocket *httpSock) : HTTPPacket(httpSock) {
   setSocket(httpSock);
-  postSock = NULL;
+  postSocket = NULL;
   requestPort = -1;
 }
 
 HTTPRequest::~HTTPRequest() {
-  if (postSock) {
-    delete postSock;
-    postSock = NULL;
+  if (httpSocket) {
+    delete httpSocket;
+    httpSocket = NULL;
+  }
+  if (postSocket) {
+    delete postSocket;
+    postSocket = NULL;
   }
 }
 
@@ -244,17 +248,17 @@ HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader) {
 ////////////////////////////////////////////////
 
 HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive) {
-  if (postSock == NULL) {
-    postSock = new Socket();
-    bool isConnected = postSock->connect(host, port);
+  if (postSocket == NULL) {
+    postSocket = new Socket();
+    bool isConnected = postSocket->connect(host, port);
     bool isTimeoutSet = false;
     if (isConnected) {
-      isTimeoutSet = postSock->setTimeout(HTTP::DEFAULT_TIMEOUT_SECOND);
+      isTimeoutSet = postSocket->setTimeout(HTTP::DEFAULT_TIMEOUT_SECOND);
     }
     if (!isConnected || !isTimeoutSet) {
-      int socketErrno = postSock->getErrorCode();
-      delete postSock;
-      postSock = NULL;
+      int socketErrno = postSocket->getErrorCode();
+      delete postSocket;
+      postSocket = NULL;
       httpRes->setStatusCode((HTTP::INTERNAL_CLIENT_ERROR + socketErrno));
       return httpRes;
     }
@@ -264,8 +268,8 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
   setConnection((isKeepAlive == true) ? HTTP::KEEP_ALIVE : HTTP::CLOSE);
 
   string header;
-  postSock->send(getHeader(header));
-  postSock->send(HTTP::CRLF);
+  postSocket->send(getHeader(header));
+  postSocket->send(HTTP::CRLF);
   
   bool isChunkedRequest = isChunked();
 
@@ -278,25 +282,25 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
     if (isChunkedRequest == true) {
       string chunSizeBuf;
       Sizet2HexString(strlen(content), chunSizeBuf);
-      postSock->send(chunSizeBuf.c_str());
-      postSock->send(HTTP::CRLF);
+      postSocket->send(chunSizeBuf.c_str());
+      postSocket->send(HTTP::CRLF);
     }
-    postSock->send(content);
+    postSocket->send(content);
     if (isChunkedRequest == true)
-      postSock->send(HTTP::CRLF);
+      postSocket->send(HTTP::CRLF);
   }
 
   if (isChunkedRequest == true) {
-    postSock->send("0");
-    postSock->send(HTTP::CRLF);
+    postSocket->send("0");
+    postSocket->send(HTTP::CRLF);
   }
 
-  httpRes->set(postSock, isHeadRequest());      
+  httpRes->set(postSocket, isHeadRequest());      
 
   if (isKeepAlive == false) {
-    postSock->close();
-    delete postSock;
-    postSock = NULL;
+    postSocket->close();
+    delete postSocket;
+    postSocket = NULL;
   }
 
   return httpRes;

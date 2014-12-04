@@ -29,8 +29,8 @@ class HTTPRequest : public HTTPPacket {
   int requestPort;
   
   HTTPSocket *httpSocket;
-
-  Socket *postSock;
+  Socket *postSocket;
+  
   HTTPResponse httpRes;
 
 public:

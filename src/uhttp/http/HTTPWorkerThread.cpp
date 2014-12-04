@@ -65,18 +65,19 @@ void HTTPWorkerThread::run() {
       delete clientSock;
       continue;
     }
-    
     httpReq->setSocket(httpSock);
+
+    HTTP::StatusCode statusCode;
     while (httpReq->read() == true) {
-      httpServer->performRequestListener(httpReq);
+      statusCode = httpServer->performRequestListener(httpReq);
       if (httpReq->isKeepAlive() == false)
         break;
     }
-    httpSock->close();
     
-    delete httpReq;
-    delete httpSock;
+    if (statusCode != HTTP::PROCESSING) {
+      delete httpReq;
+    }
+
     delete httpMsg;
-    delete clientSock;
   }
 }
