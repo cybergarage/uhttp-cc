@@ -25,28 +25,4 @@ BOOST_AUTO_TEST_CASE(NetworkInterfaceTests)
   
   size_t ifCnt = ifList.size();
   BOOST_CHECK(0 < ifCnt);
-    
 }
-
-BOOST_AUTO_TEST_CASE(SocketIPV6Tests)
-{
-    /*
-  NetworkInterfaceList ifList;
-  GetHostAddresses(ifList);
-  
-  int ifCnt = ifList.size();
-  BOOST_CHECK(0 < ifCnt);
-    
-  string ipv6if;
-  for (int n=0; n<ifCnt; n++) {
-    NetworkInterface *netif = ifList.getNetworkInterface(n);
-    const char *ifaddr = netif->getAddress();
-    if (IsIPv6Address(ifaddr) == false)
-      continue;
-    ipv6if = ifaddr;
-  }
-    
-  BOOST_CHECK(0 < ipv6if.size());
-     */
-}
-
