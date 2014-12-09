@@ -87,22 +87,42 @@ bool uHTTP::HTTP::IsStatusCodeSuccess(int statCode) {
 ////////////////////////////////////////////////
 //  StatusCode2String
 ////////////////////////////////////////////////
-  
-const char *uHTTP::HTTP::StatusCode2String(int code) {
-  switch (code) {
-  case HTTP::CONTINUE: return "Continue";
-  case HTTP::OK_REQUEST: return "OK";
-  case HTTP::PARTIAL_CONTENT: return "Partial Content";
-  case HTTP::BAD_REQUEST: return "Bad Request";
-  case HTTP::NOT_FOUND: return "Not Found";
-  case HTTP::PRECONDITION_FAILED: return "Precondition Failed";
-  case HTTP::INVALID_RANGE: return "Invalid Range";
-  case HTTP::INTERNAL_SERVER_ERROR: return "Internal Server Error";
+
+const std::string &uHTTP::HTTP::StatusCode2String(int code) {
+  int errType = code - (code % 100);
+
+  if (errType == 100) {
+    switch (code) {
+      case PROCESSING: return PROCESSING_STRING;
+    }
+    return CONTINUE_STRING;
+  }
+
+  if (errType == 200) {
+    switch (code) {
+      case ACCEPTED: return ACCEPTED_STRING;
+      case NO_CONTENT: return NO_CONTENT_STRING;
+      case PARTIAL_CONTENT: return PARTIAL_CONTENT_STRING;
+    }
+    return OK_REQUEST_STRING;
   }
   
-  if ((code % 100) == HTTP::INTERNAL_CLIENT_ERROR)
-    return "Internal Client Error";
+  if (errType == 400) {
+    switch (code) {
+      case NOT_FOUND: return NOT_FOUND_STING;
+      case PRECONDITION_FAILED: return PRECONDITION_FAILED_STING;
+      case INVALID_RANGE: return INVALID_RANGE_STING;
+    }
+    return BAD_REQUEST_STRING;
+  }
   
-  return "Unknown Error";
+  if (errType == 500) {
+    return INTERNAL_SERVER_ERROR_STRING;
+  }
+  
+  if (errType == 600) {
+    return INTERNAL_CLIENT_ERROR_STRING;
+  }
+  
+  return UNKOWN_ERROR_STRING;
 }
-

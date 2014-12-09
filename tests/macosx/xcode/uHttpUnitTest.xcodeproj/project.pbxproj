@@ -24,6 +24,7 @@
 		21AE154A153C2A4600F47C5C /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F497E61536ABB50035F09A /* libuhttp++.a */; };
 		21B4231B184F848800EFC1AF /* LoggerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4231A184F848800EFC1AF /* LoggerTests.cpp */; };
 		21C01C40153DE18F00547B13 /* UriTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C01C3F153DE18F00547B13 /* UriTests.cpp */; };
+		21DE9E8C1A37B6FD008AF666 /* HTTPStatusTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE9E8B1A37B6FD008AF666 /* HTTPStatusTests.cpp */; };
 		21F497DD1536AB430035F09A /* HTTPTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497DC1536AB430035F09A /* HTTPTestMain.cpp */; };
 		21F497E81536AC270035F09A /* HTTPClientTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F497E71536AC270035F09A /* HTTPClientTests.cpp */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		21AA0415183E0F44006B0406 /* HTTPRequestTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPRequestTests.cpp; path = ../../HTTPRequestTests.cpp; sourceTree = "<group>"; };
 		21B4231A184F848800EFC1AF /* LoggerTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoggerTests.cpp; path = ../../LoggerTests.cpp; sourceTree = "<group>"; };
 		21C01C3F153DE18F00547B13 /* UriTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UriTests.cpp; path = ../../UriTests.cpp; sourceTree = "<group>"; };
+		21DE9E8B1A37B6FD008AF666 /* HTTPStatusTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPStatusTests.cpp; path = ../../HTTPStatusTests.cpp; sourceTree = "<group>"; };
 		21F497DC1536AB430035F09A /* HTTPTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPTestMain.cpp; path = ../../HTTPTestMain.cpp; sourceTree = "<group>"; };
 		21F497DE1536ABB40035F09A /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
 		21F497E71536AC270035F09A /* HTTPClientTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HTTPClientTests.cpp; path = ../../HTTPClientTests.cpp; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				21F497E71536AC270035F09A /* HTTPClientTests.cpp */,
 				21F497DC1536AB430035F09A /* HTTPTestMain.cpp */,
 				21805DF0153ED21A005EC7D6 /* HTTPServerTests.cpp */,
+				21DE9E8B1A37B6FD008AF666 /* HTTPStatusTests.cpp */,
 			);
 			indentWidth = 2;
 			name = Sources;
@@ -226,6 +229,7 @@
 				210D551C1986A4770008D080 /* SemaphoreTests.cpp in Sources */,
 				21805DF1153ED21A005EC7D6 /* HTTPServerTests.cpp in Sources */,
 				21B4231B184F848800EFC1AF /* LoggerTests.cpp in Sources */,
+				21DE9E8C1A37B6FD008AF666 /* HTTPStatusTests.cpp in Sources */,
 				214CE3831564E28C00115E8A /* StringTests.cpp in Sources */,
 				214CE3851564E32800115E8A /* ThreadTests.cpp in Sources */,
 				21092E31196D011E000E53FB /* VectorTests.cpp in Sources */,
