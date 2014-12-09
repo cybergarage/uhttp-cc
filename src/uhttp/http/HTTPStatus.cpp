@@ -75,10 +75,10 @@ void HTTPStatus::set(const std::string &lineStr) {
 }
 
 ////////////////////////////////////////////////
-//  Status
+//  IsStatusCodeSuccess
 ////////////////////////////////////////////////
   
-bool HTTPStatus::isSuccessful(int statCode) {
+bool uHTTP::HTTP::IsStatusCodeSuccess(int statCode) {
   if (200 <= statCode && statCode < 300)
     return true;
   return false;

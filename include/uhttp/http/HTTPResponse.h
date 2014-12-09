@@ -47,7 +47,7 @@ class HTTPResponse : public HTTPPacket {
   }
   
   bool isSuccessful() {
-    return HTTPStatus::isSuccessful(getStatusCode());
+    return HTTP::IsStatusCodeSuccess(getStatusCode());
   }
 
   const char *getStatusLineString(std::string &statusLineBuf);

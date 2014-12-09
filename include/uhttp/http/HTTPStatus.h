@@ -22,6 +22,7 @@ namespace HTTP {
   
   // 2xx Success
   const int OK_REQUEST = 200;
+  const int ACCEPTED = 202;
   const int PARTIAL_CONTENT = 206;
 
   // 4xx Client Error
@@ -39,6 +40,7 @@ namespace HTTP {
 }
 
 namespace HTTP {
+  bool IsStatusCodeSuccess(int code);
   const char *StatusCode2String(int code);
 }
 
@@ -90,10 +92,9 @@ class HTTPStatus  {
   ////////////////////////////////////////////////
   
  public:
-  static bool isSuccessful(int statCode);
 
   bool isSuccessful() {
-    return isSuccessful(getStatusCode());
+    return HTTP::IsStatusCodeSuccess(getStatusCode());
   }
 
   ////////////////////////////////////////////////
