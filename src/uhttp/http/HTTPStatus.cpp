@@ -17,7 +17,6 @@
 #include <uhttp/util/StringUtil.h>
 
 using namespace uHTTP;
-using namespace uHTTP;
 
 ////////////////////////////////////////////////
 //  Constructor
