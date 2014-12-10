@@ -70,10 +70,10 @@ void HTTPWorkerThread::run() {
     HTTP::StatusCode statusCode;
     while (httpReq->read() == true) {
       statusCode = httpServer->performRequestListener(httpReq);
-      if (statusCode != HTTP::PROCESSING) {
-        if (httpReq->isKeepAlive() == false)
+      if (statusCode == HTTP::PROCESSING)
+        break;
+      if (httpReq->isKeepAlive() == false)
           break;
-      }
     }
     
     if (statusCode != HTTP::PROCESSING) {
