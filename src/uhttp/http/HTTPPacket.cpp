@@ -277,6 +277,12 @@ bool HTTPPacket::set(uHTTP::Socket *sock, bool onlyHeaders) {
   return set(&sockIn, onlyHeaders);
 }
 
+bool HTTPPacket::set(HTTPSocket *httpSock) {
+  if (!httpSock)
+    return false;
+  return set(httpSock->getSocket());
+}
+
 ////////////////////////////////////////////////
 //  read
 ////////////////////////////////////////////////

@@ -24,6 +24,7 @@
 #include <stdlib.h>
 
 namespace uHTTP {
+  
 class HTTPPacket  {
   HTTPHeaderList httpHeaderList;
 
@@ -40,11 +41,8 @@ public:
   ////////////////////////////////////////////////
 
   HTTPPacket();
-
   HTTPPacket(HTTPPacket *httpPacket);
-
   HTTPPacket(HTTPSocket *httpSock);
-
   HTTPPacket(uHTTP::InputStream *in);
 
   ~HTTPPacket();
@@ -75,13 +73,8 @@ public:
   ////////////////////////////////////////////////
 
   bool set(uHTTP::InputStream *in, bool onlyHeaders = false);
-
   bool set(uHTTP::Socket *sock, bool onlyHeaders = false);
-
-  bool set(HTTPSocket *httpSock) {
-    return set(httpSock->getSocket());
-  }
-
+  bool set(HTTPSocket *httpSock);
   void set(HTTPPacket *httpPacket);
 
   ////////////////////////////////////////////////
