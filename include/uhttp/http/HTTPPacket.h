@@ -106,7 +106,7 @@ public:
   ////////////////////////////////////////////////
 
   size_t getNHeaders() {
-    return (size_t)httpHeaderList.size();
+    return httpHeaderList.size();
   }
 
   bool addHeader(HTTPHeader *header) {
@@ -116,11 +116,7 @@ public:
 
   bool addHeader(const std::string &name, const std::string &value);
 
-  HTTPHeader *getHeader(size_t n) {
-    if ((httpHeaderList.size()-1) < n)
-        return NULL;
-    return httpHeaderList.at(n);
-  }
+  HTTPHeader *getHeader(size_t n);
 
   HTTPHeaderList &getHeaders() {
     return httpHeaderList;

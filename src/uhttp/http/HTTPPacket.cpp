@@ -91,6 +91,13 @@ const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
 //  Header
 ////////////////////////////////////////////////
 
+HTTPHeader *HTTPPacket::getHeader(size_t n) {
+  size_t nHeaders = getNHeaders();
+  if (nHeaders < (n+1))
+    return NULL;
+  return httpHeaderList.at(n);
+}
+
 HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
   size_t nHeaders = getNHeaders();
   for (size_t n = 0; n < nHeaders; n++) {
