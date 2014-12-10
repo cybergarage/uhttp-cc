@@ -46,7 +46,7 @@ void HTTPStatus::set(const std::string &lineStr) {
     if (lineStr.length() <= 0) {
       setVersion(HTTP::VER);
       setStatusCode(HTTP::INTERNAL_SERVER_ERROR);
-      setReasonPhrase(HTTP::StatusCode2String(HTTP::INTERNAL_SERVER_ERROR));
+      setReasonPhrase(HTTP::StatusCodeToString(HTTP::INTERNAL_SERVER_ERROR));
       return;
     }
 
@@ -84,10 +84,10 @@ bool uHTTP::HTTP::IsStatusCodeSuccess(int statCode) {
 }
 
 ////////////////////////////////////////////////
-//  StatusCode2String
+//  StatusCodeToString
 ////////////////////////////////////////////////
 
-const std::string &uHTTP::HTTP::StatusCode2String(int code) {
+const std::string &uHTTP::HTTP::StatusCodeToString(int code) {
   int errType = code - (code % 100);
 
   if (errType == 100) {

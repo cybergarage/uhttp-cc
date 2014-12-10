@@ -69,7 +69,7 @@ namespace HTTP {
 
 namespace HTTP {
   bool IsStatusCodeSuccess(int code);
-  const std::string &StatusCode2String(int code);
+  const std::string &StatusCodeToString(int code);
 }
 
 class HTTPStatus  {

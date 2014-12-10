@@ -46,7 +46,7 @@ HTTPResponse::HTTPResponse(HTTPResponse *httpRes) {
 const char *HTTPResponse::getStatusLineString(string &statusLineBuf) {
 #ifndef NO_USE_OSTRINGSTREAM
   ostringstream strBuf;
-  strBuf <<  "HTTP/" << getVersion() << " " << getStatusCode() << " " << HTTP::StatusCode2String(getStatusCode()) << HTTP::CRLF;
+  strBuf <<  "HTTP/" << getVersion() << " " << getStatusCode() << " " << HTTP::StatusCodeToString(getStatusCode()) << HTTP::CRLF;
   statusLineBuf = strBuf.str();
 #else
   string ibuf;
@@ -55,7 +55,7 @@ const char *HTTPResponse::getStatusLineString(string &statusLineBuf) {
   statusLineBuf += " ";
   statusLineBuf += Integer2String(getStatusCode(), ibuf);
   statusLineBuf += " ";
-  statusLineBuf += HTTP::StatusCode2String(statusCode);
+  statusLineBuf += HTTP::StatusCodeToString(statusCode);
   statusLineBuf += HTTP::CRLF;
 #endif
   return statusLineBuf.c_str();
