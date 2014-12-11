@@ -27,6 +27,10 @@ namespace HTTP {
   const int NO_CONTENT = 204;
   const int PARTIAL_CONTENT = 206;
 
+  // 3xx Redirection
+  const int MOVED_PERMANENTLY = 301;
+  const int FOUND = 302;
+  
   // 4xx Client Error
   const int BAD_REQUEST = 400;
   const int NOT_FOUND = 404;
@@ -51,6 +55,10 @@ namespace HTTP {
   const std::string NO_CONTENT_STRING = "No Content";
   const std::string PARTIAL_CONTENT_STRING = "Partial Content";
     
+  // 3xx Redirection
+  const std::string MOVED_PERMANENTLY_STRING = "Moved Permanently";
+  const std::string FOUND_STRING = "Found";
+  
   // 4xx Client Error
   const std::string BAD_REQUEST_STRING = "Bad Request";
   const std::string NOT_FOUND_STING = "Not Found";

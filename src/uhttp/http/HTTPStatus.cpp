@@ -106,6 +106,14 @@ const std::string &uHTTP::HTTP::StatusCodeToString(int code) {
     return OK_REQUEST_STRING;
   }
   
+  if (errType == 300) {
+    switch (code) {
+      case MOVED_PERMANENTLY: return MOVED_PERMANENTLY_STRING;
+      case FOUND: return FOUND_STRING;
+    }
+    return FOUND_STRING;
+  }
+  
   if (errType == 400) {
     switch (code) {
       case NOT_FOUND: return NOT_FOUND_STING;
