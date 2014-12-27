@@ -83,6 +83,10 @@ private:
     return -1;
   }
 
+  bool exists(void *obj) {
+    return (0 <= indexOf(obj)) ? true : false;
+  }
+
   T *get(size_t index) {
     if (std::vector<T*>::size() < (index+1))
       return NULL;
