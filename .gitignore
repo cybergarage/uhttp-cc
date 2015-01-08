@@ -1,5 +1,5 @@
 Makefile
-config
+config/
 config.*
 autom4te.cache/
 *.o
