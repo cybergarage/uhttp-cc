@@ -34,7 +34,9 @@ namespace HTTP {
   // 4xx Client Error
   const int BAD_REQUEST = 400;
   const int NOT_FOUND = 404;
+  const int NOT_ACCEPTABLE = 406;
   const int PRECONDITION_FAILED = 412;
+  
   const int INVALID_RANGE =416;
   
   // 5xx Server Error
@@ -62,6 +64,7 @@ namespace HTTP {
   // 4xx Client Error
   const std::string BAD_REQUEST_STRING = "Bad Request";
   const std::string NOT_FOUND_STING = "Not Found";
+  const std::string NOT_ACCEPTABLE_STING = "Not Acceptable";
   const std::string PRECONDITION_FAILED_STING = "Precondition Failed";
   const std::string INVALID_RANGE_STING = "Invalid Range";
   

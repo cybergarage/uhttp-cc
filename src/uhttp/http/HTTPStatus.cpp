@@ -113,10 +113,11 @@ const std::string &uHTTP::HTTP::StatusCodeToString(int code) {
     }
     return FOUND_STRING;
   }
-  
+
   if (errType == 400) {
     switch (code) {
       case NOT_FOUND: return NOT_FOUND_STING;
+      case NOT_ACCEPTABLE: return NOT_ACCEPTABLE_STING;
       case PRECONDITION_FAILED: return PRECONDITION_FAILED_STING;
       case INVALID_RANGE: return INVALID_RANGE_STING;
     }
