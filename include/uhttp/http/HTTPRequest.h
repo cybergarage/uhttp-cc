@@ -244,7 +244,7 @@ private:
   }
 
   HTTPResponse *post(const std::string &host, int port) {
-    return post(host, port, false);
+    return post(host, port, (bool)false);
   }
 
   HTTPResponse *post(bool isKeepAlive = false) {
