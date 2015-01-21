@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CIO_INPUTSTREAMREADER_H_
-#define _CIO_INPUTSTREAMREADER_H_
+#ifndef _UHTTP_IO_INPUTSTREAMREADER_H_
+#define _UHTTP_IO_INPUTSTREAMREADER_H_
 
 #include <uhttp/io/Reader.h>
 #include <uhttp/io/InputStream.h>

@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CIO_LINENUMBERREADER_H_
-#define _CIO_LINENUMBERREADER_H_
+#ifndef _UHTTP_IO_LINENUMBERREADER_H_
+#define _UHTTP_IO_LINENUMBERREADER_H_
 
 #include <string>
 

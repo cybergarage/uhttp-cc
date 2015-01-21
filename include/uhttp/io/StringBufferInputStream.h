@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CIO_STRINGBUFFERINPUTSTREAM_H_
-#define _CIO_STRINGBUFFERINPUTSTREAM_H_
+#ifndef _UHTTP_IO_STRINGBUFFERINPUTSTREAM_H_
+#define _UHTTP_IO_STRINGBUFFERINPUTSTREAM_H_
 
 #include <stdio.h>
 #include <string>

@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CIO_FILE_H_
-#define _CIO_FILE_H_
+#ifndef _UHTTP_IO_FILE_H_
+#define _UHTTP_IO_FILE_H_
 
 #include <string>
 #include <stdlib.h>

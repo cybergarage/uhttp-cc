@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CUTIL_RANDOM_H_
-#define _CUTIL_RANDOM_H_
+#ifndef _UHTTP_UTIL_RANDOM_H_
+#define _UHTTP_UTIL_RANDOM_H_
 
 namespace uHTTP {
 class Random {

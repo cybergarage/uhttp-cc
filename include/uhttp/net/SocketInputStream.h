@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_SOCKETINPUTSTREAM_H_
-#define _CNET_SOCKETINPUTSTREAM_H_
+#ifndef _UHTTP_NET_SOCKETINPUTSTREAM_H_
+#define _UHTTP_NET_SOCKETINPUTSTREAM_H_
 
 #include <uhttp/net/Socket.h>
 #include <uhttp/io/InputStream.h>

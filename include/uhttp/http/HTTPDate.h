@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTTPDATE_H_
-#define _CHTTP_HTTPDATE_H_
+#ifndef _UHTTP_HTTPDATE_H_
+#define _UHTTP_HTTPDATE_H_
 
 #include <uhttp/util/Date.h>
 

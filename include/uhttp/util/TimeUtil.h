@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CUTIL_TIMERUTIL_H_
-#define _CUTIL_TIMERUTIL_H_
+#ifndef _UHTTP_UTIL_TIMERUTIL_H_
+#define _UHTTP_UTIL_TIMERUTIL_H_
 
 namespace uHTTP {
 

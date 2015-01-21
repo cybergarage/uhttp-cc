@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_INETSOCKETADDRESS_H_
-#define _CNET_INETSOCKETADDRESS_H_
+#ifndef _UHTTP_NET_INETSOCKETADDRESS_H_
+#define _UHTTP_NET_INETSOCKETADDRESS_H_
 
 #include <string>
 

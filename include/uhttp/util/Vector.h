@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CUTIL_VECTOR_H_
-#define _CUTIL_VECTOR_H_
+#ifndef _UHTTP_UTIL_VECTOR_H_
+#define _UHTTP_UTIL_VECTOR_H_
 
 #include <vector>
 #include <stdlib.h>

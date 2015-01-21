@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_URL_H_
-#define _CNET_URL_H_
+#ifndef _UHTTP_NET_URL_H_
+#define _UHTTP_NET_URL_H_
 
 #include <string>
 #include <uhttp/net/URI.h>

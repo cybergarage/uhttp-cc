@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CUTIL_STRINGUTIL_H_
-#define _CUTIL_STRINGUTIL_H_
+#ifndef _UHTTP_UTIL_STRINGUTIL_H_
+#define _UHTTP_UTIL_STRINGUTIL_H_
 
 #include <string>
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 

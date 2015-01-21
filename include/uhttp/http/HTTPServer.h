@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTTPSERVER_H_
-#define _CHTTP_HTTPSERVER_H_
+#ifndef _UHTTP_HTTPSERVER_H_
+#define _UHTTP_HTTPSERVER_H_
 
 #include <uhttp/net/ServerSocket.h>
 #include <uhttp/util/Thread.h>

@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_PARAMETERLIST_H_
-#define _CHTTP_PARAMETERLIST_H_
+#ifndef _UHTTP_PARAMETERLIST_H_
+#define _UHTTP_PARAMETERLIST_H_
 
 #include <uhttp/util/Vector.h>
 #include <uhttp/util/StringUtil.h>

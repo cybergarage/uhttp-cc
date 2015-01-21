@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CUTIL_EXCEPTION_H_
-#define _CUTIL_EXCEPTION_H_
+#ifndef _UHTTP_UTIL_EXCEPTION_H_
+#define _UHTTP_UTIL_EXCEPTION_H_
 
 #include <string>
 

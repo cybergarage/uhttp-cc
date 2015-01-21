@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_PARAMETER_H_
-#define _CHTTP_PARAMETER_H_
+#ifndef _UHTTP_PARAMETER_H_
+#define _UHTTP_PARAMETER_H_
 
 #include <string>
 

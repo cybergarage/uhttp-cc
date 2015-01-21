@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTML_H_
-#define _CHTTP_HTML_H_
+#ifndef _UHTTP_HTML_H_
+#define _UHTTP_HTML_H_
 
 namespace uHTTP {
 const char TEXT_CONTENT_TYPE[] = "text/html; charset=\"utf-8\"";

@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_HTTPWORKERTHREAD_H_
-#define _CHTTP_HTTPWORKERTHREAD_H_
+#ifndef _UHTTP_HTTPWORKERTHREAD_H_
+#define _UHTTP_HTTPWORKERTHREAD_H_
 
 #include <uhttp/util/Thread.h>
 #include <uhttp/http/HTTPServer.h>

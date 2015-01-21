@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_SOCKET_H_
-#define _CNET_SOCKET_H_
+#ifndef _UHTTP_NET_SOCKET_H_
+#define _UHTTP_NET_SOCKET_H_
 
 #include <uhttp/net/SocketCore.h>
 

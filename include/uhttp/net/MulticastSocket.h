@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_MULTICASTSOCKET_H_
-#define _CNET_MULTICASTSOCKET_H_
+#ifndef _UHTTP_NET_MULTICASTSOCKET_H_
+#define _UHTTP_NET_MULTICASTSOCKET_H_
 
 #include <uhttp/net/DatagramSocket.h>
 #include <uhttp/net/InetSocketAddress.h>

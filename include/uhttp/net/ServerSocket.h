@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_SERVERSOCKET_H_
-#define _CNET_SERVERSOCKET_H_
+#ifndef _UHTTP_NET_SERVERSOCKET_H_
+#define _UHTTP_NET_SERVERSOCKET_H_
 
 #include <uhttp/net/Socket.h>
 

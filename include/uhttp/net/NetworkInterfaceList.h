@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_NETWORKINTERFACELIST_H_
-#define _CNET_NETWORKINTERFACELIST_H_
+#ifndef _UHTTP_NET_NETWORKINTERFACELIST_H_
+#define _UHTTP_NET_NETWORKINTERFACELIST_H_
 
 #include <iostream>
 #include <uhttp/util/Vector.h>

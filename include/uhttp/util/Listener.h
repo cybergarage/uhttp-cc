@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CUTIL_LISTENERLIST_H_
-#define _CUTIL_LISTENERLIST_H_
+#ifndef _UHTTP_UTIL_LISTENERLIST_H_
+#define _UHTTP_UTIL_LISTENERLIST_H_
 
 #include <uhttp/util/Vector.h>
 

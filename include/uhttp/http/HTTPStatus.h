@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_HTTPSTATUS_H_
-#define _CHTTP_HTTPSTATUS_H_
+#ifndef _UHTTP_HTTPSTATUS_H_
+#define _UHTTP_HTTPSTATUS_H_
 
 #include <string>
 

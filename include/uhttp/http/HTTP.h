@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_HTTP_H_
-#define _CHTTP_HTTP_H_
+#ifndef _UHTTP_HTTP_HTTP_H_
+#define _UHTTP_HTTP_HTTP_H_
 
 #include <string>
 #include <uhttp/net/URL.h>

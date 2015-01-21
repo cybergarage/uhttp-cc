@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CIO_FILELIST_H_
-#define _CIO_FILELIST_H_
+#ifndef _UHTTP_IO_FILELIST_H_
+#define _UHTTP_IO_FILELIST_H_
 
 #include <uhttp/util/Vector.h>
 

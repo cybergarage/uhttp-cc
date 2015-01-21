@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CUTIL_DEBUG_H_
-#define _CUTIL_DEBUG_H_
+#ifndef _UHTTP_UTIL_DEBUG_H_
+#define _UHTTP_UTIL_DEBUG_H_
 
 #include <stdio.h>
 #include <string>

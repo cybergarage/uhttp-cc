@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _CHTTP_HTTPREQUEST_H_
-#define _CHTTP_HTTPREQUEST_H_
+#ifndef _UHTTP_HTTPREQUEST_H_
+#define _UHTTP_HTTPREQUEST_H_
 
 #include <uhttp/http/HTML.h>
 #include <uhttp/http/HTTPPacket.h>
