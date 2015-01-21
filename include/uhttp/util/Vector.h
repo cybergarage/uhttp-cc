@@ -11,6 +11,8 @@
 #ifndef _UHTTP_UTIL_VECTOR_H_
 #define _UHTTP_UTIL_VECTOR_H_
 
+#include <uhttp/platform.h>
+
 #if defined(UHTTP_USE_BOOST_SHREDPTR)
 #include <boost/shared_ptr.hpp>
 #endif

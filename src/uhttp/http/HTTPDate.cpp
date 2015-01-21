@@ -8,11 +8,7 @@
 *
 ******************************************************************/
 
-
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
-
+#include <uhttp/platform.h>
 #include <uhttp/http/HTTPDate.h>
 #include <stdio.h>
 #include <stdlib.h>

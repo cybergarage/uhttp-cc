@@ -8,9 +8,7 @@
 *
 ******************************************************************/
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
+#include <uhttp/platform.h>
 
 #if defined(HAVE_UNAME) || defined(__APPLE__)
 #include <sys/utsname.h>

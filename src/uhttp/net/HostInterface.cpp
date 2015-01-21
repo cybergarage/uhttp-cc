@@ -8,13 +8,10 @@
 *
 ******************************************************************/
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <uhttp/platform.h>
 #include <uhttp/net/Socket.h>
 #include <uhttp/net/HostInterface.h>
 #include <uhttp/net/NetworkInterfaceList.h>

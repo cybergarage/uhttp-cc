@@ -11,9 +11,7 @@
 #ifndef _UHTTP_NET_SOCKETUTIL_H_
 #define _UHTTP_NET_SOCKETUTIL_H_
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
+#include <uhttp/platform.h>
 
 #include <string.h>
 

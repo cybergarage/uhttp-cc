@@ -8,10 +8,6 @@
 *
 ******************************************************************/
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
-
 #include <stdio.h>
 #include <string.h>
 
@@ -31,7 +27,7 @@
 #include <dirent.h>
 #endif
 
-
+#include <uhttp/platform.h>
 #include <uhttp/io/File.h>
 #include <uhttp/io/FileList.h>
 

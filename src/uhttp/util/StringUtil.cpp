@@ -17,9 +17,7 @@
 
 #include <uhttp/util/StringUtil.h>
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
+#include <uhttp/platform.h>
 
 #ifdef HAVE_CTYPE_H
 #  include <ctype.h>

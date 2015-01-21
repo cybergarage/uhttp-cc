@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21092E2F196CFF81000E53FB /* Listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 21092E2E196CFF81000E53FB /* Listener.h */; };
+		2115675C1A7054B700BCAD9F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 2115675B1A7054B700BCAD9F /* platform.h */; };
 		215DE1C8199B7D1400F44843 /* HTTPMessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215DE1C7199B7D1400F44843 /* HTTPMessageQueue.cpp */; };
 		21685FFE19973ADF00324D13 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FFC19973ADF00324D13 /* Message.cpp */; };
 		21685FFF19973ADF00324D13 /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FFD19973ADF00324D13 /* MessageQueue.cpp */; };
@@ -114,6 +115,7 @@
 
 /* Begin PBXFileReference section */
 		21092E2E196CFF81000E53FB /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
+		2115675B1A7054B700BCAD9F /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		215DE1C7199B7D1400F44843 /* HTTPMessageQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPMessageQueue.cpp; sourceTree = "<group>"; };
 		21685FFC19973ADF00324D13 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
 		21685FFD19973ADF00324D13 /* MessageQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageQueue.cpp; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		2176F3A11535D2C100DE85B9 /* uhttp */ = {
 			isa = PBXGroup;
 			children = (
+				2115675B1A7054B700BCAD9F /* platform.h */,
 				21AE1545153C042500F47C5C /* HTTP.h */,
 				2176F3A21535D2C100DE85B9 /* http */,
 				2176F3B21535D2C100DE85B9 /* io */,
@@ -476,6 +479,7 @@
 				21B42315184F835800EFC1AF /* Log.h in Headers */,
 				21B42319184F835800EFC1AF /* LoggerTarget.h in Headers */,
 				2176F3E81535D2C100DE85B9 /* FileInputStream.h in Headers */,
+				2115675C1A7054B700BCAD9F /* platform.h in Headers */,
 				2176F3E91535D2C100DE85B9 /* FileList.h in Headers */,
 				2176F3EA1535D2C100DE85B9 /* InputStream.h in Headers */,
 				2176F3EB1535D2C100DE85B9 /* InputStreamReader.h in Headers */,
