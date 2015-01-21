@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CIO_BUFFEREDREADER_H_
-#define _CIO_BUFFEREDREADER_H_
+#ifndef _UHTTP_IO_BUFFEREDREADER_H_
+#define _UHTTP_IO_BUFFEREDREADER_H_
 
 #include <string>
 #include <uhttp/io/Reader.h>

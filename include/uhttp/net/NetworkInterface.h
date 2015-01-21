@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_NETWORKINTERFACE_H_
-#define _CNET_NETWORKINTERFACE_H_
+#ifndef _UHTTP_NET_NETWORKINTERFACE_H_
+#define _UHTTP_NET_NETWORKINTERFACE_H_
 
 #include <string>
 

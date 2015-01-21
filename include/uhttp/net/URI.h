@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_URI_H_
-#define _CNET_URI_H_
+#ifndef _UHTTP_NET_URI_H_
+#define _UHTTP_NET_URI_H_
 
 #include <string>
 

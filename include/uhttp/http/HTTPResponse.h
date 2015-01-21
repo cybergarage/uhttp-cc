@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTTPRESPONSE_H_
-#define _CHTTP_HTTPRESPONSE_H_
+#ifndef _UHTTP_HTTPRESPONSE_H_
+#define _UHTTP_HTTPRESPONSE_H_
 
 #include <uhttp/http/HTTPPacket.h>
 #include <uhttp/http/HTTPStatus.h>

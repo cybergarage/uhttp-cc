@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_HOSTINTERFACE_H_
-#define _CNET_HOSTINTERFACE_H_
+#ifndef _UHTTP_NET_HOSTINTERFACE_H_
+#define _UHTTP_NET_HOSTINTERFACE_H_
 
 #include <uhttp/net/Socket.h>
 #include <uhttp/net/NetworkInterfaceList.h>

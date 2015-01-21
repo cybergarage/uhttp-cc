@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CIO_INPUTSTREAM_H_
-#define _CIO_INPUTSTREAM_H_
+#ifndef _UHTTP_IO_INPUTSTREAM_H_
+#define _UHTTP_IO_INPUTSTREAM_H_
 
 #include <string>
 

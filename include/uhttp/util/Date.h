@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CUTIL_DATE_H_
-#define _CUTIL_DATE_H_
+#ifndef _UHTTP_UTIL_DATE_H_
+#define _UHTTP_UTIL_DATE_H_
 
 #if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
 #include <afxwin.h>

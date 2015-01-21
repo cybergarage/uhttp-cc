@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CIO_READER_H_
-#define _CIO_READER_H_
+#ifndef _UHTTP_IO_READER_H_
+#define _UHTTP_IO_READER_H_
 
 #include <stdio.h>
 

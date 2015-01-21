@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _CHTTP_HTTPSERVERLIST_H_
-#define _CHTTP_HTTPSERVERLIST_H_
+#ifndef _UHTTP_HTTPSERVERLIST_H_
+#define _UHTTP_HTTPSERVERLIST_H_
 
 #include <uhttp/http/HTTPServer.h>
 #include <uhttp/net/HostInterface.h>

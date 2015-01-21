@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_HTTPHEADER_H_
-#define _CHTTP_HTTPHEADER_H_
+#ifndef _UHTTP_HTTPHEADER_H_
+#define _UHTTP_HTTPHEADER_H_
 
 #include <string>
 #include <stdio.h>

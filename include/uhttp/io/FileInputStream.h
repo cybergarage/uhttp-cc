@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CIO_FILEINPUTSTREAM_H_
-#define _CIO_FILEINPUTSTREAM_H_
+#ifndef _UHTTP_IO_FILEINPUTSTREAM_H_
+#define _UHTTP_IO_FILEINPUTSTREAM_H_
 
 #include <stdio.h>
 #include <string>

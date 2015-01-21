@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_DATAGRAMSOCKET_H_
-#define _CNET_DATAGRAMSOCKET_H_
+#ifndef _UHTTP_NET_DATAGRAMSOCKET_H_
+#define _UHTTP_NET_DATAGRAMSOCKET_H_
 
 #include <uhttp/net/SocketCore.h>
 #include <uhttp/net/DatagramPacket.h>

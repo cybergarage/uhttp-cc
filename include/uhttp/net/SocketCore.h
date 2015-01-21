@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CNET_SOCKETCORE_H_
-#define _CNET_SOCKETCORE_H_
+#ifndef _UHTTP_NET_SOCKETCORE_H_
+#define _UHTTP_NET_SOCKETCORE_H_
 
 #ifdef HAVE_CONFIG_H
 #  include "config.h"

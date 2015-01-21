@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _UHTTP_MESSAGEQUEUE_H_
-#define _UHTTP_MESSAGEQUEUE_H_
+#ifndef _UHTTP_UTIL_MESSAGEQUEUE_H_
+#define _UHTTP_UTIL_MESSAGEQUEUE_H_
 
 #include <queue>
 

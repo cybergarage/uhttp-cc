@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_HTTPPACKET_H_
-#define _CHTTP_HTTPPACKET_H_
+#ifndef _UHTTP_HTTPPACKET_H_
+#define _UHTTP_HTTPPACKET_H_
 
 #include <uhttp/http/HTTPSocket.h>
 #include <uhttp/http/HTTP.h>

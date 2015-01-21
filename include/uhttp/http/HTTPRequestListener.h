@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CHTTP_HTTPREQUESTLISTENER_H_
-#define _CHTTP_HTTPREQUESTLISTENER_H_
+#ifndef _UHTTP_HTTPREQUESTLISTENER_H_
+#define _UHTTP_HTTPREQUESTLISTENER_H_
 
 #include <uhttp/http/HTTPRequest.h>
 #include <uhttp/util/Listener.h>

@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef _CHTTP_THREAD_H_
-#define _CHTTP_THREAD_H_
+#ifndef _UHTTP_THREAD_H_
+#define _UHTTP_THREAD_H_
 
 #if defined(WIN32) && !defined(ITRON)
 #include <windows.h>

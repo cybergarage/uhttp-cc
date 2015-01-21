@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CIO_STRINGREADER_H_
-#define _CIO_STRINGREADER_H_
+#ifndef _UHTTP_IO_STRINGREADER_H_
+#define _UHTTP_IO_STRINGREADER_H_
 
 #include <string>
 

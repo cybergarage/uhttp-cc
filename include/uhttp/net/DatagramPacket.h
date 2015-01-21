@@ -8,9 +8,8 @@
 *
 ******************************************************************/
 
-
-#ifndef _CNET_DATAGRAMPACKET_H_
-#define _CNET_DATAGRAMPACKET_H_
+#ifndef _UHTTP_NET_DATAGRAMPACKET_H_
+#define _UHTTP_NET_DATAGRAMPACKET_H_
 
 #include <uhttp/net/InetSocketAddress.h>
 
