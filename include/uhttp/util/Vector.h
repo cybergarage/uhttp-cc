@@ -100,9 +100,9 @@ private:
   
   // remove
   
-  bool remove(ssize_t idx) {
+  bool remove(size_t idx) {
     size_t size = std::vector< std::shared_ptr<T> >::size();
-    if ((idx < 0) || (size <= 0) || (size < (idx+1)))
+    if ((size <= 0) || (size < (idx+1)))
       return false;
     typename std::vector< std::shared_ptr<T> >::iterator objIt = std::vector< std::shared_ptr<T> >::begin() + idx;
     std::vector< std::shared_ptr<T> >::erase(objIt);

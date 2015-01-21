@@ -35,10 +35,11 @@ BOOST_AUTO_TEST_CASE(VectorTests)
   TestVectorList vectorObjectList;
   BOOST_CHECK_EQUAL(vectorObjectList.size(), 0);
 
-  BOOST_CHECK_EQUAL(vectorObjectList.add(NULL), false);
-  BOOST_CHECK_EQUAL(vectorObjectList.remove(NULL), false);
-  BOOST_CHECK_EQUAL(vectorObjectList.insertAt(NULL, 0), false);
-  BOOST_CHECK_EQUAL(vectorObjectList.indexOf(NULL), -1);
+  TestVectorObject *nullNode = NULL;
+  BOOST_CHECK_EQUAL(vectorObjectList.add(nullNode), false);
+  BOOST_CHECK_EQUAL(vectorObjectList.remove(nullNode), false);
+  BOOST_CHECK_EQUAL(vectorObjectList.insertAt(nullNode, 0), false);
+  BOOST_CHECK_EQUAL(vectorObjectList.indexOf(nullNode), -1);
   
   TestVectorObject *vectorObject[TEST_VECTOR_OBJECT_NUM];
   for (size_t n=0; n<TEST_VECTOR_OBJECT_NUM; n++) {
