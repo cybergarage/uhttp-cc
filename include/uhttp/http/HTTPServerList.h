@@ -31,8 +31,8 @@ class HTTPServerList : public ::uHTTP::SharedVector<HTTPServer>  {
   ////////////////////////////////////////////////
 
  public:
-  std::shared_ptr<HTTPServer> getHTTPServer(size_t n) {
-    return get(n);
+  HTTPServer *getHTTPServer(size_t n) {
+    return get(n).get();
   }
 
   void addRequestListener(HTTPRequestListener *listener);

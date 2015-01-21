@@ -35,7 +35,7 @@ HTTPServerList::~HTTPServerList() {
 void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     server->addRequestListener(listener);
   }
 }
@@ -47,7 +47,7 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
 void HTTPServerList::removeRequestListener(HTTPRequestListener *listener) {
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     server->removeRequestListener(listener);
   }
 }
@@ -59,7 +59,7 @@ void HTTPServerList::removeRequestListener(HTTPRequestListener *listener) {
 void HTTPServerList::setWorkerCount(size_t count) {
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     server->setWorkerCount(count);
   }
 }
@@ -72,7 +72,7 @@ bool HTTPServerList::close() {
   bool areAllSocketsClosed = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     if (server->close() == false) {
       areAllSocketsClosed = false;
     }
@@ -115,7 +115,7 @@ bool HTTPServerList::start() {
   bool areAllSocketsStarted = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     if (server->start() == false) {
       areAllSocketsStarted = false;
     }
@@ -127,7 +127,7 @@ bool HTTPServerList::stop() {
   bool areAllSocketsStopped = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    std::shared_ptr<HTTPServer> server = getHTTPServer(n);
+    HTTPServer *server = getHTTPServer(n);
     if (server->stop() == false) {
       areAllSocketsStopped = false;
     }

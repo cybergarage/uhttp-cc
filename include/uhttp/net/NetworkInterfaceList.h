@@ -31,14 +31,14 @@ namespace uHTTP {
   ////////////////////////////////////////////////
   
  public:
-  std::shared_ptr<NetworkInterface> getNetworkInterface(size_t n) {
-    return get(n);
+  NetworkInterface *getNetworkInterface(size_t n) {
+    return get(n).get();
   }
 
   void print() {
     size_t ifNum = size();
     for (size_t n = 0; n < ifNum; n++) {
-      std::shared_ptr<NetworkInterface> netif = getNetworkInterface(n);
+      NetworkInterface *netif = getNetworkInterface(n);
       const char *addr = netif->getAddress();
       const char *name = netif->getName();
       int idx = netif->getIndex();

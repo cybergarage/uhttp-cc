@@ -31,8 +31,8 @@ public:
   ////////////////////////////////////////////////
 
  public:
-  std::shared_ptr<File> getFile(size_t n) {
-    return get(n);
+  File *getFile(size_t n) {
+    return get(n).get();
   }
 };
 
