@@ -230,7 +230,7 @@ public:
     if (!WeakVector<T>::remove(obj))
       return false;
     if (!isWeekContainer()) {
-      delete *obj;
+      delete obj;
     }
     return true;
   }
