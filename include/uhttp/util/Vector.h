@@ -200,6 +200,58 @@ public:
   }
 };
 
+////////////////////////////////////////
+// Vector (Weak)
+////////////////////////////////////////
+  
+template <typename T> class Vector : public WeakVector<T> {
+    
+public:
+    
+  Vector() {
+    setWeekContainer(false);
+  }
+    
+  ~Vector() {
+    clear();
+  }
+
+  void setWeekContainer(bool flag) {
+    this->weekContainerFlag = flag;
+  }
+  
+  bool isWeekContainer() {
+    return this->weekContainerFlag;
+  }
+  
+  // remove
+  
+  bool remove(T *obj) {
+    if (!WeakVector<T>::remove(obj))
+      return false;
+    if (!isWeekContainer()) {
+      delete *obj;
+    }
+    return true;
+  }
+  
+  bool clear()
+  {
+    if (!isWeekContainer()) {
+      for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
+        T* obj = dynamic_cast<T*>(*objIt);
+        if (!obj)
+          continue;
+        delete obj;
+      }
+    }
+    std::vector<T*>::clear();
+    return true;
+  }
+
+private:
+  bool weekContainerFlag;
+};
   
 }
 
