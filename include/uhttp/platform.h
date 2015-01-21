@@ -15,4 +15,8 @@
 #  include "config.h"
 #endif
 
+#if (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201103L)) || defined(__APPLE__)
+#define HAVE_STD_SHRAEDPTR 1
+#endif
+
 #endif
