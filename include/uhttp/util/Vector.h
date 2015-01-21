@@ -201,7 +201,7 @@ public:
 };
 
 ////////////////////////////////////////
-// Vector (Weak)
+// Vector
 ////////////////////////////////////////
   
 template <typename T> class Vector : public WeakVector<T> {
@@ -234,6 +234,8 @@ public:
     }
     return true;
   }
+  
+  // clear
   
   bool clear()
   {
