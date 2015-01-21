@@ -160,6 +160,9 @@
 /* Define to 1 if your <sys/time.h> declares `struct tm'. */
 #undef TM_IN_SYS_TIME
 
+/* UHTTP_USE_BOOST_SHREDPTR */
+#undef UHTTP_USE_BOOST_SHREDPTR
+
 /* Version number of package */
 #undef VERSION
 

@@ -11,16 +11,25 @@
 #ifndef _UHTTP_UTIL_VECTOR_H_
 #define _UHTTP_UTIL_VECTOR_H_
 
+#if defined(UHTTP_USE_BOOST_SHREDPTR)
+#include <boost/shared_ptr.hpp>
+#endif
+
 #include <vector>
-#include <stdlib.h>
 
 namespace uHTTP {
 
+#if defined(UHTTP_USE_BOOST_SHREDPTR)
+#define SharedPtr boost::shared_ptr
+#else
+#define SharedPtr std::shared_ptr
+#endif
+  
 ////////////////////////////////////////
 // Vector (Shared)
 ////////////////////////////////////////
 
-template <typename T> class SharedVector : public std::vector< std::shared_ptr<T> > {
+template <typename T> class SharedVector : public std::vector< SharedPtr<T> > {
 private:
 
  public:
@@ -38,8 +47,8 @@ private:
       return false;
     if (0 <= indexOf(obj))
       return false;
-    std::shared_ptr<T> sobj(obj);
-    std::vector< std::shared_ptr<T> >::push_back(sobj);
+    SharedPtr<T> sobj(obj);
+    std::vector< SharedPtr<T> >::push_back(sobj);
     return true;
   }
 
@@ -50,22 +59,22 @@ private:
       return false;
     if (0 <= indexOf(obj))
       return false;
-    std::shared_ptr<T> sobj(obj);
-    std::vector< std::shared_ptr<T> >::insert((std::vector< std::shared_ptr<T> >::begin() + index), sobj);
+    SharedPtr<T> sobj(obj);
+    std::vector< SharedPtr<T> >::insert((std::vector< SharedPtr<T> >::begin() + index), sobj);
     return true;
   }
 
   // get
   
-  std::shared_ptr<T> get(size_t index) {
-    if (std::vector< std::shared_ptr<T> >::size() < (index+1))
-      return std::shared_ptr<T>(NULL);
-    return std::vector< std::shared_ptr<T> >::at(index);
+  SharedPtr<T> get(size_t index) {
+    if (std::vector< SharedPtr<T> >::size() < (index+1))
+      return SharedPtr<T>(NULL);
+    return std::vector< SharedPtr<T> >::at(index);
   }
 
   // exists
   
-  bool exists(std::shared_ptr<T> obj) {
+  bool exists(SharedPtr<T> obj) {
     return (0 <= indexOf(obj)) ? true : false;
   }
   
@@ -75,12 +84,12 @@ private:
   
   // indexOf
   
-  ssize_t indexOf(std::shared_ptr<T> obj) {
+  ssize_t indexOf(SharedPtr<T> obj) {
     if (!obj)
       return -1;
-    size_t cnt = std::vector< std::shared_ptr<T> >::size();
+    size_t cnt = std::vector< SharedPtr<T> >::size();
     for (size_t n = 0; n < cnt; n++) {
-      if (obj == std::vector< std::shared_ptr<T> >::at(n))
+      if (obj == std::vector< SharedPtr<T> >::at(n))
         return n;
     }
     return -1;
@@ -89,9 +98,9 @@ private:
   ssize_t indexOf(T *obj) {
     if (!obj)
       return -1;
-    size_t cnt = std::vector< std::shared_ptr<T> >::size();
+    size_t cnt = std::vector< SharedPtr<T> >::size();
     for (size_t n = 0; n < cnt; n++) {
-      std::shared_ptr<T> sobj = std::vector< std::shared_ptr<T> >::at(n);
+      SharedPtr<T> sobj = std::vector< SharedPtr<T> >::at(n);
       if (obj == sobj.get())
         return n;
     }
@@ -101,15 +110,15 @@ private:
   // remove
   
   bool remove(size_t idx) {
-    size_t size = std::vector< std::shared_ptr<T> >::size();
+    size_t size = std::vector< SharedPtr<T> >::size();
     if ((size <= 0) || (size < (idx+1)))
       return false;
-    typename std::vector< std::shared_ptr<T> >::iterator objIt = std::vector< std::shared_ptr<T> >::begin() + idx;
-    std::vector< std::shared_ptr<T> >::erase(objIt);
+    typename std::vector< SharedPtr<T> >::iterator objIt = std::vector< SharedPtr<T> >::begin() + idx;
+    std::vector< SharedPtr<T> >::erase(objIt);
     return true;
   }
   
-  bool remove(std::shared_ptr<T> obj) {
+  bool remove(SharedPtr<T> obj) {
     if (!obj)
       return false;
     return remove(indexOf(obj));

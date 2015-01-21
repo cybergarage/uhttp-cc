@@ -5468,6 +5468,41 @@ fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 ##############################
+# Checks for boost::shared_ptr
+##############################
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for boost::shared_ptr" >&5
+$as_echo_n "checking for boost::shared_ptr... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#include <boost/shared_ptr.hpp>
+void testFunc(){
+boost::shared_ptr<void> p(new int(0));
+}
+
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define UHTTP_USE_BOOST_SHREDPTR 1" >>confdefs.h
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+
+##############################
 # Checks for other functions.
 ##############################
 
