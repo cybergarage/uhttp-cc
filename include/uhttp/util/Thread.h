@@ -85,7 +85,7 @@ private:
 };
 
   
-class ThreadList : public Vector<Thread> {
+class ThreadList : public ::uHTTP::SharedVector<Thread> {
     
   public:
     

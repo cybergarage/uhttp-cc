@@ -17,7 +17,7 @@
 
 namespace uHTTP {
     
-class HTTPServerList : public Vector<HTTPServer>  {
+class HTTPServerList : public ::uHTTP::SharedVector<HTTPServer>  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -31,7 +31,7 @@ class HTTPServerList : public Vector<HTTPServer>  {
   ////////////////////////////////////////////////
 
  public:
-  HTTPServer *getHTTPServer(size_t n) {
+  std::shared_ptr<HTTPServer> getHTTPServer(size_t n) {
     return get(n);
   }
 

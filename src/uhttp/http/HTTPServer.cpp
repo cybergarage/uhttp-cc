@@ -162,10 +162,6 @@ bool HTTPServer::stop() {
     areAllOperationsSuccess = false;
   }
   
-  if (!workerThreadList.clear()) {
-    areAllOperationsSuccess = false;
-  }
-  
   if (messageQueue.clear() == false) {
     areAllOperationsSuccess = false;
   }

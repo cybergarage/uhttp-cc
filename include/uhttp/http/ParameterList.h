@@ -18,35 +18,35 @@
 
 namespace uHTTP {
 
-class ParameterList : public uHTTP::Vector<Parameter> {
+class ParameterList : public ::uHTTP::SharedVector<Parameter> {
 public:
   
   ParameterList() {
   }
   
-  Parameter *at(size_t n) {
-    return Vector::get(n);
+  std::shared_ptr<Parameter> at(size_t n) {
+    return get(n);
   }
 
-  Parameter *getParameter(int n) {
-    return Vector::get(n);
+  std::shared_ptr<Parameter> getParameter(int n) {
+    return get(n);
   }
 
-  Parameter *getParameter(const std::string &name) 
+  std::shared_ptr<Parameter> getParameter(const std::string &name)
   {
     size_t nLists = size();
     for (size_t n = 0; n < nLists; n++) {
-      Parameter *param = at(n);
+      std::shared_ptr<Parameter> param = at(n);
       if (uHTTP::StringEquals(name, param->getName()) == true)
         return param;
     }
-    return NULL;
+    return std::shared_ptr<Parameter>(NULL);
   }
 
   bool getParameterValue(const std::string &name, std::string *value)
   {
-    Parameter *param = getParameter(name);
-    if (param == NULL)
+    std::shared_ptr<Parameter> param = getParameter(name);
+    if (param == std::shared_ptr<Parameter>(NULL))
       return false;
     *value = param->getValue();
     return true;

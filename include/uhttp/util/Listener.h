@@ -23,12 +23,12 @@ public:
     }
 };
 
-template <typename T> class ListenerList : public Vector<T> {
- public:
-  ListenerList() {
-    Vector<T>::setWeekContainer(true);
-  }
+template <typename T> class ListenerList : public ::uHTTP::WeakVector<T> {
 
+public:
+    
+  ListenerList() {
+  }
 };
 
 }

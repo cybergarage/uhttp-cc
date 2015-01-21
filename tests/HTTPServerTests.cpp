@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServerList)
   size_t htttpServerCount = httpServerList.size();
   BOOST_CHECK(0 < htttpServerCount);
   for (size_t n= 0; n < htttpServerCount; n++) {
-    HTTPServer *httpServer = httpServerList.getHTTPServer(n);
+    std::shared_ptr<HTTPServer> httpServer = httpServerList.getHTTPServer(n);
     const std::string ifaddr = httpServer->getAddress();
     int httpPort = httpServer->getPort();
     RequestToHTTPServer(ifaddr, httpPort);

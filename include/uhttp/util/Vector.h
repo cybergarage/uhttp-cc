@@ -17,26 +17,127 @@
 
 namespace uHTTP {
 
-template <typename T> class Vector : public std::vector<T*> {
+////////////////////////////////////////
+// Vector (Shared)
+////////////////////////////////////////
+
+template <typename T> class SharedVector : public std::vector< std::shared_ptr<T> > {
 private:
 
  public:
     
-  Vector() {
-    setWeekContainer(false);
+  SharedVector() {
   }
 
-  ~Vector() {
-    clear();
+  ~SharedVector() {
   }
   
-  void setWeekContainer(bool flag) {
-    this->weekContainerFlag = flag;
+  // add
+  
+  bool add(T *obj) {
+    if (!obj)
+      return false;
+    if (0 <= indexOf(obj))
+      return false;
+    std::shared_ptr<T> sobj(obj);
+    std::vector< std::shared_ptr<T> >::push_back(sobj);
+    return true;
+  }
+
+  // insertAt
+  
+  bool insertAt(T *obj, size_t index) {
+    if (!obj)
+      return false;
+    if (0 <= indexOf(obj))
+      return false;
+    std::shared_ptr<T> sobj(obj);
+    std::vector< std::shared_ptr<T> >::insert((std::vector< std::shared_ptr<T> >::begin() + index), sobj);
+    return true;
+  }
+
+  // get
+  
+  std::shared_ptr<T> get(size_t index) {
+    if (std::vector< std::shared_ptr<T> >::size() < (index+1))
+      return std::shared_ptr<T>(NULL);
+    return std::vector< std::shared_ptr<T> >::at(index);
+  }
+
+  // exists
+  
+  bool exists(std::shared_ptr<T> obj) {
+    return (0 <= indexOf(obj)) ? true : false;
   }
   
-  bool isWeekContainer() {
-    return this->weekContainerFlag;
+  bool exists(T *obj) {
+    return (0 <= indexOf(obj)) ? true : false;
   }
+  
+  // indexOf
+  
+  ssize_t indexOf(std::shared_ptr<T> obj) {
+    if (!obj)
+      return -1;
+    size_t cnt = std::vector< std::shared_ptr<T> >::size();
+    for (size_t n = 0; n < cnt; n++) {
+      if (obj == std::vector< std::shared_ptr<T> >::at(n))
+        return n;
+    }
+    return -1;
+  }
+  
+  ssize_t indexOf(T *obj) {
+    if (!obj)
+      return -1;
+    size_t cnt = std::vector< std::shared_ptr<T> >::size();
+    for (size_t n = 0; n < cnt; n++) {
+      std::shared_ptr<T> sobj = std::vector< std::shared_ptr<T> >::at(n);
+      if (obj == sobj.get())
+        return n;
+    }
+    return -1;
+  }
+  
+  // remove
+  
+  bool remove(ssize_t idx) {
+    if ((idx < 0) && (std::vector< std::shared_ptr<T> >::size() <= idx))
+      return false;
+    typename std::vector< std::shared_ptr<T> >::iterator objIt = std::vector< std::shared_ptr<T> >::begin() + idx;
+    std::vector< std::shared_ptr<T> >::erase(objIt);
+    return true;
+  }
+  
+  bool remove(std::shared_ptr<T> obj) {
+    if (!obj)
+      return false;
+    return remove(indexOf(obj));
+  }
+  
+  bool remove(T *obj) {
+    if (!obj)
+      return false;
+    return remove(indexOf(obj));
+  }
+
+};
+
+////////////////////////////////////////
+// Vector (Weak)
+////////////////////////////////////////
+
+template <typename T> class WeakVector : public std::vector<T*> {
+
+public:
+    
+  WeakVector() {
+  }
+    
+  ~WeakVector() {
+  }
+    
+  // add
   
   bool add(T *obj) {
     if (!obj)
@@ -46,31 +147,33 @@ private:
     std::vector<T*>::push_back(obj);
     return true;
   }
-
-  bool remove(T *obj) {
+    
+  // insertAt
+  
+  bool insertAt(T *obj, size_t index) {
     if (!obj)
       return false;
-    ssize_t idx = indexOf(obj);
-    if (idx < 0)
+    if (0 <= indexOf(obj))
       return false;
-    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
-    if (!isWeekContainer()) {
-      delete *objIt;
-    }
-    std::vector<T*>::erase(objIt);
+    std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
     return true;
+  }
+
+  // get
+  
+  T *get(size_t index) {
+    if (std::vector<T*>::size() < (index+1))
+      return NULL;
+    return std::vector<T*>::at(index);
   }
   
-  bool erase(T *obj) {
-    if (!obj)
-      return false;
-    ssize_t idx = indexOf(obj);
-    if (idx < 0)
-      return false;
-    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
-    std::vector<T*>::erase(objIt);
-    return true;
+  // exists
+  
+  bool exists(void *obj) {
+    return (0 <= indexOf(obj)) ? true : false;
   }
+  
+  // indexOf
   
   ssize_t indexOf(void *obj) {
     if (!obj)
@@ -82,46 +185,22 @@ private:
     }
     return -1;
   }
-
-  bool exists(void *obj) {
-    return (0 <= indexOf(obj)) ? true : false;
-  }
-
-  T *get(size_t index) {
-    if (std::vector<T*>::size() < (index+1))
-      return NULL;
-    return std::vector<T*>::at(index);
-  }
-
-  bool insertAt(T *obj, size_t index) {
+  
+  // remove
+  
+  bool remove(T *obj) {
     if (!obj)
       return false;
-    if (0 <= indexOf(obj))
+    ssize_t idx = indexOf(obj);
+    if (idx < 0)
       return false;
-    std::vector<T*>::insert(std::vector<T*>::begin() + index, obj);
+    typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() + idx;
+    std::vector<T*>::erase(objIt);
     return true;
   }
-
-  bool clear()
-  {
-    if (!isWeekContainer()) {
-      for (typename std::vector<T*>::iterator objIt = std::vector<T*>::begin() ; objIt != std::vector<T*>::end(); ++objIt) {
-        T* obj = dynamic_cast<T*>(*objIt);
-        if (!obj)
-          continue;
-        delete obj;
-      }
-    }
-    std::vector<T*>::clear();
-    return true;
-  }
-  
-private:
-  
-  bool weekContainerFlag;
-  
 };
 
+  
 }
 
 #endif

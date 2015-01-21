@@ -173,12 +173,11 @@ protected:
 
 };
 
-class SocketList : public Vector<SocketCore> {
+class SocketList : public WeakVector<SocketCore> {
   
 public:
   
   SocketList() {
-    setWeekContainer(true);
   }
 };
   

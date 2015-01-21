@@ -13,12 +13,12 @@
 
 #include <queue>
 
-#include <uhttp/net/Socket.h>
-#include <uhttp/util/Mutex.h>
 #include <uhttp/util/MessageQueue.h>
 
 namespace uHTTP {
 
+class Socket;
+  
 class HTTPMessage : public Message {
   
 public:

@@ -22,7 +22,7 @@ public:
   }
 };
 
-class TestVectorList : public Vector<TestVectorObject>  {
+class TestVectorList : public SharedVector<TestVectorObject>  {
 public:
   TestVectorList() {
   }

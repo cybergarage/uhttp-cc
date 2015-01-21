@@ -73,7 +73,7 @@ const char *uHTTP::GetHostAddress(size_t n, std::string &buf) {
     NetworkInterfaceList netIfList;
     size_t ifNum = GetHostAddresses(netIfList);
     if (0 < ifNum || n < ifNum) {
-      NetworkInterface *netif = netIfList.getNetworkInterface(n);
+      std::shared_ptr<NetworkInterface> netif = netIfList.getNetworkInterface(n);
       buf = netif->getAddress();
     }
   }

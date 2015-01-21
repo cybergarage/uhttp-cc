@@ -19,7 +19,7 @@ namespace uHTTP {
     
 class HTTPRequestListener : public Listener {
 public:
-  virtual HTTP::StatusCode httpRequestRecieved(HTTPRequest *httpReq) = 0;
+  virtual ::uHTTP::HTTP::StatusCode httpRequestRecieved(::uHTTP::HTTPRequest *httpReq) = 0;
 };
 
 }

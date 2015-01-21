@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uhttp/http/HTTPMessageQueue.h>
+#include <uhttp/net/Socket.h>
 
 ////////////////////////////////////////////////
 //  Constructor

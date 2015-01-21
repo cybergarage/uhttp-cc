@@ -16,7 +16,7 @@
 #include <uhttp/net/NetworkInterface.h>
 
 namespace uHTTP {
-class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
+  class NetworkInterfaceList : public ::uHTTP::SharedVector<NetworkInterface>  {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
@@ -31,14 +31,14 @@ class NetworkInterfaceList : public uHTTP::Vector<NetworkInterface>  {
   ////////////////////////////////////////////////
   
  public:
-  NetworkInterface *getNetworkInterface(size_t n) {
+  std::shared_ptr<NetworkInterface> getNetworkInterface(size_t n) {
     return get(n);
   }
 
   void print() {
     size_t ifNum = size();
     for (size_t n = 0; n < ifNum; n++) {
-      NetworkInterface *netif = getNetworkInterface(n);
+      std::shared_ptr<NetworkInterface> netif = getNetworkInterface(n);
       const char *addr = netif->getAddress();
       const char *name = netif->getName();
       int idx = netif->getIndex();

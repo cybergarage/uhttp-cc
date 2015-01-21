@@ -16,7 +16,7 @@
 namespace uHTTP {
 class File;
 
-class FileList : public uHTTP::Vector<File>  {
+class FileList : public ::uHTTP::SharedVector<File>  {
 public:
   ////////////////////////////////////////////////
   //  Constructor
@@ -31,8 +31,8 @@ public:
   ////////////////////////////////////////////////
 
  public:
-  File *getFile(size_t n) {
-    return Vector::get(n);
+  std::shared_ptr<File> getFile(size_t n) {
+    return get(n);
   }
 };
 
