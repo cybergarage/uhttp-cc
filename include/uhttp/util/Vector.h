@@ -200,6 +200,21 @@ public:
   }
 };
 
+////////////////////////////////////////
+// Vector (Weak)
+////////////////////////////////////////
+  
+template <typename T> class Vector : public WeakVector<T> {
+    
+public:
+    
+  Vector() {
+  }
+    
+  ~Vector() {
+  }
+    
+};
   
 }
 
