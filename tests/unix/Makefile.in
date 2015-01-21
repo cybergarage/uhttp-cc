@@ -98,16 +98,17 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_uhttpcctestunit_OBJECTS = ..//DateTests.$(OBJEXT) \
-	..//HTTPClientTests.$(OBJEXT) ..//HTTPPacketTests.$(OBJEXT) \
-	..//HTTPRequestTests.$(OBJEXT) ..//HTTPServerTests.$(OBJEXT) \
-	..//HTTPStatusTests.$(OBJEXT) ..//HTTPTestMain.$(OBJEXT) \
-	..//LoggerTests.$(OBJEXT) ..//MessageQueue.$(OBJEXT) \
-	..//MutexTests.$(OBJEXT) ..//NetworkInterfaceTests.$(OBJEXT) \
-	..//ParameterTests.$(OBJEXT) ..//RandomTests.$(OBJEXT) \
-	..//SemaphoreTests.$(OBJEXT) ..//SocketTests.$(OBJEXT) \
-	..//StringTests.$(OBJEXT) ..//ThreadTests.$(OBJEXT) \
-	..//UriTests.$(OBJEXT) ..//VectorTests.$(OBJEXT)
+am_uhttpcctestunit_OBJECTS = ../VectorTests.$(OBJEXT) \
+	../MessageQueue.$(OBJEXT) ../RandomTests.$(OBJEXT) \
+	../HTTPPacketTests.$(OBJEXT) \
+	../NetworkInterfaceTests.$(OBJEXT) ../ParameterTests.$(OBJEXT) \
+	../UriTests.$(OBJEXT) ../ThreadTests.$(OBJEXT) \
+	../SocketTests.$(OBJEXT) ../SemaphoreTests.$(OBJEXT) \
+	../HTTPStatusTests.$(OBJEXT) ../DateTests.$(OBJEXT) \
+	../LoggerTests.$(OBJEXT) ../HTTPClientTests.$(OBJEXT) \
+	../StringTests.$(OBJEXT) ../MutexTests.$(OBJEXT) \
+	../HTTPServerTests.$(OBJEXT) ../HTTPTestMain.$(OBJEXT) \
+	../HTTPRequestTests.$(OBJEXT)
 uhttpcctestunit_OBJECTS = $(am_uhttpcctestunit_OBJECTS)
 uhttpcctestunit_DEPENDENCIES = ../../lib/unix/libuhttp++.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -261,25 +262,25 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 uhttpcctestunit_SOURCES = \
-	..//DateTests.cpp \
-	..//HTTPClientTests.cpp \
-	..//HTTPPacketTests.cpp \
-	..//HTTPRequestTests.cpp \
-	..//HTTPServerTests.cpp \
-	..//HTTPStatusTests.cpp \
-	..//HTTPTestMain.cpp \
-	..//LoggerTests.cpp \
-	..//MessageQueue.cpp \
-	..//MutexTests.cpp \
-	..//NetworkInterfaceTests.cpp \
-	..//ParameterTests.cpp \
-	..//RandomTests.cpp \
-	..//SemaphoreTests.cpp \
-	..//SocketTests.cpp \
-	..//StringTests.cpp \
-	..//ThreadTests.cpp \
-	..//UriTests.cpp \
-	..//VectorTests.cpp
+	../VectorTests.cpp \
+	../MessageQueue.cpp \
+	../RandomTests.cpp \
+	../HTTPPacketTests.cpp \
+	../NetworkInterfaceTests.cpp \
+	../ParameterTests.cpp \
+	../UriTests.cpp \
+	../ThreadTests.cpp \
+	../SocketTests.cpp \
+	../SemaphoreTests.cpp \
+	../HTTPStatusTests.cpp \
+	../DateTests.cpp \
+	../LoggerTests.cpp \
+	../HTTPClientTests.cpp \
+	../StringTests.cpp \
+	../MutexTests.cpp \
+	../HTTPServerTests.cpp \
+	../HTTPTestMain.cpp \
+	../HTTPRequestTests.cpp
 
 uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a
 all: all-am
@@ -320,48 +321,47 @@ $(am__aclocal_m4_deps):
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
 ../$(am__dirstamp):
-	@$(MKDIR_P) ../
+	@$(MKDIR_P) ..
 	@: > ../$(am__dirstamp)
 ../$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ..//$(DEPDIR)
+	@$(MKDIR_P) ../$(DEPDIR)
 	@: > ../$(DEPDIR)/$(am__dirstamp)
-..//DateTests.$(OBJEXT): ../$(am__dirstamp) \
+../VectorTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPClientTests.$(OBJEXT): ../$(am__dirstamp) \
+../MessageQueue.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPPacketTests.$(OBJEXT): ../$(am__dirstamp) \
+../RandomTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPRequestTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPPacketTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPServerTests.$(OBJEXT): ../$(am__dirstamp) \
+../NetworkInterfaceTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPStatusTests.$(OBJEXT): ../$(am__dirstamp) \
+../ParameterTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//HTTPTestMain.$(OBJEXT): ../$(am__dirstamp) \
+../UriTests.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../ThreadTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//LoggerTests.$(OBJEXT): ../$(am__dirstamp) \
+../SocketTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//MessageQueue.$(OBJEXT): ../$(am__dirstamp) \
+../SemaphoreTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//MutexTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPStatusTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//NetworkInterfaceTests.$(OBJEXT): ../$(am__dirstamp) \
+../DateTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//ParameterTests.$(OBJEXT): ../$(am__dirstamp) \
+../LoggerTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//RandomTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPClientTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//SemaphoreTests.$(OBJEXT): ../$(am__dirstamp) \
+../StringTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//SocketTests.$(OBJEXT): ../$(am__dirstamp) \
+../MutexTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//StringTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPServerTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//ThreadTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPTestMain.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-..//UriTests.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-..//VectorTests.$(OBJEXT): ../$(am__dirstamp) \
+../HTTPRequestTests.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 
 uhttpcctestunit$(EXEEXT): $(uhttpcctestunit_OBJECTS) $(uhttpcctestunit_DEPENDENCIES) $(EXTRA_uhttpcctestunit_DEPENDENCIES) 
@@ -370,7 +370,7 @@ uhttpcctestunit$(EXEEXT): $(uhttpcctestunit_OBJECTS) $(uhttpcctestunit_DEPENDENC
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f ..//*.$(OBJEXT)
+	-rm -f ../*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c

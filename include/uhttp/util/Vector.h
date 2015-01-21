@@ -13,7 +13,7 @@
 
 #include <uhttp/platform.h>
 
-#if defined(UHTTP_USE_BOOST_SHREDPTR)
+#if defined(UHTTP_HAVE_BOOST_SHRAEDPTR)
 #include <boost/shared_ptr.hpp>
 #endif
 
@@ -21,10 +21,10 @@
 
 namespace uHTTP {
 
-#if defined(UHTTP_USE_BOOST_SHREDPTR)
-#define SharedPtr boost::shared_ptr
-#else
+#if defined(UHTTP_HAVE_STD_SHRAEDPTR)
 #define SharedPtr std::shared_ptr
+#elif defined(UHTTP_HAVE_BOOST_SHRAEDPTR)
+#define SharedPtr boost::shared_ptr
 #endif
   
 ////////////////////////////////////////
@@ -70,7 +70,7 @@ private:
   
   SharedPtr<T> get(size_t index) {
     if (std::vector< SharedPtr<T> >::size() < (index+1))
-      return SharedPtr<T>(NULL);
+      return SharedPtr<T>((T*)NULL);
     return std::vector< SharedPtr<T> >::at(index);
   }
 

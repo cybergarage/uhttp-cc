@@ -116,19 +116,32 @@ AC_DEFINE([HAVE_STD_COUT],1,[STD_COUT])],
 )
 
 ##############################
-# Checks for boost::shared_ptr
+# Checks for shared_ptr
 ##############################
+
+AC_MSG_CHECKING(for std::shared_ptr)
+AC_TRY_COMPILE([
+#include <iostream>
+void testFunc(){
+std::shared_ptr<int> p(new int(0));
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([UHTTP_HAVE_STD_SHRAEDPTR],1,[UHTTP_HAVE_STD_SHAREDPTR])],
+[AC_MSG_RESULT(no)]
+)
 
 AC_MSG_CHECKING(for boost::shared_ptr)
 AC_TRY_COMPILE([
 #include <boost/shared_ptr.hpp>
 void testFunc(){
-boost::shared_ptr<void> p(new int(0));
+boost::shared_ptr<int> p(new int(0));
 }
 ],
 [],
 [AC_MSG_RESULT(yes)
-AC_DEFINE([UHTTP_USE_BOOST_SHREDPTR],1,[UHTTP_USE_BOOST_SHREDPTR])],
+AC_DEFINE([UHTTP_HAVE_BOOST_SHRAEDPTR],1,[UHTTP_HAVE_BOOST_SHAREDPTR])],
 [AC_MSG_RESULT(no)]
 )
 
