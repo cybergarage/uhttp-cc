@@ -5493,7 +5493,7 @@ if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 
-$as_echo "#define UHTTP_HAVE_STD_SHRAEDPTR 1" >>confdefs.h
+$as_echo "#define HAVE_STD_SHRAEDPTR 1" >>confdefs.h
 
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -5524,7 +5524,7 @@ if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 
-$as_echo "#define UHTTP_HAVE_BOOST_SHRAEDPTR 1" >>confdefs.h
+$as_echo "#define HAVE_BOOST_SHRAEDPTR 1" >>confdefs.h
 
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5

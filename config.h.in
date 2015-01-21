@@ -3,6 +3,9 @@
 /* Define to 1 if you have the <arpa/inet.h> header file. */
 #undef HAVE_ARPA_INET_H
 
+/* HAVE_BOOST_SHAREDPTR */
+#undef HAVE_BOOST_SHRAEDPTR
+
 /* Define to 1 if you have the `fopen' function. */
 #undef HAVE_FOPEN
 
@@ -100,6 +103,9 @@
 /* STD_COUT */
 #undef HAVE_STD_COUT
 
+/* HAVE_STD_SHAREDPTR */
+#undef HAVE_STD_SHRAEDPTR
+
 /* Define to 1 if you have the `strchr' function. */
 #undef HAVE_STRCHR
 
@@ -159,12 +165,6 @@
 
 /* Define to 1 if your <sys/time.h> declares `struct tm'. */
 #undef TM_IN_SYS_TIME
-
-/* UHTTP_HAVE_BOOST_SHAREDPTR */
-#undef UHTTP_HAVE_BOOST_SHRAEDPTR
-
-/* UHTTP_HAVE_STD_SHAREDPTR */
-#undef UHTTP_HAVE_STD_SHRAEDPTR
 
 /* Version number of package */
 #undef VERSION

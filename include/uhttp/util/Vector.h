@@ -13,7 +13,7 @@
 
 #include <uhttp/platform.h>
 
-#if defined(UHTTP_HAVE_BOOST_SHRAEDPTR)
+#if !defined(HAVE_STD_SHRAEDPTR)
 #include <boost/shared_ptr.hpp>
 #endif
 
@@ -21,9 +21,9 @@
 
 namespace uHTTP {
 
-#if defined(UHTTP_HAVE_STD_SHRAEDPTR)
+#if defined(HAVE_STD_SHRAEDPTR)
 #define SharedPtr std::shared_ptr
-#elif defined(UHTTP_HAVE_BOOST_SHRAEDPTR)
+#else
 #define SharedPtr boost::shared_ptr
 #endif
   
