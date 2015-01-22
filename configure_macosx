@@ -1,2 +1,2 @@
 #!/bin/bash
-./configure --includedir=`pwd` MKDIR_P='mkdir -p' $@
+./configure MKDIR_P='mkdir -p' $@

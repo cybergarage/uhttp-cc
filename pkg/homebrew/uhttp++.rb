@@ -1,16 +1,16 @@
 class Uhttpxx < Formula
   homepage "http://www.cybergarage.org/do/view/Main/HttpEngineForCC"
-  url "https://github.com/cybergarage/uHTTP4CC/archive/0.7.1.tar.gz"
-  sha1 "0bf051150500074da675cac16e8b8a66d9d3d62c"
+  url "https://github.com/cybergarage/uHTTP4CC/archive/0.8.tar.gz"
+  sha1 "b1ceb9f266d8465c1700be0a557efc7a5495786c"
 
   depends_on "readline"
 
   def install
-    system "./configure", "--disable-debug",
+    system "./configure_macosx", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
-                          "--prefix=#{prefix}",
-                          "MKDIR_P='mkdir -p'"
+                          "--prefix=#{prefix}"
+    system "make"
     system "make", "install"
   end
 end
