@@ -15,6 +15,8 @@
 #  include "config.h"
 #endif
 
+#if !defined(StdSharedPtr)
+
 #if (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201103L)) || defined(__APPLE__)
 #define HAVE_STD_SHRAEDPTR 1
 #define StdSharedPtr std::shared_ptr
@@ -23,6 +25,8 @@
 #if !defined(HAVE_STD_SHRAEDPTR)
 #include <boost/shared_ptr.hpp>
 #define StdSharedPtr boost::shared_ptr
+#endif
+
 #endif
 
 #endif
