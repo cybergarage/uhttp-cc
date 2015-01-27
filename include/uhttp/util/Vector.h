@@ -13,19 +13,9 @@
 
 #include <uhttp/platform.h>
 
-#if !defined(HAVE_STD_SHRAEDPTR)
-#include <boost/shared_ptr.hpp>
-#endif
-
 #include <vector>
 
 namespace uHTTP {
-
-#if defined(HAVE_STD_SHRAEDPTR)
-#define SharedPtr std::shared_ptr
-#else
-#define SharedPtr boost::shared_ptr
-#endif
   
 ////////////////////////////////////////
 // Vector (Shared)
