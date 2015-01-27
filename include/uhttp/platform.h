@@ -21,12 +21,7 @@
 
 #if !defined(HAVE_STD_SHRAEDPTR)
 #include <boost/shared_ptr.hpp>
-#endif
-
-#if defined(HAVE_STD_SHRAEDPTR)
-#define SharedPtr std::shared_ptr
-#else
-#define SharedPtr boost::shared_ptr
+#define std::shared_ptr boost::shared_ptr
 #endif
 
 #endif
