@@ -73,7 +73,7 @@ void HTTPWorkerThread::run() {
       if (statusCode == HTTP::PROCESSING)
         break;
       if (httpReq->isKeepAlive() == false)
-          break;
+        break;
     }
     
     if (statusCode != HTTP::PROCESSING) {

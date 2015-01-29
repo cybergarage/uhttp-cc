@@ -15,16 +15,16 @@
 #  include "config.h"
 #endif
 
-#if !defined(StdSharedPtr)
+#if !defined(uhttp_shared_ptr)
 
 #if (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201103L)) || defined(__APPLE__)
 #define HAVE_STD_SHRAEDPTR 1
-#define StdSharedPtr std::shared_ptr
+#define uhttp_shared_ptr std::shared_ptr
 #endif
 
 #if !defined(HAVE_STD_SHRAEDPTR)
 #include <boost/shared_ptr.hpp>
-#define StdSharedPtr boost::shared_ptr
+#define uhttp_shared_ptr boost::shared_ptr
 #endif
 
 #endif
