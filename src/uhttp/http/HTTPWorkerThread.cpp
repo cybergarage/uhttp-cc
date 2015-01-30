@@ -44,7 +44,7 @@ void HTTPWorkerThread::run() {
       continue;
     }
     
-    HTTPSocket *httpSock = new HTTPSocket(clientSock);
+    uhttp_shared_ptr<HTTPSocket> httpSock = uhttp_shared_ptr<HTTPSocket>(new HTTPSocket(clientSock));
     if (!httpSock) {
       delete httpMsg;
       delete clientSock;
@@ -52,7 +52,6 @@ void HTTPWorkerThread::run() {
     }
     
     if (httpSock->open() == false) {
-      delete httpSock;
       delete httpMsg;
       delete clientSock;
       continue;
@@ -60,7 +59,6 @@ void HTTPWorkerThread::run() {
     
     HTTPRequest *httpReq = new HTTPRequest();
     if (!httpReq) {
-      delete httpSock;
       delete httpMsg;
       delete clientSock;
       continue;

@@ -28,7 +28,7 @@ class HTTPRequest : public HTTPPacket {
   std::string requestHost;
   int requestPort;
   
-  HTTPSocket *httpSocket;
+  uhttp_shared_ptr<HTTPSocket> httpSocket;
   Socket *postSocket;
   
   HTTPResponse httpRes;
@@ -40,7 +40,7 @@ public:
   ////////////////////////////////////////////////
   
   HTTPRequest();
-  HTTPRequest(HTTPSocket *httpSock);
+  HTTPRequest(uhttp_shared_ptr<HTTPSocket> httpSock);
   ~HTTPRequest();
   
   ////////////////////////////////////////////////
@@ -165,11 +165,11 @@ public:
   ////////////////////////////////////////////////
 
  public:
-  void setSocket(HTTPSocket *value) {
-    httpSocket = value;
+  void setSocket(uhttp_shared_ptr<HTTPSocket> socket) {
+    httpSocket = socket;
   }
     
-  HTTPSocket *getSocket() {
+  uhttp_shared_ptr<HTTPSocket> getSocket() {
     return httpSocket;
   }
 
@@ -218,7 +218,7 @@ private:
 
  public:
   bool read() {
-    return HTTPPacket::read(getSocket());
+    return HTTPPacket::read(getSocket().get());
   }
 
   ////////////////////////////////////////////////

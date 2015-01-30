@@ -28,7 +28,6 @@ using namespace uHTTP;
 ////////////////////////////////////////////////
 
 HTTPRequest::HTTPRequest() {
-  httpSocket = NULL;
   postSocket = NULL;
   requestPort = -1;
 
@@ -41,17 +40,13 @@ HTTPRequest::HTTPRequest() {
   setAccept("*/*");
 }
 
-HTTPRequest::HTTPRequest(HTTPSocket *httpSock) : HTTPPacket(httpSock) {
+HTTPRequest::HTTPRequest(uhttp_shared_ptr<HTTPSocket> httpSock) : HTTPPacket(httpSock.get()) {
   setSocket(httpSock);
   postSocket = NULL;
   requestPort = -1;
 }
 
 HTTPRequest::~HTTPRequest() {
-  if (httpSocket) {
-    delete httpSocket;
-    httpSocket = NULL;
-  }
   if (postSocket) {
     delete postSocket;
     postSocket = NULL;
@@ -222,7 +217,7 @@ HTTP::StatusCode HTTPRequest::returnResponse(int statusCode) {
 ////////////////////////////////////////////////
 
 HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader) {
-  HTTPSocket *httpSock = getSocket();
+  uhttp_shared_ptr<HTTPSocket> httpSock = getSocket();
   size_t offset = 0;
   size_t length = httpRes->getContentLength();
   if (hasContentRange() == true) {

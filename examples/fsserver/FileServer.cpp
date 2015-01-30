@@ -91,7 +91,7 @@ uHTTP::HTTP::StatusCode FileServer::httpRequestRecieved(uHTTP::HTTPRequest *http
       return uHTTP::HTTP::OK_REQUEST;
     }
     
-    uHTTP::HTTPSocket *httpSocket = httpReq->getSocket();
+    uhttp_shared_ptr<uHTTP::HTTPSocket> httpSocket = httpReq->getSocket();
     
     contentFs.open(systemPath.c_str(), std::ifstream::in | std::ifstream::binary);
     if (contentFs.is_open()) {
