@@ -80,7 +80,7 @@ bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in
     sockaddr->sin_addr.s_addr = inet_addr(addr.c_str());
     if (sockaddr->sin_addr.s_addr == INADDR_NONE) {
       struct hostent *hent = gethostbyname(addr.c_str());
-      if (hent == NULL)
+      if (!hent)
         return false;
       memcpy(&(sockaddr->sin_addr), hent->h_addr, hent->h_length);
     }

@@ -88,7 +88,7 @@ File::File(File *file) {
 }
 
 File::~File() {
-  if (absoluteFile != NULL)
+  if (absoluteFile)
     delete absoluteFile;
 }
 
@@ -105,7 +105,7 @@ bool File::exists(const std::string &name) {
   return true;
 #elif !defined(ITRON) && !defined(TENGINE) 
   FILE *fp = fopen(name.c_str(), "r");
-  if (fp == NULL)
+  if (!fp)
     return false;
   fclose(fp);
   return true;
@@ -137,7 +137,7 @@ bool File::load(const std::string &name, string &buf) {
   close(fd);
 #else
   FILE *fp = fopen(name.c_str(), "r");
-  if (fp == NULL)
+  if (!fp)
     return false;
   size_t nread = fread(readBuf, sizeof(char), READ_BUF_SIZE, fp);
   while (0 < nread) {
@@ -171,7 +171,7 @@ bool File::save(const std::string &name, const std::string &buf) {
   close(fd);
 #else
   FILE *fp = fopen(name.c_str(), "wb");
-  if (fp == NULL)
+  if (!fp)
     return false;
   size_t bufSize = buf.length();
   size_t nWrote = fwrite(buf.c_str(), sizeof(char), bufSize, fp);
@@ -226,16 +226,16 @@ const char *File::getFileName(std::string &buf) {
 ////////////////////////////////////////////////
 
 File *File::getAbsoluteFile() {
-  if (absoluteFile == NULL)
+  if (!absoluteFile)
     absoluteFile = new File();
   absoluteFile->setName("");
 #if defined(WIN32)
   char fullpath[_MAX_PATH];
-  if (_fullpath(fullpath, nameStr.c_str(), _MAX_PATH ) != NULL)
+  if (_fullpath(fullpath, nameStr.c_str(), _MAX_PATH ))
     absoluteFile->setName(fullpath);
 #elif defined(HAVE_REALPATH)
   char fullpath[MAXPATHLEN];
-  if (realpath(nameStr.c_str(), fullpath) != NULL)
+  if (realpath(nameStr.c_str(), fullpath))
     absoluteFile->setName(fullpath);
 #elif defined(BTRON) || defined(ITRON) || defined(TENGINE) 
   // Not Implemented yet

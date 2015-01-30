@@ -59,7 +59,7 @@ class InetSocketAddress  {
   }
 
   void set(InetSocketAddress *isaddr) {
-    if (isaddr == NULL) {
+    if (!isaddr) {
       setAddress("");
       setPort(0);
       return;

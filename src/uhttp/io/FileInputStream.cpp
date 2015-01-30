@@ -19,7 +19,7 @@ using namespace uHTTP;
 FileInputStream::FileInputStream(File *file, const std::string &mode) {
   inBuf = new char[FILE_INBUF_SIZE];
   fp = fopen(file->getName(), mode.c_str());
-  if (fp == NULL)
+  if (!fp)
     return;
 }
 
@@ -36,7 +36,7 @@ FileInputStream::~FileInputStream() {
 ////////////////////////////////////////////////
 
 ssize_t FileInputStream::read(std::string &b, size_t len) {
-  if (fp == NULL)
+  if (!fp)
     return 0;
 
   int readCnt = 0;
@@ -56,7 +56,7 @@ ssize_t FileInputStream::read(std::string &b, size_t len) {
 }
 
 ssize_t FileInputStream::read(char *b, size_t len) {
-  if (fp == NULL)
+  if (!fp)
     return 0;
 
   int readCnt = 0;
@@ -83,7 +83,7 @@ void FileInputStream::unread(std::string &b, size_t off, size_t len) {
 ////////////////////////////////////////////////
 
 long FileInputStream::skip(long n) {
-  if (fp == NULL)
+  if (!fp)
     return 0;
   int ret = fseek(fp, n, SEEK_CUR);
   return (ret == 0) ? n : 0;
@@ -94,7 +94,7 @@ long FileInputStream::skip(long n) {
 ////////////////////////////////////////////////
 
 void FileInputStream::close() {
-  if (fp == NULL)
+  if (!fp)
     return;
   fclose(fp);
 }

@@ -31,7 +31,7 @@ void uHTTP::Logger::SetSharedInstance(uHTTP::Logger *logger) {
 }
 
 bool uHTTP::Logger::HasSharedInstance() {
-  return (gUHttpLoggerSharedInstance != NULL) ? true : false;
+  return (gUHttpLoggerSharedInstance) ? true : false;
 }
 
 const char *uHTTP::Logger::GetMaskString(int outputType) {

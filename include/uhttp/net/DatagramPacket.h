@@ -77,7 +77,7 @@ class DatagramPacket {
   }
 
   void set(DatagramPacket *dgmPack) {
-    if (dgmPack == NULL) {
+    if (!dgmPack) {
       setSocketAddress(NULL);
       setData("");
       return;

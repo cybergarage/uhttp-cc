@@ -28,7 +28,7 @@ HTTPSocket::HTTPSocket(uHTTP::Socket *socket) {
 }
 
 HTTPSocket::HTTPSocket(HTTPSocket *socket) {
-  setSocket((socket != NULL) ? socket->getSocket() : NULL);
+  setSocket((socket) ? socket->getSocket() : NULL);
 }
   
 HTTPSocket::~HTTPSocket() {
@@ -44,7 +44,7 @@ bool HTTPSocket::open() {
 }
 
 bool HTTPSocket::close() {
-  if (socket != NULL) {
+  if (socket) {
     delete socket;
     setSocket(NULL);
   }

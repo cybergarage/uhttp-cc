@@ -39,13 +39,13 @@ public:
       if (uHTTP::StringEquals(name, param->getName()) == true)
         return param;
     }
-    return NULL;
+    return nullptr;
   }
 
   bool getParameterValue(const std::string &name, std::string *value)
   {
     Parameter *param = getParameter(name);
-    if (param == NULL)
+    if (!param)
       return false;
     *value = param->getValue();
     return true;

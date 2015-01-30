@@ -62,7 +62,7 @@ const char *uHTTP::HTTPHeaderGetValue(LineNumberReader *reader, const std::strin
   String bigName = name;
   bigName.toUppderCase();
   const char *lineStr = reader->readLine();
-  while (lineStr != NULL && 0 < StringLength(lineStr)) {
+  while (lineStr && 0 < StringLength(lineStr)) {
     HTTPHeader header(lineStr);
     if (header.hasName() == false) {
        lineStr = reader->readLine();

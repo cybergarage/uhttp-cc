@@ -243,7 +243,7 @@ HTTP::StatusCode HTTPRequest::post(HTTPResponse *httpRes, bool isOnlyHeader) {
 ////////////////////////////////////////////////
 
 HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse *httpRes, bool isKeepAlive) {
-  if (postSocket == NULL) {
+  if (!postSocket) {
     postSocket = new Socket();
     bool isConnected = postSocket->connect(host, port);
     bool isTimeoutSet = false;
@@ -270,7 +270,7 @@ HTTPResponse *HTTPRequest::post(const std::string &host, int port, HTTPResponse 
 
   const char *content = getContent();
   size_t contentLength = 0;
-  if (content != NULL)
+  if (content)
     contentLength = strlen(content);
 
   if (0 < contentLength) {

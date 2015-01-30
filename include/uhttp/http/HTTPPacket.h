@@ -126,7 +126,7 @@ public:
   void clearHeaders();
 
   bool hasHeader(const std::string &name) {
-    return (getHeader(name) != NULL) ? true : false;
+    return (getHeader(name)) ? true : false;
   }
 
   void setHeader(const std::string &name, const std::string &value);
@@ -140,7 +140,7 @@ public:
 
   const char *getHeaderValue(const std::string &name) {
     HTTPHeader *header = getHeader(name);
-    if (header == NULL)
+    if (!header)
       return "";
     return header->getValue();
   }
@@ -175,21 +175,21 @@ public:
 
   int getIntegerHeaderValue(const std::string &name) {
     HTTPHeader *header = getHeader(name);
-    if (header == NULL)
+    if (!header)
       return 0;
     return atoi(header->getValue()); 
   }
 
   long getLongHeaderValue(const std::string &name) {
     HTTPHeader *header = getHeader(name);
-    if (header == NULL)
+    if (!header)
       return 0;
     return atol(header->getValue());
   }
 
   size_t getLongLongHeaderValue(const std::string &name) {
     HTTPHeader *header = getHeader(name);
-    if (header == NULL)
+    if (!header)
       return 0;
     return atoll(header->getValue());
   }
@@ -235,7 +235,7 @@ public:
   }
 
   bool hasContentInputStream() {
-    return (contentInput != NULL) ? true : false;
+    return (contentInput) ? true : false;
   }
 
   ////////////////////////////////////////////////

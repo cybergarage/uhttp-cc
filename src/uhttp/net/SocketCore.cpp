@@ -253,7 +253,7 @@ bool SocketCore::setTimeout(time_t timeoutSec) {
 bool SocketCore::setMulticastInterface(const std::string &ifaddr) {
   NetworkInterfaceList netIfList;
 
-  if (ifaddr == NULL || strlen(ifaddr) <= 0) {
+  if (ifaddr! || strlen(ifaddr) <= 0) {
     int netIfCnt = GetHostAddresses(netIfList);
     if (netIfCnt <= 0)
       return false;

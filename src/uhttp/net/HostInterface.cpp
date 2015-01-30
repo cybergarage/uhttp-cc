@@ -152,7 +152,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   pAdapterAddresses = (IP_ADAPTER_ADDRESSES *) LocalAlloc(LMEM_ZEROINIT, outBufLen);
   GetAdaptersAddresses(AF_UNSPEC, ifFlags, NULL, pAdapterAddresses, &outBufLen);
   ai = pAdapterAddresses;
-  while (ai != NULL) {
+  while (ai) {
     if (ai->OperStatus != IfOperStatusUp) {
       ai = ai->Next;
       continue;
@@ -166,7 +166,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
       continue;
     }
     uai = ai->FirstUnicastAddress;
-    while (uai != NULL) {
+    while (uai) {
       SOCKET_ADDRESS sockaddr = uai->Address;
       SOCKADDR *saddr = sockaddr.lpSockaddr;
       INT saddrlen = sockaddr.iSockaddrLength;
@@ -216,7 +216,7 @@ size_t uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   struct ifaddrs *ifaddr;
   if (getifaddrs(&ifaddr) != 0)
     return 0;
-  while (ifaddr != NULL) {
+  while (ifaddr) {
     
     // Thanks for Ricardo Rivldo (04/10/12) 
     if (!ifaddr->ifa_addr){
@@ -270,7 +270,7 @@ int uHTTP::GetHostAddresses(NetworkInterfaceList &netIfList) {
   while (!feof(fd)) {
     char *ifname = buffer;
     char *sep;
-    if (fgets(buffer, sizeof(buffer)-1, fd) == NULL)
+    if (fgets(buffer, sizeof(buffer)-1, fd)!)
       break;
     sep = strrchr(buffer, ':');
     if (sep)

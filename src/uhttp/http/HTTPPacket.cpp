@@ -94,7 +94,7 @@ const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
 HTTPHeader *HTTPPacket::getHeader(size_t n) {
   size_t nHeaders = httpHeaderList.size();
   if (nHeaders < (n+1))
-    return NULL;
+    return nullptr;
   return httpHeaderList.at(n);
 }
 
@@ -108,7 +108,7 @@ HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
     if (StringEqualsIgnoreCase(headerName, name) == true)
       return header;      
   }
-  return NULL;
+  return nullptr;
 }
 
 void HTTPPacket::clearHeaders() {
@@ -122,7 +122,7 @@ void HTTPPacket::clearHeaders() {
 
 void HTTPPacket::setHeader(const std::string &name, const std::string &value) {
   HTTPHeader *header = getHeader(name);
-  if (header != NULL) {
+  if (header) {
     header->setValue(value);
     return;
   }
@@ -148,7 +148,7 @@ bool HTTPPacket::addHeader(const std::string &name, const std::string &value) {
   if (name.length() <= 0)
     return false;
   HTTPHeader *header = new HTTPHeader(name, value);
-  if (header == NULL)
+  if (!header)
     return false;
   httpHeaderList.push_back(header);
   return true;
@@ -159,7 +159,7 @@ bool HTTPPacket::addHeader(const std::string &name, const std::string &value) {
 ////////////////////////////////////////////////
 
 bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
-  if (in == NULL)
+  if (!in)
     return false;
 
   InputStreamReader inReader(in);
@@ -265,7 +265,7 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
 }
 
 void HTTPPacket::set(HTTPPacket *httpPacket) {
-  if (httpPacket == NULL)
+  if (!httpPacket)
     return;
 
   setFirstLine(httpPacket->getFirstLine());
@@ -409,9 +409,9 @@ void HTTPPacket::getContentRange(long range[]) {
     return;
   const char *rangeLine = getHeaderValue(HTTP::CONTENT_RANGE);
   // Thanks for Brent Hills (10/20/04)
-  if (rangeLine == NULL || strlen(rangeLine) <= 0)
+  if (!rangeLine || strlen(rangeLine) <= 0)
     rangeLine = getHeaderValue(HTTP::RANGE);
-  if (rangeLine == NULL || strlen(rangeLine) <= 0)
+  if (!rangeLine || strlen(rangeLine) <= 0)
     return;
   StringTokenizer strToken(rangeLine, " =");
   // Skip bytes
@@ -442,7 +442,7 @@ bool HTTPPacket::isCloseConnection() {
   if (hasConnection() == false)
     return false;
   const char *connection = getConnection();
-  if (connection == NULL)
+  if (!connection)
     return false;
   return StringEqualsIgnoreCase(HTTP::CLOSE, connection);
 }
@@ -451,7 +451,7 @@ bool HTTPPacket::isKeepAliveConnection() {
   if (hasConnection() == false)
     return false;
   const char *connection = getConnection();
-  if (connection == NULL)
+  if (!connection)
     return false;
   return StringEqualsIgnoreCase(HTTP::KEEP_ALIVE, connection);
 }
@@ -477,7 +477,7 @@ bool HTTPPacket::isChunked() {
   if (hasTransferEncoding() == false)
     return false;
   const char *transEnc = getTransferEncoding();
-  if (transEnc == NULL)
+  if (!transEnc)
     return false;
   return StringEqualsIgnoreCase(HTTP::CHUNKED, transEnc);
 }
@@ -490,7 +490,7 @@ bool HTTPPacket::isChunked() {
 const char *HTTPPacket::getCharSet(std::string &buf) {
   buf = "";
 
-  if (getContentType() == NULL)
+  if (!getContentType())
     return buf.c_str();
   string contentType = getContentType();
   StringToLowerCase(contentType);

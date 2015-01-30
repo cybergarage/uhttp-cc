@@ -45,7 +45,7 @@ HTTPServer::~HTTPServer() {
 ////////////////////////////////////////////////
 
 bool HTTPServer::bind(int port, const std::string &addr) {
-  if (serverSock != NULL)
+  if (serverSock)
     return true;
     
   serverSock = new ServerSocket();
@@ -67,7 +67,7 @@ bool HTTPServer::open(int port, const std::string &addr) {
 }
 
 bool HTTPServer::close() {
-  if (serverSock == NULL)
+  if (!serverSock)
     return true;
   
   serverSock->close();
@@ -78,7 +78,7 @@ bool HTTPServer::close() {
 }
 
 bool HTTPServer::accept(uHTTP::Socket *socket) {
-  if (serverSock == NULL)
+  if (!serverSock)
     return false;
   if (serverSock->accept(socket) == false)
     return false;
@@ -88,7 +88,7 @@ bool HTTPServer::accept(uHTTP::Socket *socket) {
 }
 
 bool HTTPServer::isOpened() {
-  return (serverSock != NULL) ? true : false;
+  return (serverSock) ? true : false;
 }
 
 ////////////////////////////////////////////////
@@ -103,7 +103,7 @@ void HTTPServer::run() {
   
   while (isRunnable() == true) {
     sock = new Socket();
-    if (sock == NULL)
+    if (!sock)
       continue;
     
     if (accept(sock) == false) {

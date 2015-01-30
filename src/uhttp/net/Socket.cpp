@@ -116,7 +116,7 @@ bool Socket::bind(int bindPort, const std::string &bindAddr) {
   sock = GetAvailableSocketID(STREAM);
   if (sock < 0)
     return false;
-  if (bindAddr != NULL)
+  if (bindAddr)
     tcpcrep.myaddr.ipaddr = ascii_to_ipaddr((B*)bindAddr);
   tcpcrep.myaddr.ipaddr = htons(bindPort);
   if (tcp_cre_rep(sock, &tcpcrep) != E_OK) {
@@ -352,9 +352,9 @@ ssize_t Socket::send(const char c) {
 
 void Socket::initWindowBuffer() {
 #if defined(ITRON)
-  if (sendWinBuf == NULL)
+  if (sendWinBuf!)
     sendWinBuf = new UH[WINDOW_BUF_SIZE];
-  if (recvWinBuf == NULL)
+  if (recvWinBuf!)
     recvWinBuf = new UH[WINDOW_BUF_SIZE];
 #endif
 }

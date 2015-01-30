@@ -87,7 +87,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
   ERR ret = ka_bind(sock, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
   T_UDP_CCEP udpccep = { 0, { IPV4_ADDRANY, UDP_PORTANY }, (FP)UdpCallback };
-  if (bindAddr != NULL)
+  if (bindAddr)
     udpccep.myaddr.ipaddr = ascii_to_ipaddr((B*)bindAddr);
   udpccep.myaddr.ipaddr = htons(bindPort);
   ER ret = udp_cre_cep(sock, &udpccep);

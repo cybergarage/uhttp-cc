@@ -54,7 +54,7 @@ class File {
  public:
   void setName(const std::string &fname) {
     nameStr = fname;
-    if (absoluteFile != NULL) {
+    if (absoluteFile) {
       delete absoluteFile;
       absoluteFile = NULL;
     }
