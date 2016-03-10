@@ -524,9 +524,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		21E1EB1B1535D1E0005AA247 /* libuhttp */ = {
+		21E1EB1B1535D1E0005AA247 /* libuhttp++ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 21E1EB201535D1E0005AA247 /* Build configuration list for PBXNativeTarget "libuhttp" */;
+			buildConfigurationList = 21E1EB201535D1E0005AA247 /* Build configuration list for PBXNativeTarget "libuhttp++" */;
 			buildPhases = (
 				21E1EB181535D1E0005AA247 /* Sources */,
 				21E1EB191535D1E0005AA247 /* Frameworks */,
@@ -536,7 +536,7 @@
 			);
 			dependencies = (
 			);
-			name = libuhttp;
+			name = "libuhttp++";
 			productName = libuhttp;
 			productReference = 21E1EB1C1535D1E0005AA247 /* libuhttp++.a */;
 			productType = "com.apple.product-type.library.static";
@@ -547,9 +547,9 @@
 		21E1EB131535D1E0005AA247 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 			};
-			buildConfigurationList = 21E1EB161535D1E0005AA247 /* Build configuration list for PBXProject "libuhttp" */;
+			buildConfigurationList = 21E1EB161535D1E0005AA247 /* Build configuration list for PBXProject "libuhttp++" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -561,7 +561,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				21E1EB1B1535D1E0005AA247 /* libuhttp */,
+				21E1EB1B1535D1E0005AA247 /* libuhttp++ */,
 			);
 		};
 /* End PBXProject section */
@@ -637,6 +637,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -721,7 +722,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		21E1EB161535D1E0005AA247 /* Build configuration list for PBXProject "libuhttp" */ = {
+		21E1EB161535D1E0005AA247 /* Build configuration list for PBXProject "libuhttp++" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21E1EB1E1535D1E0005AA247 /* Debug */,
@@ -730,7 +731,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21E1EB201535D1E0005AA247 /* Build configuration list for PBXNativeTarget "libuhttp" */ = {
+		21E1EB201535D1E0005AA247 /* Build configuration list for PBXNativeTarget "libuhttp++" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21E1EB211535D1E0005AA247 /* Debug */,

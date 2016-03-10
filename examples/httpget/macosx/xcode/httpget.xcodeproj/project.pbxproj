@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21E83B9817F3104200B21F40 /* libuhttp++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E83B9717F3103C00B21F40 /* libuhttp++.a */; };
 		21EB617717FFED4200B2D179 /* httpget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EB617617FFED4200B2D179 /* httpget.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		21E83B9617F3103C00B21F40 /* PBXContainerItemProxy */ = {
+		21E365A01C9132D8008BBCAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21E83B9217F3103C00B21F40 /* libuhttp.xcodeproj */;
+			containerPortal = 21E3659C1C9132D8008BBCAF /* libuhttp++.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 21E1EB1C1535D1E0005AA247;
-			remoteInfo = libuhttp;
+			remoteInfo = "libuhttp++";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -35,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		2113429317F30E01002B97AF /* httpget */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = httpget; sourceTree = BUILT_PRODUCTS_DIR; };
-		21E83B9217F3103C00B21F40 /* libuhttp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuhttp.xcodeproj; path = ../../../../lib/macosx/xcode/libuhttp.xcodeproj; sourceTree = "<group>"; };
+		21E3659C1C9132D8008BBCAF /* libuhttp++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libuhttp++.xcodeproj"; path = "../../../../lib/macosx/xcode/libuhttp++.xcodeproj"; sourceTree = "<group>"; };
 		21EB617617FFED4200B2D179 /* httpget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = httpget.cpp; path = ../../httpget.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E83B9817F3104200B21F40 /* libuhttp++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,15 +69,15 @@
 		212BF53017F30E56009374DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21E83B9217F3103C00B21F40 /* libuhttp.xcodeproj */,
+				21E3659C1C9132D8008BBCAF /* libuhttp++.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		21E83B9317F3103C00B21F40 /* Products */ = {
+		21E3659D1C9132D8008BBCAF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21E83B9717F3103C00B21F40 /* libuhttp++.a */,
+				21E365A11C9132D8008BBCAF /* libuhttp++.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +116,7 @@
 		2113428B17F30E01002B97AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Satoshi Konno";
 			};
 			buildConfigurationList = 2113428E17F30E01002B97AF /* Build configuration list for PBXProject "httpget" */;
@@ -133,8 +131,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 21E83B9317F3103C00B21F40 /* Products */;
-					ProjectRef = 21E83B9217F3103C00B21F40 /* libuhttp.xcodeproj */;
+					ProductGroup = 21E3659D1C9132D8008BBCAF /* Products */;
+					ProjectRef = 21E3659C1C9132D8008BBCAF /* libuhttp++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -145,11 +143,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		21E83B9717F3103C00B21F40 /* libuhttp++.a */ = {
+		21E365A11C9132D8008BBCAF /* libuhttp++.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libuhttp++.a";
-			remoteRef = 21E83B9617F3103C00B21F40 /* PBXContainerItemProxy */;
+			remoteRef = 21E365A01C9132D8008BBCAF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -182,6 +180,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
