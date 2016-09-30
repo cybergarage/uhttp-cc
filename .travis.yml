@@ -7,7 +7,7 @@ compiler:
 before_script:
     - sudo apt-get update -qq
     - sudo apt-get install libboost-all-dev
-    - suto apt-get install libedit-dev
+    - sudo apt-get install libedit-dev
 
 script:
     - ./bootstrap && ./configure --enable-tests && make && make check
