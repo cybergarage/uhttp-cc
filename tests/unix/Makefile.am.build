@@ -8,14 +8,15 @@ print<<HEADER;
 #
 ############################################################
 
-noinst_PROGRAMS = uhttpcctestunit
+TESTS = uhttpcctest
+noinst_PROGRAMS = uhttpcctest
 
 AM_CPPFLAGS = -I\$(top_srcdir)/include -I../
 
 HEADER
 
 print<<SOURCES;
-uhttpcctestunit_SOURCES = \\
+uhttpcctest_SOURCES = \\
 SOURCES
 
 my @find_files = `find ../ -name *.cpp -or -name *.cpp`;
@@ -29,6 +30,6 @@ print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
 
-uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a
+uhttpcctest_LDADD = ../../lib/unix/libuhttp++.a
 FOTTER
 

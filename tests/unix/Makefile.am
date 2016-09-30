@@ -6,11 +6,12 @@
 #
 ############################################################
 
-noinst_PROGRAMS = uhttpcctestunit
+TESTS = uhttpcctest
+noinst_PROGRAMS = uhttpcctest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
-uhttpcctestunit_SOURCES = \
+uhttpcctest_SOURCES = \
 	..//DateTests.cpp \
 	..//HTTPClientTests.cpp \
 	..//HTTPPacketTests.cpp \
@@ -31,4 +32,4 @@ uhttpcctestunit_SOURCES = \
 	..//UriTests.cpp \
 	..//VectorTests.cpp
 
-uhttpcctestunit_LDADD = ../../lib/unix/libuhttp++.a
+uhttpcctest_LDADD = ../../lib/unix/libuhttp++.a
