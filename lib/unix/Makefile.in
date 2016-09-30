@@ -142,50 +142,50 @@ am__v_AR_1 =
 libuhttp___a_AR = $(AR) $(ARFLAGS)
 libuhttp___a_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = ../../src/uhttp/http/HTTP.$(OBJEXT) \
-	../../src/uhttp/http/HTTPDate.$(OBJEXT) \
-	../../src/uhttp/http/HTTPHeader.$(OBJEXT) \
-	../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT) \
+am__objects_1 = ../../src/uhttp/http/HTTPStatus.$(OBJEXT) \
 	../../src/uhttp/http/HTTPPacket.$(OBJEXT) \
-	../../src/uhttp/http/HTTPRequest.$(OBJEXT) \
-	../../src/uhttp/http/HTTPResponse.$(OBJEXT) \
+	../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT) \
+	../../src/uhttp/http/HTTPHeader.$(OBJEXT) \
+	../../src/uhttp/http/HTTP.$(OBJEXT) \
 	../../src/uhttp/http/HTTPServer.$(OBJEXT) \
-	../../src/uhttp/http/HTTPServerList.$(OBJEXT) \
-	../../src/uhttp/http/HTTPSocket.$(OBJEXT) \
-	../../src/uhttp/http/HTTPStatus.$(OBJEXT) \
 	../../src/uhttp/http/HTTPWorkerThread.$(OBJEXT) \
-	../../src/uhttp/io/BufferedReader.$(OBJEXT) \
-	../../src/uhttp/io/File.$(OBJEXT) \
-	../../src/uhttp/io/FileInputStream.$(OBJEXT) \
-	../../src/uhttp/io/StringBufferInputStream.$(OBJEXT) \
-	../../src/uhttp/io/StringReader.$(OBJEXT) \
+	../../src/uhttp/http/HTTPRequest.$(OBJEXT) \
+	../../src/uhttp/http/HTTPServerList.$(OBJEXT) \
+	../../src/uhttp/http/HTTPResponse.$(OBJEXT) \
+	../../src/uhttp/http/HTTPDate.$(OBJEXT) \
+	../../src/uhttp/http/HTTPSocket.$(OBJEXT) \
 	../../src/uhttp/net/DatagramSocket.$(OBJEXT) \
 	../../src/uhttp/net/HostInterface.$(OBJEXT) \
-	../../src/uhttp/net/MulticastSocket.$(OBJEXT) \
-	../../src/uhttp/net/ServerSocket.$(OBJEXT) \
+	../../src/uhttp/net/URL.$(OBJEXT) \
 	../../src/uhttp/net/Socket.$(OBJEXT) \
+	../../src/uhttp/net/SocketUtil.$(OBJEXT) \
+	../../src/uhttp/net/MulticastSocket.$(OBJEXT) \
+	../../src/uhttp/net/URI.$(OBJEXT) \
 	../../src/uhttp/net/SocketCore.$(OBJEXT) \
 	../../src/uhttp/net/SocketInputStream.$(OBJEXT) \
-	../../src/uhttp/net/SocketUtil.$(OBJEXT) \
-	../../src/uhttp/net/URI.$(OBJEXT) \
-	../../src/uhttp/net/URL.$(OBJEXT) \
-	../../src/uhttp/util/Date.$(OBJEXT) \
+	../../src/uhttp/net/ServerSocket.$(OBJEXT) \
+	../../src/uhttp/io/FileInputStream.$(OBJEXT) \
+	../../src/uhttp/io/File.$(OBJEXT) \
+	../../src/uhttp/io/StringReader.$(OBJEXT) \
+	../../src/uhttp/io/StringBufferInputStream.$(OBJEXT) \
+	../../src/uhttp/io/BufferedReader.$(OBJEXT) \
 	../../src/uhttp/util/Debug.$(OBJEXT) \
-	../../src/uhttp/util/Log.$(OBJEXT) \
 	../../src/uhttp/util/Logger.$(OBJEXT) \
 	../../src/uhttp/util/LoggerFileTarget.$(OBJEXT) \
-	../../src/uhttp/util/LoggerTarget.$(OBJEXT) \
-	../../src/uhttp/util/LoggerTargetList.$(OBJEXT) \
-	../../src/uhttp/util/Message.$(OBJEXT) \
-	../../src/uhttp/util/MessageQueue.$(OBJEXT) \
-	../../src/uhttp/util/Mutex.$(OBJEXT) \
-	../../src/uhttp/util/Random.$(OBJEXT) \
-	../../src/uhttp/util/Semaphore.$(OBJEXT) \
-	../../src/uhttp/util/StringTokenizer.$(OBJEXT) \
 	../../src/uhttp/util/StringUtil.$(OBJEXT) \
-	../../src/uhttp/util/Thread.$(OBJEXT) \
+	../../src/uhttp/util/Semaphore.$(OBJEXT) \
+	../../src/uhttp/util/Mutex.$(OBJEXT) \
+	../../src/uhttp/util/Date.$(OBJEXT) \
+	../../src/uhttp/util/Log.$(OBJEXT) \
+	../../src/uhttp/util/StringTokenizer.$(OBJEXT) \
+	../../src/uhttp/util/LoggerTargetList.$(OBJEXT) \
 	../../src/uhttp/util/ThreadList.$(OBJEXT) \
-	../../src/uhttp/util/TimeUtil.$(OBJEXT)
+	../../src/uhttp/util/Message.$(OBJEXT) \
+	../../src/uhttp/util/TimeUtil.$(OBJEXT) \
+	../../src/uhttp/util/Random.$(OBJEXT) \
+	../../src/uhttp/util/MessageQueue.$(OBJEXT) \
+	../../src/uhttp/util/Thread.$(OBJEXT) \
+	../../src/uhttp/util/LoggerTarget.$(OBJEXT)
 am_libuhttp___a_OBJECTS = $(am__objects_1)
 libuhttp___a_OBJECTS = $(am_libuhttp___a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -330,6 +330,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -341,50 +342,50 @@ top_srcdir = @top_srcdir@
 lib_LIBRARIES = libuhttp++.a
 AM_CPPFLAGS = -I$(top_srcdir)/include
 uhttpcc_sources = \
-	../../src/uhttp/http/HTTP.cpp \
-	../../src/uhttp/http/HTTPDate.cpp \
-	../../src/uhttp/http/HTTPHeader.cpp \
-	../../src/uhttp/http/HTTPMessageQueue.cpp \
-	../../src/uhttp/http/HTTPPacket.cpp \
-	../../src/uhttp/http/HTTPRequest.cpp \
-	../../src/uhttp/http/HTTPResponse.cpp \
-	../../src/uhttp/http/HTTPServer.cpp \
-	../../src/uhttp/http/HTTPServerList.cpp \
-	../../src/uhttp/http/HTTPSocket.cpp \
 	../../src/uhttp/http/HTTPStatus.cpp \
+	../../src/uhttp/http/HTTPPacket.cpp \
+	../../src/uhttp/http/HTTPMessageQueue.cpp \
+	../../src/uhttp/http/HTTPHeader.cpp \
+	../../src/uhttp/http/HTTP.cpp \
+	../../src/uhttp/http/HTTPServer.cpp \
 	../../src/uhttp/http/HTTPWorkerThread.cpp \
-	../../src/uhttp/io/BufferedReader.cpp \
-	../../src/uhttp/io/File.cpp \
-	../../src/uhttp/io/FileInputStream.cpp \
-	../../src/uhttp/io/StringBufferInputStream.cpp \
-	../../src/uhttp/io/StringReader.cpp \
+	../../src/uhttp/http/HTTPRequest.cpp \
+	../../src/uhttp/http/HTTPServerList.cpp \
+	../../src/uhttp/http/HTTPResponse.cpp \
+	../../src/uhttp/http/HTTPDate.cpp \
+	../../src/uhttp/http/HTTPSocket.cpp \
 	../../src/uhttp/net/DatagramSocket.cpp \
 	../../src/uhttp/net/HostInterface.cpp \
-	../../src/uhttp/net/MulticastSocket.cpp \
-	../../src/uhttp/net/ServerSocket.cpp \
+	../../src/uhttp/net/URL.cpp \
 	../../src/uhttp/net/Socket.cpp \
+	../../src/uhttp/net/SocketUtil.cpp \
+	../../src/uhttp/net/MulticastSocket.cpp \
+	../../src/uhttp/net/URI.cpp \
 	../../src/uhttp/net/SocketCore.cpp \
 	../../src/uhttp/net/SocketInputStream.cpp \
-	../../src/uhttp/net/SocketUtil.cpp \
-	../../src/uhttp/net/URI.cpp \
-	../../src/uhttp/net/URL.cpp \
-	../../src/uhttp/util/Date.cpp \
+	../../src/uhttp/net/ServerSocket.cpp \
+	../../src/uhttp/io/FileInputStream.cpp \
+	../../src/uhttp/io/File.cpp \
+	../../src/uhttp/io/StringReader.cpp \
+	../../src/uhttp/io/StringBufferInputStream.cpp \
+	../../src/uhttp/io/BufferedReader.cpp \
 	../../src/uhttp/util/Debug.cpp \
-	../../src/uhttp/util/Log.cpp \
 	../../src/uhttp/util/Logger.cpp \
 	../../src/uhttp/util/LoggerFileTarget.cpp \
-	../../src/uhttp/util/LoggerTarget.cpp \
-	../../src/uhttp/util/LoggerTargetList.cpp \
-	../../src/uhttp/util/Message.cpp \
-	../../src/uhttp/util/MessageQueue.cpp \
-	../../src/uhttp/util/Mutex.cpp \
-	../../src/uhttp/util/Random.cpp \
-	../../src/uhttp/util/Semaphore.cpp \
-	../../src/uhttp/util/StringTokenizer.cpp \
 	../../src/uhttp/util/StringUtil.cpp \
-	../../src/uhttp/util/Thread.cpp \
+	../../src/uhttp/util/Semaphore.cpp \
+	../../src/uhttp/util/Mutex.cpp \
+	../../src/uhttp/util/Date.cpp \
+	../../src/uhttp/util/Log.cpp \
+	../../src/uhttp/util/StringTokenizer.cpp \
+	../../src/uhttp/util/LoggerTargetList.cpp \
 	../../src/uhttp/util/ThreadList.cpp \
-	../../src/uhttp/util/TimeUtil.cpp
+	../../src/uhttp/util/Message.cpp \
+	../../src/uhttp/util/TimeUtil.cpp \
+	../../src/uhttp/util/Random.cpp \
+	../../src/uhttp/util/MessageQueue.cpp \
+	../../src/uhttp/util/Thread.cpp \
+	../../src/uhttp/util/LoggerTarget.cpp
 
 libuhttp___a_SOURCES = \
         $(uhttpcc_sources)
@@ -459,62 +460,42 @@ clean-libLIBRARIES:
 ../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/uhttp/http/$(DEPDIR)
 	@: > ../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTP.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPDate.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPHeader.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT):  \
+../../src/uhttp/http/HTTPStatus.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPPacket.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPRequest.$(OBJEXT):  \
+../../src/uhttp/http/HTTPMessageQueue.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPResponse.$(OBJEXT):  \
+../../src/uhttp/http/HTTPHeader.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTP.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPServer.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPWorkerThread.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPRequest.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPServerList.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPResponse.$(OBJEXT):  \
+	../../src/uhttp/http/$(am__dirstamp) \
+	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/http/HTTPDate.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/http/HTTPSocket.$(OBJEXT):  \
 	../../src/uhttp/http/$(am__dirstamp) \
 	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPStatus.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/http/HTTPWorkerThread.$(OBJEXT):  \
-	../../src/uhttp/http/$(am__dirstamp) \
-	../../src/uhttp/http/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/$(am__dirstamp):
-	@$(MKDIR_P) ../../src/uhttp/io
-	@: > ../../src/uhttp/io/$(am__dirstamp)
-../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../../src/uhttp/io/$(DEPDIR)
-	@: > ../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/BufferedReader.$(OBJEXT):  \
-	../../src/uhttp/io/$(am__dirstamp) \
-	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/File.$(OBJEXT): ../../src/uhttp/io/$(am__dirstamp) \
-	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/FileInputStream.$(OBJEXT):  \
-	../../src/uhttp/io/$(am__dirstamp) \
-	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/StringBufferInputStream.$(OBJEXT):  \
-	../../src/uhttp/io/$(am__dirstamp) \
-	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/io/StringReader.$(OBJEXT):  \
-	../../src/uhttp/io/$(am__dirstamp) \
-	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/net/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/uhttp/net
 	@: > ../../src/uhttp/net/$(am__dirstamp)
@@ -527,13 +508,19 @@ clean-libLIBRARIES:
 ../../src/uhttp/net/HostInterface.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/MulticastSocket.$(OBJEXT):  \
-	../../src/uhttp/net/$(am__dirstamp) \
-	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/ServerSocket.$(OBJEXT):  \
+../../src/uhttp/net/URL.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/net/Socket.$(OBJEXT):  \
+	../../src/uhttp/net/$(am__dirstamp) \
+	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/net/SocketUtil.$(OBJEXT):  \
+	../../src/uhttp/net/$(am__dirstamp) \
+	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/net/MulticastSocket.$(OBJEXT):  \
+	../../src/uhttp/net/$(am__dirstamp) \
+	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/net/URI.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/net/SocketCore.$(OBJEXT):  \
@@ -542,28 +529,36 @@ clean-libLIBRARIES:
 ../../src/uhttp/net/SocketInputStream.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/SocketUtil.$(OBJEXT):  \
+../../src/uhttp/net/ServerSocket.$(OBJEXT):  \
 	../../src/uhttp/net/$(am__dirstamp) \
 	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/URI.$(OBJEXT):  \
-	../../src/uhttp/net/$(am__dirstamp) \
-	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/net/URL.$(OBJEXT):  \
-	../../src/uhttp/net/$(am__dirstamp) \
-	../../src/uhttp/net/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/uhttp/io
+	@: > ../../src/uhttp/io/$(am__dirstamp)
+../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../../src/uhttp/io/$(DEPDIR)
+	@: > ../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/FileInputStream.$(OBJEXT):  \
+	../../src/uhttp/io/$(am__dirstamp) \
+	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/File.$(OBJEXT): ../../src/uhttp/io/$(am__dirstamp) \
+	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/StringReader.$(OBJEXT):  \
+	../../src/uhttp/io/$(am__dirstamp) \
+	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/StringBufferInputStream.$(OBJEXT):  \
+	../../src/uhttp/io/$(am__dirstamp) \
+	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/io/BufferedReader.$(OBJEXT):  \
+	../../src/uhttp/io/$(am__dirstamp) \
+	../../src/uhttp/io/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/uhttp/util
 	@: > ../../src/uhttp/util/$(am__dirstamp)
 ../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/uhttp/util/$(DEPDIR)
 	@: > ../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Date.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/Debug.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Log.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/Logger.$(OBJEXT):  \
@@ -572,40 +567,46 @@ clean-libLIBRARIES:
 ../../src/uhttp/util/LoggerFileTarget.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/LoggerTarget.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/LoggerTargetList.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Message.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/MessageQueue.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Mutex.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Random.$(OBJEXT):  \
+../../src/uhttp/util/StringUtil.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/Semaphore.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Mutex.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Date.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Log.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/StringTokenizer.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/StringUtil.$(OBJEXT):  \
-	../../src/uhttp/util/$(am__dirstamp) \
-	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
-../../src/uhttp/util/Thread.$(OBJEXT):  \
+../../src/uhttp/util/LoggerTargetList.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/ThreadList.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Message.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uhttp/util/TimeUtil.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Random.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/MessageQueue.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/Thread.$(OBJEXT):  \
+	../../src/uhttp/util/$(am__dirstamp) \
+	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uhttp/util/LoggerTarget.$(OBJEXT):  \
 	../../src/uhttp/util/$(am__dirstamp) \
 	../../src/uhttp/util/$(DEPDIR)/$(am__dirstamp)
 

@@ -173,10 +173,14 @@ AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
 AM_CONDITIONAL(UNITTESTS, test "$build_tests" = "yes")
 if [ test "$build_tests" = yes ]; then
-	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::unit_test_framework)])
-	AC_CHECK_LIB([boost_system-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::system)])
-	AC_CHECK_LIB([boost_thread-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::thread)])
-	AC_CHECK_LIB([boost_filesystem-mt],[main],,[AC_MSG_ERROR(uHTTP tests need boost::filesystem)])
+	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
+		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uHTTP needs boost::unit_test_framework)])])
+	AC_CHECK_LIB([boost_system-mt],[main],,
+		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uHTTP needs boost::system)])])
+	AC_CHECK_LIB([boost_thread-mt],[main],,
+		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(uHTTP needs boost::thread)])])
+	AC_CHECK_LIB([boost_filesystem-mt],[main],,
+		[AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uHTTP needs boost::filesystem)])])
 fi
 
 ##############################
