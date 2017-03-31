@@ -182,8 +182,8 @@ int String::regionMatchesIgnoreCase(int toffset, const std::string &other, int o
     
   int ret = regionMatches(toffset, other, ooffset, len);
 
-  delete value1;
-  delete value2;
+  delete []value1;
+  delete []value2;
 
   return ret;
 }
