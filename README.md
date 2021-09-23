@@ -24,7 +24,7 @@ For macOS platforms, you can easily install using Homebrew with the following `b
 brew tap cybergarage/homebrew
 brew install uhttp++
 ```
-## Repositories
+## References
 
 - [Doxygen](http://cybergarage.github.io/uhttp-cc/)
 
