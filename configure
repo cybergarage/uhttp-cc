@@ -623,10 +623,12 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-UNITTEST_FALSE
-UNITTEST_TRUE
+UHTTP_ENABLE_TEST_FALSE
+UHTTP_ENABLE_TEST_TRUE
 DEBUG_FALSE
 DEBUG_TRUE
+UHTTP_ENABLE_EXAMPLES_FALSE
+UHTTP_ENABLE_EXAMPLES_TRUE
 EGREP
 GREP
 CXXCPP
@@ -726,6 +728,7 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
+enable_examples
 enable_debug
 enable_test
 '
@@ -1373,6 +1376,7 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
+  --enable-examples       build examples (default = yes)
   --enable-debug          enable debugging (default = no)
   --enable-test           build test (default = no)
 
@@ -5640,13 +5644,76 @@ done
 
 
 ##############################
-# Checks for enable options.
+# Examples
 ##############################
 
-#AC_ARG_ENABLE([examples], AC_HELP_STRING([--enable-examples], [ builds examples (default = no) ]), [build_examples="yes"], [])
-#AM_CONDITIONAL(EXAMPLES,test "$build_examples" = yes)
-#if [ test "$build_examples" = yes ]; then
-#fi
+# Check whether --enable-examples was given.
+if test "${enable_examples+set}" = set; then :
+  enableval=$enable_examples; case "${enableval}" in
+    yes | no ) build_examples="${enableval}" ;;
+  esac
+else
+  build_examples="yes"
+
+fi
+
+ if test "$build_examples" = yes; then
+  UHTTP_ENABLE_EXAMPLES_TRUE=
+  UHTTP_ENABLE_EXAMPLES_FALSE='#'
+else
+  UHTTP_ENABLE_EXAMPLES_TRUE='#'
+  UHTTP_ENABLE_EXAMPLES_FALSE=
+fi
+
+if  test "$build_examples" = yes ; then
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
+$as_echo_n "checking for main in -ledit... " >&6; }
+if ${ac_cv_lib_edit_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ledit  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_edit_main=yes
+else
+  ac_cv_lib_edit_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_edit_main" >&5
+$as_echo "$ac_cv_lib_edit_main" >&6; }
+if test "x$ac_cv_lib_edit_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBEDIT 1
+_ACEOF
+
+  LIBS="-ledit $LIBS"
+
+else
+  as_fn_error $? "uHTTP needs libedit" "$LINENO" 5
+fi
+
+fi
+
+
+
+##############################
+# Debug
+##############################
 
 # Check whether --enable-debug was given.
 if test "${enable_debug+set}" = set; then :
@@ -5662,17 +5729,21 @@ else
 fi
 
 
+##############################
+# Test
+##############################
+
 # Check whether --enable-test was given.
 if test "${enable_test+set}" = set; then :
   enableval=$enable_test; build_test="yes"
 fi
 
  if test "$build_test" = "yes"; then
-  UNITTEST_TRUE=
-  UNITTEST_FALSE='#'
+  UHTTP_ENABLE_TEST_TRUE=
+  UHTTP_ENABLE_TEST_FALSE='#'
 else
-  UNITTEST_TRUE='#'
-  UNITTEST_FALSE=
+  UHTTP_ENABLE_TEST_TRUE='#'
+  UHTTP_ENABLE_TEST_FALSE=
 fi
 
 if  test "$build_test" = yes ; then
@@ -6003,52 +6074,6 @@ fi
 fi
 
 ##############################
-# Checks libraries for examples
-##############################
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
-$as_echo_n "checking for main in -ledit... " >&6; }
-if ${ac_cv_lib_edit_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-ledit  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_link "$LINENO"; then :
-  ac_cv_lib_edit_main=yes
-else
-  ac_cv_lib_edit_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_edit_main" >&5
-$as_echo "$ac_cv_lib_edit_main" >&6; }
-if test "x$ac_cv_lib_edit_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBEDIT 1
-_ACEOF
-
-  LIBS="-ledit $LIBS"
-
-else
-  as_fn_error $? "uHTTP needs libedit" "$LINENO" 5
-fi
-
-
-##############################
 # Makefiles
 ##############################
 
@@ -6190,12 +6215,16 @@ if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
+if test -z "${UHTTP_ENABLE_EXAMPLES_TRUE}" && test -z "${UHTTP_ENABLE_EXAMPLES_FALSE}"; then
+  as_fn_error $? "conditional \"UHTTP_ENABLE_EXAMPLES\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${DEBUG_TRUE}" && test -z "${DEBUG_FALSE}"; then
   as_fn_error $? "conditional \"DEBUG\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${UNITTEST_TRUE}" && test -z "${UNITTEST_FALSE}"; then
-  as_fn_error $? "conditional \"UNITTEST\" was never defined.
+if test -z "${UHTTP_ENABLE_TEST_TRUE}" && test -z "${UHTTP_ENABLE_TEST_FALSE}"; then
+  as_fn_error $? "conditional \"UHTTP_ENABLE_TEST\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
