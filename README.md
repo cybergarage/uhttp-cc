@@ -32,5 +32,5 @@ brew install uhttp++
 
 - [httpget](https://github.com/cybergarage/uhttp-cc/tree/master/examples/httpget) 
   - Simple HTTP client application like curl utility. 
-- [fsserver](https://github.com/cybergarage/uhttp-cc/tree/master/examples/fsserver).   
+- [fsserver](https://github.com/cybergarage/uhttp-cc/tree/master/examples/fsserver)
   - Simple HTTP server application to return file contents in the specified local directory.
