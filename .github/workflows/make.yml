@@ -13,8 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: setup
+      run: |
+        sudo apt update
+        sudo apt install -y libboost-all-dev
     - name: configure
-      run: ./configure
+      run: ./configure --enable-tests
     - name: make
       run: make
     - name: make check
