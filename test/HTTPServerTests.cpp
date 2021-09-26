@@ -81,7 +81,7 @@ static void RequestToHTTPServer(const std::string &ifaddr, int port)
     
     string httpReqStr;
     httpReq.toString(httpReqStr);
-    BOOST_MESSAGE(httpReqStr);
+    BOOST_TEST_MESSAGE(httpReqStr);
     
     HTTPResponse *httpRes = httpReq.post();
     BOOST_CHECK_EQUAL(httpRes->getStatusCode(), 200);
@@ -94,7 +94,7 @@ static void RequestToHTTPServer(const std::string &ifaddr, int port)
     
     string httpResStr;
     httpRes->toString(httpResStr);
-    BOOST_MESSAGE(httpResStr);
+    BOOST_TEST_MESSAGE(httpResStr);
   }
 }
 
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(HTTPSimpleServer)
   for (size_t n=0; n<socketListCnt; n++) {
     SocketCore *socket = socketList->get(n);
     const type_info& socketInfo = typeid(*socket);
-    BOOST_MESSAGE("Opened Sockets [" << n << "] : " << socketInfo.name() << "(" << socket->getSocket()) << ")";
+    BOOST_TEST_MESSAGE("Opened Sockets [" << n << "] : " << socketInfo.name() << "(" << socket->getSocket()) << ")";
   }
   
   BOOST_CHECK_EQUAL(Socket::GetInstanceCount(), 0);
