@@ -163,15 +163,12 @@ AC_CHECK_FUNCS([uname])
 ##############################
 
 AC_ARG_ENABLE(
-  [examples],
-  AC_HELP_STRING([--enable-examples],
-  [ build examples (default = yes) ]),
-  [case "${enableval}" in
-    yes | no ) build_examples="${enableval}" ;;
-  esac],
-  [build_examples="yes"]
-)
-AM_CONDITIONAL(UHTTP_ENABLE_EXAMPLES,test "$build_examples" = yes)
+	[examples], 
+	AC_HELP_STRING([--enable-examples],
+	[ build examples (default = no) ]),
+	[build_examples="yes"], [])
+	AM_CONDITIONAL(UHTTP_ENABLE_EXAMPLES, test "$build_examples" = "yes")
+
 if [ test "$build_examples" = yes ]; then
 	AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(uHTTP needs libedit)])
 fi
@@ -187,8 +184,13 @@ AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 # Test
 ##############################
 
-AC_ARG_ENABLE([test], AC_HELP_STRING([--enable-test], [ build test (default = no) ]), [build_test="yes"], [])
-AM_CONDITIONAL(UHTTP_ENABLE_TEST, test "$build_test" = "yes")
+AC_ARG_ENABLE(
+	[test], 
+	AC_HELP_STRING([--enable-test],
+	[ build test (default = no) ]),
+	[build_test="yes"], [])
+	AM_CONDITIONAL(UHTTP_ENABLE_TEST, test "$build_test" = "yes")
+
 if [ test "$build_test" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
 		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uHTTP needs boost::unit_test_framework)])])

@@ -1376,7 +1376,7 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
-  --enable-examples       build examples (default = yes)
+  --enable-examples       build examples (default = no)
   --enable-debug          enable debugging (default = no)
   --enable-test           build test (default = no)
 
@@ -5649,21 +5649,17 @@ done
 
 # Check whether --enable-examples was given.
 if test "${enable_examples+set}" = set; then :
-  enableval=$enable_examples; case "${enableval}" in
-    yes | no ) build_examples="${enableval}" ;;
-  esac
-else
-  build_examples="yes"
-
+  enableval=$enable_examples; build_examples="yes"
 fi
 
- if test "$build_examples" = yes; then
+	 if test "$build_examples" = "yes"; then
   UHTTP_ENABLE_EXAMPLES_TRUE=
   UHTTP_ENABLE_EXAMPLES_FALSE='#'
 else
   UHTTP_ENABLE_EXAMPLES_TRUE='#'
   UHTTP_ENABLE_EXAMPLES_FALSE=
 fi
+
 
 if  test "$build_examples" = yes ; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
@@ -5736,13 +5732,14 @@ if test "${enable_test+set}" = set; then :
   enableval=$enable_test; build_test="yes"
 fi
 
- if test "$build_test" = "yes"; then
+	 if test "$build_test" = "yes"; then
   UHTTP_ENABLE_TEST_TRUE=
   UHTTP_ENABLE_TEST_FALSE='#'
 else
   UHTTP_ENABLE_TEST_TRUE='#'
   UHTTP_ENABLE_TEST_FALSE=
 fi
+
 
 if  test "$build_test" = yes ; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework-mt" >&5
