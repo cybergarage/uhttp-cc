@@ -170,9 +170,9 @@ AC_CHECK_FUNCS([uname])
 AC_ARG_ENABLE([debug], AC_HELP_STRING([--enable-debug], [ enable debugging (default = no) ]), [debug="yes"], [])
 AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 
-AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
-AM_CONDITIONAL(UNITTESTS, test "$build_tests" = "yes")
-if [ test "$build_tests" = yes ]; then
+AC_ARG_ENABLE([test], AC_HELP_STRING([--enable-test], [ build test (default = no) ]), [build_test="yes"], [])
+AM_CONDITIONAL(UNITTEST, test "$build_test" = "yes")
+if [ test "$build_test" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
 		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uHTTP needs boost::unit_test_framework)])])
 	AC_CHECK_LIB([boost_system-mt],[main],,
@@ -203,6 +203,6 @@ examples/httpget/Makefile
 examples/httpget/unix/Makefile
 examples/fsserver/Makefile
 examples/fsserver/unix/Makefile
-tests/Makefile
-tests/unix/Makefile
+test/Makefile
+test/unix/Makefile
 ])
