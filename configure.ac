@@ -176,8 +176,6 @@ if [ test "$build_examples" = yes ]; then
 	AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(uHTTP needs libedit)])
 fi
 
-
-
 ##############################
 # Debug
 ##############################
