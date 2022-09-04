@@ -1,30 +1,14 @@
 var dir_065581e6cb01895a37835f5c8f187bdf =
 [
-    [ "DatagramPacket.h", "DatagramPacket_8h.html", [
-      [ "uHTTP::DatagramPacket", "classuHTTP_1_1DatagramPacket.html", "classuHTTP_1_1DatagramPacket" ]
-    ] ],
-    [ "DatagramSocket.h", "DatagramSocket_8h.html", [
-      [ "uHTTP::DatagramSocket", "classuHTTP_1_1DatagramSocket.html", "classuHTTP_1_1DatagramSocket" ]
-    ] ],
+    [ "DatagramPacket.h", "DatagramPacket_8h.html", "DatagramPacket_8h" ],
+    [ "DatagramSocket.h", "DatagramSocket_8h.html", "DatagramSocket_8h" ],
     [ "HostInterface.h", "HostInterface_8h.html", "HostInterface_8h" ],
-    [ "InetSocketAddress.h", "InetSocketAddress_8h.html", [
-      [ "uHTTP::InetSocketAddress", "classuHTTP_1_1InetSocketAddress.html", "classuHTTP_1_1InetSocketAddress" ]
-    ] ],
-    [ "MulticastSocket.h", "MulticastSocket_8h.html", [
-      [ "uHTTP::MulticastSocket", "classuHTTP_1_1MulticastSocket.html", "classuHTTP_1_1MulticastSocket" ]
-    ] ],
-    [ "NetworkInterface.h", "NetworkInterface_8h.html", [
-      [ "uHTTP::NetworkInterface", "classuHTTP_1_1NetworkInterface.html", "classuHTTP_1_1NetworkInterface" ]
-    ] ],
-    [ "NetworkInterfaceList.h", "NetworkInterfaceList_8h.html", [
-      [ "uHTTP::NetworkInterfaceList", "classuHTTP_1_1NetworkInterfaceList.html", "classuHTTP_1_1NetworkInterfaceList" ]
-    ] ],
-    [ "ServerSocket.h", "ServerSocket_8h.html", [
-      [ "uHTTP::ServerSocket", "classuHTTP_1_1ServerSocket.html", "classuHTTP_1_1ServerSocket" ]
-    ] ],
-    [ "Socket.h", "Socket_8h.html", [
-      [ "uHTTP::Socket", "classuHTTP_1_1Socket.html", "classuHTTP_1_1Socket" ]
-    ] ],
+    [ "InetSocketAddress.h", "InetSocketAddress_8h.html", "InetSocketAddress_8h" ],
+    [ "MulticastSocket.h", "MulticastSocket_8h.html", "MulticastSocket_8h" ],
+    [ "NetworkInterface.h", "NetworkInterface_8h.html", "NetworkInterface_8h" ],
+    [ "NetworkInterfaceList.h", "NetworkInterfaceList_8h.html", "NetworkInterfaceList_8h" ],
+    [ "ServerSocket.h", "ServerSocket_8h.html", "ServerSocket_8h" ],
+    [ "Socket.h", "Socket_8h.html", "Socket_8h" ],
     [ "SocketCore.h", "SocketCore_8h.html", "SocketCore_8h" ],
     [ "SocketInputStream.h", "SocketInputStream_8h.html", "SocketInputStream_8h" ],
     [ "SocketUtil.h", "SocketUtil_8h.html", "SocketUtil_8h" ],
