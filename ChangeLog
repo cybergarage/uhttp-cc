@@ -1,8 +1,57 @@
-2013-10-23 Satoshi Konno <skonno@cybergarage.org>
+2022-xx-xx Satoshi Konno <skonno@cybergarage.org>
+	* 0.8.2
+	* Update deprecated macros in configure.ac.
+	* Update configure on Ubuntu 22.04.
+	* Add --enable-examples option.
 
-	* v0.6
+2017-03-31 Satoshi Konno <skonno@cybergarage.org>
+	* 0.8.1
+    * Updated configure on Ubuntu 16.04.
+    * Fixed memory leaks in String::regionMatchesIgnoreCase().
+
+2015-01-22 Satoshi Konno <skonno@cybergarage.org>
+	* 0.8.0
+    * Updated HTTPRequestListener interface more simply.
+    * Updated configure to run on Ubuntu 16.04.
+    * Fixed to compile normally using gcc 4.8.2 and LLVM 6.0.
+    * Fixed to use std::shared_ptr instead of SharedPtr.
+    * Fixed HTTPRequest::post(const std::string &, int) not to ambiguity.
+    * Fixed Vector::remove().
+
+2015-01-09 Satoshi Konno <skonno@cybergarage.org>
+	* 0.7.1
+    * Updated configure scripts on MaxOSX 10.10.
+    * Updated configure scripts on Ubuntu 12.04
+
+2014-01-09 Satoshi Konno <skonno@cybergarage.org>
+	* 0.7.0
+    * Fixed HTTPWorkerThread::run() not to check keep alive when the status code is HTTP::PROCESSING.
+    * Fixed HTTPPacket::set(HTTPSocket *httpSock) to return false if the httpSock is null.
+    * Fixed URI::setString() to parse the specified port number correctly.
+    * Fixed some warnings using LLVM 5.0.
+    * Fixed to compile normally with GCC v4.6.4 on Ubuntu 12.04.
+    * Fixed HTTPResponse::getStatusLineString() to return the status string normally.
+    * Fixed HTTPPacket::addHeader() not to add when the specified header name is null.
+    * Fixed Thread::start() to check resutls of pthread_*() on Unix platform.
+    * Updated to adopt Google C++ style guideline.
+
+2013-10-23 Satoshi Konno <skonno@cybergarage.org>
+	* 0.6.0
 	* Forked from CyberLink for C++ v1.7.1 except the source codes about UPnP.
 	* Fixed some warnings using LLVM 5.0.
 	* Changed some paremeters and return values to use size_t and ssize_t instead of int.
 	* Added two simple examples, httpget and fsserver.
 	* Fixed URI::setString() to parse the specified port number correctly.
+
+
+
+
+
+
+
+
+
+
+
+
+
