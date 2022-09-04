@@ -9,9 +9,9 @@
 ###################################################################
 
 AC_CONFIG_AUX_DIR(config)
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 
-AC_INIT([uhttpcc], [0.8.2])
+AC_INIT([uhttpcc],[0.8.2])
 AC_CONFIG_SRCDIR([include/uhttp/http/HTTP.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
@@ -25,13 +25,15 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_AWK
 AC_PROG_RANLIB
-AC_LANG_CPLUSPLUS
+AC_LANG([C++])
 
 ##############################
 # Checks for header files.
 ##############################
 
-AC_HEADER_STDC
+AC_CHECK_INCLUDES_DEFAULT
+AC_PROG_EGREP
+
 AC_CHECK_HEADERS([limits.h stdlib.h string.h])
 AC_CHECK_HEADERS([arpa/inet.h netdb.h netinet/in.h sys/param.h sys/socket.h])
 AC_CHECK_HEADERS([unistd.h])
@@ -71,28 +73,22 @@ AC_CHECK_HEADERS([ifaddrs.h])
 AC_CHECK_FUNCS([getifaddrs])
 
 AC_MSG_CHECKING(for socklen_t)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 socklen_t foosocket;
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SOCKLEN_T],1,[SOCKLEN_T])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SOCKLEN_T],1,[SOCKLEN_T])],[AC_MSG_RESULT(no)
+])
 
 AC_MSG_CHECKING(for SO_NOSIGPIPE)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 int sockOpt = SO_NOSIGPIPE;
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPE])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPE])],[AC_MSG_RESULT(no)
+])
 
 AC_CHECK_DECL()
 
@@ -103,47 +99,38 @@ AC_CHECK_DECL()
 AC_CHECK_HEADERS([sstream])
 
 AC_MSG_CHECKING(for std::cout)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <iostream>
 void testFunc(){
 std::cout << "" << std::endl;
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_STD_COUT],1,[STD_COUT])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_STD_COUT],1,[STD_COUT])],[AC_MSG_RESULT(no)
+])
 
 ##############################
 # Checks for shared_ptr
 ##############################
 
 AC_MSG_CHECKING(for std::shared_ptr)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <iostream>
 void testFunc(){
 std::shared_ptr<int> p(new int(0));
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_STD_SHRAEDPTR],1,[HAVE_STD_SHAREDPTR])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_STD_SHRAEDPTR],1,[HAVE_STD_SHAREDPTR])],[AC_MSG_RESULT(no)
+])
 
 AC_MSG_CHECKING(for boost::shared_ptr)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <boost/shared_ptr.hpp>
 void testFunc(){
 boost::shared_ptr<int> p(new int(0));
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_BOOST_SHRAEDPTR],1,[HAVE_BOOST_SHAREDPTR])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_BOOST_SHRAEDPTR],1,[HAVE_BOOST_SHAREDPTR])],[AC_MSG_RESULT(no)
+])
 
 ##############################
 # Checks for other functions.
@@ -164,8 +151,7 @@ AC_CHECK_FUNCS([uname])
 
 AC_ARG_ENABLE(
 	[examples], 
-	AC_HELP_STRING([--enable-examples],
-	[ build examples (default = no) ]),
+	AS_HELP_STRING([--enable-examples],[ build examples (default = no) ]),
 	[build_examples="yes"], [])
 	AM_CONDITIONAL(UHTTP_ENABLE_EXAMPLES, test "$build_examples" = "yes")
 
@@ -177,7 +163,7 @@ fi
 # Debug
 ##############################
 
-AC_ARG_ENABLE([debug], AC_HELP_STRING([--enable-debug], [ enable debugging (default = no) ]), [debug="yes"], [])
+AC_ARG_ENABLE([debug], AS_HELP_STRING([--enable-debug],[ enable debugging (default = no) ]), [debug="yes"], [])
 AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 
 ##############################
@@ -186,8 +172,7 @@ AM_CONDITIONAL(DEBUG, test "$debug" = "yes")
 
 AC_ARG_ENABLE(
 	[test], 
-	AC_HELP_STRING([--enable-test],
-	[ build test (default = no) ]),
+	AS_HELP_STRING([--enable-test],[ build test (default = no) ]),
 	[build_test="yes"], [])
 	AM_CONDITIONAL(UHTTP_ENABLE_TEST, test "$build_test" = "yes")
 
@@ -206,7 +191,7 @@ fi
 # Makefiles
 ##############################
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 include/Makefile
 lib/Makefile
@@ -219,3 +204,4 @@ examples/fsserver/unix/Makefile
 test/Makefile
 test/unix/Makefile
 ])
+AC_OUTPUT
