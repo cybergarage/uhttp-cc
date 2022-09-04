@@ -11,7 +11,7 @@
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config.h)
 
-AC_INIT([uhttpcc], [0.6])
+AC_INIT([uhttpcc], [0.8.2])
 AC_CONFIG_SRCDIR([include/uhttp/http/HTTP.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
