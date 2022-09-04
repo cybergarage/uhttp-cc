@@ -1,5 +1,6 @@
 # µHTTP for C++
 
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uhttp-cc)
 [![Build Status](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml)
 
 µHTTP for C++ is a developer framework for HTTP client and server applications. The framework was forked from [mUPnP for C++](https://github.com/cybergarage/mupnp-cc) v1.7.2 except the UPnP and SOAP functions.
