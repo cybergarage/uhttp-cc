@@ -91,12 +91,13 @@ var hierarchy =
       [ "uHTTP::WeakVector< SocketCore >", "classuHTTP_1_1WeakVector.html", [
         [ "uHTTP::SocketList", "classuHTTP_1_1SocketList.html", null ]
       ] ],
-      [ "uHTTP::WeakVector< uHTTP::HTTPRequestListener >", "classuHTTP_1_1WeakVector.html", null ],
+      [ "uHTTP::WeakVector< uHTTP::HTTPRequestListener >", "classuHTTP_1_1WeakVector.html", [
+        [ "uHTTP::ListenerList< uHTTP::HTTPRequestListener >", "classuHTTP_1_1ListenerList.html", null ]
+      ] ],
       [ "uHTTP::HTTPHeaderList", "classuHTTP_1_1HTTPHeaderList.html", null ],
       [ "uHTTP::LoggerTargetList", "classuHTTP_1_1LoggerTargetList.html", null ],
       [ "uHTTP::SharedVector< T >", "classuHTTP_1_1SharedVector.html", null ],
       [ "uHTTP::WeakVector< T >", "classuHTTP_1_1WeakVector.html", [
-        [ "uHTTP::ListenerList< uHTTP::HTTPRequestListener >", "classuHTTP_1_1ListenerList.html", null ],
         [ "uHTTP::ListenerList< T >", "classuHTTP_1_1ListenerList.html", null ],
         [ "uHTTP::Vector< T >", "classuHTTP_1_1Vector.html", null ]
       ] ]
