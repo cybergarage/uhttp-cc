@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "uHTTP for C++", "index.html", [
+    [ "µHTTP for C++", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -66,7 +67,7 @@ var NAVTREEINDEX =
 "classuHTTP_1_1ParameterList.html#a275d7653069d6efa5b36b10b20c79df9",
 "classuHTTP_1_1String.html#ab24719cbbafb670cca29a745bd3ca0d1",
 "classuHTTP_1_1Vector.html#a39afb95f8ebc6150161c5b1633c0d28f",
-"namespaceuHTTP_1_1HTTP.html#a338580926aa9e85d327135c9226c5dd4"
+"namespaceuHTTP_1_1HTTP.html#a1d7ad7750bde415825ba71e4ea326e68"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
