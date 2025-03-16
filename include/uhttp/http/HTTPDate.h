@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_HTTPDATE_H_
 #define _UHTTP_HTTPDATE_H_
@@ -18,7 +18,7 @@ class HTTPDate : public uHTTP::Date {
   char dateStr[64];
   char timeStr[64];
 
- public:
+  public:
   HTTPDate();
   HTTPDate(SysTime date);
 
@@ -26,11 +26,11 @@ class HTTPDate : public uHTTP::Date {
   //  get*String
   ////////////////////////////////////////////////
 
-  const char *getDateString();
+  const char* getDateString();
 };
 
-const char *toMonthString(int value);
-const char *toWeekString(int value);
+const char* toMonthString(int value);
+const char* toWeekString(int value);
 
 }
 

@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <string>
 #include <vector>
@@ -20,6 +20,6 @@ using namespace uHTTP;
 BOOST_AUTO_TEST_CASE(HTTPDateTests)
 {
   HTTPDate httpDate(1118220696);
-  const char *dateStr = httpDate.getDateString();
+  const char* dateStr = httpDate.getDateString();
   BOOST_CHECK_EQUAL(strcmp(dateStr, "Wed, 08 Jun 2005 08:51:36 GMT"), 0);
 }

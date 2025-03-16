@@ -15,17 +15,20 @@
 //  Constructor
 ////////////////////////////////////////////////
 
-uHTTP::HTTPMessageQueue::HTTPMessageQueue() {
+uHTTP::HTTPMessageQueue::HTTPMessageQueue()
+{
 }
 
-uHTTP::HTTPMessageQueue::~HTTPMessageQueue() {
+uHTTP::HTTPMessageQueue::~HTTPMessageQueue()
+{
 }
 
 ////////////////////////////////////////////////
 //  pushMessage
 ////////////////////////////////////////////////
 
-bool uHTTP::HTTPMessageQueue::pushMessage(HTTPMessage *httpMsg) {
+bool uHTTP::HTTPMessageQueue::pushMessage(HTTPMessage* httpMsg)
+{
   return MessageQueue::pushMessage(httpMsg);
 }
 
@@ -33,11 +36,12 @@ bool uHTTP::HTTPMessageQueue::pushMessage(HTTPMessage *httpMsg) {
 //  waitMessage
 ////////////////////////////////////////////////
 
-bool uHTTP::HTTPMessageQueue::waitMessage(HTTPMessage **httpMsg, time_t timeoutSec) {
-  Message *msg;
+bool uHTTP::HTTPMessageQueue::waitMessage(HTTPMessage** httpMsg, time_t timeoutSec)
+{
+  Message* msg;
   if (!MessageQueue::waitMessage(&msg, timeoutSec))
     return false;
-  *httpMsg = dynamic_cast<HTTPMessage *>(msg);
+  *httpMsg = dynamic_cast<HTTPMessage*>(msg);
   return (*httpMsg) ? true : false;
 }
 
@@ -45,7 +49,8 @@ bool uHTTP::HTTPMessageQueue::waitMessage(HTTPMessage **httpMsg, time_t timeoutS
 //  reset
 ////////////////////////////////////////////////
 
-bool uHTTP::HTTPMessageQueue::reset() {
+bool uHTTP::HTTPMessageQueue::reset()
+{
   return MessageQueue::reset();
 }
 
@@ -53,6 +58,7 @@ bool uHTTP::HTTPMessageQueue::reset() {
 //  clear
 ////////////////////////////////////////////////
 
-bool uHTTP::HTTPMessageQueue::clear() {
+bool uHTTP::HTTPMessageQueue::clear()
+{
   return MessageQueue::clear();
 }

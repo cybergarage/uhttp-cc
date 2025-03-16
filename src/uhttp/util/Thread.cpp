@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/util/Thread.h>
 
@@ -21,41 +21,47 @@ using namespace uHTTP;
 ////////////////////////////////////////////////
 
 #if defined(WIN32) && !defined(ITRON)
-static DWORD WINAPI Win32ThreadProc(LPVOID lpParam) {
-  Thread *thread = (Thread *)lpParam;
+static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
+{
+  Thread* thread = (Thread*)lpParam;
   thread->run();
   return 0;
 }
-#elif defined(BTRON) 
-static VOID BTronTaskProc(W param) {
-  Thread *thread = (Thread *)param;
+#elif defined(BTRON)
+static VOID BTronTaskProc(W param)
+{
+  Thread* thread = (Thread*)param;
   thread->run();
   ext_tsk();
 }
 #elif defined(ITRON)
-static TASK ITronTaskProc(int param) {
+static TASK ITronTaskProc(int param)
+{
   T_RTSK rtsk;
   if (ref_tsk(TSK_SELF, &rtsk) != E_OK)
     return;
-  Thread *thread = (Thread *)rtsk.exinf;
+  Thread* thread = (Thread*)rtsk.exinf;
   thread->run();
   exd_tsk();
 }
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-static VOID TEngineTaskProc(INT stacd, VP param) {
-  Thread *thread = (Thread *)param;
+static VOID TEngineTaskProc(INT stacd, VP param)
+{
+  Thread* thread = (Thread*)param;
   thread->run();
   tk_exd_tsk();
 }
 #elif defined(TENGINE) && defined(PROCESS_BASE)
-static VOID TEngineProcessBasedTaskProc(W param) {
-  Thread *thread = (Thread *)param;
+static VOID TEngineProcessBasedTaskProc(W param)
+{
+  Thread* thread = (Thread*)param;
   thread->run();
   b_ext_tsk();
 }
 #else
-static void *PosixThreadProc(void *param) {
-  Thread *thread = (Thread *)param;
+static void* PosixThreadProc(void* param)
+{
+  Thread* thread = (Thread*)param;
   thread->run();
   return 0;
 }
@@ -65,14 +71,16 @@ static void *PosixThreadProc(void *param) {
 // Thread
 ////////////////////////////////////////////////
 
-Thread::Thread() {
+Thread::Thread()
+{
   setRunnableFlag(false);
   setObject(NULL);
 }
 
-bool Thread::start() {
+bool Thread::start()
+{
   this->mutex.lock();
-  
+
 #if defined(WIN32) && !defined(ITRON)
   hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)this, 0, &threadID);
 #elif defined(BTRON)
@@ -88,7 +96,7 @@ bool Thread::start() {
     return false;
   }
 #elif defined(ITRON)
-  T_CTSK ctsk = {TA_HLNG,  (VP_INT)this, (FP)ITronTaskProc, 6, 512, NULL, NULL};
+  T_CTSK ctsk = { TA_HLNG, (VP_INT)this, (FP)ITronTaskProc, 6, 512, NULL, NULL };
   taskID = acre_tsk(&ctsk);
   if (taskID < 0) {
     this->mutex.unlock();
@@ -100,7 +108,7 @@ bool Thread::start() {
     return FALSE;
   }
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-  T_CTSK ctsk = {(VP)this, TA_HLNG, TEngineTaskProc,10, 2048};
+  T_CTSK ctsk = { (VP)this, TA_HLNG, TEngineTaskProc, 10, 2048 };
   taskID = tk_cre_tsk(&ctsk);
   if (taskID < E_OK) {
     this->mutex.unlock();
@@ -139,21 +147,23 @@ bool Thread::start() {
   }
   pthread_attr_destroy(&thread_attr);
 #endif
-  
+
   setRunnableFlag(true);
-  
+
   this->mutex.unlock();
-  
+
   return true;
 }
 
-Thread::~Thread() {
+Thread::~Thread()
+{
   stop();
 }
 
-bool Thread::stop() {
+bool Thread::stop()
+{
   this->mutex.lock();
-  
+
   if (isRunnable() == true) {
     setRunnableFlag(false);
 #if defined(WIN32) && !defined(ITRON)
@@ -179,20 +189,21 @@ bool Thread::stop() {
     }
 #endif
   }
-  
+
   this->mutex.unlock();
-  
+
   return true;
 }
 
-void Thread::setRunnableFlag(bool flag) {
+void Thread::setRunnableFlag(bool flag)
+{
   runnableFlag = flag;
 }
 
-bool Thread::isRunnable() {
+bool Thread::isRunnable()
+{
 #if !defined(WIN32) && !defined(ITRON) && !defined(BTRON) && !defined(TENGINE) && !defined(PROCESS_BASE)
   pthread_testcancel();
 #endif
   return runnableFlag;
 }
-

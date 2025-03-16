@@ -1,23 +1,26 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2012
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2012
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/util/Logger.h>
 
-uHTTP::LoggerTarget::LoggerTarget() {
+uHTTP::LoggerTarget::LoggerTarget()
+{
   setFD(NULL);
 }
 
-uHTTP::LoggerTarget::~LoggerTarget() {
+uHTTP::LoggerTarget::~LoggerTarget()
+{
 }
 
-bool uHTTP::LoggerTarget::outputMessage(const char *lineMessage) {
+bool uHTTP::LoggerTarget::outputMessage(const char* lineMessage)
+{
   int ouputLen = fputs(lineMessage, getFD());
   if (ouputLen < 0)
     return false;

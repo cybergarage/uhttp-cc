@@ -1,18 +1,18 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <string>
 #include <vector>
 
-#include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include <uhttp/HTTP.h>
 
@@ -21,7 +21,7 @@ using namespace uHTTP;
 BOOST_AUTO_TEST_CASE(HTTPUri)
 {
   URL url;
-  
+
   url.setString("http://www.yahoo.co.jp/index.html");
   BOOST_CHECK_EQUAL(url.getProtocol(), "http");
   BOOST_CHECK_EQUAL(url.getHost(), "www.yahoo.co.jp");

@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2012
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2012
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_LOGGERFILETARGET_H_
 #define _UHTTP_LOGGERFILETARGET_H_
@@ -15,38 +15,31 @@
 
 namespace uHTTP {
 class LoggerFileTarget : public LoggerTarget {
- public:
+  public:
   LoggerFileTarget();
   ~LoggerFileTarget();
-  
-  bool open(const std::string &filename);
+
+  bool open(const std::string& filename);
   bool close();
 };
 
 class LoggerStdFileTarget : public LoggerFileTarget {
- public:
-    
-  LoggerStdFileTarget() {
+  public:
+  LoggerStdFileTarget()
+  {
     setMask(
-            LoggerTarget::TRACE  |
-            LoggerTarget::DBG    |
-            LoggerTarget::INFO
-            );
+        LoggerTarget::TRACE | LoggerTarget::DBG | LoggerTarget::INFO);
   }
 };
-  
+
 class LoggerErrorFileTarget : public LoggerFileTarget {
- public:
-    
-  LoggerErrorFileTarget() {
+  public:
+  LoggerErrorFileTarget()
+  {
     setMask(
-            LoggerTarget::WARN  |
-            LoggerTarget::ERR   |
-            LoggerTarget::FATAL
-            );
+        LoggerTarget::WARN | LoggerTarget::ERR | LoggerTarget::FATAL);
   }
 };
-  
 
 }
 

@@ -1,19 +1,19 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <errno.h>
 #include <uhttp/net/Socket.h>
-#include <uhttp/util/StringUtil.h>
-#include <uhttp/util/TimeUtil.h>
 #include <uhttp/net/SocketUtil.h>
 #include <uhttp/util/Mutex.h>
+#include <uhttp/util/StringUtil.h>
+#include <uhttp/util/TimeUtil.h>
 
 #include <stdio.h>
 
@@ -36,16 +36,18 @@ const int Socket::WINDOW_BUF_SIZE = 4096;
 //  Socket
 ////////////////////////////////////////////////
 
-Socket::Socket() {
+Socket::Socket()
+{
   setType(STREAM);
-  
+
 #if defined(ITRON)
   sendWinBuf = NULL;
   recvWinBuf = NULL;
 #endif
 }
 
-Socket::~Socket() {
+Socket::~Socket()
+{
   close();
 
 #if defined(ITRON)
@@ -58,7 +60,8 @@ Socket::~Socket() {
 //  listen
 ////////////////////////////////////////////////
 
-bool Socket::listen() {
+bool Socket::listen()
+{
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   ERR ret = so_listen(sock, 10);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
@@ -71,14 +74,15 @@ bool Socket::listen() {
   if (ret != 0)
     setErrorCode(errno);
 #endif
-  return (ret == 0) ? true: false;
+  return (ret == 0) ? true : false;
 }
 
 ////////////////////////////////////////////////
 //  bind
 ////////////////////////////////////////////////
 
-bool Socket::bind(int bindPort, const std::string &bindAddr) {
+bool Socket::bind(int bindPort, const std::string& bindAddr)
+{
   setLocalAddress("");
   setLocalPort(0);
 
@@ -86,10 +90,10 @@ bool Socket::bind(int bindPort, const std::string &bindAddr) {
   struct sockaddr_in sockaddr;
   if (toSocketAddrIn(bindAddr, bindPort, &sockaddr) == false)
     return false;
-     sock = so_socket(PF_INET, SOCK_STREAM, 0);
+  sock = so_socket(PF_INET, SOCK_STREAM, 0);
   if (sock < 0)
     return false;
-  ERR ret = so_bind(sock, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
+  ERR ret = so_bind(sock, (SOCKADDR*)&sockaddr, sizeof(struct sockaddr_in));
   if (ret < 0) {
     close();
     return false;
@@ -105,7 +109,7 @@ bool Socket::bind(int bindPort, const std::string &bindAddr) {
   if (SetMulticastInterface(bindAddr) == FALSE)
     return FALSE;
   */
-  ERR ret = ka_bind(sock, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
+  ERR ret = ka_bind(sock, (struct sockaddr*)&sockaddr, sizeof(struct sockaddr_in));
   if (ret < 0) {
     close();
     return false;
@@ -129,7 +133,7 @@ bool Socket::bind(int bindPort, const std::string &bindAddr) {
   }
   int ret = 0;
 #else
-  struct addrinfo *addrInfo;
+  struct addrinfo* addrInfo;
   if (toSocketAddrInfo(SOCK_STREAM, bindAddr, bindPort, &addrInfo, true) == false)
     return false;
   sock = socket(addrInfo->ai_family, addrInfo->ai_socktype, 0);
@@ -156,17 +160,18 @@ bool Socket::bind(int bindPort, const std::string &bindAddr) {
 //  accept
 ////////////////////////////////////////////////
 
-bool Socket::accept(Socket *socket) {
+bool Socket::accept(Socket* socket)
+{
   SOCKET clientSock;
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   struct sockaddr_in sockaddr;
   W nLength = sizeof(struct sockaddr_in);
-  clientSock = so_accept(sock, (SOCKADDR *)&sockaddr, &nLength);
+  clientSock = so_accept(sock, (SOCKADDR*)&sockaddr, &nLength);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   struct sockaddr_in sockaddr;
   int nLength = sizeof(struct sockaddr_in);
-  clientSock = ka_accept(sock, (struct sockaddr *)&sockaddr, &nLength);
+  clientSock = ka_accept(sock, (struct sockaddr*)&sockaddr, &nLength);
 #elif defined(ITRON)
   T_IPV4EP dstAddr;
   if (tcp_acp_cep(sock, sock, &dstAddr, TMO_FEVR) != E_OK)
@@ -175,11 +180,11 @@ bool Socket::accept(Socket *socket) {
 #else
   struct sockaddr_storage sockClientAddr;
   socklen_t nLength = sizeof(sockClientAddr);
-  clientSock = ::accept(sock, (struct sockaddr *)&sockClientAddr, &nLength);
+  clientSock = ::accept(sock, (struct sockaddr*)&sockClientAddr, &nLength);
   if (0 < clientSock) {
     int sockOpt = 1;
 #if defined(HAVE_SO_NOSIGPIPE) || defined(__APPLE_CC__)
-    setsockopt(clientSock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
+    setsockopt(clientSock, SOL_SOCKET, SO_NOSIGPIPE, (void*)&sockOpt, sizeof(int));
 #endif
   }
   else {
@@ -206,16 +211,17 @@ bool Socket::accept(Socket *socket) {
 //  connect
 ////////////////////////////////////////////////
 
-bool Socket::connect(const std::string &addr, int port) {
+bool Socket::connect(const std::string& addr, int port)
+{
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   struct sockaddr_in sockaddr;
   if (toSocketAddrIn(addr, port, &sockaddr) == false)
     return false;
 
   if (isBound() == false)
-       sock = so_socket(PF_INET, SOCK_STREAM, 0);
-    
-  ERR ret = so_connect(sock, (SOCKADDR *)&sockaddr, sizeof(sockaddr_in));
+    sock = so_socket(PF_INET, SOCK_STREAM, 0);
+
+  ERR ret = so_connect(sock, (SOCKADDR*)&sockaddr, sizeof(sockaddr_in));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   ERR ret;
   struct sockaddr_in sockaddr;
@@ -223,9 +229,9 @@ bool Socket::connect(const std::string &addr, int port) {
     return false;
 
   if (isBound() == false)
-       sock = ka_socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    sock = ka_socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-  ret = ka_connect(sock, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
+  ret = ka_connect(sock, (struct sockaddr*)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
   T_TCP_CCEP tcpccep = { 0, sendWinBuf, WINDOW_BUF_SIZE, recvWinBuf, WINDOW_BUF_SIZE, (FP)TcpCallback };
   T_IPV4EP localAddr;
@@ -243,14 +249,14 @@ bool Socket::connect(const std::string &addr, int port) {
   dstAddr.portno = htons(port);
   ret = tcp_con_cep(sock, &localAddr, &dstAddr, TMO_FEVR);
   if (ret == E_OK) {
-    setLocalAddress(""/*ipaddr_to_ascii(localAddr.ipaddr)*/);
+    setLocalAddress("" /*ipaddr_to_ascii(localAddr.ipaddr)*/);
     setLocalPort(ntohs(localAddr.portno));
     ret = 0;
   }
-  else 
+  else
     ret = -1;
 #else
-  struct addrinfo *toaddrInfo;
+  struct addrinfo* toaddrInfo;
   if (toSocketAddrInfo(SOCK_STREAM, addr, port, &toaddrInfo, true) == false)
     return false;
 
@@ -264,13 +270,13 @@ bool Socket::connect(const std::string &addr, int port) {
 
 #if defined(HAVE_SO_NOSIGPIPE) || defined(__APPLE_CC__)
   int sockOpt = 1;
-  setsockopt(this->sock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&sockOpt, sizeof(int));
+  setsockopt(this->sock, SOL_SOCKET, SO_NOSIGPIPE, (void*)&sockOpt, sizeof(int));
 #endif
-  
+
   int ret = ::connect(this->sock, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
   if (ret != 0)
     setErrorCode(errno);
-  
+
   freeaddrinfo(toaddrInfo);
 #endif
 
@@ -281,7 +287,8 @@ bool Socket::connect(const std::string &addr, int port) {
 //  recv
 ////////////////////////////////////////////////
 
-ssize_t Socket::recv(char *buffer, size_t bufferLen) {
+ssize_t Socket::recv(char* buffer, size_t bufferLen)
+{
   ssize_t recvLen;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   recvLen = so_recv(sock, buffer, bufferLen, 0);
@@ -295,7 +302,6 @@ ssize_t Socket::recv(char *buffer, size_t bufferLen) {
   return recvLen;
 }
 
-
 ////////////////////////////////////////////////
 //  send
 ////////////////////////////////////////////////
@@ -303,7 +309,8 @@ ssize_t Socket::recv(char *buffer, size_t bufferLen) {
 const int CG_NET_SOCKET_SEND_RETRY_CNT = 10;
 const int CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC = 1000;
 
-ssize_t Socket::send(const char *cmd, size_t cmdLen) {
+ssize_t Socket::send(const char* cmd, size_t cmdLen)
+{
   if (cmdLen <= 0)
     return 0;
   ssize_t nTotalSent = 0;
@@ -320,7 +327,7 @@ ssize_t Socket::send(const char *cmd, size_t cmdLen) {
     ssize_t nSent = ::send(sock, cmd + cmdPos, cmdLen, 0);
 #endif
     // Thanks for Brent Hills (10/20/04)
-    if (nSent <= 0)  {
+    if (nSent <= 0) {
       retryCnt++;
       if (CG_NET_SOCKET_SEND_RETRY_CNT < retryCnt)
         break;
@@ -332,15 +339,17 @@ ssize_t Socket::send(const char *cmd, size_t cmdLen) {
     cmdLen -= nSent;
     retryCnt = 0;
   } while (0 < cmdLen);
-  
+
   return nTotalSent;
 }
 
-ssize_t Socket::send(const std::string &cmd) {
+ssize_t Socket::send(const std::string& cmd)
+{
   return send(cmd.c_str(), cmd.size());
 }
 
-ssize_t Socket::send(const char c) {
+ssize_t Socket::send(const char c)
+{
   return send(&c, 1);
 }
 
@@ -350,11 +359,12 @@ ssize_t Socket::send(const char c) {
 
 #if defined(ITRON)
 
-void Socket::initWindowBuffer() {
+void Socket::initWindowBuffer()
+{
 #if defined(ITRON)
-  if (sendWinBuf!)
+  if (sendWinBuf !)
     sendWinBuf = new UH[WINDOW_BUF_SIZE];
-  if (recvWinBuf!)
+  if (recvWinBuf !)
     recvWinBuf = new UH[WINDOW_BUF_SIZE];
 #endif
 }
@@ -367,7 +377,8 @@ void Socket::initWindowBuffer() {
 
 #if defined(ITRON)
 
-static ER TcpCallback(ID cepid, FN fncd, VP parblk) {
+static ER TcpCallback(ID cepid, FN fncd, VP parblk)
+{
   return E_OK;
 }
 

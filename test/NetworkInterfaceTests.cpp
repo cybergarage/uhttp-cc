@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <string>
 #include <vector>
@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(NetworkInterfaceTests)
 {
   NetworkInterfaceList ifList;
   GetHostAddresses(ifList);
-  
+
   size_t ifCnt = ifList.size();
   BOOST_CHECK(0 < ifCnt);
 }

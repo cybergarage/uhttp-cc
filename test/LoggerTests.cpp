@@ -21,8 +21,8 @@ BOOST_AUTO_TEST_CASE(LoggerTest)
 {
   Logger testLogger;
   testLogger.setLevel(LoggerLevel::TRACE);
-  
-  for (int n=0; n<10; n++) {
+
+  for (int n = 0; n < 10; n++) {
     BOOST_CHECK_EQUAL(testLogger.trace(LOGGER_TEST_MESSAGE), n);
     BOOST_CHECK_EQUAL(testLogger.message(LOGGER_TEST_MESSAGE), n);
     BOOST_CHECK_EQUAL(testLogger.warning(LOGGER_TEST_MESSAGE), n);
@@ -37,11 +37,11 @@ BOOST_AUTO_TEST_CASE(LoggerTest)
 
 BOOST_AUTO_TEST_CASE(LogTest)
 {
-  Logger *testLogger = Logger::GetSharedInstance();
+  Logger* testLogger = Logger::GetSharedInstance();
   testLogger->setLevel(LoggerLevel::TRACE);
   testLogger->clearAllTargets();
   testLogger->addTarget(new LoggerNullTarget());
-  
+
   BOOST_CHECK_EQUAL(LogTrace("%s", LOGGER_TEST_MESSAGE), 1);
   BOOST_CHECK_EQUAL(LogInfo("%s", LOGGER_TEST_MESSAGE), 1);
   BOOST_CHECK_EQUAL(LogWarn("%s", LOGGER_TEST_MESSAGE), 1);

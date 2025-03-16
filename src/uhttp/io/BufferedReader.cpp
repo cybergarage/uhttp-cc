@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/io/BufferedReader.h>
 #include <uhttp/util/TimeUtil.h>
@@ -17,7 +17,8 @@ using namespace uHTTP;
 static const char LF = '\n';
 static const char CR = '\r';
 
-const char *BufferedReader::readLine() {
+const char* BufferedReader::readLine()
+{
   char readChar = 0;
   lineStr.clear();
 

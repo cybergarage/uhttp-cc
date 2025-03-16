@@ -1,13 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
-
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/util/Date.h>
 
@@ -20,8 +19,9 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-Date::Date() {
-#if defined(BTRON) || defined(TENGINE) 
+Date::Date()
+{
+#if defined(BTRON) || defined(TENGINE)
   TIMEZONE tz;
   if (get_tim(&sysTime, &tz) != 0)
     sysTime = 0;
@@ -33,37 +33,39 @@ Date::Date() {
   time2LocalDate(sysTime);
 #else
   time(&sysTime);
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   localtime_r(&sysTime, &localDate);
-  #else
+#else
   localDate = localtime(&sysTime);
-  #endif
+#endif
 #endif
 }
 
-Date::Date(SysTime value) {
+Date::Date(SysTime value)
+{
   sysTime = value;
-#if defined(BTRON) || defined(TENGINE) 
+#if defined(BTRON) || defined(TENGINE)
   get_tod(&localDate, sysTime, True);
 #elif defined(ITRON)
   time2LocalDate(sysTime);
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   localtime_r(&sysTime, &localDate);
-  #else
+#else
   localDate = localtime(&sysTime);
-  #endif
+#endif
 #endif
 }
 
 Date::Date(
-  int year,
-  int month,
-  int day,
-  int hour,
-  int min,
-  int sec) {
-#if defined(BTRON) || defined(TENGINE) 
+    int year,
+    int month,
+    int day,
+    int hour,
+    int min,
+    int sec)
+{
+#if defined(BTRON) || defined(TENGINE)
   DATE_TIM dt;
   dt.d_sec = sec;
   dt.d_min = min;
@@ -97,11 +99,11 @@ Date::Date(
   tmval.tm_isdst = 0;
 
   sysTime = mktime(&tmval);
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   localtime_r(&sysTime, &localDate);
-  #else
+#else
   localDate = localtime(&sysTime);
-  #endif
+#endif
 #endif
 }
 
@@ -109,59 +111,63 @@ Date::Date(
 //  Date
 ////////////////////////////////////////////////
 
-int Date::getYear() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getYear()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_year + 1900;
 #elif defined(ITRON)
   return year;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_year + 1900;
-  #else
+#else
   return localDate->tm_year + 1900;
-  #endif
+#endif
 #endif
 }
 
-int Date::getMonth() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getMonth()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_month;
 #elif defined(ITRON)
   return month + 1;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_mon + 1;
-  #else
+#else
   return localDate->tm_mon + 1;
-  #endif
+#endif
 #endif
 }
 
-int Date::getDay() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getDay()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_day;
 #elif defined(ITRON)
   return day;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_mday;
-  #else
+#else
   return localDate->tm_mday;
-  #endif
+#endif
 #endif
 }
 
-int Date::getWeekDay() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getWeekDay()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_wday;
 #elif defined(ITRON)
   return week;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_wday;
-  #else
+#else
   return localDate->tm_wday;
-  #endif
+#endif
 #endif
 }
 
@@ -169,45 +175,48 @@ int Date::getWeekDay() {
 //  Time
 ////////////////////////////////////////////////
 
-int Date::getHour() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getHour()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_hour;
 #elif defined(ITRON)
   return hour;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_hour;
-  #else
+#else
   return localDate->tm_hour;
-  #endif
+#endif
 #endif
 }
 
-int Date::getMinute() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getMinute()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_min;
 #elif defined(ITRON)
   return min;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_min;
-  #else
+#else
   return localDate->tm_min;
-  #endif
+#endif
 #endif
 }
 
-int Date::getSecond() {
-#if defined(BTRON) || defined(TENGINE) 
+int Date::getSecond()
+{
+#if defined(BTRON) || defined(TENGINE)
   return localDate.d_sec;
 #elif defined(ITRON)
   return sec;
 #else
-  #ifdef HAVE_LOCALTIME_R
+#ifdef HAVE_LOCALTIME_R
   return localDate.tm_sec;
-  #else
+#else
   return localDate->tm_sec;
-  #endif
+#endif
 #endif
 }
 
@@ -217,21 +226,23 @@ int Date::getSecond() {
 
 #if defined(ITRON)
 
-static const int dayYear[ ] = {
+static const int dayYear[] = {
   31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 };
 
-static const int dayLearYear[ ] = {
+static const int dayLearYear[] = {
   31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 };
 
-static bool IsLeapYear(int year) {
+static bool IsLeapYear(int year)
+{
   if (!(year % 4) && ((year % 100) || !(year % 400)))
     return true;
   return false;
 }
 
-bool Date::time2LocalDate(SysTime uxtime) {
+bool Date::time2LocalDate(SysTime uxtime)
+{
   sec = uxtime % 60;
   uxtime -= sec;
   uxtime /= 60;
@@ -259,13 +270,14 @@ bool Date::time2LocalDate(SysTime uxtime) {
 
   month = 0;
   while (1) {
-        
+
     if (IsLeapYear(year)) {
       if (day <= dayLearYear[month])
         break;
       day -= dayLearYear[month];
       month++;
-    } else {
+    }
+    else {
       if (day <= dayYear[month])
         break;
       day -= dayYear[month];

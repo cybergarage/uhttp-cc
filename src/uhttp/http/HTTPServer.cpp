@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/platform.h>
 
@@ -29,13 +29,15 @@ const long HTTPServer::DEFAULT_SERVER_THREAD_WAIT_TIME = 250;
 ////////////////////////////////////////////////
 //  Constructor
 ////////////////////////////////////////////////
-  
-HTTPServer::HTTPServer() {
+
+HTTPServer::HTTPServer()
+{
   serverSock = NULL;
   setWorkerCount(DEFAULT_SERVER_WORKER_THREAD_NUM);
 }
 
-HTTPServer::~HTTPServer() {
+HTTPServer::~HTTPServer()
+{
   stop();
   close();
 }
@@ -44,10 +46,11 @@ HTTPServer::~HTTPServer() {
 //  ServerSocket
 ////////////////////////////////////////////////
 
-bool HTTPServer::bind(int port, const std::string &addr) {
+bool HTTPServer::bind(int port, const std::string& addr)
+{
   if (serverSock)
     return true;
-    
+
   serverSock = new ServerSocket();
   if (serverSock->bind(port, addr) == false) {
     delete serverSock;
@@ -62,22 +65,25 @@ bool HTTPServer::bind(int port, const std::string &addr) {
   return true;
 }
 
-bool HTTPServer::open(int port, const std::string &addr) {
+bool HTTPServer::open(int port, const std::string& addr)
+{
   return bind(port, addr);
 }
 
-bool HTTPServer::close() {
+bool HTTPServer::close()
+{
   if (!serverSock)
     return true;
-  
+
   serverSock->close();
   delete serverSock;
   serverSock = NULL;
-  
+
   return true;
 }
 
-bool HTTPServer::accept(uHTTP::Socket *socket) {
+bool HTTPServer::accept(uHTTP::Socket* socket)
+{
   if (!serverSock)
     return false;
   if (serverSock->accept(socket) == false)
@@ -87,7 +93,8 @@ bool HTTPServer::accept(uHTTP::Socket *socket) {
   return true;
 }
 
-bool HTTPServer::isOpened() {
+bool HTTPServer::isOpened()
+{
   return (serverSock) ? true : false;
 }
 
@@ -95,30 +102,32 @@ bool HTTPServer::isOpened() {
 //  run
 ////////////////////////////////////////////////
 
-void HTTPServer::run() {
+void HTTPServer::run()
+{
   if (isOpened() == false)
     return;
-  
-  Socket *sock = NULL;
-  
+
+  Socket* sock = NULL;
+
   while (isRunnable() == true) {
     sock = new Socket();
     if (!sock)
       continue;
-    
+
     if (accept(sock) == false) {
       delete sock;
       continue;
     }
-    
-    HTTPMessage *httpMsg = new HTTPMessage(sock);
+
+    HTTPMessage* httpMsg = new HTTPMessage(sock);
     this->messageQueue.pushMessage(httpMsg);
-    
+
     sock = NULL;
   }
 
   if (sock) {
-      delete sock;;
+    delete sock;
+    ;
   }
 }
 
@@ -126,25 +135,26 @@ void HTTPServer::run() {
 //  start
 ////////////////////////////////////////////////
 
-bool HTTPServer::start() {
+bool HTTPServer::start()
+{
   stop();
 
   bool areAllOperationsSuccess = true;
-  
+
   if (messageQueue.reset() == false) {
     areAllOperationsSuccess = false;
   }
-  
+
   size_t workerThreadMax = getWorkerCount();
-  for (size_t n=0; n<workerThreadMax; n++) {
-    HTTPWorkerThread *workerThread = new HTTPWorkerThread(this);
+  for (size_t n = 0; n < workerThreadMax; n++) {
+    HTTPWorkerThread* workerThread = new HTTPWorkerThread(this);
     workerThreadList.add(workerThread);
   }
   if (!workerThreadList.start()) {
     stop();
     return false;
   }
-  
+
   return Thread::start();
 }
 
@@ -152,22 +162,23 @@ bool HTTPServer::start() {
 //  stop
 ////////////////////////////////////////////////
 
-bool HTTPServer::stop() {
+bool HTTPServer::stop()
+{
 
   bool areAllOperationsSuccess = true;
-  
+
   if (!workerThreadList.stop()) {
     areAllOperationsSuccess = false;
   }
-  
+
   if (messageQueue.clear() == false) {
     areAllOperationsSuccess = false;
   }
-  
+
   if (!Thread::stop()) {
     areAllOperationsSuccess = false;
   }
-    
+
   return areAllOperationsSuccess;
 }
 
@@ -175,7 +186,8 @@ bool HTTPServer::stop() {
 //  Server Functions
 ////////////////////////////////////////////////
 
-const char *uHTTP::GetServerName(string &buf) {
+const char* uHTTP::GetServerName(string& buf)
+{
   buf = "";
   string osName = "Platform";
   string osVer = "1.0";
@@ -218,6 +230,6 @@ const char *uHTTP::GetServerName(string &buf) {
   buf += uHTTP::LIBRARY_NAME;
   buf += "/";
   buf += uHTTP::LIBRARY_VERSION;
-  
+
   return buf.c_str();
 }

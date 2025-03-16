@@ -1,22 +1,22 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_UTIL_DEBUG_H_
 #define _UHTTP_UTIL_DEBUG_H_
 
 #include <stdio.h>
 #include <string>
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
+#include <fstream>
 #include <iostream>
 #include <sstream>
-#include <fstream>
 #endif
 
 #include <uhttp/util/Exception.h>
@@ -25,38 +25,45 @@ namespace uHTTP {
 class Debug {
   static bool enabled;
 
- public:
-  static void on() {
+  public:
+  static void on()
+  {
     enabled = true;
   }
 
-  static void off() {
+  static void off()
+  {
     enabled = false;
   }
 
-  static bool isOn() {
+  static bool isOn()
+  {
     return enabled;
   }
 
-  static void message(const std::string &s) {
+  static void message(const std::string& s)
+  {
     if (enabled == true)
       printf("uHTTP message : %s\n", s.c_str());
   }
 
-  static void message(std::string &s) {
+  static void message(std::string& s)
+  {
     message(s.c_str());
   }
 
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
-  static void message(std::ostringstream &s) {
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
+  static void message(std::ostringstream& s)
+  {
     message(s.str().c_str());
   }
 #endif
 
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
-  static void message(const std::string &s, const std::string &fname) {
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
+  static void message(const std::string& s, const std::string& fname)
+  {
     if (enabled == true) {
-      std::fstream fout(fname.c_str(), std::ios::out|std::ios::app);
+      std::fstream fout(fname.c_str(), std::ios::out | std::ios::app);
       if (fout.fail())
         return;
       fout << "uHTTP message : " << s << std::endl;
@@ -65,27 +72,32 @@ class Debug {
   }
 #endif
 
-  static void warning(const std::string &s) {
+  static void warning(const std::string& s)
+  {
     printf("uHTTP warning : %s\n", s.c_str());
   }
 
-  static void warning(std::string &s) {
+  static void warning(std::string& s)
+  {
     warning(s.c_str());
   }
 
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
-  static void warning(std::ostringstream &s) {
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
+  static void warning(std::ostringstream& s)
+  {
     warning(s.str().c_str());
   }
 #endif
 
-  static void warning(uHTTP::Exception &e) {
+  static void warning(uHTTP::Exception& e)
+  {
     warning(e.getMessage());
   }
 
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
-  static void warning(const std::string &s, const std::string &fname) {
-    std::fstream fout(fname.c_str(), std::ios::out|std::ios::app);
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
+  static void warning(const std::string& s, const std::string& fname)
+  {
+    std::fstream fout(fname.c_str(), std::ios::out | std::ios::app);
     if (fout.fail())
       return;
     fout << "uHTTP warning : " << s << std::endl;

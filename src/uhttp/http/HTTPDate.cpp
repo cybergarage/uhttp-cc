@@ -1,17 +1,17 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
-#include <uhttp/platform.h>
-#include <uhttp/http/HTTPDate.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <uhttp/http/HTTPDate.h>
+#include <uhttp/platform.h>
 
 using namespace uHTTP;
 
@@ -19,23 +19,27 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPDate::HTTPDate() {
+HTTPDate::HTTPDate()
+{
 }
 
-HTTPDate::HTTPDate(SysTime date) : uHTTP::Date(date) {
+HTTPDate::HTTPDate(SysTime date)
+    : uHTTP::Date(date)
+{
 }
 
 ////////////////////////////////////////////////
 //  get*String
 ////////////////////////////////////////////////
 
-const char *HTTPDate::getDateString() {
+const char* HTTPDate::getDateString()
+{
 #if defined(HAVE_GMTIME_R)
   struct tm gmTimeBuf;
-  struct tm *gmTime = &gmTimeBuf;
+  struct tm* gmTime = &gmTimeBuf;
   gmtime_r(&sysTime, &gmTimeBuf);
 #else
-  struct tm *gmTime;
+  struct tm* gmTime;
   gmTime = gmtime(&sysTime);
 #endif
 
@@ -44,15 +48,15 @@ const char *HTTPDate::getDateString() {
 #else
   sprintf(dateStr,
 #endif
-    "%s, %02d %s %04d %02d:%02d:%02d GMT",
-    toWeekString(gmTime->tm_wday),
-    gmTime->tm_mday,
-    toMonthString(gmTime->tm_mon),
-    gmTime->tm_year + 1900,
-    gmTime->tm_hour,
-    gmTime->tm_min,
-    gmTime->tm_sec);
-    
+      "%s, %02d %s %04d %02d:%02d:%02d GMT",
+      toWeekString(gmTime->tm_wday),
+      gmTime->tm_mday,
+      toMonthString(gmTime->tm_mon),
+      gmTime->tm_year + 1900,
+      gmTime->tm_hour,
+      gmTime->tm_min,
+      gmTime->tm_sec);
+
   return dateStr;
 }
 
@@ -85,15 +89,16 @@ static const char WEEK_STRING[][4] = {
   "Sat",
 };
 
-const char *uHTTP::toMonthString(int value) {
+const char* uHTTP::toMonthString(int value)
+{
   if (0 <= value && value < 12)
     return MONTH_STRING[value];
   return "";
 }
-  
-const char *uHTTP::toWeekString(int value) {
+
+const char* uHTTP::toWeekString(int value)
+{
   if (0 <= value && value < 7)
     return WEEK_STRING[value];
   return "";
 }
-

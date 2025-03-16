@@ -1,26 +1,26 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
-#include <string>
 #include <sstream>
 #include <stdlib.h>
 #include <string.h>
+#include <string>
 
 #include <uhttp/http/HTTPPacket.h>
 #include <uhttp/http/HTTPStatus.h>
-#include <uhttp/net/HostInterface.h>
-#include <uhttp/util/StringUtil.h>
-#include <uhttp/util/StringTokenizer.h>
-#include <uhttp/io/InputStreamReader.h>
 #include <uhttp/io/BufferedReader.h>
+#include <uhttp/io/InputStreamReader.h>
+#include <uhttp/net/HostInterface.h>
 #include <uhttp/net/SocketInputStream.h>
+#include <uhttp/util/StringTokenizer.h>
+#include <uhttp/util/StringUtil.h>
 
 using namespace std;
 using namespace uHTTP;
@@ -32,29 +32,34 @@ using namespace uHTTP;
 //  Constructor::
 ////////////////////////////////////////////////
 
-HTTPPacket::HTTPPacket() {
+HTTPPacket::HTTPPacket()
+{
   setVersion(HTTP::VER);
   setContentInputStream(NULL);
 }
 
-HTTPPacket::HTTPPacket(HTTPPacket *httpPacket) {
+HTTPPacket::HTTPPacket(HTTPPacket* httpPacket)
+{
   setVersion(HTTP::VER);
   set(httpPacket);
   setContentInputStream(NULL);
 }
 
-HTTPPacket::HTTPPacket(HTTPSocket *httpSock) {
+HTTPPacket::HTTPPacket(HTTPSocket* httpSock)
+{
   setVersion(HTTP::VER);
   set(httpSock);
   setContentInputStream(NULL);
 }
 
-HTTPPacket::HTTPPacket(uHTTP::InputStream *in) {
+HTTPPacket::HTTPPacket(uHTTP::InputStream* in)
+{
   set(in);
   setContentInputStream(NULL);
 }
 
-HTTPPacket::~HTTPPacket() {
+HTTPPacket::~HTTPPacket()
+{
   clearHeaders();
 }
 
@@ -62,7 +67,8 @@ HTTPPacket::~HTTPPacket() {
 //  init
 ////////////////////////////////////////////////
 
-void HTTPPacket::init() {
+void HTTPPacket::init()
+{
   setFirstLine("");
   clearHeaders();
   setContent("", false);
@@ -73,9 +79,10 @@ void HTTPPacket::init() {
 //  String
 ////////////////////////////////////////////////
 
-const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
+const char* HTTPPacket::getFirstLineToken(int num, string& tokenBuf)
+{
   StringTokenizer st(firstLine.c_str(), HTTP::REQEST_LINE_DELIM);
-  const char *lastToken = "";
+  const char* lastToken = "";
   for (int n = 0; n <= num; n++) {
     if (st.hasMoreTokens() == false) {
       tokenBuf = "";
@@ -91,37 +98,41 @@ const char *HTTPPacket::getFirstLineToken(int num, string &tokenBuf) {
 //  Header
 ////////////////////////////////////////////////
 
-HTTPHeader *HTTPPacket::getHeader(size_t n) {
+HTTPHeader* HTTPPacket::getHeader(size_t n)
+{
   size_t nHeaders = httpHeaderList.size();
-  if (nHeaders < (n+1))
+  if (nHeaders < (n + 1))
     return nullptr;
   return httpHeaderList.at(n);
 }
 
-HTTPHeader *HTTPPacket::getHeader(const std::string &name) {
+HTTPHeader* HTTPPacket::getHeader(const std::string& name)
+{
   size_t nHeaders = httpHeaderList.size();
   for (size_t n = 0; n < nHeaders; n++) {
-    HTTPHeader *header = httpHeaderList.at(n);
+    HTTPHeader* header = httpHeaderList.at(n);
     if (!header)
       continue;
-    const char *headerName = header->getName();
+    const char* headerName = header->getName();
     if (StringEqualsIgnoreCase(headerName, name) == true)
-      return header;      
+      return header;
   }
   return nullptr;
 }
 
-void HTTPPacket::clearHeaders() {
+void HTTPPacket::clearHeaders()
+{
   size_t nHeaders = getNHeaders();
   for (size_t n = 0; n < nHeaders; n++) {
-    HTTPHeader *header = getHeader(n);
+    HTTPHeader* header = getHeader(n);
     delete header;
   }
   httpHeaderList.clear();
 }
 
-void HTTPPacket::setHeader(const std::string &name, const std::string &value) {
-  HTTPHeader *header = getHeader(name);
+void HTTPPacket::setHeader(const std::string& name, const std::string& value)
+{
+  HTTPHeader* header = getHeader(name);
   if (header) {
     header->setValue(value);
     return;
@@ -129,25 +140,29 @@ void HTTPPacket::setHeader(const std::string &name, const std::string &value) {
   addHeader(name, value);
 }
 
-void HTTPPacket::setHeader(const std::string &name, int value) {
+void HTTPPacket::setHeader(const std::string& name, int value)
+{
   string valueStr;
   setHeader(name, Integer2String(value, valueStr));
 }
 
-void HTTPPacket::setHeader(const std::string &name, long value) {
+void HTTPPacket::setHeader(const std::string& name, long value)
+{
   string valueStr;
   setHeader(name, Long2String(value, valueStr));
 }
 
-void HTTPPacket::setHeader(const std::string &name, size_t value) {
+void HTTPPacket::setHeader(const std::string& name, size_t value)
+{
   string valueStr;
   setHeader(name, Sizet2String(value, valueStr));
 }
 
-bool HTTPPacket::addHeader(const std::string &name, const std::string &value) {
+bool HTTPPacket::addHeader(const std::string& name, const std::string& value)
+{
   if (name.length() <= 0)
     return false;
-  HTTPHeader *header = new HTTPHeader(name, value);
+  HTTPHeader* header = new HTTPHeader(name, value);
   if (!header)
     return false;
   httpHeaderList.push_back(header);
@@ -158,7 +173,8 @@ bool HTTPPacket::addHeader(const std::string &name, const std::string &value) {
 //  set
 ////////////////////////////////////////////////
 
-bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
+bool HTTPPacket::set(InputStream* in, bool onlyHeaders)
+{
   if (!in)
     return false;
 
@@ -174,12 +190,12 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
   // Thanks for Giordano Sassaroli <sassarol@cefriel.it> (09/03/03)
   HTTPStatus httpStatus(firstLine);
   int statCode = httpStatus.getStatusCode();
-  if (statCode == HTTP::CONTINUE){
-    //ad hoc code for managing iis non-standard behaviour
-    //iis sends 100 code response and a 200 code response in the same
-    //stream, so the code should check the presence of the actual
-    //response in the stream.
-    //skip all header lines
+  if (statCode == HTTP::CONTINUE) {
+    // ad hoc code for managing iis non-standard behaviour
+    // iis sends 100 code response and a 200 code response in the same
+    // stream, so the code should check the presence of the actual
+    // response in the stream.
+    // skip all header lines
     std::string headerLine = bufReader.readLine();
     while (0 < headerLine.length()) {
       HTTPHeader header(headerLine);
@@ -187,12 +203,13 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
         setHeader(&header);
       headerLine = bufReader.readLine();
     }
-    //look forward another first line
+    // look forward another first line
     std::string actualFirstLine = bufReader.readLine();
     if (0 < actualFirstLine.length()) {
-      //this is the actual first line
+      // this is the actual first line
       setFirstLine(actualFirstLine);
-    }else{
+    }
+    else {
       return true;
     }
   }
@@ -214,7 +231,7 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
 
   size_t contentLen = 0;
   if (isChunkedStream == true) {
-    const char *chunkSize = bufReader.readLine();
+    const char* chunkSize = bufReader.readLine();
     // Thanks for Lee Peik Feng <pflee@users.sourceforge.net> (07/07/05)
     contentLen = HexString2Long(chunkSize);
   }
@@ -235,56 +252,59 @@ bool HTTPPacket::set(InputStream *in, bool onlyHeaders) {
       readCnt += len;
     }
     if (isChunkedStream == true) {
-        // skip CRLF
-        long skipLen = 0;
-        do {
-          long skipCnt = bufReader.skip(HTTP::CRLF_LEN - skipLen);
-          if (skipCnt <= 0) {
-            contentLen = 0;
-            break;
-          }
-          skipLen += skipCnt;
-        } while (skipLen < HTTP::CRLF_LEN);
+      // skip CRLF
+      long skipLen = 0;
+      do {
+        long skipCnt = bufReader.skip(HTTP::CRLF_LEN - skipLen);
+        if (skipCnt <= 0) {
+          contentLen = 0;
+          break;
+        }
+        skipLen += skipCnt;
+      } while (skipLen < HTTP::CRLF_LEN);
       // read next chunk size
-      const char *chunkSize = bufReader.readLine();
+      const char* chunkSize = bufReader.readLine();
       // Thanks for Lee Peik Feng <pflee@users.sourceforge.net> (07/07/05)
       contentLen = HexString2Long(chunkSize);
     }
     else
-        contentLen = 0;
+      contentLen = 0;
   }
 
   if (0 < content.length()) {
     // Thanks for Ralf G. R. Bergs (02/09/04)
-    //String charStr = new String(content);
-    //String trimStr = charStr.trim();
+    // String charStr = new String(content);
+    // String trimStr = charStr.trim();
     setContent(content, false);
   }
 
   return true;
 }
 
-void HTTPPacket::set(HTTPPacket *httpPacket) {
+void HTTPPacket::set(HTTPPacket* httpPacket)
+{
   if (!httpPacket)
     return;
 
   setFirstLine(httpPacket->getFirstLine());
-    
+
   clearHeaders();
   size_t nHeaders = httpPacket->getNHeaders();
   for (size_t n = 0; n < nHeaders; n++) {
-    HTTPHeader *header = new HTTPHeader(httpPacket->getHeader(n));
+    HTTPHeader* header = new HTTPHeader(httpPacket->getHeader(n));
     addHeader(header);
   }
   setContent(httpPacket->getContent());
 }
 
-bool HTTPPacket::set(uHTTP::Socket *sock, bool onlyHeaders) {
+bool HTTPPacket::set(uHTTP::Socket* sock, bool onlyHeaders)
+{
   uHTTP::SocketInputStream sockIn(sock);
   return set(&sockIn, onlyHeaders);
 }
 
-bool HTTPPacket::set(HTTPSocket *httpSock) {
+bool HTTPPacket::set(HTTPSocket* httpSock)
+{
   if (!httpSock)
     return false;
   return set(httpSock->getSocket());
@@ -294,20 +314,22 @@ bool HTTPPacket::set(HTTPSocket *httpSock) {
 //  read
 ////////////////////////////////////////////////
 
-bool HTTPPacket::read(HTTPSocket *httpSock) {
+bool HTTPPacket::read(HTTPSocket* httpSock)
+{
   init();
   return set(httpSock);
 }
-  
+
 ////////////////////////////////////////////////
 //  set
 ////////////////////////////////////////////////
 
-const char *HTTPPacket::getHeaderString(string &headerStr) {
+const char* HTTPPacket::getHeaderString(string& headerStr)
+{
   size_t nHeaders = getNHeaders();
   headerStr = "";
   for (size_t n = 0; n < nHeaders; n++) {
-    HTTPHeader *header = getHeader(n);
+    HTTPHeader* header = getHeader(n);
     if (!header)
       continue;
     headerStr += header->getName();
@@ -322,7 +344,8 @@ const char *HTTPPacket::getHeaderString(string &headerStr) {
 // set*Value
 ////////////////////////////////////////////////
 
-void HTTPPacket::setStringHeader(const std::string &name, const std::string &value, const char startWith, const char endWith) {
+void HTTPPacket::setStringHeader(const std::string& name, const std::string& value, const char startWith, const char endWith)
+{
   string headerValue = value;
   if (StringStartsWith(value, startWith) == false) {
     char buf[2];
@@ -340,12 +363,13 @@ void HTTPPacket::setStringHeader(const std::string &name, const std::string &val
   setHeader(name, headerValue.c_str());
 }
 
-const char *HTTPPacket::getStringHeaderValue(const std::string &name, const char startWith, const char endWith, string &buf) {
+const char* HTTPPacket::getStringHeaderValue(const std::string& name, const char startWith, const char endWith, string& buf)
+{
   string headerValue = getHeaderValue(name);
   if (StringStartsWith(headerValue.c_str(), startWith) == true)
-    headerValue = headerValue.substr(1, headerValue.length()-1);
+    headerValue = headerValue.substr(1, headerValue.length() - 1);
   if (StringEndsWith(headerValue.c_str(), endWith) == true)
-    headerValue = headerValue.substr(0, headerValue.length()-1);
+    headerValue = headerValue.substr(0, headerValue.length() - 1);
   buf = headerValue;
   return buf.c_str();
 }
@@ -354,22 +378,24 @@ const char *HTTPPacket::getStringHeaderValue(const std::string &name, const char
 //  Host
 ////////////////////////////////////////////////
 
-void HTTPPacket::setHost(const std::string &host, int port) {
+void HTTPPacket::setHost(const std::string& host, int port)
+{
   if (port == HTTP::DEFAULT_PORT) {
     setHost(host);
     return;
   }
-  
+
   std::ostringstream os;
   if (IsIPv6Address(host) == true)
     os << "[" << host << "]:" << port;
   else
     os << host << ":" << port;
-  
+
   setHeader(HTTP::HOST, os.str());
 }
 
-void HTTPPacket::setHost(const std::string &host) {
+void HTTPPacket::setHost(const std::string& host)
+{
   std::ostringstream os;
   if (IsIPv6Address(host) == true)
     os << "[" << host << "]";
@@ -382,12 +408,14 @@ void HTTPPacket::setHost(const std::string &host) {
 //  ContentRange
 ////////////////////////////////////////////////
 
-bool HTTPPacket::hasContentRange() {
+bool HTTPPacket::hasContentRange()
+{
   // Thanks for Brent Hills (10/20/04)
-  return ( hasHeader(HTTP::CONTENT_RANGE) || hasHeader(HTTP::RANGE));
+  return (hasHeader(HTTP::CONTENT_RANGE) || hasHeader(HTTP::RANGE));
 }
 
-void HTTPPacket::setContentRange(long firstPos, long lastPos, long length) {
+void HTTPPacket::setContentRange(long firstPos, long lastPos, long length)
+{
   string ibuf;
   string rangeStr;
   rangeStr += HTTP::CONTENT_RANGE_BYTES;
@@ -403,11 +431,12 @@ void HTTPPacket::setContentRange(long firstPos, long lastPos, long length) {
   setHeader(HTTP::CONTENT_RANGE, rangeStr.c_str());
 }
 
-void HTTPPacket::getContentRange(long range[]) {
+void HTTPPacket::getContentRange(long range[])
+{
   range[0] = range[1] = range[2] = 0;
   if (hasContentRange() == false)
     return;
-  const char *rangeLine = getHeaderValue(HTTP::CONTENT_RANGE);
+  const char* rangeLine = getHeaderValue(HTTP::CONTENT_RANGE);
   // Thanks for Brent Hills (10/20/04)
   if (!rangeLine || strlen(rangeLine) <= 0)
     rangeLine = getHeaderValue(HTTP::RANGE);
@@ -438,19 +467,21 @@ void HTTPPacket::getContentRange(long range[]) {
 //  Connection
 ////////////////////////////////////////////////
 
-bool HTTPPacket::isCloseConnection() {
+bool HTTPPacket::isCloseConnection()
+{
   if (hasConnection() == false)
     return false;
-  const char *connection = getConnection();
+  const char* connection = getConnection();
   if (!connection)
     return false;
   return StringEqualsIgnoreCase(HTTP::CLOSE, connection);
 }
 
-bool HTTPPacket::isKeepAliveConnection() {
+bool HTTPPacket::isKeepAliveConnection()
+{
   if (hasConnection() == false)
     return false;
-  const char *connection = getConnection();
+  const char* connection = getConnection();
   if (!connection)
     return false;
   return StringEqualsIgnoreCase(HTTP::KEEP_ALIVE, connection);
@@ -460,7 +491,8 @@ bool HTTPPacket::isKeepAliveConnection() {
 //  CacheControl
 ////////////////////////////////////////////////
 
-void HTTPPacket::setCacheControl(const std::string &directive, int value) {
+void HTTPPacket::setCacheControl(const std::string& directive, int value)
+{
   string ibuf;
   string valStr;
   valStr += directive;
@@ -473,21 +505,22 @@ void HTTPPacket::setCacheControl(const std::string &directive, int value) {
 //  Transfer-Encoding
 ////////////////////////////////////////////////
 
-bool HTTPPacket::isChunked() {
+bool HTTPPacket::isChunked()
+{
   if (hasTransferEncoding() == false)
     return false;
-  const char *transEnc = getTransferEncoding();
+  const char* transEnc = getTransferEncoding();
   if (!transEnc)
     return false;
   return StringEqualsIgnoreCase(HTTP::CHUNKED, transEnc);
 }
 
-
 ////////////////////////////////////////////////
 //  CharSet
 ////////////////////////////////////////////////
 
-const char *HTTPPacket::getCharSet(std::string &buf) {
+const char* HTTPPacket::getCharSet(std::string& buf)
+{
   buf = "";
 
   if (!getContentType())
@@ -499,7 +532,7 @@ const char *HTTPPacket::getCharSet(std::string &buf) {
     return buf.c_str();
   string::size_type charSetEndIdx = charSetIdx + strlen(HTTP::CHARSET) + 1;
   string::size_type contentTypeSize = contentType.size();
-  if ((contentTypeSize-1) < charSetEndIdx)
+  if ((contentTypeSize - 1) < charSetEndIdx)
     return buf.c_str();
   if (contentType[charSetEndIdx] == '\"')
     charSetEndIdx++;
@@ -514,7 +547,8 @@ const char *HTTPPacket::getCharSet(std::string &buf) {
 //  Clear
 ////////////////////////////////////////////////
 
-void HTTPPacket::clear() {
+void HTTPPacket::clear()
+{
   clearHeaders();
   setFirstLine("");
   setContent("");

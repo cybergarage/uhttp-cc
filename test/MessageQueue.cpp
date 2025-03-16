@@ -21,58 +21,62 @@ using namespace uHTTP;
 
 class TestMessage : public Message {
 
-public:
-  
-  TestMessage(int value = 0) {
+  public:
+  TestMessage(int value = 0)
+  {
     this->value = value;
   }
-  
-  int getValue() {
+
+  int getValue()
+  {
     return this->value;
   }
-  
-private:
+
+  private:
   int value;
 };
 
-BOOST_AUTO_TEST_CASE(MessageQueueTest) {
+BOOST_AUTO_TEST_CASE(MessageQueueTest)
+{
   MessageQueue msgQueue;
-  
-  Message *popMsg;
+
+  Message* popMsg;
   BOOST_CHECK_EQUAL(msgQueue.waitMessage(&popMsg, 1), false);
-  
-  TestMessage *msg = new TestMessage();
+
+  TestMessage* msg = new TestMessage();
   BOOST_CHECK(msgQueue.pushMessage(msg));
-  
+
   BOOST_CHECK_EQUAL(msgQueue.waitMessage(&popMsg), true);
 }
 
-BOOST_AUTO_TEST_CASE(MessageQueueClearTest) {
+BOOST_AUTO_TEST_CASE(MessageQueueClearTest)
+{
   MessageQueue msgQueue;
-  
-  TestMessage *msg = new TestMessage();
-  
+
+  TestMessage* msg = new TestMessage();
+
   BOOST_CHECK_EQUAL(msgQueue.size(), 0);
-  
+
   BOOST_CHECK(msgQueue.pushMessage(msg));
   BOOST_CHECK_EQUAL(msgQueue.size(), 1);
-  
+
   BOOST_CHECK(msgQueue.clear());
   BOOST_CHECK_EQUAL(msgQueue.size(), 0);
 }
 
-BOOST_AUTO_TEST_CASE(MessageQueueLoopTest) {
+BOOST_AUTO_TEST_CASE(MessageQueueLoopTest)
+{
   MessageQueue msgQueue;
-  
+
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
-    TestMessage *msg = new TestMessage(n);
+    TestMessage* msg = new TestMessage(n);
     BOOST_CHECK(msgQueue.pushMessage(msg));
   }
 
   for (int n = 0; n < FRACTAL_MESSAGE_BASIC_TEST_COUNT; n++) {
-    Message *msg;
+    Message* msg;
     BOOST_CHECK(msgQueue.waitMessage(&msg));
-    TestMessage *testMsg = dynamic_cast<TestMessage *>(msg);
+    TestMessage* testMsg = dynamic_cast<TestMessage*>(msg);
     BOOST_CHECK(testMsg);
     int msgValue = testMsg->getValue();
     BOOST_CHECK_EQUAL(n, msgValue);
@@ -80,17 +84,15 @@ BOOST_AUTO_TEST_CASE(MessageQueueLoopTest) {
   }
 }
 
-class MessageCalcelThread : public Thread
-{
-public:
-  
-  MessageQueue *msgQueue;
-  
-  MessageCalcelThread(MessageQueue *msgQueue)
+class MessageCalcelThread : public Thread {
+  public:
+  MessageQueue* msgQueue;
+
+  MessageCalcelThread(MessageQueue* msgQueue)
   {
     this->msgQueue = msgQueue;
   }
-  
+
   void run()
   {
     Wait(1000);
@@ -98,13 +100,14 @@ public:
   }
 };
 
-BOOST_AUTO_TEST_CASE(MessageCancelTest) {
+BOOST_AUTO_TEST_CASE(MessageCancelTest)
+{
   MessageQueue msgQueue;
 
   MessageCalcelThread msgCancelThread(&msgQueue);
   msgCancelThread.start();
-  
-  Message *msg = NULL;
+
+  Message* msg = NULL;
   BOOST_CHECK_EQUAL(msgQueue.waitMessage(&msg), false);
   BOOST_CHECK(!msg);
 }

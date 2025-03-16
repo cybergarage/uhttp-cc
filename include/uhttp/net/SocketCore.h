@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_NET_SOCKETCORE_H_
 #define _UHTTP_NET_SOCKETCORE_H_
@@ -15,14 +15,14 @@
 
 #include <time.h>
 
-#if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
+#if defined(WIN32) && defined(ITRON) && defined(_AFXDLL)
 #include <afxwin.h>
 #endif
 
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#elif defined(BTRON) || defined(TENGINE) 
+#elif defined(BTRON) || defined(TENGINE)
 #include <typedef.h>
 #elif defined(ITRON)
 #include <kernel.h>
@@ -31,7 +31,7 @@
 #include <string>
 
 #if (!defined(WIN32) && !defined(__CYGWIN__)) || defined(ITRON)
-#if defined(BTRON) || defined(TENGINE) 
+#if defined(BTRON) || defined(TENGINE)
 typedef W SOCKET;
 #elif defined(ITRON)
 typedef ER SOCKET;
@@ -42,13 +42,12 @@ typedef int SOCKET;
 
 #include <uhttp/util/Vector.h>
 
-
 namespace uHTTP {
 
 class SocketList;
 
 class SocketCore {
- public:
+  public:
   SocketCore();
   virtual ~SocketCore();
 
@@ -56,7 +55,7 @@ class SocketCore {
   // Static Members
   ////////////////////////////////////////////////
 
- public:
+  public:
   static const int STREAM;
   static const int DGRAM;
 
@@ -64,56 +63,61 @@ class SocketCore {
   //  Static Methods
   ////////////////////////////////////////////////
 
-  static size_t      GetInstanceCount();
-  static SocketList *GetInstanceList();
+  static size_t GetInstanceCount();
+  static SocketList* GetInstanceList();
 
   ////////////////////////////////////////////////
   //  Socket
   ////////////////////////////////////////////////
-  
- public:
-  void setSocket(SOCKET value) {
+
+  public:
+  void setSocket(SOCKET value)
+  {
     sock = value;
   }
 
-  SOCKET getSocket() {
+  SOCKET getSocket()
+  {
     return sock;
   }
 
   ////////////////////////////////////////////////
   // bind
   ////////////////////////////////////////////////
-  
- public:
+
+  public:
   bool isBound();
-  
+
   ////////////////////////////////////////////////
   // close
   ////////////////////////////////////////////////
 
-public:
-  
+  public:
   bool close();
-  
+
   ////////////////////////////////////////////////
   //  Local address/port
   ////////////////////////////////////////////////
 
- public:
-  void setLocalAddress(const std::string &addr) {
+  public:
+  void setLocalAddress(const std::string& addr)
+  {
     localAddr = addr;
-    //StripIPv6ScopeID(addr, localAddr);
+    // StripIPv6ScopeID(addr, localAddr);
   }
 
-  const char *getLocalAddress() {
+  const char* getLocalAddress()
+  {
     return localAddr.c_str();
   }
 
-  void setLocalPort(int port) {
+  void setLocalPort(int port)
+  {
     localPort = port;
   }
 
-  int getLocalPort() {
+  int getLocalPort()
+  {
     return localPort;
   }
 
@@ -121,14 +125,15 @@ public:
   // Type
   ////////////////////////////////////////////////
 
-protected:
-  
-  void setType(int value) {
+  protected:
+  void setType(int value)
+  {
     type = value;
   }
 
- public:
-  int getType() {
+  public:
+  int getType()
+  {
     return type;
   }
 
@@ -136,14 +141,15 @@ protected:
   // Error Code
   ////////////////////////////////////////////////
 
-protected:
-  
-  void setErrorCode(int code) {
+  protected:
+  void setErrorCode(int code)
+  {
     this->errorCode = code;
   }
 
- public:
-  int getErrorCode() const {
+  public:
+  int getErrorCode() const
+  {
     return this->errorCode;
   }
 
@@ -151,34 +157,32 @@ protected:
   //  Socket Option
   ////////////////////////////////////////////////
 
- public:
+  public:
   bool setReuseAddress(bool on);
   bool setTimeout(time_t timeout);
 
-  #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
-  bool setMulticastInterface(const std::string &ifaddr);
-  #endif
+#if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
+  bool setMulticastInterface(const std::string& ifaddr);
+#endif
 
-private:
-
+  private:
   int type;
   std::string localAddr;
   int localPort;
   int errorCode;
 
-protected:
-  SOCKET  sock;
-
+  protected:
+  SOCKET sock;
 };
 
 class SocketList : public WeakVector<SocketCore> {
-  
-public:
-  
-  SocketList() {
+
+  public:
+  SocketList()
+  {
   }
 };
-  
+
 void SocketStartup();
 void SocketCleanup();
 

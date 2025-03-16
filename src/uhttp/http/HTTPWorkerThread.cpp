@@ -1,16 +1,15 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
-
-#include <uhttp/net/Socket.h>
 #include <uhttp/http/HTTPWorkerThread.h>
+#include <uhttp/net/Socket.h>
 
 #include <sstream>
 
@@ -19,45 +18,48 @@ using namespace uHTTP;
 ////////////////////////////////////////////////
 //  Constructor
 ////////////////////////////////////////////////
-  
-HTTPWorkerThread::HTTPWorkerThread(HTTPServer *server) {
+
+HTTPWorkerThread::HTTPWorkerThread(HTTPServer* server)
+{
   httpServer = server;
 }
 
-HTTPWorkerThread::~HTTPWorkerThread() {
+HTTPWorkerThread::~HTTPWorkerThread()
+{
 }
 
 ////////////////////////////////////////////////
-//  run  
+//  run
 ////////////////////////////////////////////////
 
-void HTTPWorkerThread::run() {
-  
+void HTTPWorkerThread::run()
+{
+
   while (isRunnable()) {
-    HTTPMessage *httpMsg;
+    HTTPMessage* httpMsg;
     if (!httpServer->waitMessage(&httpMsg))
       break;
-    
-    Socket *clientSock = httpMsg->getSocket();
+
+    Socket* clientSock = httpMsg->getSocket();
     if (!clientSock) {
       delete httpMsg;
       continue;
     }
-    
+
     uhttp_shared_ptr<HTTPSocket> httpSock = uhttp_shared_ptr<HTTPSocket>(new HTTPSocket(clientSock));
     if (!httpSock) {
       delete httpMsg;
       delete clientSock;
       continue;
     }
-    
+
     if (httpSock->open() == false) {
       delete httpMsg;
       delete clientSock;
       continue;
     }
-    
-    HTTPRequest *httpReq = new HTTPRequest();
+
+    HTTPRequest* httpReq = new HTTPRequest();
     if (!httpReq) {
       delete httpMsg;
       delete clientSock;
@@ -73,7 +75,7 @@ void HTTPWorkerThread::run() {
       if (httpReq->isKeepAlive() == false)
         break;
     }
-    
+
     if (statusCode != HTTP::PROCESSING) {
       delete httpReq;
     }

@@ -1,17 +1,17 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_UTIL_MUTEX_H_
 #define _UHTTP_UTIL_MUTEX_H_
 
-#if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
+#if defined(WIN32) && defined(ITRON) && defined(_AFXDLL)
 #include <afxwin.h>
 #endif
 
@@ -32,20 +32,20 @@
 namespace uHTTP {
 class Mutex {
 #if defined(WIN32) && !defined(ITRON)
-  HANDLE  mutexID;
+  HANDLE mutexID;
 #elif defined(BTRON)
-  WERR  mutexID;
+  WERR mutexID;
 #elif defined(ITRON)
-  ER_ID  mutexID;
+  ER_ID mutexID;
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
   ID mutexID;
 #elif defined(TENGINE) && defined(PROCESS_BASE)
-  WERR  mutexID;
+  WERR mutexID;
 #else
   pthread_mutex_t mutexID;
 #endif
 
- public:
+  public:
   Mutex();
   ~Mutex();
 

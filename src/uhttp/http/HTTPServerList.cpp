@@ -9,8 +9,8 @@
  ******************************************************************/
 
 #include <uhttp/http/HTTPServerList.h>
-#include <uhttp/util/StringUtil.h>
 #include <uhttp/util/Debug.h>
+#include <uhttp/util/StringUtil.h>
 
 #include <sstream>
 
@@ -21,10 +21,12 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-HTTPServerList::HTTPServerList() {
+HTTPServerList::HTTPServerList()
+{
 }
 
-HTTPServerList::~HTTPServerList() {
+HTTPServerList::~HTTPServerList()
+{
   stop();
 }
 
@@ -32,10 +34,11 @@ HTTPServerList::~HTTPServerList() {
 //  addRequestListener
 ////////////////////////////////////////////////
 
-void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
+void HTTPServerList::addRequestListener(HTTPRequestListener* listener)
+{
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     server->addRequestListener(listener);
   }
 }
@@ -44,10 +47,11 @@ void HTTPServerList::addRequestListener(HTTPRequestListener *listener) {
 //  addRequestListener
 ////////////////////////////////////////////////
 
-void HTTPServerList::removeRequestListener(HTTPRequestListener *listener) {
+void HTTPServerList::removeRequestListener(HTTPRequestListener* listener)
+{
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     server->removeRequestListener(listener);
   }
 }
@@ -56,10 +60,11 @@ void HTTPServerList::removeRequestListener(HTTPRequestListener *listener) {
 //  addRequestListener
 ////////////////////////////////////////////////
 
-void HTTPServerList::setWorkerCount(size_t count) {
+void HTTPServerList::setWorkerCount(size_t count)
+{
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     server->setWorkerCount(count);
   }
 }
@@ -68,11 +73,12 @@ void HTTPServerList::setWorkerCount(size_t count) {
 //  open/close
 ////////////////////////////////////////////////
 
-bool HTTPServerList::close() {
+bool HTTPServerList::close()
+{
   bool areAllSocketsClosed = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     if (server->close() == false) {
       areAllSocketsClosed = false;
     }
@@ -81,15 +87,16 @@ bool HTTPServerList::close() {
   return areAllSocketsClosed;
 }
 
-bool HTTPServerList::open(int port) {
+bool HTTPServerList::open(int port)
+{
   bool ret = true;
   size_t nHostAddrs = GetNHostAddresses();
   if (nHostAddrs == 0)
     return false;
   for (int n = 0; n < nHostAddrs; n++) {
     string buf;
-    const char *bindAddr = GetHostAddress(n, buf);
-    HTTPServer *httpServer = new HTTPServer();
+    const char* bindAddr = GetHostAddress(n, buf);
+    HTTPServer* httpServer = new HTTPServer();
     // Thanks for Ilkka Poutanen and Stefano Lenzi (07/16/04)
     if (httpServer->open(port, bindAddr) == false) {
       string msg;
@@ -97,7 +104,8 @@ bool HTTPServerList::open(int port) {
       msg += "Couldn't bind to ";
       msg += bindAddr;
       msg += ":";
-      msg += Integer2String(port, ibuf);;
+      msg += Integer2String(port, ibuf);
+      ;
       Debug::warning(msg.c_str());
       ret = false;
       continue;
@@ -111,11 +119,12 @@ bool HTTPServerList::open(int port) {
 //  start/stop
 ////////////////////////////////////////////////
 
-bool HTTPServerList::start() {
+bool HTTPServerList::start()
+{
   bool areAllSocketsStarted = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     if (server->start() == false) {
       areAllSocketsStarted = false;
     }
@@ -123,11 +132,12 @@ bool HTTPServerList::start() {
   return areAllSocketsStarted;
 }
 
-bool HTTPServerList::stop() {
+bool HTTPServerList::stop()
+{
   bool areAllSocketsStopped = true;
   size_t nServers = size();
   for (size_t n = 0; n < nServers; n++) {
-    HTTPServer *server = getHTTPServer(n);
+    HTTPServer* server = getHTTPServer(n);
     if (server->stop() == false) {
       areAllSocketsStopped = false;
     }

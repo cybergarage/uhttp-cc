@@ -1,17 +1,17 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <errno.h>
+#include <uhttp/net/HostInterface.h>
 #include <uhttp/net/SocketCore.h>
 #include <uhttp/net/SocketUtil.h>
-#include <uhttp/net/HostInterface.h>
 #include <uhttp/util/Mutex.h>
 #include <uhttp/util/StringUtil.h>
 
@@ -40,13 +40,15 @@ const int SocketCore::DGRAM = 2;
 ////////////////////////////////////////////////
 
 static SocketList gAllSocketList;
-static Mutex      gSocketListMutex;
+static Mutex gSocketListMutex;
 
-size_t SocketCore::GetInstanceCount() {
+size_t SocketCore::GetInstanceCount()
+{
   return gAllSocketList.size();
 }
 
-SocketList *SocketCore::GetInstanceList() {
+SocketList* SocketCore::GetInstanceList()
+{
   return &gAllSocketList;
 }
 
@@ -58,7 +60,8 @@ SocketList *SocketCore::GetInstanceList() {
 ttUserInterface kaInterfaceHandle;
 #endif
 
-void uHTTP::SocketStartup() {
+void uHTTP::SocketStartup()
+{
   if (SocketCore::GetInstanceCount() == 0) {
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
     WSADATA wsaData;
@@ -70,23 +73,24 @@ void uHTTP::SocketStartup() {
 #endif
 
 #if !defined(WIN32) || defined(__CYGWIN__)
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
     // Thanks for Brent Hills (10/26/04)
-    signal(SIGPIPE,SIG_IGN);
+    signal(SIGPIPE, SIG_IGN);
 #endif
 #endif
   }
 }
 
-void uHTTP::SocketCleanup() {
+void uHTTP::SocketCleanup()
+{
   if (SocketCore::GetInstanceCount() == 0) {
 #if defined(WIN32) || defined(__CYGWIN__)
     //  WSACleanup( );
 #endif
 #if !defined(WIN32) || defined(__CYGWIN__)
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
     // Thanks for Brent Hills (10/26/04)
-    signal(SIGPIPE,SIG_DFL);
+    signal(SIGPIPE, SIG_DFL);
 #endif
 #endif
   }
@@ -96,7 +100,8 @@ void uHTTP::SocketCleanup() {
 //  Constructor/Destructor
 ////////////////////////////////////////////////
 
-SocketCore::SocketCore() {
+SocketCore::SocketCore()
+{
   SocketStartup();
   setType(0);
   setLocalAddress("");
@@ -107,13 +112,14 @@ SocketCore::SocketCore() {
 #else
   setSocket(-1);
 #endif
-  
+
   gSocketListMutex.lock();
   gAllSocketList.add(this);
   gSocketListMutex.unlock();
 }
 
-SocketCore::~SocketCore() {
+SocketCore::~SocketCore()
+{
   gSocketListMutex.lock();
   gAllSocketList.remove(this);
   gSocketListMutex.unlock();
@@ -121,7 +127,8 @@ SocketCore::~SocketCore() {
   SocketCleanup();
 }
 
-bool SocketCore::isBound() {
+bool SocketCore::isBound()
+{
 #if (defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)) && !defined(ITRON)
   return (sock != INVALID_SOCKET) ? true : false;
 #else
@@ -133,26 +140,27 @@ bool SocketCore::isBound() {
 //  close
 ////////////////////////////////////////////////
 
-bool SocketCore::close() {
+bool SocketCore::close()
+{
   if (!isBound())
     return true;
 
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
   WSAAsyncSelect(sock, NULL, 0, FD_CLOSE);
-  shutdown(sock, SD_BOTH );
+  shutdown(sock, SD_BOTH);
   closesocket(sock);
-  #if !defined(__CYGWIN__) && !defined(__MINGW32__)
+#if !defined(__CYGWIN__) && !defined(__MINGW32__)
   setSocket(INVALID_SOCKET);
-  #else
-  setSocket(-1);
-  #endif
 #else
-  #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
+  setSocket(-1);
+#endif
+#else
+#if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   so_shutdown(sock, 2);
   so_close(sock);
-  #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   ka_tfClose(sock);
-  #elif defined(ITRON)
+#elif defined(ITRON)
   if (getType() == STREAM) {
     tcp_can_cep(sock, TFN_TCP_ALL);
     tcp_sht_cep(sock);
@@ -164,7 +172,7 @@ bool SocketCore::close() {
     udp_can_cep(sock, TFN_UDP_ALL);
     udp_del_cep(sock);
   }
-  #else
+#else
   int flag = fcntl(sock, F_GETFL, 0);
   if (0 <= flag)
     fcntl(sock, F_SETFL, flag | O_NONBLOCK);
@@ -173,7 +181,7 @@ bool SocketCore::close() {
     setErrorCode(errno);
     return false;
   }
-  #endif
+#endif
   setSocket(-1);
 #endif
 
@@ -184,63 +192,65 @@ bool SocketCore::close() {
 //  Socket Option
 ////////////////////////////////////////////////
 
-bool SocketCore::setReuseAddress(bool flag) {
+bool SocketCore::setReuseAddress(bool flag)
+{
   int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   B optval = (flag == true) ? 1 : 0;
-  sockOptRet = so_setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (B *)&optval, sizeof(optval));
+  sockOptRet = so_setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (B*)&optval, sizeof(optval));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   int optval = (flag == true) ? 1 : 0;
-  sockOptRet = ka_setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const std::string &)&optval, sizeof(optval));
-  //printf("setReuseAddress : %d\n", sockOptRet);
-#elif defined (ITRON)
+  sockOptRet = ka_setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const std::string&)&optval, sizeof(optval));
+  // printf("setReuseAddress : %d\n", sockOptRet);
+#elif defined(ITRON)
   /**** Not Implemented for NORTi ***/
   sockOptRet = -1;
-#elif defined (WIN32)
+#elif defined(WIN32)
   BOOL optval = (flag == true) ? 1 : 0;
-  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
 #else
   int optval = (flag == true) ? 1 : 0;
-  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
-  #if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
+#if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
   if (sockOptRet == 0) {
-    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const char *)&optval, sizeof(optval));
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_REUSEPORT, (const char*)&optval, sizeof(optval));
   }
-  #endif
+#endif
 #endif
   return (sockOptRet == 0) ? true : false;
 }
 
-bool SocketCore::setTimeout(time_t timeoutSec) {
+bool SocketCore::setTimeout(time_t timeoutSec)
+{
   int sockOptRet;
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
   sockOptRet = -1; /* TODO: Implement this */
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
   sockOptRet = -1; /* TODO: Implement this */
-#elif defined (ITRON)
+#elif defined(ITRON)
   /**** Not Implemented for NORTi ***/
   sockOptRet = -1;
-#elif defined (WIN32)
+#elif defined(WIN32)
   timeval timeout;
   timeout.tv_sec = sec;
   timeout.tv_usec = 0;
-  
-  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
+
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
   if (sockOptRet == 0) {
-    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
   }
 #else
   timeval timeout;
   timeout.tv_sec = timeoutSec;
   timeout.tv_usec = 0;
-  
-  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
+
+  sockOptRet = setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
   if (sockOptRet == 0) {
-    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
+    sockOptRet = setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
   }
 #endif
-  
+
   return (sockOptRet == 0) ? true : false;
 }
 
@@ -250,14 +260,15 @@ bool SocketCore::setTimeout(time_t timeoutSec) {
 
 #if defined(TENGINE) && defined(TENGINE_NET_KASAGO)
 
-bool SocketCore::setMulticastInterface(const std::string &ifaddr) {
+bool SocketCore::setMulticastInterface(const std::string& ifaddr)
+{
   NetworkInterfaceList netIfList;
 
-  if (ifaddr! || strlen(ifaddr) <= 0) {
+  if (ifaddr ! || strlen(ifaddr) <= 0) {
     int netIfCnt = GetHostAddresses(netIfList);
     if (netIfCnt <= 0)
       return false;
-    NetworkInterface *netIf = netIfList.getNetworkInterface(0);
+    NetworkInterface* netIf = netIfList.getNetworkInterface(0);
     ifaddr = netIf->getAddress();
   }
 
@@ -266,7 +277,7 @@ bool SocketCore::setMulticastInterface(const std::string &ifaddr) {
   if (sockAddrSuccess == false)
     return false;
 
-  int optSuccess = ka_setsockopt(sock, IP_PROTOIP, IPO_MULTICAST_IF, (const std::string &)&sockaddr.sin_addr, sizeof(sockaddr.sin_addr));
+  int optSuccess = ka_setsockopt(sock, IP_PROTOIP, IPO_MULTICAST_IF, (const std::string&)&sockaddr.sin_addr, sizeof(sockaddr.sin_addr));
   if (optSuccess != 0)
     return false;
 

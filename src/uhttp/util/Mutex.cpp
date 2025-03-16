@@ -1,13 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
-
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/util/Mutex.h>
 
@@ -17,20 +16,21 @@ using namespace uHTTP;
 //  Mutex
 ////////////////////////////////////////////////
 
-Mutex::Mutex() {
+Mutex::Mutex()
+{
 #if defined(WIN32) && !defined(ITRON)
   mutexID = CreateMutex(NULL, FALSE, NULL);
 #elif defined(BTRON)
   mutexID = cre_sem(1, SEM_EXCL);
 #elif defined(ITRON)
-  T_CSEM  csem;
+  T_CSEM csem;
   csem.sematr = TA_TFIFO;
   csem.isemcnt = 1;
   csem.maxsem = 1;
   csem.name = NULL;
   mutexID = acre_sem(&csem);
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
-  T_CSEM  csem;
+  T_CSEM csem;
   csem.exinf = 0;
   csem.sematr = TA_TFIFO | TA_FIRST;
   csem.isemcnt = 0;
@@ -43,7 +43,8 @@ Mutex::Mutex() {
 #endif
 }
 
-Mutex::~Mutex() {
+Mutex::~Mutex()
+{
 #if defined(WIN32) && !defined(ITRON)
   CloseHandle(mutexID);
 #elif defined(BTRON)
@@ -59,7 +60,8 @@ Mutex::~Mutex() {
 #endif
 }
 
-bool Mutex::lock() {
+bool Mutex::lock()
+{
 #if defined(WIN32) && !defined(ITRON)
   WaitForSingleObject(mutexID, INFINITE);
 #elif defined(BTRON)
@@ -76,7 +78,8 @@ bool Mutex::lock() {
   return true;
 }
 
-bool Mutex::unlock() {
+bool Mutex::unlock()
+{
 #if defined(WIN32) && !defined(ITRON)
   ReleaseMutex(mutexID);
 #elif defined(BTRON)

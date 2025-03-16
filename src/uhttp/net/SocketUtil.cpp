@@ -1,13 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
-
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <stdio.h>
 #include <string.h>
@@ -21,7 +20,8 @@ using namespace uHTTP;
 //  DecodeError
 ////////////////////////////////////////////////
 
-int uHTTP::GetSocketLastErrorCode() {
+int uHTTP::GetSocketLastErrorCode()
+{
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined(ITRON)
   return WSAGetLastError();
 #else
@@ -29,14 +29,18 @@ int uHTTP::GetSocketLastErrorCode() {
 #endif
 }
 
-const char *uHTTP::DecodeSocketError(int ErrorCode) {
+const char* uHTTP::DecodeSocketError(int ErrorCode)
+{
   static char msg[1024];
 
 #if defined(WIN32) || defined(__CYGWIN__)
-  FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS |
-    FORMAT_MESSAGE_MAX_WIDTH_MASK,
-    NULL, ErrorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-    (LPSTR)msg, 1024, NULL);
+  FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_MAX_WIDTH_MASK,
+      NULL,
+      ErrorCode,
+      MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+      (LPSTR)msg,
+      1024,
+      NULL);
 #else
   msg[0] = '\0';
 #endif
@@ -49,7 +53,8 @@ const char *uHTTP::DecodeSocketError(int ErrorCode) {
 
 #if !defined(ITRON)
 
-bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in *sockaddr, bool isBindAddr) {
+bool uHTTP::toSocketAddrIn(const std::string& addr, int port, struct sockaddr_in* sockaddr, bool isBindAddr)
+{
   SocketStartup();
 
   memset(sockaddr, 0, sizeof(sockaddr_in));
@@ -75,11 +80,11 @@ bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in
       memcpy(&(sockaddr->sin_addr), hent.h_addr, hent.h_length);
     }
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
-    sockaddr->sin_addr.s_addr = ka_inet_addr((char *)addr);
+    sockaddr->sin_addr.s_addr = ka_inet_addr((char*)addr);
 #else
     sockaddr->sin_addr.s_addr = inet_addr(addr.c_str());
     if (sockaddr->sin_addr.s_addr == INADDR_NONE) {
-      struct hostent *hent = gethostbyname(addr.c_str());
+      struct hostent* hent = gethostbyname(addr.c_str());
       if (!hent)
         return false;
       memcpy(&(sockaddr->sin_addr), hent->h_addr, hent->h_length);
@@ -96,9 +101,10 @@ bool uHTTP::toSocketAddrIn(const std::string &addr, int port, struct sockaddr_in
 //  toSocketAddrInfo
 ////////////////////////////////////////////////
 
-#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) 
+#if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
 
-bool uHTTP::toSocketAddrInfo(int sockType, const std::string &addr, int port, struct addrinfo **addrInfo, bool isBindAddr) {
+bool uHTTP::toSocketAddrInfo(int sockType, const std::string& addr, int port, struct addrinfo** addrInfo, bool isBindAddr)
+{
   SocketStartup();
 
   int errorn;
@@ -106,24 +112,24 @@ bool uHTTP::toSocketAddrInfo(int sockType, const std::string &addr, int port, st
   struct addrinfo hints;
   memset(&hints, 0, sizeof(struct addrinfo));
   hints.ai_socktype = sockType;
-  hints.ai_flags= /*AI_NUMERICHOST | */AI_PASSIVE;
-  
+  hints.ai_flags = /*AI_NUMERICHOST | */ AI_PASSIVE;
+
   char portStr[32];
   sprintf(portStr, "%d", port);
-  
-  if ( (errorn = getaddrinfo(addr.c_str(), portStr, &hints, addrInfo)) != 0) {
+
+  if ((errorn = getaddrinfo(addr.c_str(), portStr, &hints, addrInfo)) != 0) {
     return false;
   }
-  
+
   if (isBindAddr)
     return true;
-  
+
   hints.ai_family = (*addrInfo)->ai_family;
   freeaddrinfo(*addrInfo);
   if ((errorn = getaddrinfo(NULL, portStr, &hints, addrInfo)) != 0) {
     return false;
   }
-  
+
   return true;
 }
 

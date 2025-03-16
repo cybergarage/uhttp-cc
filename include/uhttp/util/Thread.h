@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_THREAD_H_
 #define _UHTTP_THREAD_H_
@@ -16,7 +16,7 @@
 #elif defined(BTRON)
 #include <btron/proctask.h>
 #elif defined(ITRON)
-#if defined(WIN32) && defined(ITRON) && defined (_AFXDLL)
+#if defined(WIN32) && defined(ITRON) && defined(_AFXDLL)
 #include <afxwin.h>
 #endif
 #include <kernel.h>
@@ -29,13 +29,13 @@
 #include <signal.h>
 #endif
 
-#include <uhttp/util/Vector.h>
 #include <uhttp/util/Mutex.h>
+#include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-  
+
 class Thread {
-public:
+  public:
   Thread();
   virtual ~Thread();
 
@@ -44,33 +44,34 @@ public:
   bool isRunnable();
   virtual bool stop();
 
-  void setObject(void *object) {
+  void setObject(void* object)
+  {
     this->runObject = object;
   }
-  
-  void *getObject() {
+
+  void* getObject()
+  {
     return this->runObject;
   }
-  
-  bool restart() {
+
+  bool restart()
+  {
     stop();
     start();
     return true;
   }
 
-private:
-  
+  private:
   void setRunnableFlag(bool flag);
-  
-private:
 
+  private:
 #if defined(WIN32) && !defined(ITRON)
-  HANDLE  hThread;
-  DWORD  threadID;
+  HANDLE hThread;
+  DWORD threadID;
 #elif defined(BTRON)
   W taskID;
 #elif defined(ITRON)
-  ER_ID  taskID;
+  ER_ID taskID;
 #elif defined(TENGINE) && !defined(PROCESS_BASE)
   ID taskID;
 #elif defined(TENGINE) && defined(PROCESS_BASE)
@@ -78,22 +79,20 @@ private:
 #else
   pthread_t thread;
 #endif
-  
+
   Mutex mutex;
   bool runnableFlag;
-  void *runObject;
+  void* runObject;
 };
 
-  
 class ThreadList : public ::uHTTP::SharedVector<Thread> {
-    
+
   public:
-    
-    ThreadList();
-    virtual ~ThreadList();
-    
-    bool start();
-    bool stop();
+  ThreadList();
+  virtual ~ThreadList();
+
+  bool start();
+  bool stop();
 };
 
 }

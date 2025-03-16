@@ -1,13 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
-
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/net/SocketInputStream.h>
 #include <uhttp/util/TimeUtil.h>
@@ -19,7 +18,8 @@ using namespace uHTTP;
 //  Constructor
 ////////////////////////////////////////////////
 
-SocketInputStream::SocketInputStream(Socket *sock) {
+SocketInputStream::SocketInputStream(Socket* sock)
+{
   this->sock = sock;
   this->inBuf = new char[SOCKET_INBUF_SIZE];
 }
@@ -28,7 +28,8 @@ SocketInputStream::SocketInputStream(Socket *sock) {
 //  Destructor
 ////////////////////////////////////////////////
 
-SocketInputStream::~SocketInputStream() {
+SocketInputStream::~SocketInputStream()
+{
   delete[] this->inBuf;
 }
 
@@ -36,10 +37,11 @@ SocketInputStream::~SocketInputStream() {
 //  read
 ////////////////////////////////////////////////
 
-ssize_t SocketInputStream::read(std::string &b, size_t len) {
+ssize_t SocketInputStream::read(std::string& b, size_t len)
+{
   if (!this->inBuf)
     return 0;
-  
+
   size_t readCnt = 0;
   int retryCnt = 0;
 
@@ -74,16 +76,17 @@ ssize_t SocketInputStream::read(std::string &b, size_t len) {
 //  read
 ////////////////////////////////////////////////
 
-ssize_t SocketInputStream::read(char *b, size_t len) {
+ssize_t SocketInputStream::read(char* b, size_t len)
+{
   if (!this->inBuf)
     return 0;
-  
+
   size_t readCnt = 0;
   int retryCnt = 0;
 
   while (readCnt < len) {
     size_t readSize = len - readCnt;
-    ssize_t readLen = sock->recv(b+readCnt, readSize);
+    ssize_t readLen = sock->recv(b + readCnt, readSize);
     if (readLen <= 0) {
       Wait(SOCKET_RECV_WAIT_TIME);
       retryCnt++;
@@ -99,7 +102,8 @@ ssize_t SocketInputStream::read(char *b, size_t len) {
 //  unread
 ////////////////////////////////////////////////
 
-void SocketInputStream::unread(std::string &b, size_t off, size_t len) {
+void SocketInputStream::unread(std::string& b, size_t off, size_t len)
+{
   unputBuf.append(b.substr(off, len));
 }
 
@@ -107,10 +111,11 @@ void SocketInputStream::unread(std::string &b, size_t off, size_t len) {
 //  skip
 ////////////////////////////////////////////////
 
-long SocketInputStream::skip(long n) {
+long SocketInputStream::skip(long n)
+{
   if (!this->inBuf)
     return 0;
-  
+
   long skippedByte = 0;
   int retryCnt = 0;
   while (n < skippedByte) {
@@ -120,7 +125,7 @@ long SocketInputStream::skip(long n) {
     ssize_t readLen = sock->recv(this->inBuf, (int)readByte);
     if (readLen <= 0) {
       Wait(SOCKET_RECV_WAIT_TIME);
-      retryCnt++; 
+      retryCnt++;
       if (SOCKET_RECV_RETRY_CNT < retryCnt)
         break;
     }
@@ -134,6 +139,7 @@ long SocketInputStream::skip(long n) {
 //  close
 ////////////////////////////////////////////////
 
-void SocketInputStream::close() {
+void SocketInputStream::close()
+{
   sock->close();
 }

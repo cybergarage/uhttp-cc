@@ -30,7 +30,7 @@ typedef sem_t SemaphoreId;
 #endif
 
 class Semaphore {
- public:
+  public:
   Semaphore(size_t maxCount);
   ~Semaphore();
 
@@ -39,12 +39,11 @@ class Semaphore {
 
   bool reset();
   bool cancel();
-  
-private:
 
+  private:
   bool init(size_t maxCount);
   bool destory();
-  
+
   SemaphoreId semId;
   bool isInitialized;
   size_t maxCount;

@@ -1,50 +1,52 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #ifndef _UHTTP_PARAMETERLIST_H_
 #define _UHTTP_PARAMETERLIST_H_
 
-#include <uhttp/util/Vector.h>
-#include <uhttp/util/StringUtil.h>
 #include <uhttp/http/Parameter.h>
+#include <uhttp/util/StringUtil.h>
+#include <uhttp/util/Vector.h>
 
 namespace uHTTP {
 
 class ParameterList : public ::uHTTP::SharedVector<Parameter> {
-public:
-  
-  ParameterList() {
+  public:
+  ParameterList()
+  {
   }
-  
-  Parameter *at(size_t n) {
+
+  Parameter* at(size_t n)
+  {
     return get(n).get();
   }
 
-  Parameter *getParameter(int n) {
+  Parameter* getParameter(int n)
+  {
     return get(n).get();
   }
 
-  Parameter *getParameter(const std::string &name)
+  Parameter* getParameter(const std::string& name)
   {
     size_t nLists = size();
     for (size_t n = 0; n < nLists; n++) {
-      Parameter *param = at(n);
+      Parameter* param = at(n);
       if (uHTTP::StringEquals(name, param->getName()) == true)
         return param;
     }
     return nullptr;
   }
 
-  bool getParameterValue(const std::string &name, std::string *value)
+  bool getParameterValue(const std::string& name, std::string* value)
   {
-    Parameter *param = getParameter(name);
+    Parameter* param = getParameter(name);
     if (!param)
       return false;
     *value = param->getValue();

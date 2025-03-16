@@ -1,19 +1,18 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
-
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/http/HTML.h>
 #include <uhttp/http/HTTPResponse.h>
 #include <uhttp/http/HTTPServer.h>
 
-#if defined(BTRON) || defined(ITRON) || defined(TENGINE) 
+#if defined(BTRON) || defined(ITRON) || defined(TENGINE)
 #include <uhttp/util/StringUtil.h>
 #endif
 
@@ -22,11 +21,12 @@
 
 using namespace std;
 using namespace uHTTP;
-#if defined(BTRON) || defined(ITRON) || defined(TENGINE) 
+#if defined(BTRON) || defined(ITRON) || defined(TENGINE)
 using namespace uHTTP;
 #endif
 
-HTTPResponse::HTTPResponse() {
+HTTPResponse::HTTPResponse()
+{
   string buf;
   setStatusCode(0);
   setContentType(TEXT_CONTENT_TYPE);
@@ -34,7 +34,8 @@ HTTPResponse::HTTPResponse() {
   setServer(GetServerName(buf));
 }
 
-HTTPResponse::HTTPResponse(HTTPResponse *httpRes) {
+HTTPResponse::HTTPResponse(HTTPResponse* httpRes)
+{
   setStatusCode(0);
   set(httpRes);
 }
@@ -43,10 +44,11 @@ HTTPResponse::HTTPResponse(HTTPResponse *httpRes) {
 //  Status Line
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::getStatusLineString(string &statusLineBuf) {
+const char* HTTPResponse::getStatusLineString(string& statusLineBuf)
+{
 #ifndef NO_USE_OSTRINGSTREAM
   ostringstream strBuf;
-  strBuf <<  "HTTP/" << getVersion() << " " << getStatusCode() << " " << HTTP::StatusCodeToString(getStatusCode()) << HTTP::CRLF;
+  strBuf << "HTTP/" << getVersion() << " " << getStatusCode() << " " << HTTP::StatusCodeToString(getStatusCode()) << HTTP::CRLF;
   statusLineBuf = strBuf.str();
 #else
   string ibuf;
@@ -60,12 +62,13 @@ const char *HTTPResponse::getStatusLineString(string &statusLineBuf) {
 #endif
   return statusLineBuf.c_str();
 }
-  
+
 ////////////////////////////////////////////////
 //  getHeader
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::getHeader(string &headerBuf) {
+const char* HTTPResponse::getHeader(string& headerBuf)
+{
 #ifndef NO_USE_OSTRINGSTREAM
   ostringstream strBuf;
   string statusLine;
@@ -85,7 +88,8 @@ const char *HTTPResponse::getHeader(string &headerBuf) {
 //  toString
 ////////////////////////////////////////////////
 
-const char *HTTPResponse::toString(string &buf) {
+const char* HTTPResponse::toString(string& buf)
+{
   string header;
   buf = "";
   buf.append(getHeader(header));
@@ -94,7 +98,8 @@ const char *HTTPResponse::toString(string &buf) {
   return buf.c_str();
 }
 
-void HTTPResponse::print() {
+void HTTPResponse::print()
+{
   std::string buf;
 #ifndef NO_USE_STD_COUT
   std::cout << toString(buf) << std::endl;

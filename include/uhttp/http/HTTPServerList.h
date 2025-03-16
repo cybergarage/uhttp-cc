@@ -16,13 +16,13 @@
 #include <uhttp/util/Vector.h>
 
 namespace uHTTP {
-    
-class HTTPServerList : public ::uHTTP::SharedVector<HTTPServer>  {
+
+class HTTPServerList : public ::uHTTP::SharedVector<HTTPServer> {
   ////////////////////////////////////////////////
   //  Constructor
   ////////////////////////////////////////////////
-  
- public:
+
+  public:
   HTTPServerList();
   ~HTTPServerList();
 
@@ -30,30 +30,30 @@ class HTTPServerList : public ::uHTTP::SharedVector<HTTPServer>  {
   //  Methods
   ////////////////////////////////////////////////
 
- public:
-  HTTPServer *getHTTPServer(size_t n) {
+  public:
+  HTTPServer* getHTTPServer(size_t n)
+  {
     return get(n).get();
   }
 
-  void addRequestListener(HTTPRequestListener *listener);
-  void removeRequestListener(HTTPRequestListener *listener);
-  
+  void addRequestListener(HTTPRequestListener* listener);
+  void removeRequestListener(HTTPRequestListener* listener);
+
   void setWorkerCount(size_t count);
-  
+
   ////////////////////////////////////////////////
   //  open/close
   ////////////////////////////////////////////////
 
- public:
+  public:
   bool close();
   bool open(int port);
-
 
   ////////////////////////////////////////////////
   //  start/stop
   ////////////////////////////////////////////////
 
- public:
+  public:
   bool start();
   bool stop();
 };

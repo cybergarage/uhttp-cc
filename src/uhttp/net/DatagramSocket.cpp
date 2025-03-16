@@ -1,20 +1,20 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include <uhttp/net/Socket.h>
-#include <uhttp/net/DatagramSocket.h>
 #include <uhttp/net/DatagramPacket.h>
+#include <uhttp/net/DatagramSocket.h>
+#include <uhttp/net/Socket.h>
 #include <uhttp/net/SocketUtil.h>
 
 using namespace uHTTP;
@@ -30,16 +30,19 @@ static ER TcpCallback(ID cepid, FN fncd, VP parblk);
 //  DatagramSocket
 ////////////////////////////////////////////////
 
-DatagramSocket::DatagramSocket() {
+DatagramSocket::DatagramSocket()
+{
   setType(DGRAM);
 }
 
-DatagramSocket::DatagramSocket(int port, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag) {
+DatagramSocket::DatagramSocket(int port, const std::string& bindAddr, bool bindAddrFlag, bool reuseAddrFlag)
+{
   setType(DGRAM);
   bind(port, bindAddr, bindAddrFlag, reuseAddrFlag);
 }
 
-DatagramSocket::~DatagramSocket() {
+DatagramSocket::~DatagramSocket()
+{
   close();
 }
 
@@ -47,7 +50,8 @@ DatagramSocket::~DatagramSocket() {
 //  bind
 ////////////////////////////////////////////////
 
-bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAddrFlag, bool reuseAddrFlag) {
+bool DatagramSocket::bind(int bindPort, const std::string& bindAddr, bool bindAddrFlag, bool reuseAddrFlag)
+{
   setLocalAddress("");
   setLocalPort(0);
 
@@ -58,7 +62,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
   struct sockaddr_in sockaddr;
   if (toSocketAddrIn(bindAddr, bindPort, &sockaddr) == false)
     return false;
-     sock = so_socket(PF_INET, SOCK_DGRAM, 0);
+  sock = so_socket(PF_INET, SOCK_DGRAM, 0);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   struct sockaddr_in sockaddr;
   if (toSocketAddrIn(bindAddr, bindPort, &sockaddr) == false)
@@ -67,7 +71,7 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
 #elif defined(ITRON)
   sock = GetAvailableSocketID(STREAM);
 #else
-  struct addrinfo *addrInfo;
+  struct addrinfo* addrInfo;
   if (toSocketAddrInfo(SOCK_DGRAM, bindAddr, bindPort, &addrInfo, bindAddrFlag) == false)
     return false;
   sock = socket(addrInfo->ai_family, addrInfo->ai_socktype, 0);
@@ -75,16 +79,16 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
 
   if (sock < 0)
     return false;
-  
+
   if (reuseAddrFlag == true) {
     if (setReuseAddress(true) == false)
       return false;
   }
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
-  ERR ret = so_bind(sock, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
+  ERR ret = so_bind(sock, (SOCKADDR*)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
-  ERR ret = ka_bind(sock, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
+  ERR ret = ka_bind(sock, (struct sockaddr*)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
   T_UDP_CCEP udpccep = { 0, { IPV4_ADDRANY, UDP_PORTANY }, (FP)UdpCallback };
   if (bindAddr)
@@ -114,32 +118,33 @@ bool DatagramSocket::bind(int bindPort, const std::string &bindAddr, bool bindAd
 //  recv
 ////////////////////////////////////////////////
 
-ssize_t DatagramSocket::receive(DatagramPacket &dataPack) {
+ssize_t DatagramSocket::receive(DatagramPacket& dataPack)
+{
   dataPack.setAddress("");
   dataPack.setPort(0);
 
-  char recvBuf[DGRAM_SOCKET_RECV_BUFSIZE+1];
+  char recvBuf[DGRAM_SOCKET_RECV_BUFSIZE + 1];
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(TENGINE_NET_KASAGO))
   struct sockaddr_in from;
   W fromLen = sizeof(sockaddr_in);
-  int recvLen = so_recvfrom(sock, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
+  int recvLen = so_recvfrom(sock, recvBuf, sizeof(recvBuf) - 1, 0, (struct sockaddr*)&from, &fromLen);
 #elif defined(TENGINE) && defined(TENGINE_NET_KASAGO)
   struct sockaddr_in from;
   int fromLen = sizeof(from);
-  int recvLen = ka_recvfrom(sock, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
+  int recvLen = ka_recvfrom(sock, recvBuf, sizeof(recvBuf) - 1, 0, (struct sockaddr*)&from, &fromLen);
 #elif defined(ITRON)
   T_IPV4EP remoteHost;
-  int recvLen = udp_rcv_dat(sock, &remoteHost, recvBuf, sizeof(recvBuf)-1, TMO_FEVR);
+  int recvLen = udp_rcv_dat(sock, &remoteHost, recvBuf, sizeof(recvBuf) - 1, TMO_FEVR);
 #else
   struct sockaddr_storage from;
   socklen_t fromLen = sizeof(from);
-  ssize_t recvLen = ::recvfrom(sock, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
+  ssize_t recvLen = ::recvfrom(sock, recvBuf, sizeof(recvBuf) - 1, 0, (struct sockaddr*)&from, &fromLen);
 #endif
 
   if (recvLen <= 0)
     return 0;
-  
+
   recvBuf[recvLen] = '\0';
   dataPack.setData(recvBuf);
 
@@ -158,7 +163,7 @@ ssize_t DatagramSocket::receive(DatagramPacket &dataPack) {
   dataPack.setAddress(remoteAddr);
   dataPack.setPort(ntohs(remoteHost.portno));
 #else
-  int ret = getnameinfo((struct sockaddr *)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV);
+  int ret = getnameinfo((struct sockaddr*)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV);
   if (ret == 0) {
     dataPack.setAddress(remoteAddr);
     dataPack.setPort(atoi(remotePort));
@@ -172,10 +177,11 @@ ssize_t DatagramSocket::receive(DatagramPacket &dataPack) {
 //  send
 ////////////////////////////////////////////////
 
-ssize_t DatagramSocket::send(const std::string &addr, int port, const std::string &data, size_t dataLen) {
+ssize_t DatagramSocket::send(const std::string& addr, int port, const std::string& data, size_t dataLen)
+{
   if (dataLen <= 0)
     dataLen = data.length();
-  
+
   if (dataLen <= 0)
     return 0;
 
@@ -187,7 +193,7 @@ ssize_t DatagramSocket::send(const std::string &addr, int port, const std::strin
     return 0;
 
   if (isBoundFlag == false)
-       sock = so_socket(PF_INET, SOCK_DGRAM, 0);
+    sock = so_socket(PF_INET, SOCK_DGRAM, 0);
 
   if (sock < 0)
     return -1;
@@ -199,13 +205,13 @@ ssize_t DatagramSocket::send(const std::string &addr, int port, const std::strin
     return 0;
 
   if (isBoundFlag == FALSE) {
-       sock = ka_socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    sock = ka_socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
     setMulticastInterface(NULL);
   }
 
   if (sock < 0)
     return -1;
-  ssize_t sentLen = ka_sendto(sock, (char *)data, dataLen, 0, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
+  ssize_t sentLen = ka_sendto(sock, (char*)data, dataLen, 0, (struct sockaddr*)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
   if (isBoundFlag == FALSE) {
     sock = GetAvailableSocketID(DGRAM);
@@ -220,7 +226,7 @@ ssize_t DatagramSocket::send(const std::string &addr, int port, const std::strin
   dstaddr.portno = htons(port);
   ssize_t sentLen = udp_snd_dat(sock, &dstaddr, data, dataLen, TMO_FEVR);
 #else
-  struct addrinfo *addrInfo;
+  struct addrinfo* addrInfo;
   if (toSocketAddrInfo(SOCK_DGRAM, addr, port, &addrInfo, true) == false)
     return false;
 
@@ -239,8 +245,9 @@ ssize_t DatagramSocket::send(const std::string &addr, int port, const std::strin
   return sentLen;
 }
 
-ssize_t DatagramSocket::send(DatagramPacket *dataPack) {
-  InetSocketAddress *sockAddr = dataPack->getSocketAddress();
+ssize_t DatagramSocket::send(DatagramPacket* dataPack)
+{
+  InetSocketAddress* sockAddr = dataPack->getSocketAddress();
   return send(sockAddr->getAddress(), sockAddr->getPort(), dataPack->getData());
 }
 
@@ -250,7 +257,8 @@ ssize_t DatagramSocket::send(DatagramPacket *dataPack) {
 
 #if defined(ITRON)
 
-static ER UdpCallback(ID cepid, FN fncd, VP parblk) {
+static ER UdpCallback(ID cepid, FN fncd, VP parblk)
+{
   return E_OK;
 }
 

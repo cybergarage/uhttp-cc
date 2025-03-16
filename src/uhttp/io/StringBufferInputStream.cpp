@@ -1,24 +1,26 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <string.h>
 #include <uhttp/io/StringBufferInputStream.h>
 
 using namespace uHTTP;
 
-StringBufferInputStream::StringBufferInputStream(const std::string &str) {
+StringBufferInputStream::StringBufferInputStream(const std::string& str)
+{
   buf = str;
   pos = 0;
 }
 
-ssize_t StringBufferInputStream::read(std::string &b, size_t len) {
+ssize_t StringBufferInputStream::read(std::string& b, size_t len)
+{
   size_t bufLen = buf.length() - pos;
   if (bufLen <= 0)
     return 0;
@@ -28,7 +30,8 @@ ssize_t StringBufferInputStream::read(std::string &b, size_t len) {
   return copyLen;
 }
 
-ssize_t StringBufferInputStream::read(char *b, size_t len) {
+ssize_t StringBufferInputStream::read(char* b, size_t len)
+{
   size_t bufLen = buf.length() - pos;
   if (bufLen <= 0)
     return 0;
@@ -38,8 +41,8 @@ ssize_t StringBufferInputStream::read(char *b, size_t len) {
   return copyLen;
 }
 
-long StringBufferInputStream::skip(long n) {
+long StringBufferInputStream::skip(long n)
+{
   pos += n;
   return n;
 }
-

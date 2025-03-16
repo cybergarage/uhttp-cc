@@ -8,17 +8,19 @@
  *
  ******************************************************************/
 
-
 #include <stdio.h>
 #include <uhttp/util/Thread.h>
 
-uHTTP::ThreadList::ThreadList() {
+uHTTP::ThreadList::ThreadList()
+{
 }
 
-uHTTP::ThreadList::~ThreadList() {
+uHTTP::ThreadList::~ThreadList()
+{
 }
 
-bool uHTTP::ThreadList::start() {
+bool uHTTP::ThreadList::start()
+{
   bool allThreadsStarted = true;
   for (ThreadList::iterator thread = begin(); thread != end(); thread++) {
     if ((*thread)->start() == false)
@@ -27,7 +29,8 @@ bool uHTTP::ThreadList::start() {
   return allThreadsStarted;
 }
 
-bool uHTTP::ThreadList::stop() {
+bool uHTTP::ThreadList::stop()
+{
   bool allThreadsStopped = true;
   for (ThreadList::iterator thread = begin(); thread != end(); thread++) {
     if ((*thread)->stop() == false)

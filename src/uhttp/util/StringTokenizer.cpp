@@ -1,12 +1,12 @@
 /******************************************************************
-*
-* uHTTP for C++
-*
-* Copyright (C) Satoshi Konno 2002
-*
-* This is licensed under BSD-style license, see file COPYING.
-*
-******************************************************************/
+ *
+ * uHTTP for C++
+ *
+ * Copyright (C) Satoshi Konno 2002
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <uhttp/util/StringTokenizer.h>
 
@@ -15,7 +15,8 @@
 using namespace std;
 using namespace uHTTP;
 
-StringTokenizer::StringTokenizer(const std::string &str, const std::string &delim) {
+StringTokenizer::StringTokenizer(const std::string& str, const std::string& delim)
+{
   hasNextTokens = true;
   strBuf = str;
   strDelim = delim;
@@ -24,21 +25,25 @@ StringTokenizer::StringTokenizer(const std::string &str, const std::string &deli
   nextToken(delim);
 }
 
-StringTokenizer::~StringTokenizer() {
+StringTokenizer::~StringTokenizer()
+{
 }
 
-bool StringTokenizer::hasMoreTokens() {
+bool StringTokenizer::hasMoreTokens()
+{
   return hasNextTokens;
 }
 
-const char *StringTokenizer::nextToken() {
+const char* StringTokenizer::nextToken()
+{
   return nextToken(strDelim.c_str());
 }
 
-const char *StringTokenizer::nextToken(const std::string &delim) {
+const char* StringTokenizer::nextToken(const std::string& delim)
+{
   strCurrToken = strNextToken;
 
-  string::size_type findStartDelimPos = (lastDelimPos == string::npos) ? 0 : (lastDelimPos+1);
+  string::size_type findStartDelimPos = (lastDelimPos == string::npos) ? 0 : (lastDelimPos + 1);
   string::size_type startDelimPos = strBuf.find_first_not_of(delim, findStartDelimPos);
   if (startDelimPos == string::npos) {
     hasNextTokens = false;
@@ -49,7 +54,7 @@ const char *StringTokenizer::nextToken(const std::string &delim) {
   string::size_type endDelimPos = strBuf.find_first_of(delim, startDelimPos);
   if (endDelimPos == string::npos)
     endDelimPos = strBuf.length();
-  strNextToken = strBuf.substr(startDelimPos, endDelimPos-startDelimPos);
+  strNextToken = strBuf.substr(startDelimPos, endDelimPos - startDelimPos);
 
   lastDelimPos = endDelimPos;
 

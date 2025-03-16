@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include <uhttp/util/Random.h>
 
