@@ -63,7 +63,10 @@
 /* Define to 1 if you have the `edit' library (-ledit). */
 #undef HAVE_LIBEDIT
 
-/* Define to 1 if you have the `iconv' library (-liconv). */
+/* Define to 1 if you have the 'gcov' library (-lgcov). */
+#undef HAVE_LIBGCOV
+
+/* Define to 1 if you have the 'iconv' library (-liconv). */
 #undef HAVE_LIBICONV
 
 /* Define to 1 if you have the `pthread' library (-lpthread). */

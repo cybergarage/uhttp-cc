@@ -6455,7 +6455,7 @@ then :
   enableval=$enable_test; build_test="yes"
 fi
 
-	 if test "$build_test" = "yes"; then
+ if test "$build_test" = yes; then
   UHTTP_ENABLE_TEST_TRUE=
   UHTTP_ENABLE_TEST_FALSE='#'
 else
@@ -6463,9 +6463,8 @@ else
   UHTTP_ENABLE_TEST_FALSE=
 fi
 
-
 if  test "$build_test" = yes ; then
-	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework-mt" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework-mt" >&5
 printf %s "checking for main in -lboost_unit_test_framework-mt... " >&6; }
 if test ${ac_cv_lib_boost_unit_test_framework_mt_main+y}
 then :
@@ -6547,12 +6546,12 @@ then :
   LIBS="-lboost_unit_test_framework $LIBS"
 
 else $as_nop
-  as_fn_error $? "uHTTP needs boost::unit_test_framework" "$LINENO" 5
+  as_fn_error $? "uHTTP needs boost::boost_unit_test_framework" "$LINENO" 5
 fi
 
 fi
 
-	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_system-mt" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_system-mt" >&5
 printf %s "checking for main in -lboost_system-mt... " >&6; }
 if test ${ac_cv_lib_boost_system_mt_main+y}
 then :
@@ -6633,13 +6632,14 @@ then :
 
   LIBS="-lboost_system $LIBS"
 
-else $as_nop
-  as_fn_error $? "uHTTP needs boost::system" "$LINENO" 5
+else case e in #(
+  e) as_fn_error $? "uHTTP needs boost::system" "$LINENO" 5 ;;
+esac
 fi
 
 fi
 
-	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_thread-mt" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_thread-mt" >&5
 printf %s "checking for main in -lboost_thread-mt... " >&6; }
 if test ${ac_cv_lib_boost_thread_mt_main+y}
 then :
@@ -6720,13 +6720,14 @@ then :
 
   LIBS="-lboost_thread $LIBS"
 
-else $as_nop
-  as_fn_error $? "uHTTP needs boost::thread" "$LINENO" 5
+else case e in #(
+  e) as_fn_error $? "uHTTP needs boost::thread" "$LINENO" 5 ;;
+esac
 fi
 
 fi
 
-	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_filesystem-mt" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_filesystem-mt" >&5
 printf %s "checking for main in -lboost_filesystem-mt... " >&6; }
 if test ${ac_cv_lib_boost_filesystem_mt_main+y}
 then :
@@ -6807,10 +6808,12 @@ then :
 
   LIBS="-lboost_filesystem $LIBS"
 
-else $as_nop
-  as_fn_error $? "uHTTP needs boost::filesystem" "$LINENO" 5
+else case e in #(
+  e) as_fn_error $? "uHTTP needs boost::filesystem" "$LINENO" 5 ;;
+esac
 fi
-
+ ;;
+esac
 fi
 
 fi

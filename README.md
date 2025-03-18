@@ -3,7 +3,7 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uhttp-cc)
 [![Build Status](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml)
 
-uHTTP for C++ is a developer framework for HTTP client and server applications. The framework was forked from [mUPnP for C++](https://github.com/cybergarage/mupnp-cc) v1.7.2 except the UPnP and SOAP functions.
+uHTTP for C++ is a developer framework for HTTP client and server applications. The framework was forked from [mUPnP for C++](https://github.com/cybergarage/mupnp-cc) except the UPnP and SOAP functions.
 
 [mUPnP for C++](https://github.com/cybergarage/mupnp-cc) was developed for embedded platforms, but I will improve the framework for enterprise platforms in the future.
 
