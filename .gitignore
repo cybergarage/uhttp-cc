@@ -1,8 +1,10 @@
 Makefile
 config/
 config.*
-aclocal.m4
 autom4te.cache/
+configure~
+stamp-h2
+
 *.o
 *.a
 *.po
@@ -10,3 +12,7 @@ autom4te.cache/
 xcuserdata/
 .deps/
 .dirstamp
+
+test/unix/test-suite.log
+test/unix/uhttpcctest
+test/unix/uhttpcctest.*
