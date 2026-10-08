@@ -21,9 +21,9 @@ make install
 
 These commands will configure the build environment, compile the source code, and install the library on your system. Ensure that you have the necessary build tools and dependencies installed before running these commands.
 
-### macOS
+### Homebrew (macOS, Linux)
 
-For macOS platforms, you can easily install using Homebrew with the following `brew` commands:
+For platforms that support [Homebrew](https://brew.sh/), you can easily install using the following `brew` commands:
 
 ```
 brew tap cybergarage/homebrew
