@@ -71,41 +71,60 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a></p>
 <p><img src="https://img.shields.io/github/v/tag/cybergarage/uhttp-cc" alt="GitHub tag (latest SemVer)" class="inline"/> <a href="https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml"><img src="https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml/badge.svg" alt="Build Status" style="pointer-events: none;" class="inline"/></a></p>
-<p><a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ is a developer framework for HTTP client and server applications. The framework was forked from <a href="https://github.com/cybergarage/mupnp-cc">mUPnP for C++</a> except the UPnP and SOAP functions.</p>
-<p><a href="https://github.com/cybergarage/mupnp-cc">mUPnP for C++</a> was developed for embedded platforms, but I will improve the framework for enterprise platforms in the future.</p>
-<p><a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ aims to provide a lightweight and efficient solution for building HTTP-based applications. It supports both client and server functionalities, making it versatile for various use cases. The framework is designed to be easy to integrate and use, with a focus on performance and scalability.</p>
+<p><a class="el" href="namespaceuHTTP.html">uHTTP</a> is a C++ library for building HTTP clients and servers. Extracted from <a href="https://github.com/cybergarage/mupnp-cc">mUPnP for C++</a>, it retains HTTP and supporting network utilities without the UPnP and SOAP layers.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Building and Installation</h1>
-<p><a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ is distributed as an Automake project, and so you can install the library from the source codes with the following commands:</p>
-<div class="fragment"><div class="line">./bootstrap</div>
-<div class="line">./configure</div>
+Features and structure</h1>
+<ul>
+<li>HTTP request, response, header, status, and parameter abstractions.</li>
+<li>Client requests and a server request-listener API.</li>
+<li>Supporting URL, socket, network-interface, thread, and synchronization utilities.</li>
+<li>Small command-line examples for downloading a URL and serving a local directory.</li>
+</ul>
+<p>Public headers live in <a href="include/uhttp/"><code>include/uhttp/</code></a>, implementations in <a href="src/uhttp/"><code>src/uhttp/</code></a>, and tests in <a href="test/"><code>test/</code></a>. The Automake build produces <code>libuhttp++.a</code>.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Build from source</h1>
+<p>The Unix build needs a C++ compiler, Make, and POSIX socket/thread support. Building examples also requires libedit development headers and libraries. Tests require the Boost unit-test framework, system, thread, and filesystem libraries.</p>
+<div class="fragment"><div class="line">git clone https://github.com/cybergarage/uhttp-cc.git</div>
+<div class="line">cd uhttp-cc</div>
+<div class="line">./configure --enable-examples</div>
+<div class="line">make</div>
+</div><!-- fragment --><p>Generated <code>configure</code> files are included. If you change the Autotools inputs or need to regenerate them, install Autoconf and Automake and run <code>./bootstrap</code> before configuring.</p>
+<p>To install into a user-owned prefix, configure it before building:</p>
+<div class="fragment"><div class="line">./configure --prefix=&quot;$HOME/.local&quot; --enable-examples</div>
+<div class="line">make</div>
 <div class="line">make install</div>
-</div><!-- fragment --><p>These commands will configure the build environment, compile the source code, and install the library on your system. Ensure that you have the necessary build tools and dependencies installed before running these commands.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Homebrew (macOS, Linux)</h2>
-<p>For platforms that support <a href="https://brew.sh/">Homebrew</a>, you can easily install using the following <code>brew</code> commands:</p>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+Homebrew</h2>
+<p>The project also provides a <a href="https://github.com/cybergarage/homebrew">Homebrew tap</a>:</p>
 <div class="fragment"><div class="line">brew tap cybergarage/homebrew</div>
 <div class="line">brew install uhttp++</div>
-</div><!-- fragment --><p>This will add the cybergarage tap to Homebrew and install the uHTTP++ library. Homebrew simplifies the installation process by managing dependencies and configurations automatically.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-References</h1>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Run the examples</h1>
+<p>After building with <code>--enable-examples</code>, serve a directory in the foreground on port 8080:</p>
+<div class="fragment"><div class="line">./examples/fsserver/unix/fsserver -f -p 8080 ./doc</div>
+</div><!-- fragment --><p>From another terminal, make a request with the example client:</p>
+<div class="fragment"><div class="line">./examples/httpget/unix/httpget http://127.0.0.1:8080/</div>
+</div><!-- fragment --><p>Use a path to a file under the served directory to retrieve its contents. Stop the foreground server with Ctrl-C. The server normally defaults to daemon mode and port 80; the explicit flags above make it easier to try locally.</p>
 <ul>
-<li><a href="http://cybergarage.github.io/uhttp-cc/">Doxygen</a></li>
+<li><a href="examples/httpget/"><code>httpget</code></a>: URL parsing and HTTP GET requests.</li>
+<li><a href="examples/fsserver/"><code>fsserver</code></a>: file serving through the HTTP server API.</li>
 </ul>
-<p>The Doxygen documentation provides detailed information about the API and usage of the <a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ framework. It is a valuable resource for developers looking to understand the internals and capabilities of the library.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Examples</h1>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Testing</h1>
+<p>With the Boost and libedit dependencies installed:</p>
+<div class="fragment"><div class="line">./configure --enable-test --enable-examples</div>
+<div class="line">make</div>
+<div class="line">make check</div>
+</div><!-- fragment --><p>These are the build and test steps used by <a href=".github/workflows/make.yml">CI</a>. Network tests require permission to create local sockets.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Scope and limitations</h1>
+<p>This is an HTTP library with a legacy Autotools build. Do not infer TLS support, HTTP/2 or HTTP/3 support, production hardening, or performance guarantees from the HTTP APIs. Check the implementation and test the behavior needed by your application. The file server is a usage example, not a deployment guide.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Documentation and license</h1>
 <ul>
-<li><a href="https://github.com/cybergarage/uhttp-cc/tree/master/examples/httpget">httpget</a><ul>
-<li>A simple HTTP client application similar to the curl utility. This example demonstrates how to perform HTTP GET requests using the <a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ framework.</li>
+<li><a href="https://cybergarage.github.io/uhttp-cc/">API reference (Doxygen)</a></li>
+<li>[BSD-style license](COPYING) </li>
 </ul>
-</li>
-<li><a href="https://github.com/cybergarage/uhttp-cc/tree/master/examples/fsserver">fsserver</a><ul>
-<li>A simple HTTP server application that returns file contents from a specified local directory. This example shows how to set up a basic HTTP server using the framework.</li>
-</ul>
-</li>
-</ul>
-<p>These examples provide practical demonstrations of how to use the <a class="el" href="namespaceuHTTP.html">uHTTP</a> for C++ framework to build real-world applications. They serve as a good starting point for developers to learn and experiment with the library. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

@@ -25,11 +25,14 @@
 var NAVTREE =
 [
   [ "uHTTP for C++", "index.html", [
-    [ "Building and Installation", "index.html#autotoc_md1", [
-      [ "Homebrew (macOS, Linux)", "index.html#autotoc_md2", null ]
+    [ "Features and structure", "index.html#autotoc_md1", null ],
+    [ "Build from source", "index.html#autotoc_md2", [
+      [ "Homebrew", "index.html#autotoc_md3", null ]
     ] ],
-    [ "References", "index.html#autotoc_md3", null ],
-    [ "Examples", "index.html#autotoc_md4", null ],
+    [ "Run the examples", "index.html#autotoc_md4", null ],
+    [ "Testing", "index.html#autotoc_md5", null ],
+    [ "Scope and limitations", "index.html#autotoc_md6", null ],
+    [ "Documentation and license", "index.html#autotoc_md7", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -71,7 +74,7 @@ var NAVTREEINDEX =
 "classuHTTP_1_1ParameterList.html#a275d7653069d6efa5b36b10b20c79df9",
 "classuHTTP_1_1String.html#ab24719cbbafb670cca29a745bd3ca0d1",
 "classuHTTP_1_1Vector.html#a39afb95f8ebc6150161c5b1633c0d28f",
-"namespaceuHTTP_1_1HTTP.html#a1de66811b4fc91c193ebafcd3f06affa"
+"namespaceuHTTP_1_1HTTP.html#a1cbe0264b9bfc59acabce6a9d8d7ed0a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
