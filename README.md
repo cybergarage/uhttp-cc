@@ -3,46 +3,83 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uhttp-cc)
 [![Build Status](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uhttp-cc/actions/workflows/make.yml)
 
-uHTTP for C++ is a developer framework for HTTP client and server applications. The framework was forked from [mUPnP for C++](https://github.com/cybergarage/mupnp-cc) except the UPnP and SOAP functions.
+uHTTP is a C++ library for building HTTP clients and servers. Extracted from [mUPnP for C++](https://github.com/cybergarage/mupnp-cc), it retains HTTP and supporting network utilities without the UPnP and SOAP layers.
 
-[mUPnP for C++](https://github.com/cybergarage/mupnp-cc) was developed for embedded platforms, but I will improve the framework for enterprise platforms in the future.
+## Features and structure
 
-uHTTP for C++ aims to provide a lightweight and efficient solution for building HTTP-based applications. It supports both client and server functionalities, making it versatile for various use cases. The framework is designed to be easy to integrate and use, with a focus on performance and scalability.
+- HTTP request, response, header, status, and parameter abstractions.
+- Client requests and a server request-listener API.
+- Supporting URL, socket, network-interface, thread, and synchronization utilities.
+- Small command-line examples for downloading a URL and serving a local directory.
 
-## Building and Installation
+Public headers live in [`include/uhttp/`](include/uhttp/), implementations in [`src/uhttp/`](src/uhttp/), and tests in [`test/`](test/). The Automake build produces `libuhttp++.a`.
 
-uHTTP for C++ is distributed as an Automake project, and so you can install the library from the source codes with the following commands:
+## Build from source
 
+The Unix build needs a C++ compiler, Make, and POSIX socket/thread support. Building examples also requires libedit development headers and libraries. Tests require the Boost unit-test framework, system, thread, and filesystem libraries.
+
+```sh
+git clone https://github.com/cybergarage/uhttp-cc.git
+cd uhttp-cc
+./configure --enable-examples
+make
 ```
-./bootstrap
-./configure
+
+Generated `configure` files are included. If you change the Autotools inputs or need to regenerate them, install Autoconf and Automake and run `./bootstrap` before configuring.
+
+To install into a user-owned prefix, configure it before building:
+
+```sh
+./configure --prefix="$HOME/.local" --enable-examples
+make
 make install
 ```
 
-These commands will configure the build environment, compile the source code, and install the library on your system. Ensure that you have the necessary build tools and dependencies installed before running these commands.
+### Homebrew
 
-### Homebrew (macOS, Linux)
+The project also provides a [Homebrew tap](https://github.com/cybergarage/homebrew):
 
-For platforms that support [Homebrew](https://brew.sh/), you can easily install using the following `brew` commands:
-
-```
+```sh
 brew tap cybergarage/homebrew
 brew install uhttp++
 ```
 
-This will add the cybergarage tap to Homebrew and install the uHTTP++ library. Homebrew simplifies the installation process by managing dependencies and configurations automatically.
+## Run the examples
 
-## References
+After building with `--enable-examples`, serve a directory in the foreground on port 8080:
 
-- [Doxygen](http://cybergarage.github.io/uhttp-cc/)
+```sh
+./examples/fsserver/unix/fsserver -f -p 8080 ./doc
+```
 
-The Doxygen documentation provides detailed information about the API and usage of the uHTTP for C++ framework. It is a valuable resource for developers looking to understand the internals and capabilities of the library.
+From another terminal, make a request with the example client:
 
-## Examples
+```sh
+./examples/httpget/unix/httpget http://127.0.0.1:8080/
+```
 
-- [httpget](https://github.com/cybergarage/uhttp-cc/tree/master/examples/httpget) 
-  - A simple HTTP client application similar to the curl utility. This example demonstrates how to perform HTTP GET requests using the uHTTP for C++ framework.
-- [fsserver](https://github.com/cybergarage/uhttp-cc/tree/master/examples/fsserver)
-  - A simple HTTP server application that returns file contents from a specified local directory. This example shows how to set up a basic HTTP server using the framework.
+Use a path to a file under the served directory to retrieve its contents. Stop the foreground server with Ctrl-C. The server normally defaults to daemon mode and port 80; the explicit flags above make it easier to try locally.
 
-These examples provide practical demonstrations of how to use the uHTTP for C++ framework to build real-world applications. They serve as a good starting point for developers to learn and experiment with the library.
+- [`httpget`](examples/httpget/): URL parsing and HTTP GET requests.
+- [`fsserver`](examples/fsserver/): file serving through the HTTP server API.
+
+## Testing
+
+With the Boost and libedit dependencies installed:
+
+```sh
+./configure --enable-test --enable-examples
+make
+make check
+```
+
+These are the build and test steps used by [CI](.github/workflows/make.yml). Network tests require permission to create local sockets.
+
+## Scope and limitations
+
+This is an HTTP library with a legacy Autotools build. Do not infer TLS support, HTTP/2 or HTTP/3 support, production hardening, or performance guarantees from the HTTP APIs. Check the implementation and test the behavior needed by your application. The file server is a usage example, not a deployment guide.
+
+## Documentation and license
+
+- [API reference (Doxygen)](https://cybergarage.github.io/uhttp-cc/)
+- [BSD-style license](COPYING)
